@@ -1,0 +1,12 @@
+= form_for @supply_copy do |f|
+  .field
+    = f.label :supply
+    = f.text_field :supply
+  .field
+    = f.label :ref
+    = f.text_field :ref
+  .field
+    = f.label :loanable
+    = f.check_box :loanable
+  .actions
+    = f.submit 'Save'

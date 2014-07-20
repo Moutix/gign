@@ -1,0 +1,16 @@
+.border-form-div
+  %h2 Connection
+
+  = form_for(resource, :as => resource_name, :url => session_path(resource_name), class: 'form-control') do |f|
+
+    = f.email_field :email, :autofocus => true, class: 'form-control'
+    = f.password_field :password, required: true, class: 'form-control'
+
+    - if devise_mapping.rememberable?
+      %label.checkbox
+        = f.check_box :remember_me
+        Remember me
+
+    = f.submit "Se connecter", class: 'btn btn-primary'
+
+  = render "devise/shared/links"

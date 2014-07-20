@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  number: 1
+  image: MyString
+  loanable: false
+  description: MyText
+
+two:
+  name: MyString
+  number: 1
+  image: MyString
+  loanable: false
+  description: MyText

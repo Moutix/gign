@@ -1,0 +1,15 @@
+= form_for @supply do |f|
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :image
+    = f.text_field :image
+  .field
+    = f.label :loanable
+    = f.check_box :loanable
+  .field
+    = f.label :description
+    = f.text_area :description
+  .actions
+    = f.submit 'Save'

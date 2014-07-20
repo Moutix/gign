@@ -1,0 +1,5 @@
+= form_for resource, :as => resource, :url => session_path(resource_name), :html => {:class=> "navbar-form pull-right"} do |f|
+  = f.email_field :email , placeholder: "Mail", class: "form-control", id: "mail-navbar"
+  = f.password_field :password, placeholder: "Mot de passe", class: "form-control", id: "password-navbar"
+  = f.button "Se Connecter", class: "btn"
+ 

@@ -1,0 +1,27 @@
+fr:
+  controller:
+    application:
+      forbidden: "Attention : Cette action n'est pas permise."
+
+  activerecord:
+    models:
+      supply:
+        one: Matériel
+        other: Matériels
+      supply_copy:
+        one: exemplaire
+        other: exemplaires
+
+    attributes:
+      all: &all
+        created_at: Crée le
+        updated_at: Mis à jour le
+      supply:
+        name: Nom
+        description: Description
+        loanable: Empruntable ?
+      supply_copy:
+        ref: référence
+
+
+

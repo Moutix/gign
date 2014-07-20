@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Supply:
+  = @supply_copy.supply
+%p
+  %b Ref:
+  = @supply_copy.ref
+%p
+  %b Loanable:
+  = @supply_copy.loanable
+
+= link_to 'Edit', edit_supply_copy_path(@supply_copy)
+\|
+= link_to 'Back', supply_copies_path

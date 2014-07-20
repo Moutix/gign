@@ -1,0 +1,29 @@
+- model_class = Supply
+%h1= t '.title', :default => model_class.model_name.human.pluralize.titleize
+
+%table.table.table-striped
+  %tr
+    %th= model_class.human_attribute_name(:supply)
+    %th= model_class.human_attribute_name(:ref)
+    %th= model_class.human_attribute_name(:loanable)
+    %th= t '.actions', :default => t("helpers.actions")
+
+  - @supply_copies.each do |supply_copy|
+    %tr
+      %td= link_to supply_copy.ref, supply_copy
+      %td= supply_copy.supply
+      %td= supply_copy.loanable
+      %td 
+        = link_to t('.edit', :default => t("helpers.links.edit")),
+            edit_supply_copy_path(supply_copy), :class => 'btn btn-default btn-xs'
+        = link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      supply_copy_path(supply_copy),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' 
+      
+%br
+
+= link_to t('.new', :default => t("helpers.links.new")),
+            new_supply_copy_path,
+            :class => 'btn btn-primary'

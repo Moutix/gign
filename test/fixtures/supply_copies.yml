@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  supply_id: 
+  ref: MyString
+  loanable: false
+
+two:
+  supply_id: 
+  ref: MyString
+  loanable: false
