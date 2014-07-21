@@ -1,10 +1,16 @@
 Gign::Application.routes.draw do
-  devise_for :users
-  resources :users
+  resources :borrowings, path: I18n.transliterate(I18n.t('.title', :default => Borrowing.model_name.human.pluralize.downcase))
 
-  resources :supply_copies
+  devise_for :users, path: I18n.transliterate(I18n.t('.title', :default => User.model_name.human.pluralize.downcase))
+  resources :users, path: I18n.transliterate(I18n.t('.title', :default => User.model_name.human.pluralize.downcase))
 
-  resources :supplies
+  resources :supply_copies, path: I18n.transliterate(I18n.t('.title', :default => SupplyCopy.model_name.human.pluralize.downcase))
+
+  resources :supplies, path: I18n.transliterate(I18n.t('.title', :default => Supply.model_name.human.pluralize.downcase)) do
+    member do
+      post :loan
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

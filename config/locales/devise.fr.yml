@@ -2,6 +2,7 @@
 fr:
   devise:
     shared:
+      sign_out: "Se déconnecter"
       sign_in: "Se connecter"
       sign_up: "S'enregistrer"
       forgot_password: "Mot de passe oublié ?"

@@ -6,6 +6,7 @@
 <%attributes.each do |attribute| -%>
     %th= model_class.human_attribute_name(:<%=attribute.name%>)
 <%end-%>
+    %th= model_class.human_attribute_name(:created_at)
     %th= t '.actions', :default => t("helpers.actions")
 
   - @<%= plural_table_name %>.each do |<%= singular_table_name%>|
@@ -17,7 +18,7 @@
       %td= <%=singular_table_name%>.<%=attribute.name%>
 <%end-%>
 <%end-%>
-      %td= <%=singular_table_name%>.created_at.to_s[:pretty]
+      %td= <%=singular_table_name%>.created_at.to_s(:pretty)
       %td 
         = link_to t('.edit', :default => t("helpers.links.edit")),
               edit_<%=singular_table_name%>_path(<%=singular_table_name%>), :class => 'btn btn-default btn-xs'
@@ -29,6 +30,6 @@
       
 %br
 
-= link_to t('.new', :default => t("helpers.links.new")),
+= link_to t('.new', :default => t("helpers.links.new"), name: model_class.model_name.human),
             new_<%=singular_table_name%>_path,
             :class => 'btn btn-primary'

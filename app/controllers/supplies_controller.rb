@@ -1,5 +1,5 @@
 class SuppliesController < ApplicationController
-  before_action :set_supply, only: [:show, :edit, :update, :destroy]
+  before_action :set_supply, only: [:show, :edit, :update, :destroy, :loan]
 
   # GET /supplies
   # GET /supplies.json
@@ -58,6 +58,21 @@ class SuppliesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to supplies_url }
       format.json { head :no_content }
+    end
+  end
+
+  def loan
+    if current_user.active_basket.loan!(@supply)
+      flash[:notice] = t("loan.correctly_add_to_basket")
+      respond_to do |format|
+        format.html {redirect_to @supply}
+        format.js
+      end
+    else
+      flash[:error] = t("errors.supply.cannot_be_loaned")
+      respond_to do |format|
+        format.html{ render action: 'show'}
+      end
     end
   end
 

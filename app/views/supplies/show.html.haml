@@ -13,6 +13,8 @@
   %b Description:
   = @supply.description
 
+= link_to t("loan.add_to_basket"), loan_supply_path(@supply), method: :post
+
 = link_to 'Edit', edit_supply_path(@supply)
 \|
 = link_to 'Back', supplies_path

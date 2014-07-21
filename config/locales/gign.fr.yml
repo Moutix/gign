@@ -1,4 +1,7 @@
 fr:
+  project_name: GiGN
+  home: Accueil
+
   controller:
     application:
       forbidden: "Attention : Cette action n'est pas permise."
@@ -9,8 +12,14 @@ fr:
         one: Matériel
         other: Matériels
       supply_copy:
-        one: exemplaire
-        other: exemplaires
+        one: Exemplaire
+        other: Exemplaires
+      borrowing:
+        one: Emprunt
+        other: Emprunts
+      user:
+        one: Utilisateur
+        other: Utilisateurs
 
     attributes:
       all: &all
@@ -23,5 +32,18 @@ fr:
       supply_copy:
         ref: référence
 
+  loan:
+    add_to_basket: Ajouté au panier
+    correctly_add_to_basket: L'élément a bien été ajouté au panier
 
-
+  errors:
+    supply:
+      cannot_be_loaned: Cet objet ne peut être emprunté
+  helpers:
+    links:
+      new: "Nouveau %{name}"
+      destroy: "Supprimer"
+      edit: "Éditer"
+      save: "Sauvegarder"
+      back: "Retour"
+ 

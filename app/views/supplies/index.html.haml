@@ -26,6 +26,6 @@
       
 %br
 
-= link_to t('.new', :default => t("helpers.links.new")),
+= link_to t('.new', :default => t("helpers.links.new"), :name => model_class.model_name.human.titleize),
             new_supply_path,
             :class => 'btn btn-primary'

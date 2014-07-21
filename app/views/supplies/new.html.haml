@@ -1,5 +1,6 @@
-%h1 New supply
+- model_class = Supply
+%h1= t('.new', :default => t("helpers.links.new"), :name => model_class.model_name.human.titleize)
 
 = render 'form'
 
-= link_to 'Back', supplies_path
+= link_to t('.back', :default => t("helpers.links.back"), :name => model_class.model_name.human.titleize), supplies_path, class: 'btn btn-primary'

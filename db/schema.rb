@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140720180657) do
+ActiveRecord::Schema.define(version: 20140721172834) do
+
+  create_table "borrowings", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "end_at"
+    t.datetime "start_at"
+    t.datetime "ended_at"
+    t.boolean  "effective",  default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "borrowings", ["user_id"], name: "index_borrowings_on_user_id"
+
+  create_table "borrowings_supply_copies", id: false, force: true do |t|
+    t.integer "borrowing_id"
+    t.integer "supply_copy_id"
+  end
 
   create_table "supplies", force: true do |t|
     t.string   "name",                       null: false

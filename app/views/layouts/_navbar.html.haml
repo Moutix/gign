@@ -6,16 +6,18 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand{href: root_path} GiGN
+      %a.navbar-brand{href: root_path}= t('project_name')
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
         %li.active
-          %a{href: root_path} Accueil
+          %a{href: root_path}= t('home')
+        %li
+          %a{href: supplies_path}= t '.title', :default => Supply.model_name.human.pluralize.titleize
 
       %ul.nav.navbar-nav.pull-right
         - if !current_user
-          %li= link_to "S'inscrire", new_user_registration_path
+          %li= link_to t('devise.shared.sign_up'), new_user_registration_path
           = render 'layouts/sign_through_navbar'
         - else
-          %li= link_to current_user.email, users_path(current_user)
-          %li= link_to "Se déconnecter", destroy_user_session_path, method: :delete
+          %li= link_to current_user.email, user_path(current_user)
+          %li= link_to t('devise.shared.sign_out'), destroy_user_session_path, method: :delete

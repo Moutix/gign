@@ -1,0 +1,10 @@
+= form_for @borrowing do |f|
+  - if @borrowing.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@borrowing.errors.count, "error")} prohibited this borrowing from being saved:"
+      %ul
+        - @borrowing.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'
