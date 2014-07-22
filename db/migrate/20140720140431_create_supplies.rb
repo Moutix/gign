@@ -2,8 +2,8 @@ class CreateSupplies < ActiveRecord::Migration
   def change
     create_table :supplies do |t|
       t.string :name, null: false
+      t.integer :price
       t.text :description
-      t.string :image
       t.boolean :loanable, default: true
 
       t.timestamps

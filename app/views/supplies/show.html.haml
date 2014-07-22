@@ -1,19 +1,20 @@
-%p#notice= notice
+.row
+  .col-xs-10.col-md-6
+    = render 'images/carousel', images: @supply.images
+    %br
+    = render 'images/form'
+  .col-xs-6.col-md-4
+    %h1= @supply.name + " - " + number_to_currency(@supply.price)
+    %hr
+    %h2= @supply.supply_copies.loanables.size.to_s + " en stock"
+    %p
+      = link_to t("loan.add_to_basket"), loan_supply_path(@supply), method: :post, class: 'btn btn-primary'
 
-%p
-  %b Name:
-  = @supply.name
-%p
-  %b Image:
-  = @supply.image
-%p
-  %b Loanable:
-  = @supply.loanable
+
 %p
   %b Description:
   = @supply.description
 
-= link_to t("loan.add_to_basket"), loan_supply_path(@supply), method: :post
 
 = link_to 'Edit', edit_supply_path(@supply)
 \|

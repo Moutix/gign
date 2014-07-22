@@ -1,5 +1,5 @@
 class SuppliesController < ApplicationController
-  before_action :set_supply, only: [:show, :edit, :update, :destroy, :loan]
+  before_action :set_supply, only: [:show, :edit, :update, :destroy, :loan, :upload]
 
   # GET /supplies
   # GET /supplies.json
@@ -69,11 +69,32 @@ class SuppliesController < ApplicationController
         format.js
       end
     else
-      flash[:error] = t("errors.supply.cannot_be_loaned")
+      flash[:error] = t("errors.supply.loan.failed")
       respond_to do |format|
         format.html{ render action: 'show'}
       end
     end
+  end
+
+  def upload
+    if !params[:image][:url].blank?
+      if Image.upload_url(params[:image][:url], @supply, params[:image][:name])
+        flash[:notice] = t("notice.supply.upload.success_url")
+      else
+        flash[:error] = t("errors.supply.upload.failed_url")
+      end
+    elsif !params[:image][:file].blank?
+      if Image.upload_file(params[:image][:file], @supply, params[:image][:name])
+        flash[:notice] = t("notice.supply.upload.success_file")
+      else
+        flash[:error] = t("errors.supply.upload.failed_file")
+      end
+    else
+      flash[:error] = t("errors.supply.upload.no_params")
+    end
+    respond_to do |format|
+      format.html{ redirect_to @supply}
+    end 
   end
 
   private
@@ -84,6 +105,6 @@ class SuppliesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def supply_params
-      params.require(:supply).permit(:name, :image, :loanable, :description)
+      params.require(:supply).permit(:name, :price, :loanable, :description)
     end
 end

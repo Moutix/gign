@@ -1,0 +1,25 @@
+- if !images.empty?
+
+  #carousel-image.carousel.slide
+    %ol.carousel-indicators
+      - images.each_with_index do |image, index|
+        .li{"data-target" => '#carousel-image', "data-slide-to" => index}
+
+    .carousel-inner
+      - images.each_with_index do |image, index|
+        - if index == 0
+          .item.active
+            = image_tag(image.url)
+        -else
+          .item
+            =image_tag(image.url)
+
+
+    %a.left.carousel-control{href: "#carousel-image", role: "button", "data-slide" => "prev"}
+      %span.glyphicon.glyphicon-chevron-left
+
+    %a.right.carousel-control{href: "#carousel-image", role: "button", "data-slide" => "next"}
+      %span.glyphicon.glyphicon-chevron-right
+
+
+

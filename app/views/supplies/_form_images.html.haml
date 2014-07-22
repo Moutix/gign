@@ -1,0 +1,6 @@
+%div
+  = form_for(:image, :url => {:action => "upload"}) do |f|
+    .form-group
+      = f.text_field :url, class: 'form-control'
+    .form-group
+      = f.file_field :file, :onchange => 'this.form.submit()', class: 'form-control'

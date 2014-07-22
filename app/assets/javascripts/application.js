@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require jquery.pnotify.conf.js
+//= require bootstrap-filestyle.min.js
 //= require turbolinks
 //= require_tree .

@@ -1,0 +1,14 @@
+.well
+  = form_for(:image, :url => {:action => "upload"}) do |f|
+    .row
+      .col-xs-6
+        .form-group
+          = f.text_field :url, class: 'form-control', placeholder: t("form.image.placeholder.url")
+      .col-xs-6
+        .form-group
+          = f.file_field :file, class: 'filestyle', "data-buttonText" => t("form.image.placeholder.file")
+    .row
+      .col-xs-6
+        = f.text_field :name, class: 'form-control', placeholder: t("form.image.placeholder.name")
+      .col-xs-6
+        = f.submit t("form.image.submit"), class: 'btn btn-primary'

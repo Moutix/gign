@@ -27,18 +27,41 @@ fr:
         updated_at: Mis à jour le
       supply:
         name: Nom
+        price: prix
         description: Description
         loanable: Empruntable ?
       supply_copy:
         ref: référence
 
+
   loan:
-    add_to_basket: Ajouté au panier
+    add_to_basket: Ajouter au panier
     correctly_add_to_basket: L'élément a bien été ajouté au panier
 
-  errors:
+
+  form:
+    image:
+      placeholder:
+        url: "Entrez une url ici"
+        file: "Choisir parmis vos images"
+        name: "Préciser le nom de l'image"
+      submit: "Uploader votre image !"
+
+  notice:
     supply:
-      cannot_be_loaned: Cet objet ne peut être emprunté
+      upload:
+        success_url: "L'image a bien été uploadé"
+        success_file: "L'image a bien été uploadé"
+  errors:
+    messages:
+      extension_white_list_error: Mauvaise extension
+    supply:
+      loan:
+        failed: Cet objet ne peut être emprunté
+      upload:
+        no_params: "Merci de mettre un lien, ou un fichier"
+        failed_url: "Une erreur c'est produite, peut être une erreur dand l'url ?"
+        failed_file: "Une erreur c'est produite, êtes vous sûr d'avoir essayer d'uploader une image ?"
   helpers:
     links:
       new: "Nouveau %{name}"

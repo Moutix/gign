@@ -4,7 +4,7 @@
 %table.table.table-striped
   %tr
     %th= model_class.human_attribute_name(:name)
-    %th= model_class.human_attribute_name(:image)
+    %th= model_class.human_attribute_name(:price)
     %th= model_class.human_attribute_name(:loanable)
     %th= model_class.human_attribute_name(:description)
     %th= t '.actions', :default => t("helpers.actions")
@@ -12,7 +12,7 @@
   - @supplies.each do |supply|
     %tr
       %td= link_to supply.name, supply
-      %td= supply.image
+      %td= supply.price
       %td= supply.loanable
       %td= supply.description
       %td 

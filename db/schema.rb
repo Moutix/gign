@@ -11,13 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140721172834) do
+ActiveRecord::Schema.define(version: 20140722154253) do
 
   create_table "borrowings", force: true do |t|
     t.integer  "user_id"
     t.datetime "end_at"
     t.datetime "start_at"
+    t.datetime "started_at"
     t.datetime "ended_at"
+    t.boolean  "ongoing",    default: false
+    t.boolean  "accepted",   default: false
     t.boolean  "effective",  default: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -30,10 +33,19 @@ ActiveRecord::Schema.define(version: 20140721172834) do
     t.integer "supply_copy_id"
   end
 
+  create_table "images", force: true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "supplies", force: true do |t|
     t.string   "name",                       null: false
+    t.integer  "price"
     t.text     "description"
-    t.string   "image"
     t.boolean  "loanable",    default: true
     t.datetime "created_at"
     t.datetime "updated_at"
