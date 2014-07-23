@@ -20,4 +20,5 @@
           = render 'layouts/sign_through_navbar'
         - else
           %li= link_to current_user.email, user_path(current_user)
+          %li= link_to "(" + current_user.active_basket.supply_copies.size.to_s + ") " + t("borrowing.basket"), borrowing_path(current_user.active_basket)
           %li= link_to t('devise.shared.sign_out'), destroy_user_session_path, method: :delete

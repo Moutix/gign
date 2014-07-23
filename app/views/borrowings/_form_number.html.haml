@@ -1,0 +1,3 @@
+= borrowing.supply_copies.where('supply_id = ?', supply.id).size
+= link_to "+", number_supply_borrowing_path(borrowing, supply: supply, number: "more"), method: :post
+= link_to "-", number_supply_borrowing_path(borrowing, supply: supply, number: "less"), method: :post

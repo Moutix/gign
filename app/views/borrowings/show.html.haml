@@ -1,5 +1,10 @@
-%p#notice= notice
+%h4= t("borrowing.title")
 
+= render "list_copy", borrowing: @borrowing
+
+%hr
+
+=render "form", borrowing: @borrowing
 
 = link_to 'Edit', edit_borrowing_path(@borrowing)
 \|

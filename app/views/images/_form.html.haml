@@ -1,14 +1,23 @@
-.well
+#imageModal.modal.fade{"aria-hidden" => "true", "tabindex" => "-1"}
   = form_for(:image, :url => {:action => "upload"}) do |f|
-    .row
-      .col-xs-6
-        .form-group
-          = f.text_field :url, class: 'form-control', placeholder: t("form.image.placeholder.url")
-      .col-xs-6
-        .form-group
-          = f.file_field :file, class: 'filestyle', "data-buttonText" => t("form.image.placeholder.file")
-    .row
-      .col-xs-6
-        = f.text_field :name, class: 'form-control', placeholder: t("form.image.placeholder.name")
-      .col-xs-6
-        = f.submit t("form.image.submit"), class: 'btn btn-primary'
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"data-dismiss" => "modal"}
+            %span{"aria-hidden" => "true"}×
+            %span.sr-only
+              = t("helpers.links.close")
+          %h4.modal-title= t("form.image.title")
+        .modal-body
+          .row
+            .col-xs-6
+              .form-group
+                = f.text_field :url, class: 'form-control', placeholder: t("form.image.placeholder.url")
+            .col-xs-6
+              .form-group
+                = f.file_field :file, class: 'filestyle', "data-buttonText" => t("form.image.placeholder.file"), "data-input" => "false"
+          = f.text_field :name, class: 'form-control', placeholder: t("form.image.placeholder.name")
+        .modal-footer
+          %button.btn.btn-default{"data-dismiss" => "modal"}
+            = t("helpers.links.close")
+          = f.submit t("form.image.submit"), class: 'btn btn-primary'

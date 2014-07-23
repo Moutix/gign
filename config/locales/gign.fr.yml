@@ -30,13 +30,21 @@ fr:
         price: prix
         description: Description
         loanable: Empruntable ?
+        nbcopy: "Nombre d'exemplaire"
       supply_copy:
         ref: référence
 
+  supply:
+    loan:
+      links: Ajouter au panier
+    add_copy:
+      links: Ajouter un exemplaire
+  
+  borrowing:
+    basket: Panier
+    title: Mon panier
+    total: Total
 
-  loan:
-    add_to_basket: Ajouter au panier
-    correctly_add_to_basket: L'élément a bien été ajouté au panier
 
 
   form:
@@ -46,18 +54,35 @@ fr:
         file: "Choisir parmis vos images"
         name: "Préciser le nom de l'image"
       submit: "Uploader votre image !"
+      title: "Uploadez votre image"
+    borrowing:
+      placeholder:
+        start_at: "Date de début d'emprunt"
+        end_at: "Date de fin d'emprunt"
 
   notice:
     supply:
       upload:
         success_url: "L'image a bien été uploadé"
         success_file: "L'image a bien été uploadé"
+      loan:
+        success: L'élément a bien été ajouté au panier
+      unloan:
+        success: L'élément a bien été retiré du panier
+      add_copy: 
+        success: "Un exemplaire a été ajouté"
+
   errors:
     messages:
       extension_white_list_error: Mauvaise extension
+      what_are_you_doing: "Qu'est-ce que tu as essayé de faire ?"
     supply:
+      add_copy:
+        failed: "Une erreur c'est produite au moment de l'ajout"
       loan:
-        failed: Cet objet ne peut être emprunté
+        failed: "Cet objet ne peut être emprunté"
+      unloan:
+        failed: "Cet objet ne peut plus être désemprunter"
       upload:
         no_params: "Merci de mettre un lien, ou un fichier"
         failed_url: "Une erreur c'est produite, peut être une erreur dand l'url ?"
@@ -68,5 +93,6 @@ fr:
       destroy: "Supprimer"
       edit: "Éditer"
       save: "Sauvegarder"
+      close: "Fermer"
       back: "Retour"
  

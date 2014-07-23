@@ -12,7 +12,7 @@
   - @supplies.each do |supply|
     %tr
       %td= link_to supply.name, supply
-      %td= supply.price
+      %td= number_to_currency(supply.price)
       %td= supply.loanable
       %td= supply.description
       %td 

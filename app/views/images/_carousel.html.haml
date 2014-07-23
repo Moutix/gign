@@ -10,9 +10,13 @@
         - if index == 0
           .item.active
             = image_tag(image.url)
+            .carousel-caption
+              = image.name
         -else
           .item
-            =image_tag(image.url)
+            = image_tag(image.url)
+            .carousel-caption
+              = image.name
 
 
     %a.left.carousel-control{href: "#carousel-image", role: "button", "data-slide" => "prev"}
@@ -20,6 +24,4 @@
 
     %a.right.carousel-control{href: "#carousel-image", role: "button", "data-slide" => "next"}
       %span.glyphicon.glyphicon-chevron-right
-
-
 

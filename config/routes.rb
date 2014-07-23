@@ -1,5 +1,9 @@
 Gign::Application.routes.draw do
-  resources :borrowings, path: I18n.transliterate(I18n.t('.title', :default => Borrowing.model_name.human.pluralize.downcase))
+  resources :borrowings, path: I18n.transliterate(I18n.t('.title', :default => Borrowing.model_name.human.pluralize.downcase)) do
+    member do
+      post :number_supply
+    end
+  end
 
   devise_for :users, path: I18n.transliterate(I18n.t('.title', :default => User.model_name.human.pluralize.downcase))
   resources :users, path: I18n.transliterate(I18n.t('.title', :default => User.model_name.human.pluralize.downcase))
@@ -10,6 +14,7 @@ Gign::Application.routes.draw do
     member do
       post :loan
       post :upload
+      post :add_copy
     end
   end
 

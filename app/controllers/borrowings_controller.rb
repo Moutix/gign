@@ -1,5 +1,5 @@
 class BorrowingsController < ApplicationController
-  before_action :set_borrowing, only: [:show, :edit, :update, :destroy]
+  before_action :set_borrowing, only: [:show, :edit, :update, :destroy, :number_supply]
 
   # GET /borrowings
   # GET /borrowings.json
@@ -58,6 +58,23 @@ class BorrowingsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to borrowings_url }
       format.json { head :no_content }
+    end
+  end
+
+  def number_supply
+    if Supply.find(params[:supply]) && params[:number] 
+      if params[:number] == "more" && @borrowing.loan!(Supply.find(params[:supply]))
+        flash[:notice] = t("notice.supply.loan.success")
+      elsif params[:number] == "less" && @borrowing.unloan!(Supply.find(params[:supply]))
+        flash[:notice] = t("notice.supply.unloan.success")
+      else
+        flash[:error] = t("errors.supply.loan.failed")
+      end
+    else
+      flash[:error] = t("errors.what_are_you_doing")
+    end
+    respond_to do |format|
+      format.html { redirect_to @borrowing}
     end
   end
 

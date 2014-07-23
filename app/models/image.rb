@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: images
+#
+#  id             :integer          not null, primary key
+#  name           :string(255)
+#  url            :string(255)
+#  imageable_id   :integer
+#  imageable_type :string(255)
+#  created_at     :datetime
+#  updated_at     :datetime
+#
+
 require 'net/http'
 require 'uri'
 
@@ -12,7 +25,7 @@ class Image < ActiveRecord::Base
       ext = $1
 
       name = self.generate_name if name.blank?
-      file_name = name + "." + ext
+      file_name = name.parameterize + "." + ext
 
       File.open('tmp/' + file_name,'wb') do |file|
         uri = URI.parse(url)

@@ -1,5 +1,5 @@
 class SuppliesController < ApplicationController
-  before_action :set_supply, only: [:show, :edit, :update, :destroy, :loan, :upload]
+  before_action :set_supply, only: [:show, :edit, :update, :destroy, :loan, :upload, :add_copy]
 
   # GET /supplies
   # GET /supplies.json
@@ -63,7 +63,7 @@ class SuppliesController < ApplicationController
 
   def loan
     if current_user.active_basket.loan!(@supply)
-      flash[:notice] = t("loan.correctly_add_to_basket")
+      flash[:notice] = t("notice.supply.loan.success")
       respond_to do |format|
         format.html {redirect_to @supply}
         format.js
@@ -95,6 +95,17 @@ class SuppliesController < ApplicationController
     respond_to do |format|
       format.html{ redirect_to @supply}
     end 
+  end
+
+  def add_copy
+    if @supply.new_copy!
+      flash[:notice] = t("notice.supply.add_copy.success")
+    else
+      flash[:error] = t("errors.supply.add_copy.failed")
+    end
+    respond_to do |format|
+      format.html{redirect_to @supply}
+    end
   end
 
   private

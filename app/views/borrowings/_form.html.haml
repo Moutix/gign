@@ -1,10 +1,10 @@
 = form_for @borrowing do |f|
-  - if @borrowing.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@borrowing.errors.count, "error")} prohibited this borrowing from being saved:"
-      %ul
-        - @borrowing.errors.full_messages.each do |msg|
-          %li= msg
-
-  .actions
-    = f.submit 'Save'
+  .row
+    .col-xs-6
+      .form-group
+        = f.label :start_at, t("form.borrowing.placeholder.start_at")
+        = f.date_field :start_at, class: 'form-control', placeholder: t("form.borrowing.placeholder.start_at")
+    .col-xs-6
+      .form-group
+        = f.label :end_at, t("form.borrowing.placeholder.end_at")
+        = f.date_field :end_at, class: 'form-control', placeholder: t("form.borrowing.placeholder.end_at")

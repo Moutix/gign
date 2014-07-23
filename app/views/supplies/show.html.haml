@@ -2,14 +2,17 @@
   .col-xs-10.col-md-6
     = render 'images/carousel', images: @supply.images
     %br
+    %button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#imageModal"}
+      = t("form.image.title")
     = render 'images/form'
   .col-xs-6.col-md-4
     %h1= @supply.name + " - " + number_to_currency(@supply.price)
     %hr
     %h2= @supply.supply_copies.loanables.size.to_s + " en stock"
     %p
-      = link_to t("loan.add_to_basket"), loan_supply_path(@supply), method: :post, class: 'btn btn-primary'
-
+      = link_to t("supply.loan.links"), loan_supply_path(@supply), method: :post, class: 'btn btn-primary'
+    %p
+      =link_to t("supply.add_copy.links"), add_copy_supply_path(@supply), method: :post
 
 %p
   %b Description:

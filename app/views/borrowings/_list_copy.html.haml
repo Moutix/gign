@@ -1,0 +1,19 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %th= Supply.model_name.human.pluralize
+      %th= Supply.human_attribute_name(:price)
+      %th= Supply.human_attribute_name(:nbcopy)
+
+  %tbody
+    - borrowing.supplies.each do |supply|
+      %tr
+        %td= supply.name
+        %td= number_to_currency(supply.price)
+        %td= render 'form_number', borrowing: borrowing, supply: supply
+
+    %tr
+      %td
+        %b= t("borrowing.total")
+      %td= number_to_currency(borrowing.price)
+      %td= borrowing.supply_copies.size
