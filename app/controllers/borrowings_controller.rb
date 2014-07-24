@@ -1,5 +1,5 @@
 class BorrowingsController < ApplicationController
-  before_action :set_borrowing, only: [:show, :edit, :update, :destroy, :number_supply]
+  before_action :set_borrowing, only: [:show, :edit, :update, :destroy, :number_supply, :submit_basket]
 
   # GET /borrowings
   # GET /borrowings.json
@@ -77,6 +77,21 @@ class BorrowingsController < ApplicationController
       format.html { redirect_to @borrowing}
     end
   end
+
+  def submit_basket
+    if params[:borrowing][:start_at] && params[:borrowing][:end_at] && @borrowing.validate_basket!(params[:borrowing][:start_at], params[:borrowing][:end_at])
+      flash[:success] = t("notice.borrowing.submit_basket")
+    else
+      flash[:error] = ""
+      @borrowing.errors.messages.each_value{|v| flash[:error] += (v)}
+      flash[:error] = t("errors.submit_basket.no_date") if flash[:error].blank?
+    end
+    respond_to do |format|
+      format.html { redirect_to @borrowing}
+    end
+  end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

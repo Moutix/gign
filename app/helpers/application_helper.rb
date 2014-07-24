@@ -9,5 +9,9 @@ module ApplicationHelper
  
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
-  end 
+  end
+
+  def print_boolean(boolean)
+      boolean ? "<span class = 'ok'>✓</span>".html_safe : "<span class = 'ko'>✗</span>".html_safe
+  end
 end

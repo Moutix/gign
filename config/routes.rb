@@ -2,6 +2,7 @@ Gign::Application.routes.draw do
   resources :borrowings, path: I18n.transliterate(I18n.t('.title', :default => Borrowing.model_name.human.pluralize.downcase)) do
     member do
       post :number_supply
+      post :submit_basket
     end
   end
 

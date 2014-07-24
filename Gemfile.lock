@@ -65,6 +65,8 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.2.1)
+    font-awesome-less (4.0.2)
+      less-rails (>= 2.4.2)
     haml (4.0.5)
       tilt
     haml-rails (0.5.3)
@@ -192,6 +194,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.0.0)
   devise
+  font-awesome-less
   haml
   haml-rails
   hpricot

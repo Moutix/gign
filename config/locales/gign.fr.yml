@@ -59,6 +59,7 @@ fr:
       placeholder:
         start_at: "Date de début d'emprunt"
         end_at: "Date de fin d'emprunt"
+      submit: "Valider ma demande d'emprunt"
 
   notice:
     supply:
@@ -71,6 +72,9 @@ fr:
         success: L'élément a bien été retiré du panier
       add_copy: 
         success: "Un exemplaire a été ajouté"
+
+    borrowing:
+      submit_basket: "Votre panier a bien été enregistrer et attend la validation des admins"
 
   errors:
     messages:
@@ -87,6 +91,12 @@ fr:
         no_params: "Merci de mettre un lien, ou un fichier"
         failed_url: "Une erreur c'est produite, peut être une erreur dand l'url ?"
         failed_file: "Une erreur c'est produite, êtes vous sûr d'avoir essayer d'uploader une image ?"
+
+    borrowing:
+      validate_basket:
+        failed: "%{supply_name} ne peut pas être emprunté pendant cette période"
+      submit_basket:
+        no_date: "Merci de précicer un période d'emprunt"
   helpers:
     links:
       new: "Nouveau %{name}"

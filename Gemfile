@@ -48,6 +48,7 @@ end
 gem 'devise'
 
 gem 'carrierwave'
+gem 'font-awesome-less'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

@@ -3,13 +3,29 @@
 
 %table.table.table-striped
   %tr
+    %th= model_class.human_attribute_name(:id)
+    %th= model_class.human_attribute_name(:user)
+    %th= model_class.human_attribute_name(:price)
+    %th= model_class.human_attribute_name(:start_at)
+    %th= model_class.human_attribute_name(:end_at)
+    %th= model_class.human_attribute_name(:effective)
+    %th= model_class.human_attribute_name(:accepted)
+    %th= model_class.human_attribute_name(:ongoing)
     %th= model_class.human_attribute_name(:created_at)
     %th= t '.actions', :default => t("helpers.actions")
 
   - @borrowings.each do |borrowing|
     %tr[borrowing]
-      %td= borrowing.created_at.to_s(:pretty)
-      %td 
+      %td= link_to borrowing.id, borrowing_path(borrowing)
+      %td= link_to borrowing.user.email, user_path(borrowing.user)
+      %td= number_to_currency(borrowing.price)
+      %td= borrowing.start_at
+      %td= borrowing.end_at
+      %td= print_boolean(borrowing.effective)
+      %td= print_boolean(borrowing.accepted)
+      %td= print_boolean(borrowing.ongoing)
+      %td= borrowing.created_at
+      %td
         = link_to t('.edit', :default => t("helpers.links.edit")),
               edit_borrowing_path(borrowing), :class => 'btn btn-default btn-xs'
         = link_to t('.destroy', :default => t("helpers.links.destroy")),

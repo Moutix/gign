@@ -21,6 +21,7 @@ class Borrowing < ActiveRecord::Base
   has_many :supplies, -> { distinct}, through: :supply_copies
 
   def loan! supply
+
     loanables = (supply.supply_copies.loanables - supply_copies).last
     if loanables
       supply_copies << loanables
@@ -44,6 +45,23 @@ class Borrowing < ActiveRecord::Base
 
   def price
     supply_copies.joins(:supply).sum(:price)
+  end
+
+
+  def validate_basket!(start_at, end_at)
+
+    test = true
+
+    supplies.each do |supply|
+      if !supply.loanable?(start_at, end_at, supply_copies.where('supply_id = ?', supply.id).size)
+        errors.messages[supply.name] = I18n.t("errors.borrowing.validate_basket.failed", supply_name: supply.name)
+        test = false
+      end
+    end
+
+    self.update_column(:effective, true) if test
+
+    return test
   end
 
 end

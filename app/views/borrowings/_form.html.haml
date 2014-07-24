@@ -1,10 +1,19 @@
-= form_for @borrowing do |f|
+%script
+  $(".form_datetime").datetimepicker({
+  format: 'dd-mm-yyyy hh:ii',
+  weekStart: 1
+  });
+
+
+
+= form_for(@borrowing, url: submit_basket_borrowing_path(@borrowing), method: :post) do |f|
   .row
     .col-xs-6
       .form-group
         = f.label :start_at, t("form.borrowing.placeholder.start_at")
-        = f.date_field :start_at, class: 'form-control', placeholder: t("form.borrowing.placeholder.start_at")
+        = f.text_field :start_at, readonly: "", class: 'form-control form_datetime', placeholder: t("form.borrowing.placeholder.start_at")
     .col-xs-6
       .form-group
         = f.label :end_at, t("form.borrowing.placeholder.end_at")
-        = f.date_field :end_at, class: 'form-control', placeholder: t("form.borrowing.placeholder.end_at")
+        = f.text_field :end_at, readonly: "", class: 'form-control form_datetime', placeholder: t("form.borrowing.placeholder.end_at")
+  = f.submit t("form.borrowing.submit"), class: 'btn btn-primary'
