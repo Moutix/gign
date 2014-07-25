@@ -9,7 +9,8 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require bootstrap_and_overrides
+ *= require bootstrap-select.min.css
+ *= require bootstrap-datetimepicker.min.css
  *= require_self
  *= require_tree .
- *= require bootstrap-datetimepicker.min.css
  */

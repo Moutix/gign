@@ -15,7 +15,8 @@
       %td= number_to_currency(supply.price)
       %td= supply.loanable
       %td= supply.description
-      %td 
+      %td
+        = link_to t("supply.loan.links"), loan_supply_path(supply), method: :post, class: 'btn btn-default btn-xs'
         = link_to t('.edit', :default => t("helpers.links.edit")),
             edit_supply_path(supply), :class => 'btn btn-default btn-xs'
         = link_to t('.destroy', :default => t("helpers.links.destroy")),

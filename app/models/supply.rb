@@ -16,8 +16,10 @@ class Supply < ActiveRecord::Base
   has_many :images, :class_name => "Image", :as => "imageable"
   has_many :borrowings, through: :supply_copies
   has_many :accepted_borrowings, -> { where accepted: :true}, through: :supply_copies, source: "borrowings"
-
-
+  has_many :copy_loanables, -> { joins(:supply).where('(supplies.loanable = ? AND (supply_copies.loanable = ? OR supply_copies.loanable IS NULL))', true, true)}, source: 'supply_copies', class_name: 'SupplyCopy'
+  has_many :supply_requests
+  has_many :packs, through: :packs_supplies
+  
   after_create :create_supply_copy
 
   def new_copy!

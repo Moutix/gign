@@ -1,11 +1,3 @@
-%script
-  $(".form_datetime").datetimepicker({
-  format: 'dd-mm-yyyy hh:ii',
-  weekStart: 1
-  });
-
-
-
 = form_for(@borrowing, url: submit_basket_borrowing_path(@borrowing), method: :post) do |f|
   .row
     .col-xs-6

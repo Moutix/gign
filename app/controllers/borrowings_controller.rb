@@ -1,10 +1,20 @@
 class BorrowingsController < ApplicationController
-  before_action :set_borrowing, only: [:show, :edit, :update, :destroy, :number_supply, :submit_basket]
+  before_action :set_borrowing, only: [:show, :edit, :update, :destroy, :submit_basket, :ended, :beginning]
 
   # GET /borrowings
   # GET /borrowings.json
   def index
-    @borrowings = Borrowing.all
+    @borrowings = Borrowing.where(effective: true, ongoing: false, accepted: false, finish: false)
+    case params[:type]
+    when 'all'
+      @borrowings = Borrowing.all
+    when 'accepted'
+      @borrowings = Borrowing.where(accepted: true, ongoing: false, finish: false)
+    when 'ongoing'
+      @borrowings = Borrowing.where(ongoing: true, finish: false)
+    when 'ended'
+      @borrowings = Borrowing.where(finish: true)
+    end
   end
 
   # GET /borrowings/1
@@ -62,36 +72,58 @@ class BorrowingsController < ApplicationController
   end
 
   def number_supply
-    if Supply.find(params[:supply]) && params[:number] 
-      if params[:number] == "more" && @borrowing.loan!(Supply.find(params[:supply]))
-        flash[:notice] = t("notice.supply.loan.success")
-      elsif params[:number] == "less" && @borrowing.unloan!(Supply.find(params[:supply]))
-        flash[:notice] = t("notice.supply.unloan.success")
-      else
-        flash[:error] = t("errors.supply.loan.failed")
-      end
-    else
-      flash[:error] = t("errors.what_are_you_doing")
-    end
+    @supply_request = SupplyRequest.find(params[:id])
+
+    @supply_request.borrowing.ask_for_loan(@supply_request.supply, params[:supply_request][:nb_supplies].to_i)
+
     respond_to do |format|
-      format.html { redirect_to @borrowing}
+      format.html { redirect_to @supply_request.borrowing}
     end
   end
 
   def submit_basket
-    if params[:borrowing][:start_at] && params[:borrowing][:end_at] && @borrowing.validate_basket!(params[:borrowing][:start_at], params[:borrowing][:end_at])
+
+    case
+    when @borrowing.supply_requests.empty?
+      flash[:error] = t("errors.borrowing.submit_basket.no_supply")
+    when params[:borrowing][:start_at].blank?
+      flash[:error] = t("errors.borrowing.submit_basket.start_date")      
+    when params[:borrowing][:end_at].blank?
+      flash[:error] = t("errors.borrowing.submit_basket.end_date")
+    when params[:borrowing][:start_at] > params[:borrowing][:end_at]
+      flash[:error] = t("errors.borrowing.submit_basket.valid_date")
+    when @borrowing.validate_basket!(params[:borrowing][:start_at], params[:borrowing][:end_at])
       flash[:success] = t("notice.borrowing.submit_basket")
     else
       flash[:error] = ""
       @borrowing.errors.messages.each_value{|v| flash[:error] += (v)}
       flash[:error] = t("errors.submit_basket.no_date") if flash[:error].blank?
     end
+
     respond_to do |format|
       format.html { redirect_to @borrowing}
     end
   end
 
+  def beginning
+    @borrowing.beginning
+    flash[:info] = t("info.borrowing.beginning")
+    
+    respond_to do |format|
+      format.html { redirect_to @borrowing}
+    end
+ 
+  end
 
+  def ended
+    @borrowing.ended
+    flash[:info] = t("info.borrowing.ended")
+  
+    respond_to do |format|
+      format.html { redirect_to @borrowing}
+    end
+ 
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -6,6 +6,9 @@
 
 =render "form", borrowing: @borrowing
 
+= link_to t("borrowing.beginning"), beginning_borrowing_path(@borrowing), class: 'btn btn-primary', method: :post
+= link_to t("borrowing.ended"), ended_borrowing_path(@borrowing), class: 'btn btn-primary', method: :post
+
 = link_to 'Edit', edit_borrowing_path(@borrowing)
 \|
 = link_to 'Back', borrowings_path

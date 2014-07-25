@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140722154253) do
+ActiveRecord::Schema.define(version: 20140725212302) do
 
   create_table "borrowings", force: true do |t|
     t.integer  "user_id"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20140722154253) do
     t.boolean  "effective",  default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "finish",     default: false
   end
 
   add_index "borrowings", ["user_id"], name: "index_borrowings_on_user_id"
@@ -38,6 +39,21 @@ ActiveRecord::Schema.define(version: 20140722154253) do
     t.string   "url"
     t.integer  "imageable_id"
     t.string   "imageable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "packs", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "packs_supplies", force: true do |t|
+    t.integer  "pack_id"
+    t.integer  "supply_id"
+    t.integer  "nb_supplies", default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -60,6 +76,14 @@ ActiveRecord::Schema.define(version: 20140722154253) do
   end
 
   add_index "supply_copies", ["supply_id"], name: "index_supply_copies_on_supply_id"
+
+  create_table "supply_requests", force: true do |t|
+    t.integer  "supply_id"
+    t.integer  "borrowing_id"
+    t.integer  "nb_supplies",  default: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"

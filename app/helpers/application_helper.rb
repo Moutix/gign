@@ -14,4 +14,9 @@ module ApplicationHelper
   def print_boolean(boolean)
       boolean ? "<span class = 'ok'>✓</span>".html_safe : "<span class = 'ko'>✗</span>".html_safe
   end
+
+  def status_tag(text, class_name = '')
+    content_tag(:span, text, :class => 'status_tag ' + class_name)
+  end
+
 end

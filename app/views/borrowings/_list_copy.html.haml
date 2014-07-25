@@ -6,14 +6,14 @@
       %th= Supply.human_attribute_name(:nbcopy)
 
   %tbody
-    - borrowing.supplies.each do |supply|
+    - borrowing.supply_requests.each do |supply_request|
       %tr
-        %td= supply.name
-        %td= number_to_currency(supply.price)
-        %td= render 'form_number', borrowing: borrowing, supply: supply
+        %td= supply_request.name
+        %td= number_to_currency(supply_request.price)
+        %td= render 'form_number', borrowing: borrowing, supply_request: supply_request
 
     %tr
       %td
         %b= t("borrowing.total")
       %td= number_to_currency(borrowing.price)
-      %td= borrowing.supply_copies.size
+      %td= borrowing.supply_requests.sum(:nb_supplies)

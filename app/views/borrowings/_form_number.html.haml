@@ -1,3 +1,3 @@
-= borrowing.supply_copies.where('supply_id = ?', supply.id).size
-= link_to "+", number_supply_borrowing_path(borrowing, supply: supply, number: "more"), method: :post
-= link_to "-", number_supply_borrowing_path(borrowing, supply: supply, number: "less"), method: :post
+= form_for supply_request, url: number_supply_borrowing_path(supply_request), html: {id: "request_form_#{supply_request.id}"}, method: :post do |f|
+  .form-group
+    = f.select :nb_supplies, 1..supply_request.supply.copy_loanables.size, {}, class: 'selectpicker', onchange: "$('#request_form_#{supply_request.id}').submit();"

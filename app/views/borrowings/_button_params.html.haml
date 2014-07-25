@@ -1,0 +1,6 @@
+.btn-group.btn-group-justified
+  - Borrowing::SCOPE_INDEX.each do |type|
+    .btn-group
+      = link_to model_class.human_attribute_name(type.to_sym), borrowings_path(type: type.to_s), class: "btn btn-default #{type == params[:type] ? 'active' : ''}"
+  .btn-group
+    = link_to model_class.human_attribute_name(:effective), borrowings_path, class: "btn btn-default #{!Borrowing::SCOPE_INDEX.include?(params[:type]) ? 'active' : ''}"

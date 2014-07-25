@@ -104,6 +104,8 @@ GEM
       sqlite3-ruby
       thin
     mime-types (1.25.1)
+    mini_magick (3.8.0)
+      subexec (~> 0.2.1)
     minitest (5.4.0)
     multi_json (1.10.1)
     orm_adapter (0.5.0)
@@ -160,6 +162,7 @@ GEM
     sqlite3 (1.3.9)
     sqlite3-ruby (1.3.3)
       sqlite3 (>= 1.3.3)
+    subexec (0.2.3)
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
       ref
@@ -202,6 +205,7 @@ DEPENDENCIES
   jquery-rails
   less-rails
   mailcatcher
+  mini_magick
   rails (~> 4.1.4)
   sass-rails (~> 4.0.0)
   sdoc

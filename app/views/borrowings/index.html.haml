@@ -1,31 +1,33 @@
 - model_class = Borrowing
 %h1= t '.title', :default => model_class.model_name.human.pluralize.titleize
 
+= render 'button_params', model_class: model_class
+
+%br
+
 %table.table.table-striped
   %tr
-    %th= model_class.human_attribute_name(:id)
+    %th= model_class.human_attribute_name(:state)
     %th= model_class.human_attribute_name(:user)
     %th= model_class.human_attribute_name(:price)
     %th= model_class.human_attribute_name(:start_at)
+    %th= model_class.human_attribute_name(:started_at)
     %th= model_class.human_attribute_name(:end_at)
-    %th= model_class.human_attribute_name(:effective)
-    %th= model_class.human_attribute_name(:accepted)
-    %th= model_class.human_attribute_name(:ongoing)
-    %th= model_class.human_attribute_name(:created_at)
+    %th= model_class.human_attribute_name(:ended_at)
     %th= t '.actions', :default => t("helpers.actions")
 
   - @borrowings.each do |borrowing|
     %tr[borrowing]
-      %td= link_to borrowing.id, borrowing_path(borrowing)
-      %td= link_to borrowing.user.email, user_path(borrowing.user)
+      %td= link_to status_tag(model_class.human_attribute_name(borrowing.state), state_to_class_name(borrowing.state)), borrowing_path(borrowing)
+      %td= link_to borrowing.user_email, user_path(borrowing.user)
       %td= number_to_currency(borrowing.price)
-      %td= borrowing.start_at
-      %td= borrowing.end_at
-      %td= print_boolean(borrowing.effective)
-      %td= print_boolean(borrowing.accepted)
-      %td= print_boolean(borrowing.ongoing)
-      %td= borrowing.created_at
+      %td= l borrowing.start_at, format: :default if borrowing.start_at
+      %td= l borrowing.started_at, format: :default if borrowing.started_at
+      %td= l borrowing.end_at, format: :default if borrowing.end_at
+      %td= l borrowing.ended_at, format: :default if borrowing.ended_at
       %td
+        = link_to t('.show', :default => t("helpers.links.show")),
+              borrowing_path(borrowing), :class => 'btn btn-default btn-xs'
         = link_to t('.edit', :default => t("helpers.links.edit")),
               edit_borrowing_path(borrowing), :class => 'btn btn-default btn-xs'
         = link_to t('.destroy', :default => t("helpers.links.destroy")),

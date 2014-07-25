@@ -33,6 +33,19 @@ fr:
         nbcopy: "Nombre d'exemplaire"
       supply_copy:
         ref: référence
+      borrowing:
+        user: Utilisateur
+        price: prix
+        start_at: Date de début
+        started_at: Date de début réel
+        end_at: Date de fin
+        ended_at: Date de fin réel
+        effective: En attente de validation
+        ongoing: En cours
+        accepted: Accepté
+        not_submit: Non soumis
+        finish: Terminé
+
 
   supply:
     loan:
@@ -44,6 +57,8 @@ fr:
     basket: Panier
     title: Mon panier
     total: Total
+    beginning: Marquer la commande comme commencé
+    ended: Marquer la commande comme terminé
 
 
 
@@ -60,6 +75,11 @@ fr:
         start_at: "Date de début d'emprunt"
         end_at: "Date de fin d'emprunt"
       submit: "Valider ma demande d'emprunt"
+
+  info:
+    borrowing:
+      beginning: "L'emprunt a été marqué comme en cours"
+      ended: "L'emprunt a été marqué comme terminé"
 
   notice:
     supply:
@@ -96,7 +116,10 @@ fr:
       validate_basket:
         failed: "%{supply_name} ne peut pas être emprunté pendant cette période"
       submit_basket:
-        no_date: "Merci de précicer un période d'emprunt"
+        start_date: "Merci de précicer une date de début"
+        end_date: "Merci de précicer une date de fin"
+        no_supply: "Votre panier et vide"
+        valid_date: "Merci de préciser une date d'emprunt valide"
   helpers:
     links:
       new: "Nouveau %{name}"
@@ -105,4 +128,5 @@ fr:
       save: "Sauvegarder"
       close: "Fermer"
       back: "Retour"
+      show: "Voir"
  

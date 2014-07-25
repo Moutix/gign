@@ -62,7 +62,7 @@ class SuppliesController < ApplicationController
   end
 
   def loan
-    if current_user.active_basket.loan!(@supply)
+    if current_user.active_basket.ask_for_loan(@supply)
       flash[:notice] = t("notice.supply.loan.success")
       respond_to do |format|
         format.html {redirect_to @supply}

@@ -16,9 +16,9 @@
 //= require jquery.pnotify.conf.js
 //= require bootstrap-filestyle.min.js
 //= require bootstrap-datetimepicker.min.js
-//= require turbolinks
+//= require bootstrap-select.min.js
 //= require gign.js
+//= require turbolinks
 //= require_tree .
 //
 //
-
