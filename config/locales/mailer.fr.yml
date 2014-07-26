@@ -1,0 +1,16 @@
+fr:
+  mailer:
+    new_valid_basket_email:
+      subject: "[GiGNLocation] Nouvelle demande de location"
+      text1: "%{user_name} a fait une nouvelle demande de location"
+      text2: "Date de début : %{start_date}"
+      text3: "Date de fin : %{end_date}"
+      text4: "Il souhaiterai emprunter :"
+
+    basket_accepted_email:
+      subject: "[GiGNLocation] Votre demande d'emprunt a été accepté"
+      text1: "Bonjour %{user_name},"
+      text2: "Votre demande d'emprunt a été accepté par notre équipe technique."
+      text3: "Nous vous rappelons qu'elle commencera le %{start_date} et finira le %{end_date}"
+      text4: "Elle contient :"
+

@@ -31,6 +31,7 @@ fr:
         description: Description
         loanable: Empruntable ?
         nbcopy: "Nombre d'exemplaire"
+        nb_available: "Nombre disponible"
       supply_copy:
         ref: référence
       borrowing:
@@ -91,6 +92,7 @@ fr:
       beginning: "L'emprunt a été marqué comme en cours"
       ended: "L'emprunt a été marqué comme terminé"
       accepted: "L'emprunt a été accepté"
+      remove_from_basket: "%{supply_name} a bien été retiré du panier"
 
   notice:
     supply:

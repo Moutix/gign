@@ -1,5 +1,5 @@
 class SuppliesController < ApplicationController
-  before_action :set_supply, only: [:show, :edit, :update, :destroy, :loan, :upload, :add_copy]
+  before_action :set_supply, only: [:show, :update, :destroy, :loan, :upload, :add_copy]
 
   # GET /supplies
   # GET /supplies.json
@@ -12,15 +12,6 @@ class SuppliesController < ApplicationController
   def show
   end
 
-  # GET /supplies/new
-  def new
-    @supply = Supply.new
-  end
-
-  # GET /supplies/1/edit
-  def edit
-  end
-
   # POST /supplies
   # POST /supplies.json
   def create
@@ -28,7 +19,7 @@ class SuppliesController < ApplicationController
 
     respond_to do |format|
       if @supply.save
-        format.html { redirect_to @supply, flash: {notice: 'Supply was successfully created.'} }
+        format.html { redirect_to supplies_path, flash: {notice: 'Supply was successfully created.'} }
         format.json { render action: 'show', status: :created, location: @supply }
       else
         format.html { render action: 'new' }

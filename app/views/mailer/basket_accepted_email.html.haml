@@ -1,0 +1,15 @@
+%p
+  = I18n.t("mailer.basket_accepted_email.text1", :user_name => @user.fullname)
+
+%p
+  = I18n.t("mailer.basket_accepted_email.text2")
+
+%p
+  = I18n.t("mailer.basket_accepted_email.text3", :start_date => l(@borrowing.start_at, format: :speak), :end_date => l(@borrowing.end_at, format: :speak))
+
+%p
+  = I18n.t("mailer.basket_accepted_email.text4")
+  %ul
+    - @borrowing.supply_requests.each do |request|
+      %li= request.nb_supplies.to_s + " : " + request.name
+

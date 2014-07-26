@@ -4,6 +4,7 @@
       %th= Supply.model_name.human.pluralize
       %th= Supply.human_attribute_name(:price)
       %th= Supply.human_attribute_name(:nbcopy)
+      %th= t '.actions', :default => t("helpers.actions")
 
   %tbody
     - borrowing.supply_requests.each do |supply_request|
@@ -11,6 +12,9 @@
         %td= supply_request.name
         %td= number_to_currency(supply_request.price)
         %td= render 'borrowings/form_number', borrowing: borrowing, supply_request: supply_request
+        %td= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              remove_from_basket_borrowing_path(borrowing, supply_request),
+              :class => 'btn btn-xs btn-danger', method: :post
 
     %tr
       %td

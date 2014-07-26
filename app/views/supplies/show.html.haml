@@ -24,7 +24,8 @@
 
 %p
   %div{id: "charts_supply#{@supply.id}"}
+  
+%button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#supplyModal"}
+  = t("helpers.links.edit")
 
-= link_to 'Edit', edit_supply_path(@supply)
-\|
-= link_to 'Back', supplies_path
+= render 'form', supply: @supply

@@ -7,8 +7,3 @@
 
 = render 'table_index', borrowings: @borrowings
 
-%br
-
-= link_to t('.new', :default => t("helpers.links.new"), name: model_class.model_name.human),
-            new_borrowing_path,
-            :class => 'btn btn-primary'

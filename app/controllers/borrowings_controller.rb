@@ -1,5 +1,5 @@
 class BorrowingsController < ApplicationController
-  before_action :set_borrowing, only: [:show, :edit, :update, :destroy, :submit_basket, :ended, :beginning, :accepted]
+  before_action :set_borrowing, only: [:show, :edit, :update, :destroy, :submit_basket, :ended, :beginning, :accepted, :remove_from_basket]
 
   # GET /borrowings
   # GET /borrowings.json
@@ -12,7 +12,7 @@ class BorrowingsController < ApplicationController
       @borrowings = Borrowing.where(accepted: true, ongoing: false, finish: false)
     when 'ongoing'
       @borrowings = Borrowing.where(ongoing: true, finish: false)
-    when 'ended'
+    when 'finish'
       @borrowings = Borrowing.where(finish: true)
     end
   end
@@ -88,13 +88,13 @@ class BorrowingsController < ApplicationController
     
     if flash[:error].blank?
       begin
-        start_at = Date.strptime(params[:borrowing][:start_at], '%d-%m-%Y %H:%M')
-        end_at = Date.strptime(params[:borrowing][:end_at], '%d-%m-%Y %H:%M')
+        start_at = DateTime.strptime(params[:borrowing][:start_at], '%d-%m-%Y %H:%M')
+        end_at = DateTime.strptime(params[:borrowing][:end_at], '%d-%m-%Y %H:%M')
       rescue
         flash[:error] = t("errors.borrowing.submit_basket.valid_date")
       end
     end
-    
+
     if start_at && end_at
       case
       when @borrowing.supply_requests.empty?
@@ -144,6 +144,18 @@ class BorrowingsController < ApplicationController
     end
  
   end
+  
+  def remove_from_basket
+    @request = SupplyRequest.find(params[:request_id])
+    flash[:info] = t("info.borrowing.remove_from_basket", supply_name: @request.name)
+   
+    @request.destroy 
+    
+    respond_to do |format|
+      format.html { redirect_to @borrowing}
+    end
+  end
+
 
 
   private

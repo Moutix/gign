@@ -11,7 +11,7 @@
   
   %hr
 
-  -if @borrowing.state == :not_submit
+  -if @borrowing.state == :not_submit && !@borrowing.supply_requests.empty?
     %div{id: "charts_borrowing#{@borrowing.id}"}
     = render 'charts', borrowing: @borrowing
   

@@ -33,10 +33,13 @@ class Borrowing < ActiveRecord::Base
   SCOPE_INDEX = ['effective', 'accepted', 'ongoing', 'finish']
   STATE = [:not_submit, :effective, :accepted, :ongoing, :finish]
 
+  def self.in_progress time = Time.now
+    where('accepted = ? AND borrowings.start_at < ? AND borrowings.end_at > ?', true, time , time)
+  end
 
-  def loan! start_at, end_at, supply, number
+  def loan! start_time, end_time, supply, number
 
-    loanables = supply.loanables(start_at, end_at)
+    loanables = supply.loanables(start_time, end_time)
     if loanables.size >= number
       supply_copies << loanables.last(number)
       true
@@ -85,21 +88,21 @@ class Borrowing < ActiveRecord::Base
 
   end
 
-  def validate_basket!(start_at, end_at)
-    start_at = Date.strptime(start_at, '%d-%m-%Y %H:%M') if start_at.is_a? String
-    end_at = Date.strptime(end_at, '%d-%m-%Y %H:%M') if end_at.is_a? String
+  def validate_basket!(start_time, end_time)
     test = true
 
     supply_requests.each do |supply_request|
       supply = supply_request.supply
-      if !supply.loanable?(start_at, end_at, supply_request.nb_supplies)
+      if !supply.loanable?(start_time, end_time, supply_request.nb_supplies)
         errors.messages[supply.name] = I18n.t("errors.borrowing.validate_basket.failed", supply_name: supply.name)
         test = false
       end
     end
-    
-    self.update_columns(effective: true, start_at: start_at, end_at: end_at) if test
-
+   
+    if test
+      self.update_columns(effective: true, start_at: start_time, end_at: end_time)
+      Mailer.new_valid_basket_email(user_id, self.id).deliver
+    end
     return test
   end
 
@@ -108,6 +111,7 @@ class Borrowing < ActiveRecord::Base
       self.loan!(start_at, end_at, supply_request.supply, supply_request.nb_supplies)
     end
     self.update_column(:accepted, true)
+    Mailer.basket_accepted_email(user_id, self.id).deliver
   end
 
   def beginning

@@ -17,4 +17,9 @@ class SupplyCopy < ActiveRecord::Base
   
   scope :loanables, -> { joins(:supply).where('(supplies.loanable = ? AND (supply_copies.loanable = ? OR supply_copies.loanable IS NULL))', true, true)}
 
+
+  def self.still_borrowed time= Time.now
+    joins(:borrowings).where('accepted = ? AND borrowings.start_at < ? AND borrowings.end_at > ?', true, time , time)
+  end
+
 end
