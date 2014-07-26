@@ -44,3 +44,22 @@
   font-size: 20px;
   font-color: black;
 }
+
+#borrowing {
+  .progress {border: 1px solid #e3e3e3; height: 30px; margin-top: 5px;
+    .progress-bar {-webkit-box-shadow: none; box-shadow: none; width: 20%; background-color: #FAFAFA; color: #5a5a5a;
+      p {padding-top: 5px; font-size: 14px; text-align: center; margin-bottom: 0;}
+      a { color: #5a5a5a; }
+      &.current a { color: #fff; }
+      .fa.next {margin-top: -10px; font-size: 3.1em; opacity: 0.5;}
+      .fa.current {color: grey; opacity: 1;}
+      .fa.current.next {margin-top: -15px; margin-left: -1px; font-size: 3.6em;}
+      .fa.current-back {margin-top: -16px; font-size: 3.8em; opacity: 1; color: #fafafa }
+      i.arrow-right {position: relative; margin-top: -7px;}
+      i.arrow-right:after, i.arrow-right:before {height: 16px; border-right: 1px solid grey; content: ""; position: absolute; pointer-events: none;}
+      i.arrow-right:after {-webkit-transform: skew(45deg); -ms-transform: skew(45deg); -o-transform: skew(45deg); -moz-transform: skew(45deg);}
+      i.arrow-right:before {-webkit-transform: skew(-45deg); -ms-transform: skew(-45deg); -o-transform: skew(-45deg); -moz-transform: skew(-45deg); top: 16px;}
+    }
+    .progress-bar.current {background-color: grey; color: white;}
+  }
+} 

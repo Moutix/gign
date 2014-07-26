@@ -22,10 +22,16 @@ class Borrowing < ActiveRecord::Base
   has_many :supply_requests
   has_many :supplies_in_wait, through: :supply_requests, source: "supply"
 
+  scope :accepted, -> { where(accepted: true)}
+  scope :ongoing, -> { where(ongoing: true)}
+  scope :finish, -> { where(finish: true)}
+
+
   delegate :name, :email,
     to: :user, prefix: true, allow_nil: true
 
-  SCOPE_INDEX = ['all', 'ongoing', 'accepted', 'finish']
+  SCOPE_INDEX = ['effective', 'accepted', 'ongoing', 'finish']
+  STATE = [:not_submit, :effective, :accepted, :ongoing, :finish]
 
 
   def loan! start_at, end_at, supply, number
@@ -80,7 +86,8 @@ class Borrowing < ActiveRecord::Base
   end
 
   def validate_basket!(start_at, end_at)
-
+    start_at = Date.strptime(start_at, '%d-%m-%Y %H:%M') if start_at.is_a? String
+    end_at = Date.strptime(end_at, '%d-%m-%Y %H:%M') if end_at.is_a? String
     test = true
 
     supply_requests.each do |supply_request|

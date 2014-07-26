@@ -9,16 +9,22 @@
       %a.navbar-brand{href: root_path}= t('project_name')
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
-        %li.active
+        %li{class: current_page?(root_path) ? 'active' : ''}
           %a{href: root_path}= t('home')
-        %li
+        %li{class: current_page?(supplies_path) ? 'active' : ''}
           %a{href: supplies_path}= t '.title', :default => Supply.model_name.human.pluralize.titleize
+        %li{class: current_page?(borrowings_path) ? 'active' : ''}
+          %a{href: borrowings_path}= t '.title', :default => Borrowing.model_name.human.pluralize.titleize
+
 
       %ul.nav.navbar-nav.pull-right
         - if !current_user
           %li= link_to t('devise.shared.sign_up'), new_user_registration_path
           = render 'layouts/sign_through_navbar'
         - else
-          %li= link_to current_user.email, user_path(current_user)
-          %li= link_to "(" + current_user.active_basket.supply_requests.sum(:nb_supplies).to_s + ") " + t("borrowing.basket"), borrowing_path(current_user.active_basket)
+          %li{class: current_page?(user_path(current_user)) ? 'active' : ''}
+            = link_to current_user.email, user_path(current_user)
+          %li#basket_navbar{class: current_page?(borrowing_path(current_user.active_basket)) ? 'active' : ''}
+
+            = link_to "(" + current_user.active_basket.supply_requests.sum(:nb_supplies).to_s + ") " + t("borrowing.basket"), borrowing_path(current_user.active_basket)
           %li= link_to t('devise.shared.sign_out'), destroy_user_session_path, method: :delete

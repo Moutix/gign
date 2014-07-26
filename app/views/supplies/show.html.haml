@@ -8,7 +8,9 @@
   .col-xs-6.col-md-4
     %h1= @supply.name + " - " + number_to_currency(@supply.price)
     %hr
-    %h2= @supply.supply_copies.loanables.size.to_s + " en stock"
+    %h2= t("supply.number", number: @supply.supply_copies.loanables.size.to_s)
+    - if current_user
+      %h4= t("supply.loan.number", number: current_user.nb_supplies_in_basket(@supply))
     %p
       = link_to t("supply.loan.links"), loan_supply_path(@supply), method: :post, class: 'btn btn-primary'
     %p
@@ -18,6 +20,10 @@
   %b Description:
   = @supply.description
 
+= render 'charts', supply: @supply
+
+%p
+  %div{id: "charts_supply#{@supply.id}"}
 
 = link_to 'Edit', edit_supply_path(@supply)
 \|

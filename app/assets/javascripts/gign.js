@@ -22,6 +22,12 @@ var ready = function() {
     weekStart: 1,
     format: "dd/mm/yyyy"
   };
+  
+  // Tooltip
+  $('[data-toggle=tooltip]').tooltip();
+
+  $('[data-toggle=popover]').popover();
+
 
 };
 

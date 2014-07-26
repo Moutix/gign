@@ -72,6 +72,7 @@ class SuppliesController < ApplicationController
       flash[:error] = t("errors.supply.loan.failed")
       respond_to do |format|
         format.html{ render action: 'show'}
+        format.js
       end
     end
   end

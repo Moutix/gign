@@ -15,7 +15,7 @@ class Supply < ActiveRecord::Base
   has_many :supply_copies
   has_many :images, :class_name => "Image", :as => "imageable"
   has_many :borrowings, through: :supply_copies
-  has_many :accepted_borrowings, -> { where accepted: :true}, through: :supply_copies, source: "borrowings"
+  has_many :accepted_borrowings, -> { accepted}, through: :supply_copies, source: "borrowings"
   has_many :copy_loanables, -> { joins(:supply).where('(supplies.loanable = ? AND (supply_copies.loanable = ? OR supply_copies.loanable IS NULL))', true, true)}, source: 'supply_copies', class_name: 'SupplyCopy'
   has_many :supply_requests
   has_many :packs, through: :packs_supplies
@@ -38,22 +38,28 @@ class Supply < ActiveRecord::Base
     number -= certainely_not_available.size
     
     can_be_available = accepted_borrowings.where.not('start_at < ? AND end_at > ?', start_at, end_at)
-   
-    can_be_available.pluck(:start_at).each do |start_date|
-      time[start_date] = 'start'
-    end
-    can_be_available.pluck(:end_at).each do |end_date|
-      time[end_date] = 'end'
-    end
     
+    p "can_be_available = accepted_borrowings.where.not('start_at < ? AND end_at > ?', start_at, end_at)"
+   
+
+    can_be_available.each do |borrowing|
+      if borrowing.start_at > start_at && borrowing.start_at < end_at
+        time[borrowing.start_at] = ['start', borrowing.supply_copies.where(supply: self).size]
+      end
+      if borrowing.end_at > start_at && borrowing.end_at < end_at
+        time[borrowing.end_at] = ['end', borrowing.supply_copies.where(supply: self).size]
+      end
+    end
+
     start = start_at
 
     time.keys.sort().each do |key|
       dispo[start..key] = number
-      if time[key] = 'end'
-        number +=1
-      elsif time[key] = 'start'
-        number -= 1
+      
+      if time[key][0] == 'end'
+        number += time[key][1]
+      elsif time[key][0] == 'start'
+        number -= time[key][1]
       end
       start = key
     end
@@ -62,6 +68,18 @@ class Supply < ActiveRecord::Base
 
     return dispo
   end
+
+  def array_availability(start_at, end_at)
+    h = availability(start_at, end_at)
+    
+    t = []
+
+    h.each_pair do |key, value|
+      t += Array.new((key.last - key.first)/60/20.round, value)
+    end
+  return t
+  end
+
 
   def loanable?(start_at, end_at, number)
     availability(start_at, end_at).values.min >= number

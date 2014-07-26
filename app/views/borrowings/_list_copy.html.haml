@@ -10,7 +10,7 @@
       %tr
         %td= supply_request.name
         %td= number_to_currency(supply_request.price)
-        %td= render 'form_number', borrowing: borrowing, supply_request: supply_request
+        %td= render 'borrowings/form_number', borrowing: borrowing, supply_request: supply_request
 
     %tr
       %td

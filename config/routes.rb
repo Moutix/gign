@@ -3,6 +3,7 @@ Gign::Application.routes.draw do
     member do
       post :number_supply
       post :submit_basket
+      post :accepted
       post :beginning
       post :ended
     end

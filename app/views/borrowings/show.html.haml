@@ -1,14 +1,29 @@
-%h4= t("borrowing.title")
+#borrowing
+  %h4= t("borrowing.title")
 
-= render "list_copy", borrowing: @borrowing
+  = render 'progressbar', borrowing: @borrowing
 
-%hr
+  = render "list_copy", borrowing: @borrowing
 
-=render "form", borrowing: @borrowing
+  %hr
+  
+  = render "form", borrowing: @borrowing
+  
+  %hr
 
-= link_to t("borrowing.beginning"), beginning_borrowing_path(@borrowing), class: 'btn btn-primary', method: :post
-= link_to t("borrowing.ended"), ended_borrowing_path(@borrowing), class: 'btn btn-primary', method: :post
+  -if @borrowing.state == :not_submit
+    %div{id: "charts_borrowing#{@borrowing.id}"}
+    = render 'charts', borrowing: @borrowing
+  
 
-= link_to 'Edit', edit_borrowing_path(@borrowing)
-\|
-= link_to 'Back', borrowings_path
+  - case @borrowing.state
+  - when :effective
+    = link_to t("borrowing.accepted"), accepted_borrowing_path(@borrowing), class: 'btn btn-primary', method: :post
+  - when :accepted
+    = link_to t("borrowing.beginning"), beginning_borrowing_path(@borrowing), class: 'btn btn-primary', method: :post
+  - when :ongoing
+    = link_to t("borrowing.ended"), ended_borrowing_path(@borrowing), class: 'btn btn-primary', method: :post
+
+  = link_to 'Edit', edit_borrowing_path(@borrowing)
+  \|
+  = link_to 'Back', borrowings_path

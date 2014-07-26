@@ -1,0 +1,15 @@
+$('#basket_navbar').children()[0].text = '(#{current_user.active_basket.supply_requests.sum(:nb_supplies)}) Panier'
+- if flash[:error].blank?
+  $.pnotify({
+  title: "#{flash[:notice]}",
+  text: '',
+  type: 'success',
+  delay: 8000
+  });
+- else
+  $.pnotify({
+  title: "#{flash[:error]}",
+  text: '',
+  type: 'error',
+  delay: 8000
+  });

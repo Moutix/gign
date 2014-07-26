@@ -1,0 +1,17 @@
+- actual_state = borrowing.state
+- model_class = Borrowing
+
+#borrowing.progress
+  - model_class::STATE.each_with_index do |state, index|
+    .progress-bar{:class => actual_state == state ? 'current' : ''}
+      %p 
+        = model_class.human_attribute_name(state)
+        %i.fa.fa-info-circle{:title => t("borrowing.progressbar.#{state.to_s}"), "data-toggle" => "tooltip", :class => actual_state == state ? '' : 'current'}
+        
+        - if index != 0
+          - if actual_state == state
+            %i.fa.pull-left.next.current-back.fa-caret-right
+          - elsif actual_state == model_class::STATE[model_class::STATE.index(state)-1]
+            %i.fa.pull-left.next.current.fa-caret-right
+          - else
+            %i.arrow-right.pull-left

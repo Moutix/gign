@@ -1,13 +1,13 @@
 class BorrowingsController < ApplicationController
-  before_action :set_borrowing, only: [:show, :edit, :update, :destroy, :submit_basket, :ended, :beginning]
+  before_action :set_borrowing, only: [:show, :edit, :update, :destroy, :submit_basket, :ended, :beginning, :accepted]
 
   # GET /borrowings
   # GET /borrowings.json
   def index
-    @borrowings = Borrowing.where(effective: true, ongoing: false, accepted: false, finish: false)
+    @borrowings = Borrowing.all
     case params[:type]
-    when 'all'
-      @borrowings = Borrowing.all
+    when 'effective'
+      @borrowings = Borrowing.where(effective: true, ongoing: false, accepted: false, finish: false)
     when 'accepted'
       @borrowings = Borrowing.where(accepted: true, ongoing: false, finish: false)
     when 'ongoing'
@@ -82,22 +82,32 @@ class BorrowingsController < ApplicationController
   end
 
   def submit_basket
-
-    case
-    when @borrowing.supply_requests.empty?
-      flash[:error] = t("errors.borrowing.submit_basket.no_supply")
-    when params[:borrowing][:start_at].blank?
-      flash[:error] = t("errors.borrowing.submit_basket.start_date")      
-    when params[:borrowing][:end_at].blank?
-      flash[:error] = t("errors.borrowing.submit_basket.end_date")
-    when params[:borrowing][:start_at] > params[:borrowing][:end_at]
-      flash[:error] = t("errors.borrowing.submit_basket.valid_date")
-    when @borrowing.validate_basket!(params[:borrowing][:start_at], params[:borrowing][:end_at])
-      flash[:success] = t("notice.borrowing.submit_basket")
-    else
-      flash[:error] = ""
-      @borrowing.errors.messages.each_value{|v| flash[:error] += (v)}
-      flash[:error] = t("errors.submit_basket.no_date") if flash[:error].blank?
+    
+    flash[:error] = t("errors.borrowing.submit_basket.start_date") if params[:borrowing][:start_at].blank?
+    flash[:error] = t("errors.borrowing.submit_basket.end_date") if params[:borrowing][:end_at].blank?
+    
+    if flash[:error].blank?
+      begin
+        start_at = Date.strptime(params[:borrowing][:start_at], '%d-%m-%Y %H:%M')
+        end_at = Date.strptime(params[:borrowing][:end_at], '%d-%m-%Y %H:%M')
+      rescue
+        flash[:error] = t("errors.borrowing.submit_basket.valid_date")
+      end
+    end
+    
+    if start_at && end_at
+      case
+      when @borrowing.supply_requests.empty?
+        flash[:error] = t("errors.borrowing.submit_basket.no_supply")
+      when start_at > end_at
+        flash[:error] = t("errors.borrowing.submit_basket.valid_date")
+      when @borrowing.validate_basket!(start_at, end_at)
+        flash[:success] = t("notice.borrowing.submit_basket")
+      else
+        flash[:error] = ""
+        @borrowing.errors.messages.each_value{|v| flash[:error] += (v)}
+        flash[:error] = t("errors.submit_basket.no_date") if flash[:error].blank?
+      end
     end
 
     respond_to do |format|
@@ -124,6 +134,17 @@ class BorrowingsController < ApplicationController
     end
  
   end
+  
+  def accepted
+    @borrowing.accept_basket!
+    flash[:info] = t("info.borrowing.accepted")
+  
+    respond_to do |format|
+      format.html { redirect_to @borrowing}
+    end
+ 
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

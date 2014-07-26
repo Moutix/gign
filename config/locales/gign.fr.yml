@@ -50,8 +50,10 @@ fr:
   supply:
     loan:
       links: Ajouter au panier
+      number: "(%{number} dans votre panier)"
     add_copy:
       links: Ajouter un exemplaire
+    number: "%{number} en stock"
   
   borrowing:
     basket: Panier
@@ -59,6 +61,14 @@ fr:
     total: Total
     beginning: Marquer la commande comme commencé
     ended: Marquer la commande comme terminé
+    accepted: Accepter la commande
+    progressbar:
+      not_submit: Votre demande ne sera pas pris en compte tant que vous ne validez pas votre panier
+      effective: Votre demande sera inspecté par les admins avant validation
+      accepted: Etat quand les admins auront validé votre panier
+      ongoing: Etat quand vous avez récupérez votre commande
+      finish: Etat lorsque vous avez rendu votre emprunt
+
 
 
 
@@ -80,6 +90,7 @@ fr:
     borrowing:
       beginning: "L'emprunt a été marqué comme en cours"
       ended: "L'emprunt a été marqué comme terminé"
+      accepted: "L'emprunt a été accepté"
 
   notice:
     supply:
@@ -120,6 +131,7 @@ fr:
         end_date: "Merci de précicer une date de fin"
         no_supply: "Votre panier et vide"
         valid_date: "Merci de préciser une date d'emprunt valide"
+  
   helpers:
     links:
       new: "Nouveau %{name}"
@@ -129,4 +141,17 @@ fr:
       close: "Fermer"
       back: "Retour"
       show: "Voir"
- 
+
+  charts:
+    supply:
+      title:
+        top: "disponibilité de %{supply_name}"
+        yaxis: "Nombre disponibles"
+      basket: "Dans votre panier actuellement"
+    borrowing:
+      title:
+        top: "Disponibilité des éléments dans mon panier"
+        yaxis: "Nombre disponibles"
+      name_supply: "%{supply_name}"
+
+

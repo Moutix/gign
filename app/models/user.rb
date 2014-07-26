@@ -39,6 +39,15 @@ class User < ActiveRecord::Base
     active_basket.supplies
   end
 
+  def nb_supplies_in_basket supply
+    request = active_basket.supply_requests.find_by(supply: supply)
+    if request
+      request.nb_supplies
+    else
+      0
+    end
+  end
+
   def new_basket
     Borrowing.create(user: self)
   end

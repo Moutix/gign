@@ -1,0 +1,49 @@
+<script>
+
+var ready = function() {
+    $(function () { 
+        $('<%="#charts_borrowing#{borrowing.id}"%>').highcharts({
+            chart: {
+                zoomType: 'x'
+            },
+            title: {
+                text: '<%= I18n.t("charts.borrowing.title.top")%>'
+            },
+            xAxis: {
+                type: 'datetime',
+                maxZoom: 5000*12,
+                title: {
+                    text: null
+                    }
+            },
+            yAxis: {
+                title: {
+                    text: '<%= I18n.t("charts.borrowing.title.yaxis")%>'
+                }
+            },
+            plotOptions: {
+                series: {
+                    step: 'left' // or 'center' or 'right'
+                    }
+            },
+            series: [
+                <% borrowing.supply_requests.each_with_index do |request, index|%>
+                    {
+                    type: 'line',
+                          name: '<%= I18n.t("charts.borrowing.name_supply", :supply_name => request.name)%>',
+                    pointInterval: 1000*60*20,
+                    pointStart: $.now(),
+                    data: <%=request.supply.array_availability(Time.now, Time.now+20.days)%>
+                }
+                <%=index == borrowing.supply_requests.size ? '': ','%>
+                <%end%>
+            ]
+        });
+    });
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
+
+</script>

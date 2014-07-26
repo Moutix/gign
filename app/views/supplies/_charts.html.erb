@@ -1,0 +1,54 @@
+<script>
+<%- datasupply = supply.array_availability(Time.now, Time.now+20.days)-%> 
+var ready = function() {
+    $(function () { 
+        $('<%="#charts_supply#{supply.id}"%>').highcharts({
+            chart: {
+                zoomType: 'x'
+            },
+            title: {
+                text: '<%= I18n.t("charts.supply.title.top", supply_name: supply.name)%>'
+            },
+            xAxis: {
+                type: 'datetime',
+                maxZoom: 5000*12,
+                title: {
+                    text: null
+                    }
+            },
+            yAxis: {
+                title: {
+                    text: '<%= I18n.t("charts.supply.title.yaxis")%>'
+                }
+            },
+            plotOptions: {
+                series: {
+                    step: 'left' // or 'center' or 'right'
+                    }
+            },
+            series: [{
+                type: 'line',
+                name: '<%= I18n.t("charts.supply.title.yaxis")%>',
+                pointInterval: 1000*60*20,
+                pointStart: $.now(),
+                data: <%=datasupply%>
+                }<%-if current_user-%>,{
+                type: 'line',
+                pointInterval: 1000*60*20,
+                pointStart: $.now(),
+                name: '<%= I18n.t("charts.supply.basket")%>',
+                data: <%=Array.new(datasupply.size, current_user.nb_supplies_in_basket(supply))%>
+                }
+                <%end%>
+                        
+                        
+            ]
+        });
+    });
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
+
+</script>

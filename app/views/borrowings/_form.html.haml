@@ -3,9 +3,11 @@
     .col-xs-6
       .form-group
         = f.label :start_at, t("form.borrowing.placeholder.start_at")
-        = f.text_field :start_at, readonly: "", class: 'form-control form_datetime', placeholder: t("form.borrowing.placeholder.start_at")
+        = f.text_field :start_at, readonly: "", class: "form-control #{@borrowing.state == :not_submit ? 'form_datetime' : ''} ", placeholder: t("form.borrowing.placeholder.start_at")
     .col-xs-6
       .form-group
         = f.label :end_at, t("form.borrowing.placeholder.end_at")
-        = f.text_field :end_at, readonly: "", class: 'form-control form_datetime', placeholder: t("form.borrowing.placeholder.end_at")
-  = f.submit t("form.borrowing.submit"), class: 'btn btn-primary'
+        = f.text_field :end_at, readonly: "", class: "form-control #{@borrowing.state == :not_submit ? 'form_datetime' : ''}", placeholder: t("form.borrowing.placeholder.end_at")
+
+  - if @borrowing.state == :not_submit
+    = f.submit t("form.borrowing.submit"), class: 'btn btn-primary'

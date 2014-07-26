@@ -1,11 +1,9 @@
-%p#notice= notice
+%h1 Mon compte
 
-%p
-  %b Name:
-  = @user.name
-%p
-  %b Email:
-  = @user.email
+%h2 Mes demandes en cours :
+
+= render 'borrowings/table_index', borrowings: @user.borrowings
+
 
 = link_to 'Edit', edit_user_path(@user)
 \|
