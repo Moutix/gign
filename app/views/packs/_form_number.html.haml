@@ -1,0 +1,3 @@
+= form_for packs_supply, url: number_supply_pack_path(packs_supply), html: {id: "packs_supply_form_#{packs_supply.id}"}, method: :post do |f|
+  .form-group
+    = f.select :nb_supplies, 1..packs_supply.supply.copy_loanables.size, {}, class: 'selectpicker', onchange: "$('#packs_supply_form_#{packs_supply.id}').submit();"

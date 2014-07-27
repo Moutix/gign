@@ -1,0 +1,15 @@
+#pack-thumbnail
+  .row
+    - pack.packs_supplies.each do |packs_supply|
+      .col-md-2
+        .thumbnail
+          = link_to supply_path(packs_supply.supply) do
+            = image_tag packs_supply.supply.thumb_image
+          .center
+            = packs_supply.name + " x " + packs_supply.nb_supplies.to_s
+
+    - if current_user
+      .col-md-2
+        =link_to t("pack.add_to_basket.links"), add_to_basket_pack_path(pack), class: 'btn btn-primary', method: :post
+
+

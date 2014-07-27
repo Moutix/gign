@@ -16,6 +16,16 @@
     %p
       =link_to t("supply.add_copy.links"), add_copy_supply_path(@supply), method: :post
 
+%hr
+
+- if !@supply.active_packs.empty?
+  %h2= t("supply.pack_available")
+
+  - @supply.active_packs.each do |pack|
+    %h4=link_to pack.name, pack_path(pack)
+    = render 'packs/thumb', pack: pack
+
+
 %p
   %b Description:
   = @supply.description

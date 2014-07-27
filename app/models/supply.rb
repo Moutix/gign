@@ -18,9 +18,17 @@ class Supply < ActiveRecord::Base
   has_many :accepted_borrowings, -> { accepted}, through: :supply_copies, source: "borrowings"
   has_many :copy_loanables, -> { joins(:supply).where('(supplies.loanable = ? AND (supply_copies.loanable = ? OR supply_copies.loanable IS NULL))', true, true)}, source: 'supply_copies', class_name: 'SupplyCopy'
   has_many :supply_requests
+  has_many :packs_supplies
   has_many :packs, through: :packs_supplies
+  has_many :active_packs, -> {where(active: true)}, through: :packs_supplies, source: 'pack', class_name: 'Pack'
   
   after_create :create_supply_copy
+  
+  scope :loanables, -> { where(id: SupplyCopy.loanables.pluck(:supply_id))}
+
+  def thumb_image
+    images.first.thumb_url if images.first
+  end
 
   def new_copy!
     SupplyCopy.create(supply: self, ref: 0)

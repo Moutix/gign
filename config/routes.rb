@@ -24,7 +24,16 @@ Gign::Application.routes.draw do
       post :add_copy
     end
   end
-
+  
+  resources :packs, path: I18n.transliterate(I18n.t('.title', :default => Pack.model_name.human.pluralize.downcase)) do
+    member do
+      post 'add_supply/:supply_id', :action => 'add_supply', as: 'add_supply'
+      post :number_supply
+      post :remove_from_pack
+      post :activate
+      post :add_to_basket
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

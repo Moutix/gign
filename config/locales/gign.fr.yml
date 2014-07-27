@@ -1,6 +1,5 @@
 fr:
   project_name: GiGN
-  home: Accueil
 
   controller:
     application:
@@ -35,6 +34,7 @@ fr:
       supply_copy:
         ref: référence
       borrowing:
+        state: État
         user: Utilisateur
         price: prix
         start_at: Date de début
@@ -46,6 +46,11 @@ fr:
         accepted: Accepté
         not_submit: Non soumis
         finish: Terminé
+      pack:
+        state: État
+        name: Nom
+        nb_supplies: Nombre d'exemplaires
+        price: Prix
 
 
   supply:
@@ -55,6 +60,7 @@ fr:
     add_copy:
       links: Ajouter un exemplaire
     number: "%{number} en stock"
+    pack_available: "Pack disponible pour ce produit :"
   
   borrowing:
     basket: Panier
@@ -69,9 +75,18 @@ fr:
       accepted: Etat quand les admins auront validé votre panier
       ongoing: Etat quand vous avez récupérez votre commande
       finish: Etat lorsque vous avez rendu votre emprunt
-
-
-
+  
+  pack:
+    add_supply:
+      links: Ajouter dans le pack
+    activate:
+      links: Activer le pack
+    desactivate:
+      links: Désactiver le pack
+    add_to_basket:
+      links: Mettre le pack dans mon panier
+    active: Activé
+    unactive: Désactivé
 
   form:
     image:
@@ -93,6 +108,10 @@ fr:
       ended: "L'emprunt a été marqué comme terminé"
       accepted: "L'emprunt a été accepté"
       remove_from_basket: "%{supply_name} a bien été retiré du panier"
+    pack:
+      activate: "Le pack a été activé"
+      desactivate: "Le pack a été desactivé"
+      remove_from_pack: "%{supply_name} a bien été retiré du panier"
 
   notice:
     supply:
@@ -108,6 +127,11 @@ fr:
 
     borrowing:
       submit_basket: "Votre panier a bien été enregistrer et attend la validation des admins"
+
+    pack:
+      add_supply: "Bien ajouté dans le pack"
+      add_to_basket: "Le pack a été mis dans votre panier"
+
 
   errors:
     messages:
@@ -133,7 +157,14 @@ fr:
         end_date: "Merci de précicer une date de fin"
         no_supply: "Votre panier et vide"
         valid_date: "Merci de préciser une date d'emprunt valide"
-  
+
+    pack:
+      add_supply:
+        no_copy: "Plus d'exemplaire disponible"
+        no_supply: "Cet objet n'existe plus"
+      add_to_basket: "Ce pack n'est pas disponible pour le moment"
+
+
   helpers:
     links:
       new: "Nouveau %{name}"

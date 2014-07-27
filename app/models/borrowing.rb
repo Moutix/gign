@@ -19,7 +19,7 @@ class Borrowing < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :supply_copies, :join_table => 'borrowings_supply_copies'
   has_many :supplies, -> { distinct}, through: :supply_copies
-  has_many :supply_requests
+  has_many :supply_requests, dependent: :destroy
   has_many :supplies_in_wait, through: :supply_requests, source: "supply"
 
   scope :accepted, -> { where(accepted: true)}

@@ -1,0 +1,37 @@
+- model_class = Supply
+
+%table.table.table-striped
+  %tr
+    %th= model_class.human_attribute_name(:name)
+    %th= model_class.human_attribute_name(:nb_available)
+    %th= model_class.human_attribute_name(:price)
+    %th= model_class.human_attribute_name(:loanable)
+    %th= model_class.human_attribute_name(:description)
+    %th= t '.actions', :default => t("helpers.actions")
+
+  - supplies.each do |supply|
+    %tr
+      %td= link_to supply.name, supply
+      %td
+        = supply.copy_loanables.size
+        - if current_user
+          = t("supply.loan.number", number: current_user.nb_supplies_in_basket(supply))
+      %td= number_to_currency(supply.price)
+      %td= supply.loanable
+      %td= supply.description
+      %td
+        - if params[:controller] == 'packs' && pack
+          = link_to t("pack.add_supply.links"), add_supply_pack_path(pack, supply), method: :post, class: 'btn btn-default btn-xs'
+
+        - else
+          - if current_user
+
+            = link_to t("supply.loan.links"), loan_supply_path(supply), method: :post, class: 'btn btn-default btn-xs'
+          = link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_supply_path(supply), :class => 'btn btn-default btn-xs'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")),
+                        supply_path(supply),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-xs btn-danger' 
+ 

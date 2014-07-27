@@ -22,7 +22,7 @@ class SuppliesController < ApplicationController
         format.html { redirect_to supplies_path, flash: {notice: 'Supply was successfully created.'} }
         format.json { render action: 'show', status: :created, location: @supply }
       else
-        format.html { render action: 'new' }
+        format.html { render action: 'index' }
         format.json { render json: @supply.errors, status: :unprocessable_entity }
       end
     end

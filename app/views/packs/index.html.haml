@@ -1,0 +1,33 @@
+- model_class = Pack
+
+%table.table.table-striped
+  %tr
+    %th= model_class.human_attribute_name(:state)
+    %th= model_class.human_attribute_name(:name)
+    %th= model_class.human_attribute_name(:nb_supplies)
+    %th= model_class.human_attribute_name(:price)
+    %th= model_class.human_attribute_name(:created_at)
+    %th= t '.actions', :default => t("helpers.actions")
+
+  - @packs.each do |pack|
+    %tr[pack]
+      %td= status_tag(print_activate(pack.active), pack.active ? 'ok' : 'error')
+      %td= link_to pack.name, pack_path(pack)
+      %td= pack.packs_supplies.sum(:nb_supplies)
+      %td= number_to_currency(pack.price)
+      %td= l(pack.created_at, format: :default)
+      %td
+        - if pack.active
+          = link_to t("pack.desactivate.links"), activate_pack_path(pack), class: 'btn btn-primary btn-xs', method: :post
+        -else
+          = link_to t("pack.activate.links"), activate_pack_path(pack), class: 'btn btn-primary btn-xs', method: :post
+        = link_to t('.destroy', :default => t("helpers.links.destroy")),
+                        pack_path(pack),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' 
+ 
+%button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#packModal"}
+  = t("helpers.links.new", :name => Pack.model_name.human)
+
+= render 'packs/form', pack: Pack.new

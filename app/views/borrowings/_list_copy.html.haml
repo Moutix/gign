@@ -9,7 +9,7 @@
   %tbody
     - borrowing.supply_requests.each do |supply_request|
       %tr
-        %td= supply_request.name
+        %td= link_to supply_request.name, supply_path(supply_request.supply)
         %td= number_to_currency(supply_request.price)
         %td= render 'borrowings/form_number', borrowing: borrowing, supply_request: supply_request
         %td= link_to t('.destroy', :default => t("helpers.links.destroy")),

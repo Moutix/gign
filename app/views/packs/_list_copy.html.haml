@@ -1,0 +1,23 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %th= Supply.model_name.human.pluralize
+      %th= Supply.human_attribute_name(:price)
+      %th= Supply.human_attribute_name(:nbcopy)
+      %th= t '.actions', :default => t("helpers.actions")
+
+  %tbody
+    - pack.packs_supplies.each do |packs_supply|
+      %tr
+        %td= packs_supply.name
+        %td= number_to_currency(packs_supply.price)
+        %td= render 'packs/form_number', pack: pack, packs_supply: packs_supply
+        %td= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              remove_from_pack_pack_path(packs_supply),
+              :class => 'btn btn-xs btn-danger', method: :post
+
+    %tr
+      %td
+        %b= t("pack.total")
+      %td= number_to_currency(pack.price)
+      %td= pack.packs_supplies.sum(:nb_supplies)

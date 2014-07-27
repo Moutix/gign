@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140725212302) do
+ActiveRecord::Schema.define(version: 20140727103439) do
 
   create_table "borrowings", force: true do |t|
     t.integer  "user_id"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20140725212302) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",      default: false
   end
 
   create_table "packs_supplies", force: true do |t|

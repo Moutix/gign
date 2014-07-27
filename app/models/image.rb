@@ -24,6 +24,8 @@ class Image < ActiveRecord::Base
       url =~ /.+\.(jpg|jpeg|png|gif)$/
       ext = $1
 
+      return false if ext.nil?
+
       name = self.generate_name if name.blank?
       file_name = name.parameterize + "." + ext
 
@@ -74,6 +76,12 @@ class Image < ActiveRecord::Base
       false
     end
 
+  end
+
+  def thumb_url
+    turl = url.split('/')
+    turl[turl.length-1] = 'thumb_' + turl.last
+    turl.join('/')
   end
 
   private

@@ -2,19 +2,21 @@
   .container
     .navbar-header
       %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
-        %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand{href: root_path}= t('project_name')
+      %a.navbar-brand{href: root_path, title: t("home.name")}
+        .hidden-sm= image_tag "logo_gign.png", itemprop: "logo"
+        .visible-sm= image_tag "logo_gign.png"
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
-        %li{class: current_page?(root_path) ? 'active' : ''}
-          %a{href: root_path}= t('home')
         %li{class: current_page?(supplies_path) ? 'active' : ''}
           %a{href: supplies_path}= t '.title', :default => Supply.model_name.human.pluralize.titleize
         %li{class: current_page?(borrowings_path) ? 'active' : ''}
           %a{href: borrowings_path}= t '.title', :default => Borrowing.model_name.human.pluralize.titleize
+        %li{class: current_page?(packs_path) ? 'active' : ''}
+          %a{href: packs_path}= t '.title', :default => Pack.model_name.human.pluralize.titleize
+
 
 
       %ul.nav.navbar-nav.pull-right

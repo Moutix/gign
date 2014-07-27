@@ -1,0 +1,26 @@
+#borrowing
+  %h1
+    = @pack.name + " - "
+    %i= print_activate(@pack.active)
+
+%hr
+
+= render 'supplies/list_supplies', supplies: Supply.loanables, pack: @pack
+
+%hr
+
+= render 'list_copy', pack: @pack
+
+= render 'thumb', pack: @pack
+
+%hr
+
+- if @pack.active
+  = link_to t("pack.desactivate.links"), activate_pack_path(@pack), class: 'btn btn-primary', method: :post
+-else
+  = link_to t("pack.activate.links"), activate_pack_path(@pack), class: 'btn btn-primary', method: :post
+
+%button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#packModal"}
+  = t("helpers.links.edit", :name => Pack.model_name.human)
+
+= render 'packs/form', pack: @pack

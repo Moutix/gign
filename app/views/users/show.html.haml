@@ -3,8 +3,3 @@
 %h2 Mes demandes en cours :
 
 = render 'borrowings/table_index', borrowings: @user.borrowings
-
-
-= link_to 'Edit', edit_user_path(@user)
-\|
-= link_to 'Back', users_path
