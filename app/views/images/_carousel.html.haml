@@ -1,7 +1,7 @@
 - if !images.empty?
 
   #carousel-image.carousel.slide
-    %ol.carousel-indicators
+    %ol
       - images.each_with_index do |image, index|
         .li{"data-target" => '#carousel-image', "data-slide-to" => index}
 
@@ -17,8 +17,6 @@
           .item
             .center
               = image_tag(image.url)
-            .carousel-caption
-              =# image.name
 
 
     %a.left.carousel-control{href: "#carousel-image", role: "button", "data-slide" => "prev"}

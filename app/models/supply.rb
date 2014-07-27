@@ -25,6 +25,7 @@ class Supply < ActiveRecord::Base
   after_create :create_supply_copy
   
   scope :loanables, -> { where(id: SupplyCopy.loanables.pluck(:supply_id))}
+  scope :not_loanables, -> { where.not(id: SupplyCopy.loanables.pluck(:supply_id))}
 
   def thumb_image
     images.first.thumb_url if images.first

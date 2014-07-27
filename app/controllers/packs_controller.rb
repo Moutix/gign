@@ -109,7 +109,8 @@ class PacksController < ApplicationController
         flash[:notice] = t("notice.pack.add_to_basket")
         format.html {redirect_to current_user.active_basket}
       else
-        flash[:error] = t("error.pack.add_to_basket")
+        flash[:error] = t("errors.pack.add_to_basket")
+        format.html {redirect_to :back}
       end
     end
   end

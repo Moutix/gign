@@ -1,0 +1,8 @@
+.btn-group.btn-group-justified
+  .btn-group
+    = link_to model_class.human_attribute_name(:all), supplies_path(loanable: 'all'), class: "btn btn-default #{['0', '1'].include?(session[:loanable]) ? '' : 'active'}"
+  .btn-group
+    = link_to model_class.human_attribute_name(:loanables), supplies_path(loanable: '1'), class: "btn btn-default #{'1' == session[:loanable] ? 'active' : ''}"
+  .btn-group
+    = link_to model_class.human_attribute_name(:not_loanables), supplies_path(loanable: '0'), class: "btn btn-default #{'0' == session[:loanable] ? 'active' : ''}"
+  

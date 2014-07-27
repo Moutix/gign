@@ -4,7 +4,22 @@ class SuppliesController < ApplicationController
   # GET /supplies
   # GET /supplies.json
   def index
-    @supplies = Supply.all
+    
+    session[:display] = params[:display] if params[:display]
+    session[:loanable] = params[:loanable] if params[:loanable]
+
+    if can? :manage, Supply
+      if session[:loanable] == '1'
+        @supplies = Supply.loanables
+      elsif session[:loanable] == '0'
+        @supplies = Supply.not_loanables
+      else
+        @supplies = Supply.all
+      end
+
+    else
+      @supplies = Supply.loanables
+    end
   end
 
   # GET /supplies/1
