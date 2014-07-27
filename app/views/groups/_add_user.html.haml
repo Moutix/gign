@@ -1,0 +1,10 @@
+.container
+  = form_for group, :url => add_user_group_path, method: :post do |f|
+    .control-group
+      = f.label :user, class: 'col-lg-1 control-label'
+    .col-lg-11
+      .input-group
+        = f.select :users, User.all.collect{|u| [u.email, u.id]}.sort, {}, {class: 'form-control selectpicker'}
+        %span.input-group-btn
+          = f.button t("form.group.add_user.submit"), class: 'btn btn-default'
+

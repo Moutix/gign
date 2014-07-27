@@ -1,9 +1,11 @@
 class BorrowingsController < ApplicationController
-  before_action :set_borrowing, only: [:show, :edit, :update, :destroy, :submit_basket, :ended, :beginning, :accepted, :remove_from_basket]
+  before_action :set_borrowing, only: [:show, :edit, :update, :destroy, :submit_basket, :ended, :beginning, :accepted, :remove_from_basket, :number_supply]
 
   # GET /borrowings
   # GET /borrowings.json
   def index
+    authorize! :index, Borrowing
+
     @borrowings = Borrowing.all
     case params[:type]
     when 'effective'
@@ -20,50 +22,13 @@ class BorrowingsController < ApplicationController
   # GET /borrowings/1
   # GET /borrowings/1.json
   def show
-  end
-
-  # GET /borrowings/new
-  def new
-    @borrowing = Borrowing.new
-  end
-
-  # GET /borrowings/1/edit
-  def edit
-  end
-
-  # POST /borrowings
-  # POST /borrowings.json
-  def create
-    @borrowing = Borrowing.new(borrowing_params)
-
-    respond_to do |format|
-      if @borrowing.save
-        format.html { redirect_to @borrowing, notice: 'Borrowing was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @borrowing }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @borrowing.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /borrowings/1
-  # PATCH/PUT /borrowings/1.json
-  def update
-    respond_to do |format|
-      if @borrowing.update(borrowing_params)
-        format.html { redirect_to @borrowing, notice: 'Borrowing was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @borrowing.errors, status: :unprocessable_entity }
-      end
-    end
+    authorize! :show, @borrowing
   end
 
   # DELETE /borrowings/1
   # DELETE /borrowings/1.json
   def destroy
+    authorize! :destroy, @borrowing
     @borrowing.destroy
     respond_to do |format|
       format.html { redirect_to borrowings_url }
@@ -72,16 +37,18 @@ class BorrowingsController < ApplicationController
   end
 
   def number_supply
-    @supply_request = SupplyRequest.find(params[:id])
+    @supply_request = SupplyRequest.find(params[:request_id])
+    authorize! :number_supply, @supply_request
 
     @supply_request.borrowing.ask_for_loan(@supply_request.supply, params[:supply_request][:nb_supplies].to_i)
 
     respond_to do |format|
-      format.html { redirect_to @supply_request.borrowing}
+      format.html { redirect_to @borrowing}
     end
   end
 
   def submit_basket
+    authorize! :submit_basket, @borrowing
     
     flash[:error] = t("errors.borrowing.submit_basket.start_date") if params[:borrowing][:start_at].blank?
     flash[:error] = t("errors.borrowing.submit_basket.end_date") if params[:borrowing][:end_at].blank?
@@ -116,6 +83,7 @@ class BorrowingsController < ApplicationController
   end
 
   def beginning
+    authorize! :beginning, @borrowing
     @borrowing.beginning
     flash[:info] = t("info.borrowing.beginning")
     
@@ -126,6 +94,7 @@ class BorrowingsController < ApplicationController
   end
 
   def ended
+    authorize! :ended, @borrowing
     @borrowing.ended
     flash[:info] = t("info.borrowing.ended")
   
@@ -136,6 +105,7 @@ class BorrowingsController < ApplicationController
   end
   
   def accepted
+    authorize! :accepted, @borrowing
     @borrowing.accept_basket!
     flash[:info] = t("info.borrowing.accepted")
   
@@ -147,6 +117,8 @@ class BorrowingsController < ApplicationController
   
   def remove_from_basket
     @request = SupplyRequest.find(params[:request_id])
+    authorize! :remove_from_basket, @request
+
     flash[:info] = t("info.borrowing.remove_from_basket", supply_name: @request.name)
    
     @request.destroy 

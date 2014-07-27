@@ -15,6 +15,7 @@ class SuppliesController < ApplicationController
   # POST /supplies
   # POST /supplies.json
   def create
+    authorize! :create, Supply
     @supply = Supply.new(supply_params)
 
     respond_to do |format|
@@ -31,6 +32,7 @@ class SuppliesController < ApplicationController
   # PATCH/PUT /supplies/1
   # PATCH/PUT /supplies/1.json
   def update
+    authorize! :edit, @supply
     respond_to do |format|
       if @supply.update(supply_params)
         format.html { redirect_to @supply, notice: 'Supply was successfully updated.' }
@@ -45,6 +47,7 @@ class SuppliesController < ApplicationController
   # DELETE /supplies/1
   # DELETE /supplies/1.json
   def destroy
+    authorize! :destroy, @supply
     @supply.destroy
     respond_to do |format|
       format.html { redirect_to supplies_url }
@@ -53,6 +56,7 @@ class SuppliesController < ApplicationController
   end
 
   def loan
+    authorize! :loan, @supply
     if current_user.active_basket.ask_for_loan(@supply)
       flash[:notice] = t("notice.supply.loan.success")
       respond_to do |format|
@@ -69,6 +73,7 @@ class SuppliesController < ApplicationController
   end
 
   def upload
+    authorize! :upload, @supply
     if !params[:image][:url].blank?
       if Image.upload_url(params[:image][:url], @supply, params[:image][:name])
         flash[:notice] = t("notice.supply.upload.success_url")
@@ -90,6 +95,7 @@ class SuppliesController < ApplicationController
   end
 
   def add_copy
+    authorize! :add_copy, @supply
     if @supply.new_copy!
       flash[:notice] = t("notice.supply.add_copy.success")
     else

@@ -2,9 +2,10 @@
   .col-xs-10.col-md-6
     = render 'images/carousel', images: @supply.images
     %br
-    %button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#imageModal"}
-      = t("form.image.title")
-    = render 'images/form'
+    - if can? :upload, @supply
+      %button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#imageModal"}
+        = t("form.image.title")
+      = render 'images/form'
   .col-xs-6.col-md-4
     %h1= @supply.name + " - " + number_to_currency(@supply.price)
     %hr
@@ -12,9 +13,11 @@
     - if current_user
       %h4= t("supply.loan.number", number: current_user.nb_supplies_in_basket(@supply))
     %p
-      = link_to t("supply.loan.links"), loan_supply_path(@supply), method: :post, class: 'btn btn-primary'
+      - if can? :loan, @supply
+        = link_to t("supply.loan.links"), loan_supply_path(@supply), method: :post, class: 'btn btn-primary'
     %p
-      =link_to t("supply.add_copy.links"), add_copy_supply_path(@supply), method: :post
+      -if can? :add_copy, @supply
+        =link_to t("supply.add_copy.links"), add_copy_supply_path(@supply), method: :post
 
 %hr
 
@@ -22,7 +25,10 @@
   %h2= t("supply.pack_available")
 
   - @supply.active_packs.each do |pack|
-    %h4=link_to pack.name, pack_path(pack)
+    - if can? :show, @pack
+      %h4= link_to pack.name, pack_path(pack)
+    -else
+      %h4= pack.name
     = render 'packs/thumb', pack: pack
 
 
@@ -34,8 +40,9 @@
 
 %p
   %div{id: "charts_supply#{@supply.id}"}
-  
-%button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#supplyModal"}
-  = t("helpers.links.edit")
 
-= render 'form', supply: @supply
+- if can? :update, @supply
+  %button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#supplyModal"}
+    = t("helpers.links.edit")
+
+  = render 'form', supply: @supply

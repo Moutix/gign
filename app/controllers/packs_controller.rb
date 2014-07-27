@@ -2,13 +2,16 @@ class PacksController < ApplicationController
   before_action :set_pack, only: [:show, :update, :destroy, :add_supply, :activate, :add_to_basket]
   
   def index
+    authorize! :index, Pack
     @packs = Pack.all
   end
 
   def show
+    authorize! :show, @pack
   end
   
   def create
+    authorize! :create, Pack
     @pack = Pack.new(pack_params)
 
     respond_to do |format|
@@ -23,6 +26,7 @@ class PacksController < ApplicationController
   end
 
   def update
+    authorize! :update, @pack
     respond_to do |format|
       if @pack.update(pack_params)
         format.html { redirect_to @pack, notice: 'Pack was successfully updated.' }
@@ -35,6 +39,7 @@ class PacksController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @pack
     @pack.destroy
     respond_to do |format|
       format.html { redirect_to packs_url }
@@ -43,6 +48,7 @@ class PacksController < ApplicationController
   end
 
   def add_supply
+    authorize! :add_supply, @pack
     supply = Supply.find(params[:supply_id])
 
     if supply
@@ -60,6 +66,7 @@ class PacksController < ApplicationController
   end
   
   def remove_from_pack
+    authorize! :remove_from_pack, Pack
     @packs_supply = PacksSupply.find(params[:id])
     flash[:info] = t("info.pack.remove_from_pack", supply_name: @packs_supply.name)
    
@@ -71,6 +78,7 @@ class PacksController < ApplicationController
   end
 
   def number_supply
+    authorize! :add_supply, Pack
     @packs_supply = PacksSupply.find(params[:id])
 
     @packs_supply.pack.add_supply(@packs_supply.supply, params[:packs_supply][:nb_supplies].to_i)
@@ -81,6 +89,7 @@ class PacksController < ApplicationController
   end
 
   def activate
+    authorize! :activate, @pack
     @pack.activate
   
     if @pack.active
@@ -94,6 +103,7 @@ class PacksController < ApplicationController
   end
 
   def add_to_basket
+    authorize! :add_to_basket, @pack
     respond_to do |format|
       if @pack.add_to_basket(current_user.active_basket)
         flash[:notice] = t("notice.pack.add_to_basket")

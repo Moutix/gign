@@ -11,10 +11,14 @@
       %tr
         %td= link_to supply_request.name, supply_path(supply_request.supply)
         %td= number_to_currency(supply_request.price)
-        %td= render 'borrowings/form_number', borrowing: borrowing, supply_request: supply_request
-        %td= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              remove_from_basket_borrowing_path(borrowing, supply_request),
-              :class => 'btn btn-xs btn-danger', method: :post
+        - if can? :number_supply, supply_request
+          %td= render 'borrowings/form_number', borrowing: borrowing, supply_request: supply_request
+        - else
+          %td= supply_request.nb_supplies
+        - if can? :remove_from_basket, supply_request
+          %td= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                remove_from_basket_borrowing_path(borrowing, supply_request),
+                :class => 'btn btn-xs btn-danger', method: :post
 
     %tr
       %td

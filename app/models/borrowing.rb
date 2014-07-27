@@ -13,6 +13,7 @@
 #  effective  :boolean          default(FALSE)
 #  created_at :datetime
 #  updated_at :datetime
+#  finish     :boolean          default(FALSE)
 #
 
 class Borrowing < ActiveRecord::Base

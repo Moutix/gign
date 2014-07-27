@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: packs
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  description :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#  active      :boolean          default(FALSE)
+#
+
 class Pack < ActiveRecord::Base
   has_many :packs_supplies, dependent: :destroy
   has_many :supplies, through: :packs_supplies

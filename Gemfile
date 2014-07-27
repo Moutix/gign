@@ -46,6 +46,7 @@ group :development do
 end
 
 gem 'devise'
+gem 'cancan'
 
 gem 'carrierwave'
 gem "mini_magick"

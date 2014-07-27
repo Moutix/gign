@@ -19,6 +19,9 @@ fr:
       user:
         one: Utilisateur
         other: Utilisateurs
+      group:
+        one: Groupe
+        other: Groupes
 
     attributes:
       all: &all
@@ -26,7 +29,7 @@ fr:
         updated_at: Mis à jour le
       supply:
         name: Nom
-        price: prix
+        price: Prix
         description: Description
         loanable: Empruntable ?
         nbcopy: "Nombre d'exemplaire"
@@ -51,6 +54,17 @@ fr:
         name: Nom
         nb_supplies: Nombre d'exemplaires
         price: Prix
+      group:
+        name: Nom
+        level: Niveau
+        admin: Admin
+        manage_supplies: Gère le matériel
+        manage_packs: Gère les packs
+        manage_borrowings: Gère les emprunts
+        manage_users: Gère les utilisateurs
+        manage_groups: Gère les groupes
+        manage_lower_groups: Gère les groupes de niveau inférieur
+        user: Utilisateur
 
 
   supply:
@@ -88,6 +102,13 @@ fr:
     active: Activé
     unactive: Désactivé
 
+  group:
+    del_user:
+      links: Enlever du groupe
+    show:
+      list_user: Liste des utilisateurs du groupe
+      attributes: "Caractéristique :"
+
   form:
     image:
       placeholder:
@@ -101,6 +122,9 @@ fr:
         start_at: "Date de début d'emprunt"
         end_at: "Date de fin d'emprunt"
       submit: "Valider ma demande d'emprunt"
+    group:
+      add_user:
+        submit: Ajouter
 
   info:
     borrowing:
@@ -131,7 +155,8 @@ fr:
     pack:
       add_supply: "Bien ajouté dans le pack"
       add_to_basket: "Le pack a été mis dans votre panier"
-
+    group:
+      add_user: "L'utilisateur a bien été ajouté"
 
   errors:
     messages:
@@ -163,7 +188,12 @@ fr:
         no_copy: "Plus d'exemplaire disponible"
         no_supply: "Cet objet n'existe plus"
       add_to_basket: "Ce pack n'est pas disponible pour le moment"
-
+    
+    group:
+      add_user:
+        no_user: "L'utilisateur doit avoit un nom"
+        dont_exist: "Cet utilisateur n'existe pas"
+        already_in_group: "Cet utilisateur est déjà dans ce groupe"
 
   helpers:
     links:

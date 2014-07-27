@@ -16,6 +16,9 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
+#  confirmation_token     :string(255)
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
 #
 
 class User < ActiveRecord::Base
@@ -25,6 +28,41 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_many :borrowings
+  has_and_belongs_to_many :groups, :join_table => 'users_groups'
+  
+  def ability
+    @ability ||= Ability.new(self)
+  end
+  delegate :can?, :cannot?, :to => :ability
+
+ 
+  def is_admin?
+    test = false
+    self.groups.each do |group|
+      test |= group.admin
+    end
+    return test
+
+  end
+
+  def is_in?(cat)
+    return true if self.is_admin?
+    test = false
+    self.groups.each do |group|
+      test |= group[cat]
+    end
+    return test
+  end
+
+  def level
+    test = 0
+    self.groups.each do |group|
+      if group.level>test
+        test = group.level
+      end
+    end
+    return test
+  end
 
   def fullname
     if name.blank?

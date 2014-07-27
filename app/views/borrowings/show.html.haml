@@ -18,8 +18,11 @@
 
   - case @borrowing.state
   - when :effective
-    = link_to t("borrowing.accepted"), accepted_borrowing_path(@borrowing), class: 'btn btn-primary', method: :post
+    - if can? :accepted, @borrowing
+      = link_to t("borrowing.accepted"), accepted_borrowing_path(@borrowing), class: 'btn btn-primary', method: :post
   - when :accepted
-    = link_to t("borrowing.beginning"), beginning_borrowing_path(@borrowing), class: 'btn btn-primary', method: :post
+    - if can? :beginning, @borrowing
+      = link_to t("borrowing.beginning"), beginning_borrowing_path(@borrowing), class: 'btn btn-primary', method: :post
   - when :ongoing
-    = link_to t("borrowing.ended"), ended_borrowing_path(@borrowing), class: 'btn btn-primary', method: :post
+    - if can? :ended, @borrowing
+      = link_to t("borrowing.ended"), ended_borrowing_path(@borrowing), class: 'btn btn-primary', method: :post

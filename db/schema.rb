@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140727103439) do
+ActiveRecord::Schema.define(version: 20140727154125) do
 
   create_table "borrowings", force: true do |t|
     t.integer  "user_id"
@@ -32,6 +32,20 @@ ActiveRecord::Schema.define(version: 20140727103439) do
   create_table "borrowings_supply_copies", id: false, force: true do |t|
     t.integer "borrowing_id"
     t.integer "supply_copy_id"
+  end
+
+  create_table "groups", force: true do |t|
+    t.string   "name"
+    t.integer  "level",               default: 0
+    t.boolean  "admin",               default: false
+    t.boolean  "manage_supplies",     default: false
+    t.boolean  "manage_packs",        default: false
+    t.boolean  "manage_borrowings",   default: false
+    t.boolean  "manage_users",        default: false
+    t.boolean  "manage_groups",       default: false
+    t.boolean  "manage_lower_groups", default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "images", force: true do |t|
@@ -108,5 +122,10 @@ ActiveRecord::Schema.define(version: 20140727103439) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "users_groups", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "group_id"
+  end
 
 end

@@ -1,7 +1,7 @@
 Gign::Application.routes.draw do
-  resources :borrowings, path: I18n.transliterate(I18n.t('.title', :default => Borrowing.model_name.human.pluralize.downcase)) do
+  resources :borrowings, only: [:index, :show, :destroy], path: I18n.transliterate(I18n.t('.title', :default => Borrowing.model_name.human.pluralize.downcase)) do
     member do
-      post :number_supply
+      post 'number_supply/:request_id', :action => 'number_supply', as: 'number_supply'
       post :submit_basket
       post :accepted
       post :beginning
@@ -10,14 +10,17 @@ Gign::Application.routes.draw do
     end
   end
   
-
-
   devise_for :users, :controllers => { :registrations => "registrations" }, path: I18n.transliterate(I18n.t('.title', :default => User.model_name.human.pluralize.downcase))
   resources :users, path: I18n.transliterate(I18n.t('.title', :default => User.model_name.human.pluralize.downcase))
+  
+  resources :groups, path: I18n.transliterate(I18n.t('.title', :default => Group.model_name.human.pluralize.downcase)) do
+    member do
+      post 'del_user/:user_id', :action => 'del_user', as: 'del_user'
+      post :add_user
+    end
+  end
 
-  resources :supply_copies, path: I18n.transliterate(I18n.t('.title', :default => SupplyCopy.model_name.human.pluralize.downcase))
-
-  resources :supplies, path: I18n.transliterate(I18n.t('.title', :default => Supply.model_name.human.pluralize.downcase)) do
+  resources :supplies, only: [:index, :show, :destroy, :create, :update], path: I18n.transliterate(I18n.t('.title', :default => Supply.model_name.human.pluralize.downcase)) do
     member do
       post :loan
       post :upload
@@ -25,7 +28,7 @@ Gign::Application.routes.draw do
     end
   end
   
-  resources :packs, path: I18n.transliterate(I18n.t('.title', :default => Pack.model_name.human.pluralize.downcase)) do
+  resources :packs, only: [:index, :show, :destroy, :create, :update], path: I18n.transliterate(I18n.t('.title', :default => Pack.model_name.human.pluralize.downcase)) do
     member do
       post 'add_supply/:supply_id', :action => 'add_supply', as: 'add_supply'
       post :number_supply

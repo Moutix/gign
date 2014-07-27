@@ -12,10 +12,12 @@
       %ul.nav.navbar-nav
         %li{class: current_page?(supplies_path) ? 'active' : ''}
           %a{href: supplies_path}= t '.title', :default => Supply.model_name.human.pluralize.titleize
-        %li{class: current_page?(borrowings_path) ? 'active' : ''}
-          %a{href: borrowings_path}= t '.title', :default => Borrowing.model_name.human.pluralize.titleize
-        %li{class: current_page?(packs_path) ? 'active' : ''}
-          %a{href: packs_path}= t '.title', :default => Pack.model_name.human.pluralize.titleize
+        - if can? :index, Borrowing
+          %li{class: current_page?(borrowings_path) ? 'active' : ''}
+            %a{href: borrowings_path}= t '.title', :default => Borrowing.model_name.human.pluralize.titleize
+        - if can? :index, Pack
+          %li{class: current_page?(packs_path) ? 'active' : ''}
+            %a{href: packs_path}= t '.title', :default => Pack.model_name.human.pluralize.titleize
 
 
 

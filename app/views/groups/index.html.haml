@@ -1,0 +1,33 @@
+- model_class = Group
+.page-header
+  %h1= t '.title', :default => model_class.model_name.human.pluralize.titleize
+
+%table.table.table-striped
+  %thead
+    %tr
+      - model_class.attributes.each do |attribute|
+        %th= model_class.human_attribute_name(attribute)
+      %th= t '.actions', :default => t("helpers.actions")
+
+  %tbody
+    - @groups.each do |group|
+      %tr
+        %td= link_to group.name, group_path(group)
+        %td= group.level
+        - model_class.attributes.each do |attribute|
+          - next if ['name', 'level'].include?(attribute)
+          %td= print_boolean(group[attribute])
+        %td
+          = link_to t('.edit', :default => t("helpers.links.edit")),
+          edit_group_path(group), :class => 'btn btn-default btn-xs'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")),
+                    group_path(group),
+                    :method => :delete,
+                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                    :class => 'btn btn-xs btn-danger'
+.form-actions
+  %button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#groupModal"}
+    = t("helpers.links.new", :name => model_class.model_name.human)
+
+  = render 'groups/form', group: Group.new
+
