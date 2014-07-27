@@ -5,9 +5,11 @@ class BorrowingsController < ApplicationController
   # GET /borrowings.json
   def index
     authorize! :index, Borrowing
-
+    session[:borrowing_type] = params[:type] if params[:type]
+    
     @borrowings = Borrowing.all
-    case params[:type]
+
+    case session[:borrowing_type]
     when 'effective'
       @borrowings = Borrowing.where(effective: true, ongoing: false, accepted: false, finish: false)
     when 'accepted'

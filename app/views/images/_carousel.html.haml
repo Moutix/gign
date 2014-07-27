@@ -1,10 +1,6 @@
 - if !images.empty?
 
   #carousel-image.carousel.slide
-    %ol
-      - images.each_with_index do |image, index|
-        .li{"data-target" => '#carousel-image', "data-slide-to" => index}
-
     .carousel-inner
       - images.each_with_index do |image, index|
         - if index == 0
