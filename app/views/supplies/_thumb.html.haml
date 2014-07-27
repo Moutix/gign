@@ -1,0 +1,25 @@
+#supply-thumbnail
+  .row
+    - supplies.each do |supply|
+      .col-sm-6.col-md-4
+        .thumbnail
+          .center
+            %h3= supply.name
+          = link_to supply_path(supply) do
+            = image_tag supply.thumb_image
+          .caption
+            %h4
+              = t("supply.number", number: supply.copy_loanables.size.to_s)
+              - if current_user
+                = t("supply.loan.number", number: current_user.nb_supplies_in_basket(supply))
+            %p
+              - if current_user
+
+                = link_to t("supply.loan.links"), loan_supply_path(supply), method: :post, class: 'btn btn-default btn-xs'
+              = link_to t('.edit', :default => t("helpers.links.edit")),
+                  edit_supply_path(supply), :class => 'btn btn-default btn-xs'
+              = link_to t('.destroy', :default => t("helpers.links.destroy")),
+                            supply_path(supply),
+                            :method => :delete,
+                            :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                            :class => 'btn btn-xs btn-danger' 

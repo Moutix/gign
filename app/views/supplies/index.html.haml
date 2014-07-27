@@ -1,7 +1,18 @@
+.pull-right
+  = link_to supplies_path do
+    %i.fa.fa-list.fa-2x
+  = link_to supplies_path(display: 'thumb') do
+    %i.fa.fa-th.fa-2x
+
 - model_class = Supply
+
+
 %h1= t '.title', :default => model_class.model_name.human.pluralize.titleize
 
-= render 'supplies/list_supplies', supplies: @supplies
+- if params[:display].blank?
+  = render 'supplies/list_supplies', supplies: @supplies
+- elsif params[:display] == "thumb"
+  = render 'supplies/thumb', supplies: @supplies
 
 %br
 

@@ -5,7 +5,6 @@
     %th= model_class.human_attribute_name(:name)
     %th= model_class.human_attribute_name(:nb_available)
     %th= model_class.human_attribute_name(:price)
-    %th= model_class.human_attribute_name(:loanable)
     %th= model_class.human_attribute_name(:description)
     %th= t '.actions', :default => t("helpers.actions")
 
@@ -17,7 +16,6 @@
         - if current_user
           = t("supply.loan.number", number: current_user.nb_supplies_in_basket(supply))
       %td= number_to_currency(supply.price)
-      %td= supply.loanable
       %td= supply.description
       %td
         - if params[:controller] == 'packs' && pack

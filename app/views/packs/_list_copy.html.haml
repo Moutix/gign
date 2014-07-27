@@ -9,7 +9,7 @@
   %tbody
     - pack.packs_supplies.each do |packs_supply|
       %tr
-        %td= packs_supply.name
+        %td= link_to packs_supply.name, supply_path(packs_supply.supply)
         %td= number_to_currency(packs_supply.price)
         %td= render 'packs/form_number', pack: pack, packs_supply: packs_supply
         %td= link_to t('.destroy', :default => t("helpers.links.destroy")),
