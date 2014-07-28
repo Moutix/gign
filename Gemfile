@@ -53,6 +53,8 @@ gem "mini_magick"
 
 gem 'font-awesome-less'
 
+gem 'rails-erd'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
