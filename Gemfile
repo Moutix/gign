@@ -54,7 +54,7 @@ gem "mini_magick"
 gem 'font-awesome-less'
 
 gem 'rb-readline'
-gem 'rails-erd'
+gem 'rails-erd', require: false
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
