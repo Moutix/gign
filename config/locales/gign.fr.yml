@@ -5,6 +5,22 @@ fr:
     application:
       forbidden: "Attention : Cette action n'est pas permise."
 
+  navbar:
+    user:
+      title: Accès au compte
+      link: Mon compte
+    basket:
+      title: Accès à mon panier
+      link: Mon panier
+    dropdown_admin:
+      title: Gestion du site
+      borrowing: Gestion des emprunts
+      pack: Gestion des packs
+      user: Gestion des utilisateurs
+      group: Gestion des groupes
+
+
+
   activerecord:
     models:
       supply:
@@ -28,10 +44,13 @@ fr:
         created_at: Crée le
         updated_at: Mis à jour le
       supply:
+        all: Tous
         name: Nom
         price: Prix
         description: Description
-        loanable: Empruntable ?
+        loanable: Empruntable
+        loanables: Empruntables
+        not_loanables: Non empruntable
         nbcopy: "Nombre d'exemplaire"
         nb_available: "Nombre disponible"
       supply_copy:

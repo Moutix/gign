@@ -12,23 +12,58 @@
       %ul.nav.navbar-nav
         %li{class: current_page?(supplies_path) ? 'active' : ''}
           %a{href: supplies_path}= t '.title', :default => Supply.model_name.human.pluralize.titleize
-        - if can? :index, Borrowing
-          %li{class: current_page?(borrowings_path) ? 'active' : ''}
-            %a{href: borrowings_path}= t '.title', :default => Borrowing.model_name.human.pluralize.titleize
-        - if can? :index, Pack
-          %li{class: current_page?(packs_path) ? 'active' : ''}
-            %a{href: packs_path}= t '.title', :default => Pack.model_name.human.pluralize.titleize
 
 
-
-      %ul.nav.navbar-nav.pull-right
+      %ul.nav.navbar-nav.navbar-right
+        - if (can? :index, Borrowing) || (can? :index, Pack) || (can? :index, User) || (can? :index, Group)
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => 'dropdown'}
+              %i.fa.fa-wrench
+              = t("navbar.dropdown_admin.title")
+              %i.caret
+            %ul.dropdown-menu{role: 'menu'}
+              - if can? :index, Borrowing
+                %li
+                  = link_to borrowings_path do
+                    %i.fa.fa-truck
+                    = t("navbar.dropdown_admin.borrowing")
+              - if can? :index, Pack
+                %li
+                  = link_to packs_path do
+                    %i.fa.fa-archive
+                    = t("navbar.dropdown_admin.pack")
+              - if can? :index, User
+                %li
+                  = link_to users_path do
+                    %i.fa.fa-user
+                    = t("navbar.dropdown_admin.user")
+              - if can? :index, Group
+                %li
+                  = link_to groups_path do
+                    %i.fa.fa-users
+                    = t("navbar.dropdown_admin.group")
         - if !current_user
+          %li= render 'layouts/sign_through_navbar'
           %li= link_to t('devise.shared.sign_up'), new_user_registration_path
-          = render 'layouts/sign_through_navbar'
         - else
-          %li{class: current_page?(user_path(current_user)) ? 'active' : ''}
-            = link_to current_user.email, user_path(current_user)
-          %li#basket_navbar{class: current_page?(borrowing_path(current_user.active_basket)) ? 'active' : ''}
-
-            = link_to "(" + current_user.active_basket.supply_requests.sum(:nb_supplies).to_s + ") " + t("borrowing.basket"), borrowing_path(current_user.active_basket)
-          %li= link_to t('devise.shared.sign_out'), destroy_user_session_path, method: :delete
+          %li
+            .btn-group.navbar-btn
+              %a.btn.btn-default.dropdown-toggle{type: "button", "data-toggle" =>"dropdown", style: 'width: 220px;'}
+                = current_user.fullname[0..17]
+                %i.fa.fa-shopping-cart
+                = current_user.active_basket.supply_requests.sum(:nb_supplies)
+                %span.caret.color-green
+              %ul.dropdown-menu{role: 'menu', style: 'width:220px;margin-left:10px'}
+                %li
+                  = link_to user_path(current_user), :rel => "nofollow", title: t("navbar.user.title") do
+                    %i.fa.fa-home
+                    = t("navbar.user.link")
+                %li
+                  = link_to borrowing_path(current_user.active_basket), :rel => "nofollow", title: t("navbar.basket.title") do
+                    %i.fa.fa-shopping-cart
+                    = t("navbar.basket.link")
+                %li.divider
+                %li
+                  = link_to destroy_user_session_path, method: :delete, :rel => "nofollow", title: t("devise.shared.sign_out") do
+                    %i.fa.fa-sign-out
+                    = t("devise.shared.sign_out")
