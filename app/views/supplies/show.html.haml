@@ -4,6 +4,7 @@
     %br
     - if can? :upload, @supply
       %button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#imageModal"}
+        %i.fa.fa-upload
         = t("form.image.title")
       = render 'images/form'
   .col-xs-6.col-md-4
@@ -14,7 +15,9 @@
       %h4= t("supply.loan.number", number: current_user.nb_supplies_in_basket(@supply))
     %p
       - if can? :loan, @supply
-        = link_to t("supply.loan.links"), loan_supply_path(@supply), method: :post, class: 'btn btn-primary'
+        = link_to loan_supply_path(@supply), method: :post, class: 'btn btn-primary' do
+          %i.fa.fa-shopping-cart 
+          = t("supply.loan.links")
     %p
       -if can? :add_copy, @supply
         =link_to t("supply.add_copy.links"), add_copy_supply_path(@supply), method: :post

@@ -155,6 +155,8 @@ fr:
       activate: "Le pack a été activé"
       desactivate: "Le pack a été desactivé"
       remove_from_pack: "%{supply_name} a bien été retiré du panier"
+    image:
+      destroy: "L'image a bien été supprimé"
 
   notice:
     supply:

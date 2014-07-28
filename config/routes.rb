@@ -37,6 +37,8 @@ Gign::Application.routes.draw do
       post :add_to_basket
     end
   end
+  
+  resources :images, only: :destroy, path: I18n.transliterate(I18n.t('.title', :default => Image.model_name.human.pluralize.downcase))
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

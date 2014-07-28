@@ -8,11 +8,16 @@
             .center
               = image_tag(image.url)
             .carousel-caption
-              =# image.name
+              %p.style{style: 'text-align:right'}
+                = link_to image_path(image), class: 'btn btn-danger', method: :delete do
+                  %i.fa.fa-trash-o
+                  = t('helpers.links.destroy')
+
         -else
           .item
             .center
               = image_tag(image.url)
+              %i.fa.fa-trash-o
 
 
     %a.left.carousel-control{href: "#carousel-image", role: "button", "data-slide" => "prev"}

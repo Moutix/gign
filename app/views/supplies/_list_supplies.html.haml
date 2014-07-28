@@ -25,11 +25,11 @@
         - else
           - if can? :loan, supply
 
-            = link_to t("supply.loan.links"), loan_supply_path(supply), method: :post, class: 'btn btn-primary btn-xs'
+            = link_to loan_supply_path(supply), method: :post, class: 'btn btn-primary btn-xs' do
+              %i.fa.fa-shopping-cart
+              = t("supply.loan.links")
           - if can? :destroy, supply
-            = link_to t('.destroy', :default => t("helpers.links.destroy")),
-                        supply_path(supply),
-                        :method => :delete,
-                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                        :class => 'btn btn-xs btn-danger' 
+            = link_to supply_path(supply), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger' do
+              %i.fa.fa-trash-o
+              = t('.destroy', :default => t("helpers.links.destroy"))
  

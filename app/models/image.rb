@@ -17,6 +17,8 @@ require 'uri'
 class Image < ActiveRecord::Base
   belongs_to :imageable, :polymorphic => true
 
+  after_destroy :destroy_store_image
+
   def self.upload_url(url, imageable, name = nil)
     begin
       uploader = ImageUploader.new(imageable)
@@ -86,6 +88,13 @@ class Image < ActiveRecord::Base
 
   private
   
+  def destroy_store_image
+    begin
+      File.delete("public/#{self.url}")
+    rescue
+    end
+  end
+
   def self.generate_name
     Digest::SHA1.hexdigest([Time.now, rand].join)[8..15]
   end

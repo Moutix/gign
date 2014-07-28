@@ -62,6 +62,7 @@ class Ability
 
     if user.is_in?("manage_supplies")
       can :manage, Supply
+      can :manage, Image
     end
     
     if user.is_in?("admin")
