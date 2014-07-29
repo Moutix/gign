@@ -20,8 +20,6 @@
         - if params[:controller] == 'groups' && group && (can? :del_user, group)
           = link_to t("group.del_user.links"), del_user_group_path(group, user), method: :post, class: 'btn btn-xs btn-danger'
         -else
-          = link_to t('.edit', :default => t("helpers.links.edit")),
-                edit_user_path(user), :class => 'btn btn-default btn-xs'
           = link_to t('.destroy', :default => t("helpers.links.destroy")),
                         user_path(user),
                       :method => :delete,
