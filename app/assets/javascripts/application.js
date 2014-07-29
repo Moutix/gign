@@ -17,6 +17,7 @@
 //= require bootstrap-filestyle.min.js
 //= require bootstrap-datetimepicker.min.js
 //= require bootstrap-select.min.js
+//= require ckeditor/init
 //= require highcharts.js
 //= require gign.js
 //= require turbolinks

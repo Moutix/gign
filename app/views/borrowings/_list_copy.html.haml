@@ -11,7 +11,7 @@
       %tr
         %td= link_to supply_request.name, supply_path(supply_request.supply)
         %td= number_to_currency(supply_request.price)
-        - if can? :number_supply, supply_request
+        - if (can? :number_supply, supply_request) && (borrowing.state == :effective || borrowing.state == :not_submit)
           %td= render 'borrowings/form_number', borrowing: borrowing, supply_request: supply_request
         - else
           %td= supply_request.nb_supplies

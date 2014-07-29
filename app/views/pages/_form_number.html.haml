@@ -1,0 +1,3 @@
+= form_for ([section, page]), html: {id: "page_form_#{page.id}"} do |f|
+  .form-group
+    = f.select :priority, 1..10, {}, class: 'selectpicker', onchange: "$('#page_form_#{page.id}').submit();"

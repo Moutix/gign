@@ -18,8 +18,6 @@
           - next if ['name', 'level'].include?(attribute)
           %td= print_boolean(group[attribute])
         %td
-          = link_to t('.edit', :default => t("helpers.links.edit")),
-          edit_group_path(group), :class => 'btn btn-default btn-xs'
           = link_to t('.destroy', :default => t("helpers.links.destroy")),
                     group_path(group),
                     :method => :delete,

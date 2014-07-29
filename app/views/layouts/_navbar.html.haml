@@ -13,6 +13,23 @@
         %li{class: current_page?(supplies_path) ? 'active' : ''}
           %a{href: supplies_path}= t '.title', :default => Supply.model_name.human.pluralize.titleize
 
+        %li.dropdown
+          %a.dropdown-toggle{"data-toggle" => 'dropdown'}
+            = t("navbar.dropdown_section.title")
+            %i.caret
+
+          %ul.dropdown-menu{role: 'menu'}
+            - if can? :index, Section
+              %li.dropdown-header{:role => "presentation"}
+                = link_to sections_path do
+                  = t("navbar.dropdown_section.name")
+
+              %li.divider
+            - Section.displays.each do |section|
+              %li
+                = link_to section.name, section_page_path(section, section.pages.first) 
+
+
 
       %ul.nav.navbar-nav.navbar-right
         - if (can? :index, Borrowing) || (can? :index, Pack) || (can? :index, User) || (can? :index, Group)

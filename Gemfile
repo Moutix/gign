@@ -56,6 +56,8 @@ gem 'font-awesome-less'
 gem 'rb-readline'
 gem 'rails-erd', require: false
 
+gem 'ckeditor'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

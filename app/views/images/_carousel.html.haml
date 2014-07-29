@@ -8,10 +8,9 @@
             .center
               = image_tag(image.url)
             .carousel-caption
-              %p.style{style: 'text-align:right'}
+              %p.style{style: 'text-align:right;padding-left:50px;'}
                 = link_to image_path(image), class: 'btn btn-danger', method: :delete do
                   %i.fa.fa-trash-o
-                  = t('helpers.links.destroy')
 
         -else
           .item

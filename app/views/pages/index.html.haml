@@ -1,0 +1,35 @@
+- model_class = Page
+%h1= t '.title', :default => model_class.model_name.human.pluralize.titleize
+
+%table.table.table-striped
+  %tr
+    %th= model_class.human_attribute_name(:name)
+    %th= model_class.human_attribute_name(:slug)
+    %th= model_class.human_attribute_name(:section)
+    %th= model_class.human_attribute_name(:content)
+    %th= model_class.human_attribute_name(:priority)
+    %th= model_class.human_attribute_name(:created_at)
+    %th= t '.actions', :default => t("helpers.actions")
+
+  - @pages.each do |page|
+    %tr[page]
+      %td= link_to page.name, section_page_path(@section, page)
+      %td= page.slug
+      %td= page.section
+      %td= page.content
+      %td= page.priority
+      %td= page.created_at.to_s(:pretty)
+      %td 
+        = link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_section_page_path(@section, page), :class => 'btn btn-default btn-xs'
+        = link_to t('.destroy', :default => t("helpers.links.destroy")),
+                        section_page_path(@section, page),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' 
+      
+%br
+
+= link_to t('.new', :default => t("helpers.links.new"), name: model_class.model_name.human),
+            new_section_page_path,
+            :class => 'btn btn-primary'

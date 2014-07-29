@@ -1,0 +1,6 @@
+.sidebar-nav
+  .navbar.navbar-vertical{role: "navigation"}
+    %ul.nav.nav-pills
+      - pages.each do |page|
+        %li{class: current_page?(section_page_path(page.section, page)) ? 'active' : ''}
+          = link_to page.name, section_page_path(page.section, page)

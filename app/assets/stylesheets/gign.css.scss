@@ -65,9 +65,6 @@
 }
 
 
-
-
-
 #borrowing {
   .progress {border: 1px solid #e3e3e3; height: 30px; margin-top: 5px;
     .progress-bar {-webkit-box-shadow: none; box-shadow: none; width: 20%; background-color: #FAFAFA; color: #5a5a5a;
@@ -161,7 +158,9 @@ html, body {color: black; height: 100%;;
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
 
-.navbar {border-bottom: 3px solid rgb(51, 104, 53);
+.navbar-vertical{border: 1px solid rgb(51, 104, 53); border-radius:5px}
+.navbar-default{border-bottom: 3px solid rgb(51, 104, 53);}
+.navbar {
   .container .navbar-header .navbar-brand {padding-top: 5px;}
   .navbar-btn {padding: 8px 0 8px 8px; margin: 0;
     a.btn.width180 {width: 180px;}
@@ -169,5 +168,31 @@ html, body {color: black; height: 100%;;
   .navbar-nav > li > a {color: #022a04; font-size: 16px;}
   .navbar-nav.navbar-right:last-child {margin-right: 0px;}
   .dropdown-header {font-size: 14px;}
+  .nav-pills{
+    margin:0px;
+    text-align: center;
+    li.active > a {background-color: #054405}
+    li{margin:0px}
+  }
 }
 
+.sidebar-nav .navbar .navbar-collapse {
+  padding: 0;
+  max-height: none;
+}
+.sidebar-nav .navbar ul {
+  float: none;
+}
+.sidebar-nav .navbar ul:not {
+  display: block;
+}
+.sidebar-nav .navbar li {
+  float: none;
+  display: block;
+}
+.sidebar-nav .navbar li a {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.btn-page{width:150px;height:25px;padding:1px;}

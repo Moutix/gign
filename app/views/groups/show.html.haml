@@ -32,6 +32,6 @@
         :class => 'btn btn-danger'
   - if can? :update, @group
     %button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#groupModal"}
-      = t("helpers.links.new", :name => model_class.model_name.human)
+      = t("helpers.links.edit")
     = render 'groups/form', group: @group
 

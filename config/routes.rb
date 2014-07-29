@@ -1,4 +1,15 @@
 Gign::Application.routes.draw do
+  
+  resources :sections, only: [:index, :show, :destroy, :create, :update], path: I18n.transliterate(I18n.t('.title', :default => Section.model_name.human.pluralize.downcase)) do
+    resources :pages, except: [:index], path: '/'
+    
+    member do
+      post :activate
+    end
+
+  end
+
+  
   resources :borrowings, only: [:index, :show, :destroy], path: I18n.transliterate(I18n.t('.title', :default => Borrowing.model_name.human.pluralize.downcase)) do
     member do
       post 'number_supply/:request_id', :action => 'number_supply', as: 'number_supply'

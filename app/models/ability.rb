@@ -33,6 +33,11 @@ class Ability
       end
 
     end
+  
+  can :show, Page do |p|
+    p.section_display
+  end
+
 
 
     
@@ -41,6 +46,11 @@ class Ability
       can [:add_user, :del_user, :update], Group do |g|
         g.level < user.level
       end
+    end
+    
+    if user.is_in?("manage_sections")
+      can :manage, Section
+      can :manage, Page
     end
     
     if user.is_in?("manage_groups")

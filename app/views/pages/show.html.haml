@@ -1,0 +1,31 @@
+- if @section.pages.size > 1
+  .row
+    .col-sm-3
+      = render 'pages/left_menu', pages: @section.pages
+    .col-sm-9
+      .pull-right
+        - if @page.next_page
+          = link_to section_page_path(@section, @page.next_page), class: 'btn btn-primary btn-page' do
+            = t("page.next")
+            %i.fa.fa-angle-double-right
+      .pull-left
+        - if @page.previous_page
+          = link_to section_page_path(@section, @page.previous_page), class: 'btn btn-primary btn-page' do
+            %i.fa.fa-angle-double-left
+            = t("page.previous")
+      %br
+      %hr
+      .center
+        %h1= @page.name
+    
+      = @page.content.html_safe
+- else
+  .center
+    %h1= @page.name
+  = @page.content.html_safe
+
+.form-actions
+  - if can? :update, @page
+    = link_to t("helpers.links.edit"), edit_section_page_path(@section, @page), class: 'btn btn-primary'
+  - if can? :show, @section
+    = link_to t("helpers.links.back"), section_path(@section), class: 'btn btn-default'

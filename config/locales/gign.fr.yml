@@ -18,6 +18,9 @@ fr:
       pack: Gestion des packs
       user: Gestion des utilisateurs
       group: Gestion des groupes
+    dropdown_section:
+      title: Section
+      name: Gestion des pages
 
 
 
@@ -44,6 +47,7 @@ fr:
         created_at: Crée le
         updated_at: Mis à jour le
       supply:
+        <<: *all
         all: Tous
         name: Nom
         price: Prix
@@ -54,8 +58,10 @@ fr:
         nbcopy: "Nombre d'exemplaire"
         nb_available: "Nombre disponible"
       supply_copy:
+        <<: *all
         ref: référence
       borrowing:
+        <<: *all
         state: État
         user: Utilisateur
         price: prix
@@ -69,11 +75,13 @@ fr:
         not_submit: Non soumis
         finish: Terminé
       pack:
+        <<: *all
         state: État
         name: Nom
         nb_supplies: Nombre d'exemplaires
         price: Prix
       group:
+        <<: *all
         name: Nom
         level: Niveau
         admin: Admin
@@ -82,6 +90,7 @@ fr:
         manage_borrowings: Gère les emprunts
         manage_users: Gère les utilisateurs
         manage_groups: Gère les groupes
+        manage_sections: Gère les sections
         manage_lower_groups: Gère les groupes de niveau inférieur
         user: Utilisateur
 
@@ -109,6 +118,12 @@ fr:
       ongoing: Etat quand vous avez récupérez votre commande
       finish: Etat lorsque vous avez rendu votre emprunt
   
+  section:
+    activate:
+      links: Activer cette section
+    desactivate:
+      links: Désactiver cette section
+  
   pack:
     add_supply:
       links: Ajouter dans le pack
@@ -120,13 +135,17 @@ fr:
       links: Mettre le pack dans mon panier
     active: Activé
     unactive: Désactivé
-
+  
   group:
     del_user:
       links: Enlever du groupe
     show:
       list_user: Liste des utilisateurs du groupe
       attributes: "Caractéristique :"
+
+  page:
+    next: Page suivante
+    previous: Page précédente
 
   form:
     image:
@@ -157,7 +176,10 @@ fr:
       remove_from_pack: "%{supply_name} a bien été retiré du panier"
     image:
       destroy: "L'image a bien été supprimé"
-
+    section:
+      activate: "Cette section et maintenant visible par tous les utilisateurs"
+      desactivate: "Cette section n'est plus visible"
+ 
   notice:
     supply:
       upload:
