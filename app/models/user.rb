@@ -103,4 +103,11 @@ class User < ActiveRecord::Base
     active_basket.update_columns(effective: true)
   end
 
+  def confirmed?
+    self.confirmed_at.nil? ? false : true
+  end
+  
+  def confirm!
+    self.update_column(:confirmed_at, Time.now)
+  end
 end

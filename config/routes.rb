@@ -22,7 +22,12 @@ Gign::Application.routes.draw do
   end
   
   devise_for :users, :controllers => { :registrations => "registrations" }, path: I18n.transliterate(I18n.t('.title', :default => User.model_name.human.pluralize.downcase))
-  resources :users, path: I18n.transliterate(I18n.t('.title', :default => User.model_name.human.pluralize.downcase))
+  
+  resources :users, only: [:index, :show, :destroy, :update], path: I18n.transliterate(I18n.t('.title', :default => User.model_name.human.pluralize.downcase)) do
+    member do
+      post :confirm
+    end
+  end
   
   resources :groups, path: I18n.transliterate(I18n.t('.title', :default => Group.model_name.human.pluralize.downcase)) do
     member do
@@ -49,7 +54,11 @@ Gign::Application.routes.draw do
     end
   end
   
-  resources :images, only: :destroy, path: I18n.transliterate(I18n.t('.title', :default => Image.model_name.human.pluralize.downcase))
+  resources :images, only: :destroy, path: I18n.transliterate(I18n.t('.title', :default => Image.model_name.human.pluralize.downcase)) do
+    member do
+      post 'upload/:type', :action => 'upload', as: 'upload'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

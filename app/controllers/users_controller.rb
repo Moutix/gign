@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :confirm]
 
   # GET /users
   # GET /users.json
@@ -12,11 +12,6 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     authorize! :show, @user
-  end
-
-  # GET /users/new
-  def new
-    @user = User.new
   end
 
   # PATCH/PUT /users/1
@@ -42,6 +37,14 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to users_url }
       format.json { head :no_content }
+    end
+  end
+
+  def confirm
+    authorize! :confirm, @user
+    @user.confirm!
+    respond_to do |format|
+      format.html { redirect_to users_url }
     end
   end
 

@@ -1,6 +1,8 @@
 class Section < ActiveRecord::Base
   
   has_many :pages, -> { order(:priority, :name)}
+  
+  has_many :images, :class_name => "Image", :as => "imageable"
 
   scope :displays, -> { where(display: true)}
 

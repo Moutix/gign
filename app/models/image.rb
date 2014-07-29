@@ -85,6 +85,18 @@ class Image < ActiveRecord::Base
     turl[turl.length-1] = 'thumb_' + turl.last
     turl.join('/')
   end
+  
+  def medium_url
+    turl = url.split('/')
+    turl[turl.length-1] = 'medium_' + turl.last
+    turl.join('/')
+  end
+  
+  def mini_url
+    turl = url.split('/')
+    turl[turl.length-1] = 'mini_' + turl.last
+    turl.join('/')
+  end
 
   private
   

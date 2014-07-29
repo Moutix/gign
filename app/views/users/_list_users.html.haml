@@ -2,14 +2,20 @@
 
 %table.table.table-striped
   %tr
+    %th= model_class.human_attribute_name(:name)
     %th= model_class.human_attribute_name(:email)
+    %th= model_class.human_attribute_name(:last_sign_in_at)
     %th= model_class.human_attribute_name(:created_at)
     %th= t '.actions', :default => t("helpers.actions")
 
   - users.each do |user|
     %tr[user]
-      %td= link_to user.email, user
-      %td= user.created_at.to_s(:pretty)
+      %td= link_to user.name, user
+      %td
+        = link_to user.email, user
+        = link_to t("user.confirm.links"), confirm_user_path(user), method: :post unless user.confirmed?
+      %td= l user.last_sign_in_at, format: :default
+      %td= l user.created_at, format: :default
       %td
         - if params[:controller] == 'groups' && group && (can? :del_user, group)
           = link_to t("group.del_user.links"), del_user_group_path(group, user), method: :post, class: 'btn btn-xs btn-danger'

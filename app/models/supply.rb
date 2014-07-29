@@ -58,9 +58,6 @@ class Supply < ActiveRecord::Base
       end
     end
 
-    p time
-
-
     start = start_time
     time.keys.sort().each do |key|
       dispo[start..key] = number

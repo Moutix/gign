@@ -1,5 +1,5 @@
 class SuppliesController < ApplicationController
-  before_action :set_supply, only: [:show, :update, :destroy, :loan, :upload, :add_copy]
+  before_action :set_supply, only: [:show, :update, :destroy, :loan, :add_copy]
 
   # GET /supplies
   # GET /supplies.json
@@ -86,29 +86,7 @@ class SuppliesController < ApplicationController
       end
     end
   end
-
-  def upload
-    authorize! :upload, @supply
-    if !params[:image][:url].blank?
-      if Image.upload_url(params[:image][:url], @supply, params[:image][:name])
-        flash[:notice] = t("notice.supply.upload.success_url")
-      else
-        flash[:error] = t("errors.supply.upload.failed_url")
-      end
-    elsif !params[:image][:file].blank?
-      if Image.upload_file(params[:image][:file], @supply, params[:image][:name])
-        flash[:notice] = t("notice.supply.upload.success_file")
-      else
-        flash[:error] = t("errors.supply.upload.failed_file")
-      end
-    else
-      flash[:error] = t("errors.supply.upload.no_params")
-    end
-    respond_to do |format|
-      format.html{ redirect_to @supply}
-    end 
-  end
-
+  
   def add_copy
     authorize! :add_copy, @supply
     if @supply.new_copy!

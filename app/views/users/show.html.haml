@@ -3,3 +3,8 @@
 %h2 Mes demandes en cours :
 
 = render 'borrowings/table_index', borrowings: @user.borrowings
+
+- if can? :update, @user
+  %button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#userModal"}
+    = t("helpers.links.edit")
+  = render 'form', user: @user

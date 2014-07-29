@@ -1,5 +1,5 @@
 #imageModal.modal.fade{"aria-hidden" => "true", "tabindex" => "-1"}
-  = form_for(:image, :url => {:action => "upload"}) do |f|
+  = form_for(:image, url: upload_image_path(resource.id, resource.class.name.tableize)) do |f|
     .modal-dialog
       .modal-content
         .modal-header

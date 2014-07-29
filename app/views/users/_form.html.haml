@@ -1,16 +1,18 @@
-= form_for @user do |f|
-  - if @user.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
-      %ul
-        - @user.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :email
-    = f.text_field :email
-  .actions
-    = f.submit 'Save'
+#userModal.modal.fade{"aria-hidden" => "true", "tabindex" => "-1"}
+  = form_for user do |f|
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"data-dismiss" => "modal"}
+            %span{"aria-hidden" => "true"}×
+            %span.sr-only
+              = t("helpers.links.close")
+          %h4.modal-title= t("form.supply.title")
+        .modal-body   
+          .form-group
+            = f.label :name
+            = f.text_field :name, class: 'form-control'
+          .modal-footer
+            %button.btn.btn-default{"data-dismiss" => "modal"}
+              = t("helpers.links.close")
+            = f.submit t('.save', :default => t("helpers.links.save")), :class => 'btn btn-primary'

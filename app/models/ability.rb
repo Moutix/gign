@@ -51,6 +51,9 @@ class Ability
     if user.is_in?("manage_sections")
       can :manage, Section
       can :manage, Page
+      can :manage, Image do |i|
+        i.imageable.class == Section
+      end
     end
     
     if user.is_in?("manage_groups")
@@ -72,7 +75,9 @@ class Ability
 
     if user.is_in?("manage_supplies")
       can :manage, Supply
-      can :manage, Image
+      can :manage, Image do |i|
+        i.imageable.class == Supply
+      end
     end
     
     if user.is_in?("admin")

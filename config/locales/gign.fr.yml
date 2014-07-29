@@ -142,10 +142,14 @@ fr:
     show:
       list_user: Liste des utilisateurs du groupe
       attributes: "Caractéristique :"
-
+  user:
+    confirm:
+      links: "(confirmer)"
   page:
     next: Page suivante
     previous: Page précédente
+  image:
+    collapse: Voir la listes des images
 
   form:
     image:
@@ -181,10 +185,11 @@ fr:
       desactivate: "Cette section n'est plus visible"
  
   notice:
-    supply:
+    image:
       upload:
         success_url: "L'image a bien été uploadé"
         success_file: "L'image a bien été uploadé"
+    supply:
       loan:
         success: L'élément a bien été ajouté au panier
       unloan:
@@ -212,6 +217,7 @@ fr:
         failed: "Cet objet ne peut être emprunté"
       unloan:
         failed: "Cet objet ne peut plus être désemprunter"
+    section:
       upload:
         no_params: "Merci de mettre un lien, ou un fichier"
         failed_url: "Une erreur c'est produite, peut être une erreur dand l'url ?"

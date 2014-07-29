@@ -1,0 +1,26 @@
+-model_class = Image
+
+%table.table.table-striped
+  %tr
+    %th= model_class.human_attribute_name(:picture)
+    %th= model_class.human_attribute_name(:name)
+    %th= model_class.human_attribute_name(:url)
+    %th= model_class.human_attribute_name(:thumb_url)
+    %th= model_class.human_attribute_name(:created_at)
+    %th= t '.actions', :default => t("helpers.actions")
+
+  - images.each do |image|
+    %tr[image]
+      %td= image_tag image.mini_url
+      %td= image.name
+      %td= link_to image.url, image.url
+      %td= link_to image.medium_url, image.medium_url
+      %td= link_to image.thumb_url, image.thumb_url
+      %td= l image.created_at, format: :default
+      %td
+        = link_to image_path(image),
+                  :method => :delete,
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-xs btn-danger' do
+          = t("helpers.links.destroy")
+          %i.fa.fa-trash-o
