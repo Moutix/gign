@@ -13,6 +13,7 @@ class PacksController < ApplicationController
   def create
     authorize! :create, Pack
     @pack = Pack.new(pack_params)
+    @pack.creator = current_user
 
     respond_to do |format|
       if @pack.save

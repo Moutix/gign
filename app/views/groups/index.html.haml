@@ -15,8 +15,9 @@
         %td= link_to group.name, group_path(group)
         %td= group.level
         - model_class.attributes.each do |attribute|
-          - next if ['name', 'level'].include?(attribute)
+          - next if ['name', 'level', 'user_id'].include?(attribute)
           %td= print_boolean(group[attribute])
+        %td= link_to group.user_fullname, group_path(group.user)
         %td
           = link_to t('.destroy', :default => t("helpers.links.destroy")),
                     group_path(group),

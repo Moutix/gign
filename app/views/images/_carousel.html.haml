@@ -3,24 +3,12 @@
   #carousel-image.carousel.slide
     .carousel-inner
       - images.each_with_index do |image, index|
-        - if index == 0
-          .item.active
-            .center
-              = image_tag(image.medium_url)
-            .carousel-caption
-              %p.style{style: 'text-align:right;padding-left:50px;'}
-                = link_to image_path(image), class: 'btn btn-danger', method: :delete do
-                  %i.fa.fa-trash-o
-
-        -else
-          .item
-            .center
-              = image_tag(image.medium_url)
-            .carousel-caption
-              %p.style{style: 'text-align:right;padding-left:50px;'}
-                = link_to image_path(image), class: 'btn btn-danger', method: :delete do
-                  %i.fa.fa-trash-o
-
+        .item{class: index == 0 ? 'active' : ''}
+          .center
+            = image_tag(image.medium_url)
+            = link_to image_path(image), class: 'btn btn-danger destroy-image', method: :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
+              %i.fa.fa-trash-o
+ 
 
     %a.left.carousel-control{href: "#carousel-image", role: "button", "data-slide" => "prev"}
       %span.glyphicon.glyphicon-chevron-left

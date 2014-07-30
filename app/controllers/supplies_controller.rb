@@ -32,6 +32,7 @@ class SuppliesController < ApplicationController
   def create
     authorize! :create, Supply
     @supply = Supply.new(supply_params)
+    @supply.creator = current_user
 
     respond_to do |format|
       if @supply.save

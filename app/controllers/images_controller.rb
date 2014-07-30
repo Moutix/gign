@@ -1,7 +1,13 @@
 class ImagesController < ApplicationController
  
   before_action :set_image, only: :destroy
-  
+ 
+  def index
+    authorize! :index, @image
+    @images = Image.all
+  end
+
+
   def destroy
     authorize! :destroy, @image
     @image.destroy
@@ -24,13 +30,13 @@ class ImagesController < ApplicationController
     end
     
     if resource && !params[:image][:url].blank?
-      if Image.upload_url(params[:image][:url], resource, params[:image][:name])
+      if Image.upload_url(params[:image][:url], resource, params[:image][:name], current_user)
         flash[:notice] = t("notice.image.upload.success_url")
       else
         flash[:error] = t("errors.image.upload.failed_url")
       end
     elsif resource && !params[:image][:file].blank?
-      if Image.upload_file(params[:image][:file], resource, params[:image][:name])
+      if Image.upload_file(params[:image][:file], resource, params[:image][:name], current_user)
         flash[:notice] = t("notice.image.upload.success_file")
       else
         flash[:error] = t("errors.image.upload.failed_file")

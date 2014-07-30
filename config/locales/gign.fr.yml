@@ -18,6 +18,8 @@ fr:
       pack: Gestion des packs
       user: Gestion des utilisateurs
       group: Gestion des groupes
+      image: Gestion des images
+      file: Gestion des fichiers
     dropdown_section:
       title: Section
       name: Gestion des pages
@@ -41,9 +43,23 @@ fr:
       group:
         one: Groupe
         other: Groupes
+      section:
+        one: Section
+        other: Sections
+      page:
+        one: Page
+        other: Pages
+      image:
+        one: Image
+        other: Images
+      upload_file:
+        one: Fichier
+        other: Fichiers
+
 
     attributes:
       all: &all
+        user: Crée par
         created_at: Crée le
         updated_at: Mis à jour le
       supply:
@@ -92,7 +108,27 @@ fr:
         manage_groups: Gère les groupes
         manage_sections: Gère les sections
         manage_lower_groups: Gère les groupes de niveau inférieur
-        user: Utilisateur
+        user_id: Crée par
+      section:
+        <<: *all
+        name: Nom
+        slug: Slug
+        description: Description
+      page:
+        <<: *all
+        name: Nom
+        priority: Priorité
+      image:
+        <<: *all
+        name: Nom
+        picture: Vignette
+        url: Url taille normal
+        thumb_url: Url vignette
+        medium_url: Url moyen
+      upload_file:
+        <<: *all
+        name: Nom
+        url: Url
 
 
   supply:
@@ -149,7 +185,10 @@ fr:
     next: Page suivante
     previous: Page précédente
   image:
-    collapse: Voir la listes des images
+    collapse: voir la listes des images
+  file:
+    collapse: voir la listes des fichiers
+
 
   form:
     image:
@@ -159,6 +198,14 @@ fr:
         name: "Préciser le nom de l'image"
       submit: "Uploader votre image !"
       title: "Uploadez votre image"
+    uploaded_file:
+      placeholder:
+        url: "Entrez une url ici"
+        file: "Choisir parmis vos fichier"
+        name: "Préciser le nom du fichier"
+      submit: "Uploader votre fichier !"
+      title: "Uploadez votre fichier"
+
     borrowing:
       placeholder:
         start_at: "Date de début d'emprunt"

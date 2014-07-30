@@ -5,11 +5,21 @@
       %i.fa.fa-upload
       = t("form.image.title")
     = render 'images/form', resource: @section
+    
+    %a.btn.btn-default{"data-toggle" => "collapse", href: "#list_images"}
+      %i.fa.fa-angle-double-down
+      = t("image.collapse")
+    %button.btn.btn-default{"data-toggle" => "modal", "data-target" => "#fileModal"}
+      %i.fa.fa-upload
+      = t("form.uploaded_file.title")
+    = render 'upload_files/form', resource: @section
+    %a.btn.btn-default{"data-toggle" => "collapse", href: "#list_files"}
+      %i.fa.fa-angle-double-down
+      = t("file.collapse")
  
 
-  %a.btn.btn-default{"data-toggle" => "collapse", href: "#list_images"}
-    = t("image.collapse")
-
+  #list_files.panel-collapse.collapse
+    = render 'upload_files/list_files', upload_files: UploadFile.all
   #list_images.panel-collapse.collapse
     = render 'images/list', images: @section.images
 %hr

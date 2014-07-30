@@ -1,0 +1,22 @@
+- model_class = UploadFile
+
+%table.table.table-striped
+  %tr
+    %th= model_class.human_attribute_name(:name)
+    %th= model_class.human_attribute_name(:url)
+    %th= model_class.human_attribute_name(:user)
+    %th= model_class.human_attribute_name(:created_at)
+    %th= t '.actions', :default => t("helpers.actions")
+
+  - upload_files.each do |upload_file|
+    %tr[upload_file]
+      %td= upload_file.name
+      %td= link_to upload_file.url.url, upload_file.url.url
+      %td= link_to upload_file.user_name, user_path(upload_file.user)
+      %td= l upload_file.created_at 
+      %td 
+        = link_to t('.destroy', :default => t("helpers.links.destroy")),
+                        upload_file_path(upload_file),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' 

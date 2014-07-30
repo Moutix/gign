@@ -24,6 +24,7 @@ class PagesController < ApplicationController
   def create
     authorize! :create, Page
     @page = @section.pages.new(page_params)
+    @page.creator = current_user
 
     respond_to do |format|
       if @page.save

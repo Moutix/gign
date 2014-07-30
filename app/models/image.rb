@@ -15,11 +15,17 @@ require 'net/http'
 require 'uri'
 
 class Image < ActiveRecord::Base
+  attr_accessor :creator
   belongs_to :imageable, :polymorphic => true
+  belongs_to :user
 
+  before_create :set_user
   after_destroy :destroy_store_image
 
-  def self.upload_url(url, imageable, name = nil)
+  delegate :name, :email, :fullname,
+    to: :user, prefix: true, allow_nil: true
+  
+  def self.upload_url(url, imageable, name = nil, user)
     begin
       uploader = ImageUploader.new(imageable)
 
@@ -51,7 +57,8 @@ class Image < ActiveRecord::Base
       Image.create(
         url: "/" + uploader.store_dir + "/" + file_name, 
         imageable: imageable,
-        name: name
+        name: name,
+        user: user
       )
       
       true
@@ -60,7 +67,7 @@ class Image < ActiveRecord::Base
     end
   end
 
-  def self.upload_file(file, imageable, name = nil)
+  def self.upload_file(file, imageable, name = nil, user)
     begin
       name = file.original_filename if name.blank?
 
@@ -71,7 +78,8 @@ class Image < ActiveRecord::Base
       Image.create(
         url: "/" + uploader.store_dir + "/" + file.original_filename, 
         imageable: imageable,
-        name: name
+        name: name,
+        user: user
       )
       true
     rescue
@@ -99,15 +107,19 @@ class Image < ActiveRecord::Base
   end
 
   private
-  
-  def destroy_store_image
-    begin
-      File.delete("public/#{self.url}")
-    rescue
+ 
+    def set_user
+      self.user = self.creator if self.creator
+    end    
+    
+    def destroy_store_image
+      begin
+        File.delete("public/#{self.url}")
+      rescue
+      end
     end
-  end
 
-  def self.generate_name
-    Digest::SHA1.hexdigest([Time.now, rand].join)[8..15]
-  end
+    def self.generate_name
+      Digest::SHA1.hexdigest([Time.now, rand].join)[8..15]
+    end
 end

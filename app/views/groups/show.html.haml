@@ -10,7 +10,7 @@
       %strong= model_class.human_attribute_name(:level)
     %dd= @group.level
     - Group.attributes.each do |attribute|
-      - next if ["name", "level"].include?(attribute)
+      - next if ["name", "level", "user_id"].include?(attribute)
       %dt
         %strong= model_class.human_attribute_name(attribute)
       %dd= print_boolean(@group[attribute])

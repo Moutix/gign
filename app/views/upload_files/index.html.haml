@@ -1,0 +1,11 @@
+- model_class = UploadFile
+
+%h1= t '.title', :default => model_class.model_name.human.pluralize.titleize
+
+= render 'list_files', upload_files: @upload_files
+
+%button.btn.btn-default{"data-toggle" => "modal", "data-target" => "#fileModal"}
+  %i.fa.fa-upload
+  = t("form.uploaded_file.title")
+= render 'upload_files/form'
+

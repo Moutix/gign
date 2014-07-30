@@ -11,8 +11,16 @@
 #
 
 class Pack < ActiveRecord::Base
+  attr_accessor :creator
   has_many :packs_supplies, dependent: :destroy
   has_many :supplies, through: :packs_supplies
+  belongs_to :user
+  
+  before_create :set_user
+
+  delegate :name, :email, :fullname,
+    to: :user, prefix: true, allow_nil: true
+
 
   def add_supply supply, number = nil
     pack_supply = packs_supplies.find_by(supply: supply)
@@ -52,5 +60,11 @@ class Pack < ActiveRecord::Base
     test
 
   end
+  
+  private
 
+    def set_user
+      self.user = self.creator if self.creator
+    end
+  
 end

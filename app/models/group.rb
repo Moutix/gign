@@ -19,10 +19,17 @@
 class Group < ActiveRecord::Base
   attr_accessor :creator
 
+  belongs_to :user
   has_and_belongs_to_many :users, :join_table => 'users_groups'
  
   validates :name , :presence => true, :uniqueness => true
   validate :level, :validate_level
+  
+  before_create :set_user
+
+  delegate :name, :email, :fullname,
+    to: :user, prefix: true, allow_nil: true
+
 
   def validate_level
     self.creator ||= User.new
@@ -47,6 +54,7 @@ class Group < ActiveRecord::Base
     permissions = self.attributes
     permissions.delete("name")
     permissions.delete("level") 
+    permissions.delete("user_id") 
     permissions.select!{|p| user.is_in?(p)}
 
     permissions.push("name") if user.can?(:edit, Group)
@@ -64,5 +72,10 @@ class Group < ActiveRecord::Base
     end
   end
 
+  private
 
+    def set_user
+      self.user = self.creator if self.creator
+    end
+   
 end

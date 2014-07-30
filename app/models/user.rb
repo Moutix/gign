@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_many :borrowings
+  has_many :supplies
+  has_many :sections
+  has_many :packs
+  has_many :pages
   has_and_belongs_to_many :groups, :join_table => 'users_groups'
   
   def ability

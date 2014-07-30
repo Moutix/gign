@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140729181955) do
+ActiveRecord::Schema.define(version: 20140730225955) do
 
   create_table "borrowings", force: true do |t|
     t.integer  "user_id"
@@ -48,7 +48,10 @@ ActiveRecord::Schema.define(version: 20140729181955) do
     t.datetime "updated_at"
     t.boolean  "manage_section",      default: false
     t.boolean  "manage_sections",     default: false
+    t.integer  "user_id"
   end
+
+  add_index "groups", ["user_id"], name: "index_groups_on_user_id"
 
   create_table "images", force: true do |t|
     t.string   "name"
@@ -57,7 +60,10 @@ ActiveRecord::Schema.define(version: 20140729181955) do
     t.string   "imageable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "images", ["user_id"], name: "index_images_on_user_id"
 
   create_table "packs", force: true do |t|
     t.string   "name"
@@ -65,7 +71,10 @@ ActiveRecord::Schema.define(version: 20140729181955) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "active",      default: false
+    t.integer  "user_id"
   end
+
+  add_index "packs", ["user_id"], name: "index_packs_on_user_id"
 
   create_table "packs_supplies", force: true do |t|
     t.integer  "pack_id"
@@ -83,9 +92,11 @@ ActiveRecord::Schema.define(version: 20140729181955) do
     t.integer  "priority",   default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "pages", ["section_id"], name: "index_pages_on_section_id"
+  add_index "pages", ["user_id"], name: "index_pages_on_user_id"
 
   create_table "sections", force: true do |t|
     t.string   "name"
@@ -94,7 +105,10 @@ ActiveRecord::Schema.define(version: 20140729181955) do
     t.boolean  "display",     default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "sections", ["user_id"], name: "index_sections_on_user_id"
 
   create_table "supplies", force: true do |t|
     t.string   "name",                       null: false
@@ -103,7 +117,10 @@ ActiveRecord::Schema.define(version: 20140729181955) do
     t.boolean  "loanable",    default: true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "supplies", ["user_id"], name: "index_supplies_on_user_id"
 
   create_table "supply_copies", force: true do |t|
     t.integer  "supply_id"
@@ -122,6 +139,18 @@ ActiveRecord::Schema.define(version: 20140729181955) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "upload_files", force: true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.string   "fileable_type"
+    t.integer  "fileable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "upload_files", ["user_id"], name: "index_upload_files_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "name"

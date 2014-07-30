@@ -196,3 +196,15 @@ html, body {color: black; height: 100%;;
 }
 
 .btn-page{width:150px;height:25px;padding:1px;}
+
+.carousel .carousel-inner {
+  height:100%;
+  .item{
+    height:100%;
+    .center a.destroy-image{bottom:0;right:0;position:absolute;z-index:1;} 
+  }
+}
+#image-table{
+  tr > th{max-width:200px;}
+  tr > td{max-width: 200px;overflow-x: auto}
+}

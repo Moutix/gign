@@ -4,6 +4,7 @@
   %tr
     %th= model_class.human_attribute_name(:name)
     %th= model_class.human_attribute_name(:priority)
+    %th= model_class.human_attribute_name(:user)
     %th= model_class.human_attribute_name(:created_at)
     %th= t '.actions', :default => t("helpers.actions")
 
@@ -15,6 +16,7 @@
           = render 'pages/form_number', section: @section, page: page
         - else
           = page.priority
+      %td= link_to page.user_fullname, user_path(page.user)
       %td= page.created_at.to_s(:pretty)
       %td 
         = link_to t('.edit', :default => t("helpers.links.edit")),

@@ -12,6 +12,9 @@
 #
 
 class Supply < ActiveRecord::Base
+  attr_accessor :creator
+ 
+  belongs_to :user
   has_many :supply_copies
   has_many :images, :class_name => "Image", :as => "imageable"
   has_many :borrowings, through: :supply_copies
@@ -22,10 +25,15 @@ class Supply < ActiveRecord::Base
   has_many :packs, through: :packs_supplies
   has_many :active_packs, -> {where(active: true)}, through: :packs_supplies, source: 'pack', class_name: 'Pack'
   
+  before_create :set_user
   after_create :create_supply_copy
   
   scope :loanables, -> { where(id: SupplyCopy.loanables.pluck(:supply_id))}
   scope :not_loanables, -> { where.not(id: SupplyCopy.loanables.pluck(:supply_id))}
+  
+  delegate :name, :email, :fullname,
+    to: :user, prefix: true, allow_nil: true
+
 
   def thumb_image
     images.first.thumb_url if images.first
@@ -92,6 +100,10 @@ class Supply < ActiveRecord::Base
   end
 
   private
+    def set_user
+      self.user = self.creator if self.creator
+    end
+
     def create_supply_copy
       SupplyCopy.create(supply: self, ref: 0)
     end

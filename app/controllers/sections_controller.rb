@@ -19,6 +19,7 @@ class SectionsController < ApplicationController
   def create
     authorize! :create, Section
     @section = Section.new(section_params)
+    @section.creator = current_user
     respond_to do |format|
       if @section.save
         format.html { redirect_to @section, notice: 'Section was successfully created.' }

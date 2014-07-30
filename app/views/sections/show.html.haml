@@ -34,6 +34,8 @@
         %i.fa.fa-upload
         = t("form.image.title")
       = render 'images/form', resource: @section
+
+      
       = render 'shared/errors_messages', resource: @section
     %a.btn.btn-default{"data-toggle" => "collapse", href: "#list_images"}
       = t("image.collapse")

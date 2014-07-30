@@ -21,7 +21,7 @@
               = f.number_field :level, :class => 'form-control'
 
           - Group.permissions(current_user).each do |perm|
-            - next if ["name", "level"].include?(perm)
+            - next if ["name", "level, user_id"].include?(perm)
             .form-group
               = f.label perm, :class => 'col-lg-2 control-label'
               .col-lg-10

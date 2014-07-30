@@ -1,0 +1,33 @@
+en:
+  routes:
+
+fr:
+  routes:
+    sections: sections
+    pages: pages
+    borrowings: emprunts
+    users: utilisateurs
+    groups: groupes
+    supplies: materiels
+    packs: packs
+    images: images
+
+    activate: activer
+
+    submit_basket: soumettre_panier
+    accepted: accepter
+    beginning: debut
+    ended: fin
+    
+    confirm: confirmer
+
+    del_user: supprimer_utilisateur
+    add_user: ajoute_utilisateur
+
+    loan: louer
+    upload: upload
+    add_copy: ajouter_exemplaire
+
+    number_supply: nombre_exemplaire
+    remove_from_pack: supprimer_du_pack
+    add_to_basket: ajouter_au_panier

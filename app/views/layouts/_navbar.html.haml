@@ -59,6 +59,18 @@
                   = link_to groups_path do
                     %i.fa.fa-users
                     = t("navbar.dropdown_admin.group")
+              - if can? :index, Image
+                %li
+                  = link_to images_path do
+                    %i.fa.fa-picture-o
+                    = t("navbar.dropdown_admin.image")
+              - if can? :index, UploadFile
+                %li
+                  = link_to upload_files_path do
+                    %i.fa.fa-file
+                    = t("navbar.dropdown_admin.file")
+ 
+
         - if !current_user
           %li= render 'layouts/sign_through_navbar'
           %li= link_to t('devise.shared.sign_up'), new_user_registration_path

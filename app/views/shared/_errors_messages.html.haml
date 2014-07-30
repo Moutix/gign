@@ -1,4 +1,4 @@
-- if !resource.errors.empty?
+- if !resource.errors.full_messages.empty?
 
   - msg = content_tag(:ul, resource.errors.full_messages.map { |msg| content_tag(:li, msg.html_safe) }.join.html_safe)
 
