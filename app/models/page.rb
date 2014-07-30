@@ -1,8 +1,9 @@
 class Page < ActiveRecord::Base
   belongs_to :section
 
-  after_save :set_slug
+  before_validation :set_slug
   validates :name, uniqueness: {case_sentitive: false, scope: :section_id}
+  validates :slug, uniqueness: {case_sentitive: false, scope: :section_id}
 
   delegate :display,
     to: :section, prefix: true, allow_nil: true
@@ -29,6 +30,6 @@ class Page < ActiveRecord::Base
   private
 
   def set_slug
-    self.update_column(:slug, self.name.parameterize)
+    self.slug = self.name.parameterize
   end
 end

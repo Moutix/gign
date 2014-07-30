@@ -1,0 +1,13 @@
+- if !resource.errors.empty?
+
+  - msg = content_tag(:ul, resource.errors.full_messages.map { |msg| content_tag(:li, msg.html_safe) }.join.html_safe)
+
+  %script
+    $(function(){
+    $.pnotify({
+    title: "#{msg.html_safe}",
+    text: '',
+    type: 'error'
+    });
+    });
+

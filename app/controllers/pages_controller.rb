@@ -60,7 +60,7 @@ class PagesController < ApplicationController
     authorize! :destroy, @page
     @page.destroy
     respond_to do |format|
-      format.html { redirect_to pages_url }
+      format.html { redirect_to section_url(@section) }
       format.json { head :no_content }
     end
   end

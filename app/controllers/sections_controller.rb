@@ -19,13 +19,12 @@ class SectionsController < ApplicationController
   def create
     authorize! :create, Section
     @section = Section.new(section_params)
-
     respond_to do |format|
       if @section.save
         format.html { redirect_to @section, notice: 'Section was successfully created.' }
       else
-        format.html { render action: 'index' }
-        format.json { render json: @section.errors, status: :unprocessable_entity }
+        @sections = Section.all
+        format.html { render action: 'index'}
       end
     end
   end

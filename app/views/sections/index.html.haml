@@ -30,4 +30,4 @@
       = t("helpers.links.new", :name => model_class.model_name.human)
 
     = render 'sections/form', section: model_class.new
-
+    = render 'shared/errors_messages', resource: @section if @section

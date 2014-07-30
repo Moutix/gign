@@ -7,9 +7,9 @@ class Section < ActiveRecord::Base
   scope :displays, -> { where(display: true)}
 
   validates_presence_of :name
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, :slug
 
-  after_save :set_slug
+  before_validation :set_slug
 
   def to_param
     slug
@@ -22,7 +22,7 @@ class Section < ActiveRecord::Base
   private
 
   def set_slug
-    self.update_column(:slug, self.name.parameterize)
+    self.slug = self.name.parameterize
   end
 
 end
