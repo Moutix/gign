@@ -58,6 +58,8 @@ gem 'rails-erd', require: false
 
 gem 'ckeditor'
 
+gem 'i18n_routing', github: 'ncri/i18n_routing', branch: 'rails4'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

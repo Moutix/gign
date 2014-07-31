@@ -1,8 +1,8 @@
 en:
-  routes:
+  resources:
 
 fr:
-  routes:
+  resources:
     sections: sections
     pages: pages
     borrowings: emprunts
