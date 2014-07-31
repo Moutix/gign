@@ -144,9 +144,9 @@ en:
     basket: Basket
     title: My basket
     total: Total
-    beginning: Marquer la commande comme commencé
-    ended: Marquer la commande comme terminé
-    accepted: Accepter la commande
+    beginning: Mark as payed
+    ended: Mark as ended
+    accepted: Accepte order
     progressbar:
       not_submit: Votre demande ne sera pas pris en compte tant que vous ne validez pas votre panier
       effective: Votre demande sera inspecté par les admins avant validation
@@ -156,64 +156,64 @@ en:
   
   section:
     activate:
-      links: Activer cette section
+      links: Active this section
     desactivate:
-      links: Désactiver cette section
+      links: Disable this section
   
   pack:
     add_supply:
-      links: Ajouter dans le pack
+      links: Add to the pack
     activate:
-      links: Activer le pack
+      links: Activate this pack
     desactivate:
-      links: Désactiver le pack
+      links: Disable this pack
     add_to_basket:
-      links: Mettre le pack dans mon panier
-    active: Activé
-    unactive: Désactivé
+      links: Add this pack in your basket
+    active: Activate
+    unactive: Disable
   
   group:
     del_user:
-      links: Enlever du groupe
+      links: Delete from group
     show:
-      list_user: Liste des utilisateurs du groupe
-      attributes: "Caractéristique :"
+      list_user: List group users
+      attributes: "Attributes :"
   user:
     confirm:
-      links: "(confirmer)"
+      links: "(confirm)"
   page:
-    next: Page suivante
-    previous: Page précédente
+    next: Next page
+    previous: Previous page
   image:
-    collapse: voir la listes des images
+    collapse: Show the image list
   file:
-    collapse: voir la listes des fichiers
+    collapse: Show the file list
 
 
   form:
     image:
       placeholder:
-        url: "Entrez une url ici"
-        file: "Choisir parmis vos images"
-        name: "Préciser le nom de l'image"
-      submit: "Uploader votre image !"
-      title: "Uploadez votre image"
+        url: "Enter an URL"
+        file: "Choose in your image"
+        name: "Set the filename"
+      submit: "Upload your image!"
+      title: "Upload your image"
     uploaded_file:
       placeholder:
-        url: "Entrez une url ici"
-        file: "Choisir parmis vos fichier"
-        name: "Préciser le nom du fichier"
-      submit: "Uploader votre fichier !"
-      title: "Uploadez votre fichier"
+        url: "Enter an URL"
+        file: "Choose in your file"
+        name: "Set the filename"
+      submit: "Upload your file!"
+      title: "Upload your file"
 
     borrowing:
       placeholder:
-        start_at: "Date de début d'emprunt"
-        end_at: "Date de fin d'emprunt"
-      submit: "Valider ma demande d'emprunt"
+        start_at: "Start date"
+        end_at: "End date"
+      submit: "Valid my request"
     group:
       add_user:
-        submit: Ajouter
+        submit: Add
 
   info:
     borrowing:
@@ -306,10 +306,10 @@ en:
       title:
         top: "disponibilité de %{supply_name}"
         yaxis: "Nb available"
-      basket: "Dans votre panier actuellement"
+      basket: "In your basket"
     borrowing:
       title:
-        top: "Disponibilité des éléments dans mon panier"
+        top: "Availability of file in your basket"
         yaxis: "Nb available"
       name_supply: "%{supply_name}"
 
