@@ -34,7 +34,7 @@ class Ability
       can :manage, Image do |i|
         i.imageable == user
       end
-
+      can :comment, Page
     end
   
   can :show, Page do |p|
