@@ -31,6 +31,9 @@ class Ability
       can [:show, :update], User do |u|
         u == user
       end
+      can :manage, Image do |i|
+        i.imageable == user
+      end
 
     end
   

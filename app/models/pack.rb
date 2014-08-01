@@ -8,6 +8,7 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #  active      :boolean          default(FALSE)
+#  user_id     :integer
 #
 
 class Pack < ActiveRecord::Base

@@ -9,6 +9,7 @@
 #  imageable_type :string(255)
 #  created_at     :datetime
 #  updated_at     :datetime
+#  user_id        :integer
 #
 
 require 'net/http'
@@ -21,6 +22,7 @@ class Image < ActiveRecord::Base
 
   before_create :set_user
   after_destroy :destroy_store_image
+  has_one :image, :class_name => "Image", :as => "imageable"
 
   delegate :name, :email, :fullname,
     to: :user, prefix: true, allow_nil: true

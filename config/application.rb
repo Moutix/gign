@@ -23,6 +23,9 @@ module Gign
     I18n.locale = :fr
     I18n.default_locale = :fr
     I18n.available_locales = [:fr, :en]
+
+    config.i18n.fallbacks = true
+
     config.generators do |g|
       g.orm             :active_record
       g.template_engine :haml

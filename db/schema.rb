@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140730225955) do
+ActiveRecord::Schema.define(version: 20140801133014) do
 
   create_table "borrowings", force: true do |t|
     t.integer  "user_id"
@@ -33,6 +33,23 @@ ActiveRecord::Schema.define(version: 20140730225955) do
     t.integer "borrowing_id"
     t.integer "supply_copy_id"
   end
+
+  create_table "comments", force: true do |t|
+    t.integer  "commentable_id",   default: 0
+    t.string   "commentable_type"
+    t.string   "title"
+    t.text     "body"
+    t.string   "subject"
+    t.integer  "user_id",          default: 0, null: false
+    t.integer  "parent_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "groups", force: true do |t|
     t.string   "name"
@@ -84,6 +101,19 @@ ActiveRecord::Schema.define(version: 20140730225955) do
     t.datetime "updated_at"
   end
 
+  create_table "page_translations", force: true do |t|
+    t.integer  "page_id",    null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.text     "content"
+    t.string   "slug"
+  end
+
+  add_index "page_translations", ["locale"], name: "index_page_translations_on_locale"
+  add_index "page_translations", ["page_id"], name: "index_page_translations_on_page_id"
+
   create_table "pages", force: true do |t|
     t.string   "name"
     t.string   "slug"
@@ -97,6 +127,18 @@ ActiveRecord::Schema.define(version: 20140730225955) do
 
   add_index "pages", ["section_id"], name: "index_pages_on_section_id"
   add_index "pages", ["user_id"], name: "index_pages_on_user_id"
+
+  create_table "section_translations", force: true do |t|
+    t.integer  "section_id", null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "slug"
+  end
+
+  add_index "section_translations", ["locale"], name: "index_section_translations_on_locale"
+  add_index "section_translations", ["section_id"], name: "index_section_translations_on_section_id"
 
   create_table "sections", force: true do |t|
     t.string   "name"

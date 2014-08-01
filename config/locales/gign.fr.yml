@@ -55,6 +55,9 @@ fr:
       upload_file:
         one: Fichier
         other: Fichiers
+      comment:
+        one: Commentaire
+        other: Commentaires
 
 
     attributes:
@@ -188,9 +191,19 @@ fr:
     collapse: voir la listes des images
   file:
     collapse: voir la listes des fichiers
+  comment:
+    reply: Répondre
+    one: Un commentaire
+    other: '%{count} commentaires'
+
 
 
   form:
+    comment:
+      placeholder:
+        no_comment: "Soyez le premier à commenter cette page !"
+        comment: "Rejoindre la conversation !"
+      submit: "Envoyer votre commentaire"
     image:
       placeholder:
         url: "Entrez une url ici"
@@ -255,6 +268,7 @@ fr:
 
   errors:
     messages:
+      need_connection: "Veuillez vous connecter pour effectuer cette action"
       extension_white_list_error: Mauvaise extension
       what_are_you_doing: "Qu'est-ce que tu as essayé de faire ?"
     supply:
@@ -300,6 +314,7 @@ fr:
       close: "Fermer"
       back: "Retour"
       show: "Voir"
+      confirm: "Êtes vous sûr ?"
 
   charts:
     supply:
@@ -312,5 +327,3 @@ fr:
         top: "Disponibilité des éléments dans mon panier"
         yaxis: "Nombre disponibles"
       name_supply: "%{supply_name}"
-
-

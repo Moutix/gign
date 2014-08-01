@@ -14,6 +14,9 @@
 #  manage_lower_groups :boolean          default(FALSE)
 #  created_at          :datetime
 #  updated_at          :datetime
+#  manage_section      :boolean          default(FALSE)
+#  manage_sections     :boolean          default(FALSE)
+#  user_id             :integer
 #
 
 class Group < ActiveRecord::Base

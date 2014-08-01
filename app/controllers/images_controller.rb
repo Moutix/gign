@@ -26,7 +26,7 @@ class ImagesController < ApplicationController
     resource = model_class.find(params[:id])
     resource.images
     rescue
-      flash[:error] =t('errors.image.upload.wrong_class')
+      flash[:error] = t('errors.image.upload.wrong_class')
     end
     
     if resource && !params[:image][:url].blank?

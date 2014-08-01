@@ -60,6 +60,10 @@ gem 'ckeditor'
 
 gem 'i18n_routing', github: 'ncri/i18n_routing', branch: 'rails4'
 
+gem 'acts_as_commentable_with_threading'
+
+gem 'globalize'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

@@ -19,6 +19,7 @@
 //= require bootstrap-select.min.js
 //= require ckeditor/init
 //= require highcharts.js
+//= require jquery.elastic.source.js
 //= require gign.js
 //= require turbolinks
 //= require_tree .

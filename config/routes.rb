@@ -11,6 +11,7 @@ Gign::Application.routes.draw do
 
       end
 
+      resources :comments, only: [:create, :update, :destroy]
       
       resources :borrowings, only: [:index, :show, :destroy] do
         member do

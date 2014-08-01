@@ -24,6 +24,8 @@
     %h1= @page.name
   = @page.content.html_safe
 
+= render 'comments/list', resource: @page
+
 .form-actions
   - if can? :update, @page
     = link_to t("helpers.links.edit"), edit_section_page_path(@section, @page), class: 'btn btn-primary'

@@ -28,7 +28,7 @@ var ready = function() {
 
   $('[data-toggle=popover]').popover();
 
-
+  $('.elastic').elastic();
 };
 
 $(document).ready(ready);

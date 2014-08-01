@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, :alert => exception.message
+    redirect_to new_user_session_path, :alert => t("errors.messages.need_connection")
   end
   
   def default_url_options(options={})

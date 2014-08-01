@@ -1,0 +1,28 @@
+.row
+  .col-sm-1.comment-avatar
+    = image_tag comment.user_avatar
+  .col-sm-11.comment-inner
+    %header
+      %span.comment-username= comment.user_fullname
+      - if comment.parent
+        %span.comment-parent
+          %i.fa.fa-share
+          %span.comment-parent= comment.parent.user_fullname
+      \-
+      %span.comment-date= time_ago_in_words(comment.created_at)
+      .comment-body
+      - comment.body.split("\r\n").each do |p|
+        = p
+        %br 
+    - if can? :create, Comment 
+      %a.comment-reply{"data-toggle" => "collapse", href: "#form_comment_#{comment.id}"}
+        %i.fa.fa-reply
+        = t("comment.reply")
+    - if can? :destroy, comment
+      \- 
+      %span.comment-delete
+        %i.fa.fa-trash-o
+        = link_to t("helpers.links.destroy"), comment_path(comment), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }
+    
+    .panel-collapse.collapse{id: "form_comment_#{comment.id}"}
+      = render 'comments/form', resource: resource, comment: comment

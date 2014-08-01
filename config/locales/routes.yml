@@ -4,7 +4,6 @@ en:
 fr:
   resources:
     sections: sections
-    pages: pages
     borrowings: emprunts
     users: utilisateurs
     groups: groupes

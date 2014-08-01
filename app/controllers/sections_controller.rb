@@ -11,6 +11,7 @@ class SectionsController < ApplicationController
   # GET /sections/1
   # GET /sections/1.json
   def show
+    @pages = @section.pages
     authorize! :show, @section
   end
 

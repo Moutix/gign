@@ -1,4 +1,23 @@
+# == Schema Information
+#
+# Table name: pages
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  slug       :string(255)
+#  section_id :integer
+#  content    :text
+#  priority   :integer          default(0)
+#  created_at :datetime
+#  updated_at :datetime
+#  user_id    :integer
+#
+
 class Page < ActiveRecord::Base
+  acts_as_commentable
+
+  translates :name, :content, :slug
+
   attr_accessor :creator
   belongs_to :section
   belongs_to :user

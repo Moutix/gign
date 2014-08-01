@@ -35,10 +35,16 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    acts_as_commentable_with_threading (1.2.0)
+      activerecord (>= 3.0)
+      activesupport (>= 3.0)
+      awesome_nested_set (>= 2.0)
     annotate (2.6.5)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
     arel (5.0.1.20140414130214)
+    awesome_nested_set (3.0.0)
+      activerecord (>= 4.0.0, < 5)
     bcrypt (3.1.7)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -80,6 +86,9 @@ GEM
     execjs (2.2.1)
     font-awesome-less (4.0.2)
       less-rails (>= 2.4.2)
+    globalize (4.0.2)
+      activemodel (>= 4.0.0, < 5)
+      activerecord (>= 4.0.0, < 5)
     haml (4.0.5)
       tilt
     haml-rails (0.5.3)
@@ -210,6 +219,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_commentable_with_threading
   annotate
   better_errors
   binding_of_caller
@@ -220,6 +230,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   font-awesome-less
+  globalize
   haml
   haml-rails
   hpricot

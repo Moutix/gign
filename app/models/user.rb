@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
   has_many :sections
   has_many :packs
   has_many :pages
+  has_many :images, :class_name => "Image", :as => "imageable"
   has_and_belongs_to_many :groups, :join_table => 'users_groups'
   
   def ability
@@ -113,5 +114,12 @@ class User < ActiveRecord::Base
   
   def confirm!
     self.update_column(:confirmed_at, Time.now)
+  end
+  def avatar
+    if !self.images.empty?
+      self.images.last.mini_url
+    else
+      '/assets/avatar.jpg'
+    end
   end
 end
