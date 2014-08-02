@@ -35,8 +35,10 @@ module ApplicationHelper
     path = $2
     if locale && I18n.available_locales.include?(locale.to_sym)
       "/" + current_locale + path
-    else
+    elsif I18n.available_locales.map{|l| "/" + l.to_s + "/"}.include?(request.fullpath)
       "/" + current_locale + request.fullpath
+    else
+      "/" + current_locale
     end
   end
 end
