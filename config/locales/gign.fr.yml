@@ -23,7 +23,12 @@ fr:
     dropdown_section:
       title: Section
       name: Gestion des pages
-
+    form:
+      email: Email (@supelec.fr)
+      password: Mot de passe
+      submit: Se connecter
+    logout: Se déconnecter
+    sign_up: S'inscrire
 
 
   activerecord:
@@ -233,6 +238,24 @@ fr:
     group:
       add_user:
         submit: Ajouter
+    devise:
+      all: &all
+        email: "Adresse Email (@supelec.fr)"
+        password: "Mot de passe"
+      registration:
+        <<: *all
+        password_confirmation: "Confirmation du mot de passe"
+        submit: "S'inscrire"
+      session:
+        <<: *all
+        remember_me: "Se souvenir de moi"
+        submit: "Se connecter"
+      forgot_password:
+        <<: *all
+        submit: "M'envoyer les instructions" 
+      confirmation:
+        <<: *all
+        submit: "Renvoyer les instructions"
 
   info:
     borrowing:
@@ -271,6 +294,7 @@ fr:
       add_to_basket: "Le pack a été mis dans votre panier"
     group:
       add_user: "L'utilisateur a bien été ajouté"
+
 
   errors:
     not_found:

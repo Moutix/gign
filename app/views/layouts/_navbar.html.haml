@@ -73,7 +73,7 @@
 
         - if !current_user
           %li= render 'layouts/sign_through_navbar'
-          %li= link_to t('devise.shared.sign_up'), new_user_registration_path
+          %li= link_to t('navbar.sign_up'), new_user_registration_path
         - else
           %li
             .btn-group.navbar-btn
@@ -93,6 +93,6 @@
                     = t("navbar.basket.link")
                 %li.divider
                 %li
-                  = link_to destroy_user_session_path, method: :delete, :rel => "nofollow", title: t("devise.shared.sign_out") do
+                  = link_to destroy_user_session_path, method: :delete, :rel => "nofollow", title: t("navbar.logout") do
                     %i.fa.fa-sign-out
-                    = t("devise.shared.sign_out")
+                    = t("navbar.logout")

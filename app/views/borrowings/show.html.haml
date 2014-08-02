@@ -23,6 +23,7 @@
   - when :accepted
     - if can? :beginning, @borrowing
       = link_to t("borrowing.beginning"), beginning_borrowing_path(@borrowing), class: 'btn btn-primary', method: :post
-  - when :ongoing
+  
+  - if @borrowing.state != :not_submit && @borrowing.state != :finish
     - if can? :ended, @borrowing
       = link_to t("borrowing.ended"), ended_borrowing_path(@borrowing), class: 'btn btn-primary', method: :post

@@ -30,7 +30,12 @@ module BootstrapFlashHelper
           $.pnotify({
           title: \"#{msg.html_safe}\",
           text: '',
-          type: '#{type.to_s}'
+          type: '#{type.to_s}',
+          nonblock: {
+          nonblock: true,
+          nonblock_opacity: .2
+          },
+          animation: 'fade'
           });
           });".html_safe)
         flash_messages << text if msg

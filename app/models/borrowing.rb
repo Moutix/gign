@@ -120,7 +120,7 @@ class Borrowing < ActiveRecord::Base
   end
 
   def ended
-    self.update_columns(ended_at: Time.now, ongoing: false, finish: true)
+    self.update_columns(ended_at: Time.now, ongoing: false, finish: true, accepted: false)
   end
 
   def state
