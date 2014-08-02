@@ -1,6 +1,3 @@
-en:
-  resources:
-
 fr:
   resources:
     sections: sections
@@ -30,3 +27,32 @@ fr:
     number_supply: nombre_exemplaire
     remove_from_pack: supprimer_du_pack
     add_to_basket: ajouter_au_panier
+en:
+  resources:
+    sections: sections
+    borrowings: borrowings
+    users: users
+    groups: groups
+    supplies: supplies
+    packs: packs
+    images: images
+
+    activate: activate
+
+    submit_basket: submit_basket
+    accepted: accepted
+    beginning: beginning
+    ended: ended
+    
+    confirm: confirm
+
+    del_user: del_user
+    add_user: add_user
+
+    loan: loan
+    upload: upload
+    add_copy: add_copy
+
+    number_supply: number_supply
+    remove_from_pack: remove_from_pack
+    add_to_basket: add_to_basket
