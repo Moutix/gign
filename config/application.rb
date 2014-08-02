@@ -23,8 +23,9 @@ module Gign
     I18n.locale = :fr
     I18n.default_locale = :fr
     I18n.available_locales = [:fr, :en]
-
+    
     config.i18n.fallbacks = true
+    Globalize.fallbacks = {:en => [:en, :fr], :fr => [:fr, :en]}
 
     config.generators do |g|
       g.orm             :active_record
