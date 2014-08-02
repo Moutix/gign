@@ -1,22 +1,23 @@
 %h1 Mon compte
 
-= image_tag @user.avatar
-- if !@user.images.empty?
-  = link_to image_path(@user.images.last), class: 'btn btn-danger destroy-image', method: :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
-    %i.fa.fa-trash-o
-           
+.row#user-info
+  .col-sm-2.user-avatar
+    = image_tag @user.avatar("thumb")
+    %a.user-edit{"data-toggle" => "modal", "data-target" => "#imageModal"}
+      = t("helpers.links.edit")
+    
+    - if !@user.images.empty?
+      \-
+      %span.user-edit
+        = link_to image_path(@user.images.last), method: :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
+          %i.fa.fa-trash-o
+  .col-sm-10.user-info
+    = render 'users/info', user: @user
 %h2 Mes demandes en cours :
 
 = render 'borrowings/table_index', borrowings: @user.borrowings
 
-- if can? :update, @user
-  %button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#userModal"}
-    = t("helpers.links.edit")
-  = render 'form', user: @user
-
-%button.btn.btn-default{"data-toggle" => "modal", "data-target" => "#imageModal"}
-  %i.fa.fa-upload
-  = t("form.image.title")
+= render 'form', user: @user
 = render 'images/form', resource: @user
 
 

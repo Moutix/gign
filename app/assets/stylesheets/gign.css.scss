@@ -111,7 +111,7 @@ html, body {color: black; height: 100%;;
   .page-header {margin: 0px; border: none;
     h1 {margin: 0px;}
     h2 {margin: 8px;}
-    hr {border-bottom: 2px solid rgb(155, 34, 59); width: 100px;}
+    hr {border-bottom: 2px solid #0F3612; width: 100px;}
   }
   .ok{color: green;}
   .ko{  color: red;}
@@ -124,10 +124,10 @@ html, body {color: black; height: 100%;;
 
   .caret.special {position: absolute; margin-left: -27px; margin-top: 15px;}
 
-  a {color: rgb(6, 39, 8);}
-  a:hover {color: rgb(25, 75, 27)}
+  a {color: #19A021;font-weight: 600}
+  a:hover {color: #247928}
 
-  .color-red {color: rgb(155, 34, 59)}
+  .color-green {color: #17831C}
   .color-black {color: black}
   .color-white {color: white}
   .color-whitesmoke {color: whitesmoke}
@@ -209,4 +209,9 @@ html, body {color: black; height: 100%;;
 #image-table{
   tr > th{max-width:200px;}
   tr > td{max-width: 200px;overflow-x: auto}
+}
+
+#user-info{
+.user-avatar{text-align: center}
+.user-edit{cursor: pointer;font-weight:500;color: rgba(0,39,59,.35)}  
 }

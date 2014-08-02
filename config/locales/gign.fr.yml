@@ -64,6 +64,7 @@ fr:
       all: &all
         user: Crée par
         created_at: Crée le
+        created_since: Crée depuis
         updated_at: Mis à jour le
       supply:
         <<: *all
@@ -132,6 +133,12 @@ fr:
         <<: *all
         name: Nom
         url: Url
+      user:
+        <<: *all
+        name: Nom
+        email: Email
+        current_sign_in_at: "Dernière connection"
+        current_sign_in_ip: "Dernière IP utilisé"
 
 
   supply:
@@ -184,6 +191,7 @@ fr:
   user:
     confirm:
       links: "(confirmer)"
+    nobody: "Personne"
   page:
     next: Page suivante
     previous: Page précédente
@@ -195,8 +203,6 @@ fr:
     reply: Répondre
     one: Un commentaire
     other: '%{count} commentaires'
-
-
 
   form:
     comment:
@@ -267,6 +273,9 @@ fr:
       add_user: "L'utilisateur a bien été ajouté"
 
   errors:
+    not_found:
+      message: "Cette page n'existe pas"
+      link: "retour à l'accueil"
     messages:
       need_connection: "Veuillez vous connecter pour effectuer cette action"
       extension_white_list_error: Mauvaise extension

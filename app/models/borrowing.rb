@@ -28,7 +28,7 @@ class Borrowing < ActiveRecord::Base
   scope :finish, -> { where(finish: true)}
 
 
-  delegate :name, :email,
+  delegate :name, :email, :fullname,
     to: :user, prefix: true, allow_nil: true
 
   SCOPE_INDEX = ['effective', 'accepted', 'ongoing', 'finish']

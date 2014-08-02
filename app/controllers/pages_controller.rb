@@ -70,11 +70,13 @@ class PagesController < ApplicationController
  
     def load_section
       @section = Section.find_by(slug: params[:section_id])
+      render 'shared/not_found', :status => 404 unless @section
     end
     
     # Use callbacks to share common setup or constraints between actions.
     def set_page
       @page = @section.pages.find_by(slug: params[:id])
+      render 'shared/not_found', :status => 404 unless @page
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

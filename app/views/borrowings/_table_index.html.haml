@@ -16,7 +16,7 @@
     %tr[borrowing]
       %td= link_to status_tag(model_class.human_attribute_name(borrowing.state), state_to_class_name(borrowing.state)), borrowing_path(borrowing)
       - if params[:controller] != 'users'
-        %td= link_to borrowing.user_email, user_path(borrowing.user)
+        %td= link_user borrowing
       %td= number_to_currency(borrowing.price)
       %td= l borrowing.start_at, format: :default if borrowing.start_at
       %td= l borrowing.started_at, format: :default if borrowing.started_at

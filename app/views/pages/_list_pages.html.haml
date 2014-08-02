@@ -16,7 +16,7 @@
           = render 'pages/form_number', section: @section, page: page
         - else
           = page.priority
-      %td= link_to page.user_fullname, user_path(page.user)
+      %td= link_user(page)
       %td= page.created_at.to_s(:pretty)
       %td 
         = link_to t('.edit', :default => t("helpers.links.edit")),

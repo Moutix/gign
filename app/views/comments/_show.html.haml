@@ -3,7 +3,7 @@
     = image_tag comment.user_avatar
   .col-sm-11.comment-inner
     %header
-      %span.comment-username= comment.user_fullname
+      %span.comment-username= link_user comment
       - if comment.parent
         %span.comment-parent
           %i.fa.fa-share
@@ -21,8 +21,8 @@
     - if can? :destroy, comment
       \- 
       %span.comment-delete
-        %i.fa.fa-trash-o
-        = link_to t("helpers.links.destroy"), comment_path(comment), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }
+        = link_to comment_path(comment), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
+          %i.fa.fa-trash-o
     
     .panel-collapse.collapse{id: "form_comment_#{comment.id}"}
       = render 'comments/form', resource: resource, comment: comment

@@ -16,7 +16,7 @@
       %td= link_to section.name, section
       %td= section.slug
       %td= section.description
-      %td= link_to section.user_fullname, user_path(section.user)
+      %td= link_user(section)
       %td= l section.created_at, format: :default
       %td= l section.updated_at, format: :default
       %td 

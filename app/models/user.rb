@@ -115,9 +115,19 @@ class User < ActiveRecord::Base
   def confirm!
     self.update_column(:confirmed_at, Time.now)
   end
-  def avatar
+  
+  def avatar(size="mini")
     if !self.images.empty?
-      self.images.last.mini_url
+      case size
+      when "mini"
+        self.images.last.mini_url
+      when "thumb"
+        self.images.last.thumb_url
+      when "medium"
+        self.images.last.medium_url
+      else
+        self.images.last.url
+      end
     else
       '/assets/avatar.jpg'
     end

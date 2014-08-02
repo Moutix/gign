@@ -11,8 +11,8 @@ class SectionsController < ApplicationController
   # GET /sections/1
   # GET /sections/1.json
   def show
-    @pages = @section.pages
     authorize! :show, @section
+    @pages = @section.pages
   end
 
   # POST /sections
@@ -75,6 +75,7 @@ class SectionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_section
       @section = Section.find_by(slug: params[:id])
+      render 'shared/not_found', :status => 404 unless @section
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

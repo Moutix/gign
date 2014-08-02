@@ -12,7 +12,7 @@
     %tr[upload_file]
       %td= upload_file.name
       %td= link_to upload_file.url.url, upload_file.url.url
-      %td= link_to upload_file.user_name, user_path(upload_file.user)
+      %td= link_user upload_file
       %td= l upload_file.created_at 
       %td 
         = link_to t('.destroy', :default => t("helpers.links.destroy")),

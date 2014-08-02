@@ -18,7 +18,7 @@
       %td= link_to image.url, image.url
       %td= link_to image.medium_url, image.medium_url
       %td= link_to image.thumb_url, image.thumb_url
-      %td= link_to image.user_name, user_path(image.user)
+      %td= link_user(image)
       %td= l image.created_at, format: :default
       %td
         = link_to image_path(image),

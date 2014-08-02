@@ -24,7 +24,7 @@ Gign::Application.routes.draw do
         end
       end
       
-      devise_for :users, :controllers => { :registrations => "registrations" }
+      devise_for :users, :controllers => { :registrations => "registrations", :sessions => "sessions" }
       
       resources :users, only: [:index, :show, :destroy, :update] do
         member do
@@ -68,4 +68,5 @@ Gign::Application.routes.draw do
     root 'base#index'
   end
   get '/:locale' => 'base#index'
+  get '*not_found' => 'application#render_404' unless Rails.env.development?
 end

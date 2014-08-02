@@ -1,4 +1,4 @@
--model_class = Group
+-model_class = User
 
 %table.table.table-striped
   %tr
@@ -14,7 +14,7 @@
       %td
         = link_to user.email, user
         = link_to t("user.confirm.links"), confirm_user_path(user), method: :post unless user.confirmed?
-      %td= l user.current_sign_in_at, format: :default
+      %td= time_ago_in_words(user.current_sign_in_at)
       %td= l user.created_at, format: :default
       %td
         - if params[:controller] == 'groups' && group && (can? :del_user, group)
