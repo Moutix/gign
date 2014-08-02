@@ -28,4 +28,15 @@ module ApplicationHelper
       resource.user_fullname
     end
   end
+
+  def current_url_with_locale(current_locale)
+    request.fullpath =~ /\/(.+?)(\/.+)/
+    locale = $1
+    path = $2
+    if I18n.available_locales.include?(locale.to_sym)
+      "/" + current_locale + path
+    else
+      "/" + current_locale + request.fullpath
+    end
+  end
 end

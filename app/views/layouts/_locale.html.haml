@@ -1,6 +1,6 @@
 #locale_bar.container
-  = link_to '/en' do
+  = link_to current_url_with_locale('en') do
     %span.flag-icon.flag-icon-gb
-  = link_to '/fr' do
+  = link_to current_url_with_locale('fr') do
     %span.flag-icon.flag-icon-fr
     
