@@ -13,6 +13,7 @@
 #
 
 class Supply < ActiveRecord::Base
+  translates :name
   attr_accessor :creator
  
   belongs_to :user

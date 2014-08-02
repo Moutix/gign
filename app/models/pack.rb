@@ -12,6 +12,7 @@
 #
 
 class Pack < ActiveRecord::Base
+  translates :name
   attr_accessor :creator
   has_many :packs_supplies, dependent: :destroy
   has_many :supplies, through: :packs_supplies

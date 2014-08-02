@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140801133014) do
+ActiveRecord::Schema.define(version: 20140802155051) do
 
   create_table "borrowings", force: true do |t|
     t.integer  "user_id"
@@ -81,6 +81,17 @@ ActiveRecord::Schema.define(version: 20140801133014) do
   end
 
   add_index "images", ["user_id"], name: "index_images_on_user_id"
+
+  create_table "pack_translations", force: true do |t|
+    t.integer  "pack_id",    null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
+
+  add_index "pack_translations", ["locale"], name: "index_pack_translations_on_locale"
+  add_index "pack_translations", ["pack_id"], name: "index_pack_translations_on_pack_id"
 
   create_table "packs", force: true do |t|
     t.string   "name"
@@ -181,6 +192,17 @@ ActiveRecord::Schema.define(version: 20140801133014) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "supply_translations", force: true do |t|
+    t.integer  "supply_id",  null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
+
+  add_index "supply_translations", ["locale"], name: "index_supply_translations_on_locale"
+  add_index "supply_translations", ["supply_id"], name: "index_supply_translations_on_supply_id"
 
   create_table "upload_files", force: true do |t|
     t.string   "name"
