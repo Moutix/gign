@@ -33,7 +33,7 @@ module ApplicationHelper
     request.fullpath =~ /\/(.+?)(\/.+)/
     locale = $1
     path = $2
-    if I18n.available_locales.include?(locale.to_sym)
+    if locale && I18n.available_locales.include?(locale.to_sym)
       "/" + current_locale + path
     else
       "/" + current_locale + request.fullpath
