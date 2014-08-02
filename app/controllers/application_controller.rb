@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     I18n.locale = params[:locale] || I18n.default_locale
   end
 
-  #rescue_from(I18n::InvalidLocale, ActionController::RoutingError, ActionController::UnknownController, ::AbstractController::ActionNotFound, ActiveRecord::RecordNotFound, with: :render_404)
+  rescue_from(I18n::InvalidLocale, ActionController::RoutingError, ActionController::UnknownController, ::AbstractController::ActionNotFound, ActiveRecord::RecordNotFound, with: :render_404)
   
   rescue_from CanCan::AccessDenied do |exception|
     if current_user
