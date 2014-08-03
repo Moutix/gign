@@ -151,8 +151,8 @@ en:
     ended: Mark as ended
     accepted: Accepte order
     progressbar:
-      not_submit:Please validate your basket to acknowledge your application.
-      effective: Admins will check your application before validation.
+      not_submit: Please validate your basket to acknowledge your application.
+      effective: "Admins will check your application before validation."
       accepted: State when admins will have validated your basket.
       ongoing: State once you have retrieved your command.
       finish: State once you have handed back your borrowing.
