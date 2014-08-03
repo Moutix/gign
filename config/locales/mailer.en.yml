@@ -1,16 +1,16 @@
 en:
   mailer:
     new_valid_basket_email:
-      subject: "[GiGNLocation] Nouvelle demande de location"
-      text1: "%{user_name} a fait une nouvelle demande de location"
-      text2: "Date de début : %{start_date}"
-      text3: "Date de fin : %{end_date}"
-      text4: "Il souhaiterai emprunter :"
+      subject: "[GiGNLocation] New borrowing application"
+      text1: "%{user_name} did a new borrowing application"
+      text2: "Start date : %{start_date}"
+      text3: "End date : %{end_date}"
+      text4: "User wishes to borrow:"
 
     basket_accepted_email:
-      subject: "[GiGNLocation] Votre demande d'emprunt a été accepté"
-      text1: "Bonjour %{user_name},"
-      text2: "Votre demande d'emprunt a été accepté par notre équipe technique."
-      text3: "Nous vous rappelons qu'elle commencera le %{start_date} et finira le %{end_date}"
-      text4: "Elle contient :"
+      subject: "[GiGNLocation] Your borrowing application has been accepted"
+      text1: "Hello %{user_name},"
+      text2: "Your borrowing application has been accepted by the technical crew."
+      text3: "It will start on the %{start_date} and end on the %{end_date}"
+      text4: "It contains :"
 

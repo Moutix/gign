@@ -10,7 +10,6 @@ fr:
     basket_accepted_email:
       subject: "[GiGNLocation] Votre demande d'emprunt a été accepté"
       text1: "Bonjour %{user_name},"
-      text2: "Votre demande d'emprunt a été accepté par notre équipe technique."
+      text2: "Votre demande d'emprunt a été acceptée par notre équipe technique."
       text3: "Nous vous rappelons qu'elle commencera le %{start_date} et finira le %{end_date}"
       text4: "Elle contient :"
-

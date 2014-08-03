@@ -80,8 +80,8 @@ fr:
         loanable: Empruntable
         loanables: Empruntables
         not_loanables: Non empruntable
-        nbcopy: "Nombre d'exemplaire"
-        nb_available: "Nombre disponible"
+        nbcopy: "Nombre d'exemplaires"
+        nb_available: "Nombre d'exemplaires disponibles"
       supply_copy:
         <<: *all
         ref: référence
@@ -91,9 +91,9 @@ fr:
         user: Utilisateur
         price: prix
         start_at: Date de début
-        started_at: Date de début réel
+        started_at: Date de début réelle
         end_at: Date de fin
-        ended_at: Date de fin réel
+        ended_at: Date de fin réelle
         effective: En attente de validation
         ongoing: En cours
         accepted: Accepté
@@ -145,7 +145,6 @@ fr:
         current_sign_in_at: "Dernière connection"
         current_sign_in_ip: "Dernière IP utilisé"
 
-
   supply:
     loan:
       links: Ajouter au panier
@@ -163,11 +162,11 @@ fr:
     ended: Marquer la commande comme terminé
     accepted: Accepter la commande
     progressbar:
-      not_submit: Votre demande ne sera pas pris en compte tant que vous ne validez pas votre panier
-      effective: Votre demande sera inspecté par les admins avant validation
-      accepted: Etat quand les admins auront validé votre panier
-      ongoing: Etat quand vous avez récupérez votre commande
-      finish: Etat lorsque vous avez rendu votre emprunt
+      not_submit: Votre demande ne sera pas prise en compte tant que vous ne validez pas votre panier.
+      effective: Votre demande sera inspecté par les admins avant validation.
+      accepted: Etat quand les admins auront validé votre panier.
+      ongoing: Etat lorsque vous avez récupéré votre commande.
+      finish: Etat lorsque vous avez rendu votre emprunt.
   
   section:
     activate:
@@ -218,14 +217,14 @@ fr:
     image:
       placeholder:
         url: "Entrez une url ici"
-        file: "Choisir parmis vos images"
+        file: "Choisir parmi vos images"
         name: "Préciser le nom de l'image"
       submit: "Uploader votre image !"
       title: "Uploadez votre image"
     uploaded_file:
       placeholder:
         url: "Entrez une url ici"
-        file: "Choisir parmis vos fichier"
+        file: "Choisir parmi vos fichier"
         name: "Préciser le nom du fichier"
       submit: "Uploader votre fichier !"
       title: "Uploadez votre fichier"
@@ -265,36 +264,35 @@ fr:
       remove_from_basket: "%{supply_name} a bien été retiré du panier"
     pack:
       activate: "Le pack a été activé"
-      desactivate: "Le pack a été desactivé"
+      desactivate: "Le pack a été désactivé"
       remove_from_pack: "%{supply_name} a bien été retiré du panier"
     image:
-      destroy: "L'image a bien été supprimé"
+      destroy: "L'image a bien été supprimée"
     section:
-      activate: "Cette section et maintenant visible par tous les utilisateurs"
+      activate: "Cette section est maintenant visible par tous les utilisateurs"
       desactivate: "Cette section n'est plus visible"
  
   notice:
     image:
       upload:
-        success_url: "L'image a bien été uploadé"
-        success_file: "L'image a bien été uploadé"
+        success_url: "L'image a bien été uploadée"
+        success_file: "L'image a bien été uploadée"
     supply:
       loan:
-        success: L'élément a bien été ajouté au panier
+        success: "L'élément a bien été ajouté au panier"
       unloan:
-        success: L'élément a bien été retiré du panier
+        success: "L'élément a bien été retiré du panier"
       add_copy: 
         success: "Un exemplaire a été ajouté"
 
     borrowing:
-      submit_basket: "Votre panier a bien été enregistrer et attend la validation des admins"
+      submit_basket: "Votre panier a bien été enregistré et attend la validation des admins"
 
     pack:
       add_supply: "Bien ajouté dans le pack"
       add_to_basket: "Le pack a été mis dans votre panier"
     group:
       add_user: "L'utilisateur a bien été ajouté"
-
 
   errors:
     not_found:
@@ -310,12 +308,12 @@ fr:
       loan:
         failed: "Cet objet ne peut être emprunté"
       unloan:
-        failed: "Cet objet ne peut plus être désemprunter"
+        failed: "Cet objet ne peut plus être désemprunté"
     section:
       upload:
         no_params: "Merci de mettre un lien, ou un fichier"
-        failed_url: "Une erreur c'est produite, peut être une erreur dand l'url ?"
-        failed_file: "Une erreur c'est produite, êtes vous sûr d'avoir essayer d'uploader une image ?"
+        failed_url: "Une erreur s'est produite, peut-être une erreur dand l'url ?"
+        failed_file: "Une erreur s'est produite, êtes vous sûr d'avoir essayé d'uploader une image ?"
 
     borrowing:
       validate_basket:
@@ -323,7 +321,7 @@ fr:
       submit_basket:
         start_date: "Merci de précicer une date de début"
         end_date: "Merci de précicer une date de fin"
-        no_supply: "Votre panier et vide"
+        no_supply: "Votre panier est vide"
         valid_date: "Merci de préciser une date d'emprunt valide"
 
     pack:

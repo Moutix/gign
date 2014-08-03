@@ -3,7 +3,7 @@ en:
 
   controller:
     application:
-      forbidden: "Forbidden action."
+      forbidden: "Warning ! Forbidden action."
 
   navbar:
     user:
@@ -63,8 +63,8 @@ en:
     attributes:
       all: &all
         user: Created by
-        created_at: Created at
-        updated_at: Updated at
+        created_at: Created on
+        updated_at: Updated on
       supply:
         <<: *all
         all: all
@@ -74,8 +74,8 @@ en:
         loanable: Loanable
         loanables: Loanables
         not_loanables: Not loanable
-        nbcopy: "Nb copy"
-        nb_available: "Nb available"
+        nbcopy: "Nb of copies"
+        nb_available: "Nb of available copies"
       supply_copy:
         <<: *all
         ref: reference
@@ -91,8 +91,8 @@ en:
         effective: Wait for validation
         ongoing: Ongoing
         accepted: Accepted
-        not_submit: Not submit
-        finish: Finish
+        not_submit: Not submitted
+        finish: Finished
       pack:
         <<: *all
         state: State
@@ -110,7 +110,7 @@ en:
         manage_users: Manage Users
         manage_groups: Manage Groups
         manage_sections: Manage Sections
-        manage_lower_groups: Manage lower group
+        manage_lower_groups: Manage lower groups
         user_id: Created by
       section:
         <<: *all
@@ -124,10 +124,10 @@ en:
       image:
         <<: *all
         name: Name
-        picture: Thumb
+        picture: Thumbnail
         url: Full Url
         thumb_url: Thumb Url
-        medium_url: Mediul Url
+        medium_url: Medium Url
       upload_file:
         <<: *all
         name: Name
@@ -151,15 +151,15 @@ en:
     ended: Mark as ended
     accepted: Accepte order
     progressbar:
-      not_submit: Votre demande ne sera pas pris en compte tant que vous ne validez pas votre panier
-      effective: Votre demande sera inspecté par les admins avant validation
-      accepted: Etat quand les admins auront validé votre panier
-      ongoing: Etat quand vous avez récupérez votre commande
-      finish: Etat lorsque vous avez rendu votre emprunt
+      not_submit:Please validate your basket to acknowledge your application.
+      effective: Admins will check your application before validation.
+      accepted: State when admins will have validated your basket.
+      ongoing: State once you have retrieved your command.
+      finish: State once you have handed back your borrowing.
   
   section:
     activate:
-      links: Active this section
+      links: Activate this section
     desactivate:
       links: Disable this section
   
@@ -171,7 +171,7 @@ en:
     desactivate:
       links: Disable this pack
     add_to_basket:
-      links: Add this pack in your basket
+      links: Add this pack to your basket
     active: Activate
     unactive: Disable
   
@@ -179,7 +179,7 @@ en:
     del_user:
       links: Delete from group
     show:
-      list_user: List group users
+      list_user: List of group users
       attributes: "Attributes :"
   user:
     confirm:
@@ -199,20 +199,20 @@ en:
   form:
     comment:
       placeholder:
-        no_comment: "Soyez le premier à commenter cette page !"
-        comment: "Rejoindre la conversation !"
-      submit: "Envoyer votre commentaire" 
+        no_comment: "Be the first to add a comment!"
+        comment: "Join the conversation!"
+      submit: "Send your comment" 
     image:
       placeholder:
         url: "Enter an URL"
-        file: "Choose in your image"
+        file: "Choose in your image files"
         name: "Set the filename"
       submit: "Upload your image!"
       title: "Upload your image"
     uploaded_file:
       placeholder:
         url: "Enter an URL"
-        file: "Choose in your file"
+        file: "Choose in your files"
         name: "Set the filename"
       submit: "Upload your file!"
       title: "Upload your file"
@@ -228,80 +228,80 @@ en:
 
   info:
     borrowing:
-      beginning: "L'emprunt a été marqué comme en cours"
-      ended: "L'emprunt a été marqué comme terminé"
-      accepted: "L'emprunt a été accepté"
-      remove_from_basket: "%{supply_name} a bien été retiré du panier"
+      beginning: "Borrowing state has been set as 'ongoing'"
+      ended: "Borrowing state has been set as 'finished'"
+      accepted: "Borrowing was accepted"
+      remove_from_basket: "%{supply_name} has been deleted from the basket"
     pack:
-      activate: "Le pack a été activé"
-      desactivate: "Le pack a été desactivé"
-      remove_from_pack: "%{supply_name} a bien été retiré du panier"
+      activate: "The pack was activated"
+      desactivate: "The pack was disabled"
+      remove_from_pack: "%{supply_name} has been deleted from the basket"
     image:
       destroy: "L'image a bien été supprimé"
     section:
-      activate: "Cette section et maintenant visible par tous les utilisateurs"
-      desactivate: "Cette section n'est plus visible"
+      activate: "This section is now visible to all users"
+      desactivate: "This section is not visible anymore"
  
   notice:
     image:
       upload:
-        success_url: "L'image a bien été uploadé"
-        success_file: "L'image a bien été uploadé"
+        success_url: "The image has been uploaded"
+        success_file: "The image has been uploaded"
     supply:
       loan:
-        success: L'élément a bien été ajouté au panier
+        success: "The element has been added to your basket"
       unloan:
-        success: L'élément a bien été retiré du panier
+        success: "The element has been deleted from your basket"
       add_copy: 
-        success: "Un exemplaire a été ajouté"
+        success: "A copy was added"
 
     borrowing:
-      submit_basket: "Votre panier a bien été enregistrer et attend la validation des admins"
+      submit_basket: "Your basket has been saved. Please wait for the validation from the admins"
 
     pack:
-      add_supply: "Bien ajouté dans le pack"
-      add_to_basket: "Le pack a été mis dans votre panier"
+      add_supply: "Added to the pack"
+      add_to_basket: "The pack has been added to your basket"
     group:
-      add_user: "L'utilisateur a bien été ajouté"
+      add_user: "The user has been added."
 
   errors:
     messages:
-      need_connection: "Veuillez vous connecter pour effectuer cette action"
-      extension_white_list_error: Mauvaise extension
-      what_are_you_doing: "Qu'est-ce que tu as essayé de faire ?"
+      need_connection: "Please sign in to execute this action"
+      extension_white_list_error: Wrong extension
+      what_are_you_doing: "What are you trying to do ?"
     supply:
       add_copy:
-        failed: "Une erreur c'est produite au moment de l'ajout"
+        failed: "An error occured"
       loan:
-        failed: "Cet objet ne peut être emprunté"
+        failed: "This element can't be borrowed"
       unloan:
-        failed: "Cet objet ne peut plus être désemprunter"
+        failed: "This element cannot be unborrowed"
     section:
       upload:
-        no_params: "Merci de mettre un lien, ou un fichier"
-        failed_url: "Une erreur c'est produite, peut être une erreur dand l'url ?"
-        failed_file: "Une erreur c'est produite, êtes vous sûr d'avoir essayer d'uploader une image ?"
+        no_params: "Please insert a link or a file"
+        failed_url: "An error occured. Please check the url."
+        failed_file: "An error occured. Did you upload a picture?"
 
     borrowing:
       validate_basket:
-        failed: "%{supply_name} ne peut pas être emprunté pendant cette période"
+        failed: "%{supply_name} cannot be borrowed at this moment"
       submit_basket:
-        start_date: "Merci de précicer une date de début"
-        end_date: "Merci de précicer une date de fin"
-        no_supply: "Votre panier et vide"
-        valid_date: "Merci de préciser une date d'emprunt valide"
+        start_date: "Please precise a start date"
+        end_date: "Please precise an end date"
+        no_supply: "Your basket is empty"
+        valid_date: "Please precise a valid borrowing date"
 
     pack:
       add_supply:
-        no_copy: "Plus d'exemplaire disponible"
-        no_supply: "Cet objet n'existe plus"
-      add_to_basket: "Ce pack n'est pas disponible pour le moment"
+        no_copy: "No more available copy"
+        no_supply: "This element doesn't exist"
+      add_to_basket: "This pack isn't available at this time"
     
     group:
       add_user:
-        no_user: "L'utilisateur doit avoit un nom"
-        dont_exist: "Cet utilisateur n'existe pas"
-        already_in_group: "Cet utilisateur est déjà dans ce groupe"
+        no_user: "User must have a name"
+        dont_exist: "This user doesn't exist"
+        already_in_group: "This user is already in the group"
 
   helpers:
     links:
@@ -317,7 +317,7 @@ en:
   charts:
     supply:
       title:
-        top: "disponibilité de %{supply_name}"
+        top: "Availability of %{supply_name}"
         yaxis: "Nb available"
       basket: "In your basket"
     borrowing:
