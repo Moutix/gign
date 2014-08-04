@@ -21,7 +21,7 @@ end
 
 class WikiService
   def initialize
-    @client = MediawikiApi::Client.new("http://gign.larez.fr/api.php")
+    @client = MediawikiApi::Client.new("http://gign.rez-gif.supelec.fr/api.php")
   end
 
   def log_in(user, pass)
@@ -47,6 +47,13 @@ class WikiService
         node.remove_attribute("href")
         node.name = "span"
       else        # => external link
+      end
+    end
+    
+    # Convert Image src to absolute URL
+    doc.css('img').each do |node|
+      if node[:src] =~ /^\//
+        node[:src] = "http://gign.rez-gif.supelec.fr" + node[:src]
       end
     end
 

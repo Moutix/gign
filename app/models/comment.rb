@@ -28,6 +28,8 @@ class Comment < ActiveRecord::Base
   delegate :name, :email, :fullname, :avatar,
     to: :user, prefix: true, allow_nil: true
 
+  default_scope -> { order('created_at DESC') }
+
 
   
   def self.build_from(obj, user_id, comment)
