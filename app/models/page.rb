@@ -51,6 +51,11 @@ class Page < ActiveRecord::Base
     end
   end
 
+  def import_from_wiki(title)
+    @content = WikiService.new.parse_page(title)
+    self.update_attribute(:content, @content)
+  end
+
 
 
   private

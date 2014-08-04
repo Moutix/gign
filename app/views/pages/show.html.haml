@@ -27,6 +27,8 @@
 = render 'comments/list', resource: @page
 
 .form-actions
+  - if can? :import, @page
+    = render 'pages/import', section: @section, page: @page
   - if can? :update, @page
     = link_to t("helpers.links.edit"), edit_section_page_path(@section, @page), class: 'btn btn-primary'
   - if can? :show, @section

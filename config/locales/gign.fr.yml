@@ -221,6 +221,11 @@ fr:
         name: "Préciser le nom de l'image"
       submit: "Uploader votre image !"
       title: "Uploadez votre image"
+    page:
+      import:
+        placeholder:
+          wiki_page: "Page du Wiki"
+        submit: "Importer"
     uploaded_file:
       placeholder:
         url: "Entrez une url ici"
@@ -314,6 +319,8 @@ fr:
         no_params: "Merci de mettre un lien, ou un fichier"
         failed_url: "Une erreur s'est produite, peut-être une erreur dand l'url ?"
         failed_file: "Une erreur s'est produite, êtes vous sûr d'avoir essayé d'uploader une image ?"
+    page:
+      import: "Une erreur est survenue lors de l'import: %{info}"
 
     borrowing:
       validate_basket:

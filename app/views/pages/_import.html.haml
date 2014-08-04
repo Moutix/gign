@@ -1,0 +1,6 @@
+= form_tag(import_section_page_path(section, page), class: "import") do
+  .form-group
+    = label_tag :wiki_page, t("form.page.import.placeholder.wiki_page")
+    = text_field_tag :wiki_page, nil, class: 'form-control', required: ''
+  .actions
+    = submit_tag t("form.page.import.submit"), class: 'btn btn-primary'

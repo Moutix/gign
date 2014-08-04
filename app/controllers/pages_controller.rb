@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   before_filter :load_section
-  before_action :set_page, only: [:show, :edit, :update, :destroy]
+  before_action :set_page, only: [:show, :edit, :update, :destroy, :import]
 
   # GET /pages/1
   # GET /pages/1.json
@@ -63,6 +63,21 @@ class PagesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to section_url(@section) }
       format.json { head :no_content }
+    end
+  end
+
+  def import
+    authorize! :import, @page
+    begin
+      @page.import_from_wiki(params[:wiki_page])
+      respond_to do |format|
+        format.html { redirect_to [@section, @page], notice: 'Page was successfully import.' }
+      end
+    rescue MediawikiApi::RequestError => e
+      flash[:error] = t "errors.page.import", info: e.to_s
+      respond_to do |format|
+        format.html { redirect_to [@section, @page] }
+      end
     end
   end
 

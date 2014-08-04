@@ -209,6 +209,11 @@ en:
         name: "Set the filename"
       submit: "Upload your image!"
       title: "Upload your image"
+    page:
+      import:
+        placeholder:
+          wiki_page: "Wiki page"
+        submit: "Import"
     uploaded_file:
       placeholder:
         url: "Enter an URL"
@@ -281,6 +286,8 @@ en:
         no_params: "Please insert a link or a file"
         failed_url: "An error occured. Please check the url."
         failed_file: "An error occured. Did you upload a picture?"
+    page:
+      import: "An error occured during import : %{info}"
 
     borrowing:
       validate_basket:

@@ -3,7 +3,11 @@ Gign::Application.routes.draw do
   scope "(:locale)", locale: /fr|en/ do  
     localized do
       resources :sections, only: [:index, :show, :destroy, :create, :update] do
-        resources :pages, except: [:index], path: '/'
+        resources :pages, except: [:index], path: '/' do
+          member do
+            post :import
+          end
+        end
         
         member do
           post :activate

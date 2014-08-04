@@ -64,6 +64,10 @@ gem 'acts_as_commentable_with_threading'
 
 gem 'globalize'
 
+gem 'nokogiri'
+
+gem 'mediawiki_api'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

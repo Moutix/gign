@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 20140802155051) do
     t.boolean  "manage_lower_groups", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "manage_section",      default: false
     t.boolean  "manage_sections",     default: false
     t.integer  "user_id"
   end

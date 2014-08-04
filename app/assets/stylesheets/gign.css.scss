@@ -215,3 +215,19 @@ html, body {color: black; height: 100%;;
 .user-avatar{text-align: center}
 .user-edit{cursor: pointer;font-weight:500;color: rgba(0,39,59,.35)}  
 }
+
+form.import {
+  display: inline-block;
+  vertical-align: bottom;
+  div.form-group {
+    display: inline-block;
+    vertical-align: bottom;
+    margin-bottom: 0px;
+    input {
+      display: inline-block;
+    }
+  }
+  div.actions {
+    display: inline-block;
+  }
+}
