@@ -8,11 +8,11 @@
   }
 }
 
-.achievement{width:254px;height:40px;background-color:rgb(219, 219, 219);margin:2px;border: solid 1px black;border-radius:3px;padding:2px;
+.achievement{width:254px;height:36px;background-color:rgb(219, 219, 219);margin:1px;border: solid 1px black;border-radius:3px;padding:2px;
   .achievement-image{
-    img {height: 34px;float:left;}
+    img {height: 30px;float:left;}
   }
-  .achievement-content{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:6px;height:100%;
+  .achievement-content{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:3px 8px 3px 8px;height:100%;
     .achievement-text{vertical-align:middle;}
   }
 }
@@ -36,7 +36,7 @@
 .steam-avatar{
   width:36px;height:36px;position:relative;padding:2px;border-radius:3px;margin:1px;
   background: linear-gradient(to bottom, #278D1E 5%,#003004 95%);
-  img {width:32px;height:32px;border:1px solid #3B3D3A;border-radius:3px;background-color:white;}
+  img {width:32px;height:32px;border:1px solid #3B3D3A;border-radius:3px;background-color:white;position:absolute}
 }
 
 .user-achievement{
