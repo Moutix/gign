@@ -30,7 +30,8 @@ class SteamService
   end
 
   def find_game(game)
-    this_game = Game.find_or_create_by(app_id: game.app_id, name: game.name, short_name: game.short_name, store_url: game.store_url)
+    this_game = Game.find_or_create_by(app_id: game.app_id, name: game.name, short_name: game.short_name)
+    this_game.update_column(:store_url, game.store_url)
     if this_game.images.empty?
       Image.upload_url(game.logo_url, this_game, nil, @user)
     end
@@ -43,7 +44,8 @@ class SteamService
   end
 
   def find_achievement(achievement, game)
-    this_achievement = Achievement.find_or_create_by(game_id: game.id, api_name: achievement.api_name, name: achievement.name, description: achievement.description, icon_open_url: achievement.icon_open_url, icon_closed_url: achievement.icon_closed_url)
+    this_achievement = Achievement.find_or_create_by(game_id: game.id, api_name: achievement.api_name)
+    this_achievement.update_columns(name: achievement.name, description: achievement.description, icon_open_url: achievement.icon_open_url, icon_closed_url: achievement.icon_closed_url)
     
     if achievement.unlocked?
       this_user_achievement = UserAchievement.find_or_create_by(user_id: @user.id, achievement_id: this_achievement.id, timestamp: achievement.timestamp)

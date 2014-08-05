@@ -3,8 +3,10 @@
     .col-sm-8
       %h1= t("steam.achievements.title")
       %h2= @game.name
+      %br
+      
     .col-sm-4
-      = image_tag @game.image_link
+      = render 'image_game', game: @game
 
   %dd
 
@@ -16,10 +18,15 @@
       .pull-left
         = t("steam.achievements.total") + " : " + @game.achievements.size.to_s
         %br
-        - if current_user.is_a_steam_user?
+        - if current_user && current_user.is_a_steam_user?
           = t("steam.achievements.current_user") + current_user.achievements_in(@game).size.to_s + "/" + @game.achievements.size.to_s
 
       .pull-right
+        = t("steam.show.nb_player", count: @game.users_with_achievements.size) + " :"
+        .list-steam-user
+          - @game.users_with_achievements.each do |user|
+            = render 'users/steam_avatar', user: user
+
 
   = render 'achievements', achievements: @game.achievements
 

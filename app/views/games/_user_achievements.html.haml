@@ -1,9 +1,9 @@
 - user_achievements.each do |user_achievement|      
-  .row
-    .col-sm-8
-      Débloquer par :
-      = user_achievement.user_name
-      à
-      = user_achievement.timestamp
-    .col-sm-4
+  .user-achievement
+    .show-time
+      = time_ago_in_words(user_achievement.timestamp)
+    .show-achievement
       = render 'games/show_achievement', achievement: user_achievement.achievement
+    .show-avatar
+      = render 'users/steam_avatar', user: user_achievement.user
+  %br

@@ -13,7 +13,7 @@
         = achievement.description
       .achievement-percentage
         = number_to_percentage(achievement.percentage, precision: 1)
-    - if current_user.is_a_steam_user?
+    - if current_user && current_user.is_a_steam_user?
       .col-sm-1
         = user_achievement(current_user, achievement)
 

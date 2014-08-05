@@ -9,6 +9,7 @@ class Game < ActiveRecord::Base
 
   has_many :users_with_achievements, -> {distinct}, through: :user_achievements, source: 'user'
 
+  scope :played, -> {where('total_playtime > ?', 0)}
   def image
     images.first
   end
@@ -33,6 +34,10 @@ class Game < ActiveRecord::Base
 
   def nb_achievements
     user_achievements.size
+  end
+
+  def has_achievements?
+    !self.achievements.empty?
   end
 
 end
