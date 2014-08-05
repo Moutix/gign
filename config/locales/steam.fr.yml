@@ -1,5 +1,7 @@
 fr:
   steam:
+    in_cache: Dans le cache
+
     oauth:
       synclink: "Lier votre compte steam"
       sync: "Votre id steam a bien été synchronisé avec votre compte"
@@ -9,13 +11,34 @@ fr:
       achievements:
         title_total: 
           top: "Nombre total de succès obtenu depuis 2 semaines"
+          user: "Succès obtenu depuis la création de compte"
         title:
           yaxis: "Nombres de succès"
+      games:
+        title:
+          recent: "Les jeux les plus joué ces 15 derniers jours"
+          total: "Les jeux les plus joué au total"
+          yaxis: Heures de jeu
 
     achievements:
       title: "Stats de jeu générale de"
       total: "Total des succès"
-      current_user: "Vous en avez obtenu :"
+      current_user: "Vous en avez obtenu : "
 
     show:
       last_achievements: "Les derniers succès obtenus"
+      nb_player:
+        one: Une personne joue à ce jeu
+        other: "%{count} personnes joues à ce jeu"
+      play_now: "Jouer maintenant !"
+      see_store: Voir sur Steam
+      link_achievement: "Voir les stats de succès générale"
+      no_achievement: "Ce jeu n'a pas de succès T.T"
+
+    resume_games:
+      total_game: "Nombre de jeu total"
+      played_game: "Nombre de jeu joué"
+      total_playtime: "Temps total en jeu"
+      recent_playtime: "Temps de jeu depuis 2 semaines"
+      total_success: "Nombre total de succès"
+      recent_success: "Nombre de succès depuis 2 semaines"

@@ -1,2 +1,37 @@
-= games.all.sum(:total_playtime)/60
-= games.sum(:recent_playtime)/60
+.center.row.resume-games
+  .col-md-4
+    .stat-games
+      .info
+        = t("steam.resume_games.total_game")
+      .stat
+        %h4= games.size
+  .col-md-4
+    .stat-games
+      .info
+        = t("steam.resume_games.played_game")
+      .stat
+        %h4= game_played.size
+  .col-md-4
+    .stat-games
+      .info
+        = t("steam.resume_games.total_playtime")
+      .stat
+        %h4= distance_of_hours_in_words user_stats.all.sum(:total_playtime)*60
+  .col-md-4
+    .stat-games
+      .info
+        = t("steam.resume_games.recent_playtime")
+      .stat
+        %h4= distance_of_hours_in_words user_stats.sum(:recent_playtime)*60
+  .col-md-4
+    .stat-games
+      .info
+        = t("steam.resume_games.recent_success")
+      .stat
+        %h4= user_achievements.where('timestamp > ?', Time.now-15.days).size
+  .col-md-4
+    .stat-games
+      .info
+        = t("steam.resume_games.total_success")
+      .stat
+        %h4= user_achievements.size

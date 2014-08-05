@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :confirm]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :confirm, :steam]
 
   skip_before_filter :verify_authenticity_token, :only => :steamid
 
@@ -51,6 +51,10 @@ class UsersController < ApplicationController
     end
   end
   
+  def steam
+    authorize! :steam, @user
+  end
+
   def steamid
     if current_user
       authorize! :steamid, current_user

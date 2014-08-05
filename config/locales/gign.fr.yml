@@ -9,6 +9,9 @@ fr:
     user:
       title: Accès au compte
       link: Mon compte
+    steam:
+      title: Voir mes stats steam
+      link: Mes stats Steam
     basket:
       title: Accès à mon panier
       link: Mon panier
@@ -64,7 +67,9 @@ fr:
       comment:
         one: Commentaire
         other: Commentaires
-
+      game:
+        one: Jeu
+        other: Jeux
 
     attributes:
       all: &all
@@ -145,6 +150,14 @@ fr:
         email: Email
         current_sign_in_at: "Dernière connection"
         current_sign_in_ip: "Dernière IP utilisé"
+      game:
+        <<: *all
+        name: Nom
+        image: Image
+        recent_playtime: Temps de jeu récent
+        total_playtime: Temps de jeu total
+        nb_users: Nombre de joueurs
+        nb_achievements: Nombre de succès obtenus
 
   supply:
     loan:

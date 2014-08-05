@@ -1,0 +1,44 @@
+en:
+  steam:
+    in_cache: In cache
+
+    oauth:
+      synclink: "Link your Steam account"
+      sync: "Your Steam Id has benn syncronized with your account"
+      no_id: "You have to link your steam account if you want to tog through steam"
+
+    charts:
+      achievements:
+        title_total: 
+          top: "Achievements unlocked in two weeks"
+          user: "Achievements unlocked since the beginning"
+        title:
+          yaxis: "Number of achievements"
+      games:
+        title:
+          recent: "Most played games for two weeks"
+          total: "Most played games"
+          yaxis: Hours played
+
+    achievements:
+      title: "General stat of"
+      total: "Total of achievement"
+      current_user: "You have currently have unlocked : "
+
+    show:
+      last_achievements: "Last achievement unlocked"
+      nb_player:
+        one: One player for this game
+        other: "%{count} players for this game"
+      play_now: "Play now !"
+      see_store: See on Steam
+      link_achievement: "View global achievement stats"
+      no_achievement: "This game don't have any achievement T.T"
+
+    resume_games:
+      total_game: "Games owned"
+      played_game: "Games played"
+      total_playtime: "Total hours"
+      recent_playtime: "Total hours for two weeks"
+      total_success: "Total achievements"
+      recent_success: "Total achievements for two weeks"

@@ -1,11 +1,29 @@
 .row
-  .col-sm-3
-    = image_tag @game.image_link
-  .col-sm-9
-    %h1= @game.name
+  .col-sm-4
+    .center
+      = render 'games/image_game', game: @game
+    
+    - if @game.has_achievements?
+      %h4= t("steam.show.last_achievements")
+      = render "user_achievements", user_achievements: @game.user_achievements.last(5).reverse
+      = link_to t("steam.show.link_achievement"), achievements_game_path(@game)
 
-    %h4= t("steam.show.last_achievements")
-    = render "user_achievements", user_achievements: @game.user_achievements.last(5)
+    - else
+      %h4= t("steam.show.no_achievement") 
+
+
+  
+  .col-sm-8
+    %h1
+      = @game.name
+      = link_to t("steam.show.play_now"), "steam://run/#{@game.app_id}", class: "btn btn-primary"
+      = link_to t("steam.show.see_store"), @game.store_url, class: 'btn btn-primary'
+
+    = t("steam.show.nb_player", count: @game.users.size) + " :"
+    %br
+    .list-steam-user
+      - @game.users.each do |user|
+        = render 'users/steam_avatar', user: user
 
 
 = render 'comments/list', resource: @game

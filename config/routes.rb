@@ -36,6 +36,7 @@ Gign::Application.routes.draw do
       resources :users, only: [:index, :show, :destroy, :update] do
         member do
           post :confirm
+          get :steam
         end
       end
       

@@ -9,6 +9,9 @@ en:
     user:
       title: Account access
       link: My account
+    steam:
+      title: See my Steam Stats
+      link: My Stats Steam
     basket:
       title: Basket Access
       link: My basket
@@ -23,7 +26,13 @@ en:
     dropdown_section:
       title: Section
       name: Section management
-
+    form:
+      email: Email (@supelec.fr)
+      password: Password
+      submit: Sign in
+    logout: Sign out
+    sign_up: Sign up
+    sign_in: Sign in
 
 
   activerecord:
@@ -56,8 +65,11 @@ en:
         one: File
         other: Files
       comment:
-        one: Commentaire
-        other: Commentaires
+        one: Comment
+        other: Comments
+      game:
+        one: Game
+        other: Games
 
 
     attributes:
@@ -132,6 +144,21 @@ en:
         <<: *all
         name: Name
         url: Url
+      user:
+        <<: *all
+        name: Name
+        email: Email
+        current_sign_in_at: "Last sign in"
+        current_sign_in_ip: "Last Ip"
+      game:
+        <<: *all
+        name: Name
+        image: Image
+        recent_playtime: Recent playtime
+        total_playtime: Total playtime
+        nb_users: Nb Players
+        nb_achievements: Nb Achievements
+
 
 
   supply:
@@ -225,6 +252,24 @@ en:
     group:
       add_user:
         submit: Add
+    devise:
+      all: &all
+        email: "Email adress (@supelec.fr)"
+        password: "Password"
+      registration:
+        <<: *all
+        password_confirmation: "Password confirmation"
+        submit: "Sign in"
+      session:
+        <<: *all
+        remember_me: "Remember me"
+        submit: "Sign in"
+      forgot_password:
+        <<: *all
+        submit: "Send me instructions" 
+      confirmation:
+        <<: *all
+        submit: "Resend confirmation email"
 
   info:
     borrowing:

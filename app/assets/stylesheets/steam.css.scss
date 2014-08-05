@@ -16,3 +16,31 @@
     .achievement-text{top:5px;;text-align:left;position:relative;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   }
 }
+
+.resume-games{
+  .stat-games{
+    height:92px;font-size:14px;transition: all 0.3s ease;background-color: rgba(18, 107, 5, 0.9);border-bottom: 6px solid #ffffff;
+    .info{background-color: rgba(0, 0, 0, 0.7);bottom: 0;color: white;}
+    .stat{h4 {text-shadow: 1px 1px 5px black;color:white;}}
+  }
+  .stat-games:hover{background-color:#033007}
+}
+
+.steam-image{width:200px;height:75px;
+  .image-content{position:absolute;
+    span {position: absolute;right:0;bottom:0;background-color:#299729;border-bottom-right-radius:0px;}
+  }
+}
+
+.list-steam-user{display:inline-flex;}
+.steam-avatar{
+  width:36px;height:36px;position:relative;padding:2px;border-radius:3px;margin:1px;
+  background: linear-gradient(to bottom, #278D1E 5%,#003004 95%);
+  img {width:32px;height:32px;border:1px solid #3B3D3A;border-radius:3px;background-color:white;}
+}
+
+.user-achievement{
+  .show-time{width:50px;}
+  display: inline-flex;
+}
+

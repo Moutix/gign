@@ -1,0 +1,38 @@
+%h1= @user.name
+
+.row#user-info
+  .col-sm-2.user-avatar
+    = image_tag @user.avatar("thumb")
+    %a.user-edit{"data-toggle" => "modal", "data-target" => "#imageModal"}
+      = t("helpers.links.edit")
+    
+    - if !@user.images.empty?
+      \-
+      %span.user-edit
+        = link_to image_path(@user.images.last), method: :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
+          %i.fa.fa-trash-o
+  .col-sm-10.user-info
+    = render 'games/games_resume', games: @user.games, game_played: @user.played_game, user_achievements: @user.user_achievements, user_stats: @user.user_stats
+
+.row
+  .col-md-8
+    #charts_achievements
+  .col-md-4
+    %h4= t("steam.show.last_achievements")
+    = render "games/user_achievements", user_achievements: @user.user_achievements.last(5).reverse
+
+.row
+  .col-md-6
+    #charts_games_total
+  .col-md-6
+    #charts_games_recent
+
+= render 'games/charts_games', title: t("steam.charts.games.title.total"), game_names: @user.user_stats.where('user_stats.total_playtime > ?', 0).order('user_stats.total_playtime DESC').limit(10).joins(:game).pluck(:name), game_values: @user.user_stats.where('total_playtime > ?', 0).order('total_playtime DESC').limit(10).pluck(:total_playtime), id: "charts_games_total"
+
+= render 'games/charts_games', title: t("steam.charts.games.title.recent"), game_names: @user.user_stats.where('user_stats.recent_playtime > ?', 0).order('user_stats.recent_playtime DESC').limit(10).joins(:game).pluck(:name), game_values: @user.user_stats.where('recent_playtime > ?', 0).order('recent_playtime DESC').limit(10).pluck(:recent_playtime), id: "charts_games_recent"
+
+= render "games/charts_achievements", title: t("steam.charts.achievements.title_total.user"), achievements: @user.user_achievements.number_achievements_by(30.days)
+
+
+
+= render 'images/form', resource: @user

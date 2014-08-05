@@ -1,10 +1,25 @@
 - model_class = Game
 
-= render "games_resume", games: Game.all
+= render "games_resume", games: Game.all, user_achievements: UserAchievement.all, game_played: Game.all.played, user_stats: UserStat.all
 
-%div{id: "charts_achievements"}
+.row
+  .col-md-8
+    %div{id: "charts_achievements"}
+  .col-md-4
+    %h4= t("steam.show.last_achievements")
+    = render "games/user_achievements", user_achievements: UserAchievement.last(5).reverse
 
 = render "charts_achievements", title: t("steam.charts.achievements.title_total.top"), achievements: UserAchievement.number_achievements_by(1.days, Time.now-15.days)
+
+.row
+  .col-md-6
+    #charts_games_total
+  .col-md-6
+    #charts_games_recent
+
+= render 'games/charts_games', title: t("steam.charts.games.title.total"), game_names: Game.where('total_playtime > ?', 0).order('total_playtime DESC').limit(5).pluck(:name), game_values: Game.where('total_playtime > ?', 0).order('total_playtime DESC').limit(5).pluck(:total_playtime), id: "charts_games_total"
+
+= render 'games/charts_games', title: t("steam.charts.games.title.recent"), game_names: Game.where('recent_playtime > ?', 0).order('recent_playtime DESC').limit(5).pluck(:name), game_values: Game.where('recent_playtime > ?', 0).order('recent_playtime DESC').limit(5).pluck(:recent_playtime), id: "charts_games_recent"
 
 
 

@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
  
+  has_many :played_game, -> {where('user_stats.total_playtime > ?', 0)}, through: :user_stats, source: 'game'
   has_many :user_achievements, dependent: :destroy
   has_many :achievements, through: :user_achievements
   has_many :recent_plays, -> { joins(:user_stats).where('user_stats.recent_playtime > ?', 0)}, through: :user_stats, source: 'game'
