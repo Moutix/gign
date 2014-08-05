@@ -35,6 +35,10 @@ fr:
       link_achievement: "Voir les stats de succès générale"
       no_achievement: "Ce jeu n'a pas de succès T.T"
 
+    user:
+      see_on_steam: "Voir sur steam"
+
+
     resume_games:
       total_game: "Nombre de jeu total"
       played_game: "Nombre de jeu joué"

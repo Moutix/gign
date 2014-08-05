@@ -1,4 +1,6 @@
-%h1= @user.name
+.pull-right
+  = link_to t("steam.user.see_on_steam"), @user.steam_url, class: 'btn btn-primary'
+%h1= @user.name + " (#{@user.steam_name})"
 
 .row#user-info
   .col-sm-2.user-avatar
