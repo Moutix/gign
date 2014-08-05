@@ -49,6 +49,9 @@ class WikiService
       else        # => external link
       end
     end
+
+    # Remove internal links like magnify images
+    doc.css(".internal").remove
     
     # Convert Image src to absolute URL
     doc.css('img').each do |node|
