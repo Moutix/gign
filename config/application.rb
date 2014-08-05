@@ -19,7 +19,11 @@ module Gign
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-  
+    
+    Rails.application.config.middleware.use OmniAuth::Builder do
+        provider :steam, "461BE3BEC89AD3F7BA0553D057FA6041"
+    end
+    
     I18n.locale = :fr
     I18n.default_locale = :fr
     I18n.available_locales = [:fr, :en]

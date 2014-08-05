@@ -1,0 +1,11 @@
+.row
+  .col-sm-3
+    = image_tag @game.image_link
+  .col-sm-9
+    %h1= @game.name
+
+    %h4= t("steam.show.last_achievements")
+    = render "user_achievements", user_achievements: @game.user_achievements.last(5)
+
+
+= render 'comments/list', resource: @game

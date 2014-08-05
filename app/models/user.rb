@@ -26,20 +26,38 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
-
+ 
+  has_many :user_achievements, dependent: :destroy
+  has_many :achievements, through: :user_achievements
+  has_many :recent_plays, -> { joins(:user_stats).where('user_stats.recent_playtime > ?', 0)}, through: :user_stats, source: 'game'
+  has_many :favorite_games, -> { joins(:user_stats).order('user_stats.total_playtime DESC').limit(10)}, through: :user_stats, source: 'game'
+  has_many :games, through: :user_stats
+  has_many :user_stats, dependent: :destroy
   has_many :borrowings
   has_many :supplies
   has_many :sections
   has_many :packs
   has_many :pages
-  has_many :images, :class_name => "Image", :as => "imageable"
+  has_many :images, :class_name => "Image", :as => "imageable", dependent: :destroy
   has_and_belongs_to_many :groups, :join_table => 'users_groups'
   
+
   def ability
     @ability ||= Ability.new(self)
   end
   delegate :can?, :cannot?, :to => :ability
 
+  def achievements_in(game)
+    self.achievements.where(game: game)
+  end
+
+  def has_achievements?(game)
+    !self.achievements_in(game).empty?
+  end
+
+  def has_achievement?(achievement)
+    !self.achievements.where(id: achievement.id).empty?
+  end
  
   def is_admin?
     test = false
@@ -57,6 +75,10 @@ class User < ActiveRecord::Base
       test |= group[cat]
     end
     return test
+  end
+
+  def is_a_steam_user?
+    !self.steamid.nil?
   end
 
   def level
@@ -131,5 +153,12 @@ class User < ActiveRecord::Base
     else
       '/assets/avatar.jpg'
     end
+  end
+
+  def total_playtime
+    user_stats.sum(:total_playtime)
+  end
+  def recent_playtime
+    user_stats.sum(:recent_playtime)
   end
 end

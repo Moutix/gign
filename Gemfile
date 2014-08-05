@@ -51,7 +51,7 @@ gem 'cancan'
 gem 'carrierwave'
 gem "mini_magick"
 
-gem 'font-awesome-less'
+gem 'font-awesome-rails'
 
 gem 'rb-readline'
 gem 'rails-erd', require: false
@@ -63,6 +63,10 @@ gem 'i18n_routing', github: 'ncri/i18n_routing', branch: 'rails4'
 gem 'acts_as_commentable_with_threading'
 
 gem 'globalize'
+
+gem 'steam-condenser'
+
+gem 'omniauth-steam'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

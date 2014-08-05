@@ -28,7 +28,7 @@ class Ability
         s.copy_loanables.size >0
       end
 
-      can [:show, :update], User do |u|
+      can [:show, :update, :steamid], User do |u|
         u == user
       end
       can :manage, Image do |i|

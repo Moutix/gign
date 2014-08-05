@@ -27,7 +27,7 @@ class Image < ActiveRecord::Base
   delegate :name, :email, :fullname,
     to: :user, prefix: true, allow_nil: true
   
-  def self.upload_url(url, imageable, name = nil, user)
+  def self.upload_url(url, imageable, name = nil, user = nil)
     begin
       uploader = ImageUploader.new(imageable)
 

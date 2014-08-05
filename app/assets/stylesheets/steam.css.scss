@@ -1,0 +1,18 @@
+.stats_achievements{
+  margin:5px;
+  .achievement-content{
+    .achievement-surround{width:100%;height:66px;z-index:0;position:absolute}
+    .achievement-fill{height:62px;top:2px;left:2px;background-color:lightgrey;z-index:0;position:absolute}
+    .achievement-text{z-index:1;top:17px;left:6px;position:absolute}
+    .achievement-percentage{z-index:1;top:27px;left:90%;position:absolute}
+  }
+}
+
+.achievement{width:254px;height:34px;background-color:rgb(219, 219, 219);margin:2px;border: solid 1px black;border-radius:3px;
+  .achievement-image{top:1px;left:1px;position:relative;
+    img {height: 30px;width:30px;float:left;}
+  }
+  .achievement-content{height:30px;width:220px;float:right;text-align:left;
+    .achievement-text{top:5px;;text-align:left;position:relative;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  }
+}

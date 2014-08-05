@@ -1,0 +1,22 @@
+- model_class = Game
+
+= render "games_resume", games: Game.all
+
+%div{id: "charts_achievements"}
+
+= render "charts_achievements", title: t("steam.charts.achievements.title_total.top"), achievements: UserAchievement.number_achievements_by(1.days, Time.now-15.days)
+
+
+
+.pull-right
+  = link_to games_path(games: 'all') do
+    %i.fa.fa-list.fa-2x
+  = link_to games_path(games: 'last') do
+    %i.fa.fa-th.fa-2x
+
+
+
+- if session[:games] == 'all'
+  = render 'all_list', games: @games
+- else
+  = render 'last_list', games: @games

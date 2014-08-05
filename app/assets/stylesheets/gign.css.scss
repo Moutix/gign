@@ -165,6 +165,7 @@ html, body {color: black; height: 100%;;
 .navbar {
   .container .navbar-header .navbar-brand {padding-top: 5px;}
   .navbar-btn {padding: 8px 0 8px 8px; margin: 0;
+    img {height: 35px}
     a.btn.width180 {width: 180px;}
   }
   .navbar-nav > li > a {color: #022a04; font-size: 16px;}

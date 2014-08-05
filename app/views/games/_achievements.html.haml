@@ -1,0 +1,19 @@
+-model_class = Achievement
+
+- achievements.sort{|b,a| a.percentage <=> b.percentage}.each do |achievement|
+  .row.stats_achievements
+    .col-sm-1
+      = image_tag achievement.icon_closed_url
+    .col-sm-10.achievement-content
+      .achievement-surround
+      .achievement-fill{style: "width:#{achievement.percentage}%"}
+      .achievement-text
+        %b=achievement.name
+        %br
+        = achievement.description
+      .achievement-percentage
+        = number_to_percentage(achievement.percentage, precision: 1)
+    - if current_user.is_a_steam_user?
+      .col-sm-1
+        = user_achievement(current_user, achievement)
+

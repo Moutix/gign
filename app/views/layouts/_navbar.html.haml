@@ -12,6 +12,10 @@
       %ul.nav.navbar-nav
         %li{class: current_page?(supplies_path) ? 'active' : ''}
           %a{href: supplies_path}= t '.title', :default => Supply.model_name.human.pluralize.titleize
+        %li{class: current_page?(games_path) ? 'active' : ''}
+          = link_to games_path do 
+            %i.fa.fa-steam
+            = t '.title', :default => Game.model_name.human.pluralize.titleize
 
         %li.dropdown
           %a.dropdown-toggle{"data-toggle" => 'dropdown'}
@@ -72,8 +76,16 @@
  
 
         - if !current_user
-          %li= render 'layouts/sign_through_navbar'
-          %li= link_to t('navbar.sign_up'), new_user_registration_path
+          %li
+            .navbar-btn
+              = link_to '/auth/steam' do
+                = image_tag "/assets/sign_in_steam.png"
+          %li
+            .navbar-btn
+              = link_to t('navbar.sign_in'), new_user_session_path, class: 'btn btn-primary'
+          %li
+            .navbar-btn
+              = link_to t('navbar.sign_up'), new_user_registration_path, class: 'btn btn-default'
         - else
           %li
             .btn-group.navbar-btn

@@ -1,0 +1,9 @@
+- user_achievements.each do |user_achievement|      
+  .row
+    .col-sm-8
+      Débloquer par :
+      = user_achievement.user_name
+      à
+      = user_achievement.timestamp
+    .col-sm-4
+      = render 'games/show_achievement', achievement: user_achievement.achievement

@@ -1,0 +1,21 @@
+fr:
+  steam:
+    oauth:
+      synclink: "Lier votre compte steam"
+      sync: "Votre id steam a bien été synchronisé avec votre compte"
+      no_id: "Il faut d'abord synchroniser votre compte avant de pouvoir vous loguer via steam"
+
+    charts:
+      achievements:
+        title_total: 
+          top: "Nombre total de succès obtenu depuis 2 semaines"
+        title:
+          yaxis: "Nombres de succès"
+
+    achievements:
+      title: "Stats de jeu générale de"
+      total: "Total des succès"
+      current_user: "Vous en avez obtenu :"
+
+    show:
+      last_achievements: "Les derniers succès obtenus"

@@ -13,11 +13,10 @@
           %i.fa.fa-trash-o
   .col-sm-10.user-info
     = render 'users/info', user: @user
-%h2 Mes demandes en cours :
 
+
+%h2 Mes demandes en cours :
 = render 'borrowings/table_index', borrowings: @user.borrowings
 
 = render 'form', user: @user
 = render 'images/form', resource: @user
-
-

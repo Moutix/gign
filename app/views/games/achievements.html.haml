@@ -1,0 +1,25 @@
+.container
+  .row
+    .col-sm-8
+      %h1= t("steam.achievements.title")
+      %h2= @game.name
+    .col-sm-4
+      = image_tag @game.image_link
+
+  %dd
+
+
+
+  %hr
+  .row
+    .col-sm-11
+      .pull-left
+        = t("steam.achievements.total") + " : " + @game.achievements.size.to_s
+        %br
+        - if current_user.is_a_steam_user?
+          = t("steam.achievements.current_user") + current_user.achievements_in(@game).size.to_s + "/" + @game.achievements.size.to_s
+
+      .pull-right
+
+  = render 'achievements', achievements: @game.achievements
+
