@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/jetthoughts/yaml_db.git
+  revision: fb4b6bd7e12de3cffa93e0a298a1e5253d7e92ba
+  ref: fb4b6bd7e12de3cffa93e0a298a1e5253d7e92ba
+  specs:
+    yaml_db (0.2.3)
+
+GIT
   remote: git://github.com/ncri/i18n_routing.git
   revision: 16908a366e4fed7501243ee9f5ae370a39a1891a
   branch: rails4
@@ -51,7 +58,7 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-sass (3.2.0.0)
+    bootstrap-sass (3.2.0.1)
       sass (~> 3.2)
     builder (3.2.2)
     cancan (1.6.10)
@@ -61,7 +68,7 @@ GEM
       json (>= 1.7)
       mime-types (>= 1.16)
     choice (0.1.6)
-    ckeditor (4.0.11)
+    ckeditor (4.1.0)
       mime-types
       orm_adapter (~> 0.5.0)
     coderay (1.1.0)
@@ -91,7 +98,6 @@ GEM
     faraday-cookie_jar (0.0.6)
       faraday (>= 0.7.4)
       http-cookie (~> 1.0.0)
-      less-rails (>= 2.4.2)
     font-awesome-rails (4.1.0.0)
       railties (>= 3.2, < 5.0)
     globalize (4.0.2)
@@ -145,12 +151,11 @@ GEM
     mini_portile (0.6.0)
     minitest (5.4.0)
     multi_json (1.10.1)
-<<<<<<< HEAD
+    multi_xml (0.5.5)
     multipart-post (2.0.0)
+    mysql2 (0.3.16)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
-=======
-    multi_xml (0.5.5)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
@@ -160,7 +165,6 @@ GEM
     omniauth-steam (1.0.3)
       multi_json
       omniauth-openid
->>>>>>> steam
     orm_adapter (0.5.0)
     polyglot (0.3.5)
     rack (1.5.2)
@@ -282,11 +286,9 @@ DEPENDENCIES
   mailcatcher
   mediawiki_api
   mini_magick
-<<<<<<< HEAD
+  mysql2
   nokogiri
-=======
   omniauth-steam
->>>>>>> steam
   rails (~> 4.1.4)
   rails-erd
   rb-readline
@@ -297,3 +299,4 @@ DEPENDENCIES
   therubyracer
   turbolinks
   uglifier (>= 1.3.0)
+  yaml_db!
