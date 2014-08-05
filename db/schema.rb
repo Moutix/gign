@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140802155051) do
+ActiveRecord::Schema.define(version: 20140804191318) do
+
+  create_table "achievements", force: true do |t|
+    t.string   "api_name"
+    t.string   "name"
+    t.string   "description"
+    t.integer  "game_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "icon_close_url"
+    t.string   "icon_open_url"
+    t.string   "icon_closed_url"
+  end
+
+  add_index "achievements", ["game_id"], name: "index_achievements_on_game_id"
 
   create_table "borrowings", force: true do |t|
     t.integer  "user_id"
@@ -50,6 +64,18 @@ ActiveRecord::Schema.define(version: 20140802155051) do
 
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "games", force: true do |t|
+    t.string   "name"
+    t.integer  "app_id"
+    t.string   "short_name"
+    t.integer  "recent_playtime"
+    t.integer  "total_playtime"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "store_url"
+    t.boolean  "in_cache",        default: false
+  end
 
   create_table "groups", force: true do |t|
     t.string   "name"
@@ -215,16 +241,39 @@ ActiveRecord::Schema.define(version: 20140802155051) do
 
   add_index "upload_files", ["user_id"], name: "index_upload_files_on_user_id"
 
+  create_table "user_achievements", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "achievement_id"
+    t.datetime "timestamp"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_achievements", ["achievement_id"], name: "index_user_achievements_on_achievement_id"
+  add_index "user_achievements", ["user_id"], name: "index_user_achievements_on_user_id"
+
+  create_table "user_stats", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "game_id"
+    t.integer  "recent_playtime"
+    t.integer  "total_playtime"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_stats", ["game_id"], name: "index_user_stats_on_game_id"
+  add_index "user_stats", ["user_id"], name: "index_user_stats_on_user_id"
+
   create_table "users", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                              default: "", null: false
+    t.string   "encrypted_password",                 default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -232,6 +281,9 @@ ActiveRecord::Schema.define(version: 20140802155051) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.integer  "steamid",                limit: 255
+    t.string   "steam_name"
+    t.string   "steam_url"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

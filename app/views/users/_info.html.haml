@@ -10,17 +10,20 @@
           = "(#{t("helpers.links.edit")})"
     %dt
       %strong= model_class.human_attribute_name(:email)
-    %dd
-      = user.email
+    %dd= user.email
     %dt
       %strong= model_class.human_attribute_name(:created_since)
-    %dd
-      = time_ago_in_words(user.created_at)
+    %dd= time_ago_in_words(user.created_at)
     %dt
       %strong= model_class.human_attribute_name(:current_sign_in_at)
-    %dd
-      = time_ago_in_words(user.current_sign_in_at)
+    %dd= time_ago_in_words(user.current_sign_in_at)
     %dt
       %strong= model_class.human_attribute_name(:current_sign_in_ip)
+    %dd= user.current_sign_in_ip
+    %dt
+      %strong= model_class.human_attribute_name(:steamid)
     %dd
-      = user.current_sign_in_ip
+      = user.steamid
+      %i= link_to "(#{t("steam.oauth.synclink")})", '/auth/steam', class: 'user-edit'
+
+

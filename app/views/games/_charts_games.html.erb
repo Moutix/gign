@@ -1,0 +1,31 @@
+<script>
+var ready = function() {
+    $(function () { 
+        $('#<%=id%>').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: '<%= title%>'
+            },
+xAxis: {
+                categories: <%=raw game_names%>
+            },
+            yAxis: {
+                title: {
+                    text: '<%= I18n.t("steam.charts.games.title.yaxis")%>'
+                }
+            },
+                series: [{
+                name: '<%=I18n.t("steam.charts.games.title.yaxis")%>',
+                data: <%=game_values.map{|a| (a/60.to_f).round(1)}%>
+            }]
+        });
+    });
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
+
+</script>

@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :confirm]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :confirm, :steam]
+
+  skip_before_filter :verify_authenticity_token, :only => :steamid
+
 
   # GET /users
   # GET /users.json
@@ -47,6 +50,31 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
     end
   end
+  
+  def steam
+    authorize! :steam, @user
+  end
+
+  def steamid
+    if current_user
+      authorize! :steamid, current_user
+      current_user.update_columns(steamid: auth_hash.uid.to_i)
+      current_user.update_columns(steam_name: auth_hash.info.nickname)
+      current_user.update_columns(steam_url: auth_hash.info.urls.Profile)
+      Image.upload_url(auth_hash.info.image, current_user, nil, current_user)
+      flash[:notice] = t("steam.oauth.sync")
+      redirect_to current_user
+    else
+      user = User.find_by(steamid: auth_hash.uid.to_i)
+      if user
+        sign_in(user)
+        redirect_to user_path(user)
+      else
+        flash[:error] = t("steam.oauth.no_id")
+        redirect_to root_path
+      end
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -57,5 +85,11 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name)
+    end
+    
+  protected
+
+    def auth_hash
+      request.env['omniauth.auth']
     end
 end

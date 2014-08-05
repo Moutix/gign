@@ -18,7 +18,7 @@ class Supply < ActiveRecord::Base
  
   belongs_to :user
   has_many :supply_copies
-  has_many :images, :class_name => "Image", :as => "imageable"
+  has_many :images, :class_name => "Image", :as => "imageable", dependent: :destroy
   has_many :borrowings, through: :supply_copies
   has_many :accepted_borrowings, -> { accepted}, through: :supply_copies, source: "borrowings"
   has_many :copy_loanables, -> { joins(:supply).where('(supplies.loanable = ? AND (supply_copies.loanable = ? OR supply_copies.loanable IS NULL))', true, true)}, source: 'supply_copies', class_name: 'SupplyCopy'

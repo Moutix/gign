@@ -28,7 +28,7 @@ class Ability
         s.copy_loanables.size >0
       end
 
-      can [:show, :update], User do |u|
+      can [:show, :update, :steamid], User do |u|
         u == user
       end
       can :manage, Image do |i|
@@ -37,13 +37,15 @@ class Ability
       can :comment, Page
     end
   
-  can :show, Page do |p|
-    p.section_display
-  end
+    can :show, Page do |p|
+      p.section_display
+    end
 
 
+    if user.is_a_steam_user?
+      can :steam, User
+    end
 
-    
     if user.is_in?("manage_lower_groups")
       can [:see, :show, :create], Group
       can [:add_user, :del_user, :update], Group do |g|

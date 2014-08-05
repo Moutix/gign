@@ -1,0 +1,7 @@
+.steam-image
+  .image-content
+    = link_to game_path(game) do
+      - if game.in_cache 
+        %span.label.label-success= t("steam.in_cache")
+      = image_tag game.image_link
+

@@ -51,7 +51,7 @@ gem 'cancan'
 gem 'carrierwave'
 gem "mini_magick"
 
-gem 'font-awesome-less'
+gem 'font-awesome-rails'
 
 gem 'rb-readline'
 gem 'rails-erd', require: false
@@ -67,6 +67,10 @@ gem 'globalize'
 gem 'nokogiri'
 
 gem 'mediawiki_api'
+
+gem 'steam-condenser'
+
+gem 'omniauth-steam'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

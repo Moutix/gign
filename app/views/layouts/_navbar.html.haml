@@ -12,6 +12,10 @@
       %ul.nav.navbar-nav
         %li{class: current_page?(supplies_path) ? 'active' : ''}
           %a{href: supplies_path}= t '.title', :default => Supply.model_name.human.pluralize.titleize
+        %li{class: current_page?(games_path) ? 'active' : ''}
+          = link_to games_path do 
+            %i.fa.fa-steam
+            = t '.title', :default => t("activerecord.models.game", count: 2)
 
         %li.dropdown
           %a.dropdown-toggle{"data-toggle" => 'dropdown'}
@@ -72,8 +76,16 @@
  
 
         - if !current_user
-          %li= render 'layouts/sign_through_navbar'
-          %li= link_to t('navbar.sign_up'), new_user_registration_path
+          %li
+            .navbar-btn
+              = link_to '/auth/steam' do
+                = image_tag "/assets/sign_in_steam.png"
+          %li
+            .navbar-btn
+              = link_to t('navbar.sign_in'), new_user_session_path, class: 'btn btn-primary'
+          %li
+            .navbar-btn
+              = link_to t('navbar.sign_up'), new_user_registration_path, class: 'btn btn-default'
         - else
           %li
             .btn-group.navbar-btn
@@ -87,6 +99,10 @@
                   = link_to user_path(current_user), :rel => "nofollow", title: t("navbar.user.title") do
                     %i.fa.fa-home
                     = t("navbar.user.link")
+                %li
+                  = link_to steam_user_path(current_user), :rel => "nofollow", title: t("navbar.steam.title") do
+                    %i.fa.fa-steam
+                    = t("navbar.steam.link")
                 %li
                   = link_to borrowing_path(current_user.active_basket), :rel => "nofollow", title: t("navbar.basket.title") do
                     %i.fa.fa-shopping-cart

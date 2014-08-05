@@ -2,6 +2,13 @@ Gign::Application.routes.draw do
 
   scope "(:locale)", locale: /fr|en/ do  
     localized do
+      
+      resources :games, only: [:index, :show] do
+        member do
+          get :achievements
+        end
+      end
+      
       resources :sections, only: [:index, :show, :destroy, :create, :update] do
         resources :pages, except: [:index], path: '/' do
           member do
@@ -33,6 +40,7 @@ Gign::Application.routes.draw do
       resources :users, only: [:index, :show, :destroy, :update] do
         member do
           post :confirm
+          get :steam
         end
       end
       
@@ -71,6 +79,7 @@ Gign::Application.routes.draw do
     
     root 'base#index'
   end
+  post '/auth/:provider/callback', to: 'users#steamid'
   get '/:locale' => 'base#index'
   get '*not_found' => 'application#render_404' unless Rails.env.development?
 end

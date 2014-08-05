@@ -1,0 +1,40 @@
+<script>
+<% int = achievements.keys.second - achievements.keys.first%>
+var ready = function() {
+    $(function () { 
+        $('#charts_achievements').highcharts({
+            chart: {
+                zoomType: 'x'
+            },
+            title: {
+                text: '<%= title%>'
+            },
+            xAxis: {
+                type: 'datetime',
+                maxZoom: 5000*12,
+                title: {
+                    text: null
+                    }
+            },
+            yAxis: {
+                title: {
+                    text: '<%= I18n.t("steam.charts.achievements.title.yaxis")%>'
+                }
+            },
+            series: [{
+                type: 'line',
+                name: '<%= I18n.t("steam.charts.achievements.title.yaxis")%>',
+                pointInterval: 1000*<%=int%>,
+                pointStart: Date.UTC(<%=achievements.keys.first.year%>, <%=achievements.keys.first.month-1%>, <%=achievements.keys.first.day%>),
+                data: <%=achievements.values%>
+                }
+            ]
+        });
+    });
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
+
+</script>
