@@ -18,7 +18,7 @@ class UserAchievement < ActiveRecord::Base
       achievements = self.where('timestamp > ?', since).pluck(:timestamp)
     end
 
-    return {} if since.nil?
+    since = Time.now - 2.days if since.nil?
 
     h = {}
     time = since
