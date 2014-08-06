@@ -17,7 +17,7 @@ class Supply < ActiveRecord::Base
   attr_accessor :creator
  
   belongs_to :user
-  has_many :supply_copies
+  has_many :supply_copies, dependent: :destroy
   has_many :images, :class_name => "Image", :as => "imageable", dependent: :destroy
   has_many :borrowings, through: :supply_copies
   has_many :accepted_borrowings, -> { accepted}, through: :supply_copies, source: "borrowings"

@@ -5,9 +5,9 @@ class GamesController < ApplicationController
     session[:games] = params[:games] if params[:games]
 
     if session[:games] == 'all'
-      @games = Game.all
+      @games = Game.all.page(params[:page]).per(25)
     else
-      @games = Game.order(recent_playtime: :desc, total_playtime: :desc)
+      @games = Game.order(recent_playtime: :desc, total_playtime: :desc).page(params[:page]).per(25)
     end
   end
 
