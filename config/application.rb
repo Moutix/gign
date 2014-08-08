@@ -24,6 +24,9 @@ module Gign
         provider :steam, "461BE3BEC89AD3F7BA0553D057FA6041"
     end
     
+    WebApi.api_key = "461BE3BEC89AD3F7BA0553D057FA6041"
+
+
     I18n.locale = :fr
     I18n.default_locale = :fr
     I18n.available_locales = [:fr, :en]
