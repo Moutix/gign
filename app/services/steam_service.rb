@@ -55,8 +55,11 @@ class SteamService
   
   def self.update_all
     User.where('steamid IS NOT NULL').each do |user|
-      steam = self.new(user)
-      steam.update!
+      begin
+        steam = self.new(user)
+        steam.update!
+      rescue
+      end
     end
     Game.transaction do
       Game.all.each do |game|
