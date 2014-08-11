@@ -6,10 +6,15 @@ class Game < ActiveRecord::Base
   has_many :images, :class_name => "Image", :as => "imageable", dependent: :destroy
   has_many :user_achievements, through: :achievements
   has_many :achievements
+  has_one :port_forwarding
 
   has_many :users_with_achievements, -> {distinct}, through: :user_achievements, source: 'user'
 
   scope :played, -> {where('total_playtime > ?', 0)}
+  
+  delegate :udp, :tcp,
+    to: :port_forwarding, prefix: true, allow_nil: true
+  
   def image
     images.first
   end
@@ -38,6 +43,10 @@ class Game < ActiveRecord::Base
 
   def has_achievements?
     !self.achievements.empty?
+  end
+
+  def need_permissions?
+    !port_forwarding.nil?
   end
 
 end

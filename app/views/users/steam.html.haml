@@ -33,7 +33,7 @@
 
 = render 'games/charts_games', title: t("steam.charts.games.title.recent"), game_names: @user.user_stats.where('user_stats.recent_playtime > ?', 0).order('user_stats.recent_playtime DESC').limit(10).joins(:game).pluck(:name), game_values: @user.user_stats.where('recent_playtime > ?', 0).order('recent_playtime DESC').limit(10).pluck(:recent_playtime), id: "charts_games_recent"
 
-= render "games/charts_achievements", title: t("steam.charts.achievements.title_total.user"), achievements: @user.user_achievements.number_achievements_by(30.days)
+= render "games/charts_achievements", title: t("steam.charts.achievements.title_total.user"), achievements: @user.user_achievements.number_achievements_by(1.days)
 
 
 

@@ -1,6 +1,8 @@
 .steam-image
   .image-content
     = link_to game_path(game) do
+      - if game.need_permissions?
+        %i.fa.fa-warning{"data-toggle" => "tooltip", "data-placement" => "bottom", "title" => t("steam.need_permissions")}
       - if game.in_cache 
         %span.label.label-success= t("steam.in_cache")
       = image_tag game.image_link

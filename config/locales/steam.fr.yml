@@ -1,11 +1,18 @@
 fr:
   steam:
     in_cache: Dans le cache
+    need_permissions: Attention ce jeu peut nécessiter une ouverture de port
+    
+    firewall:
+      ask_permission: Demander une ouverture de port
+      success: Un email a été envoyé à firewall@larez.fr
+      error: Une erreur c'est produite
 
     oauth:
       synclink: "Lier votre compte steam"
       sync: "Votre id steam a bien été synchronisé avec votre compte"
       no_id: "Il faut d'abord synchroniser votre compte avant de pouvoir vous loguer via steam"
+      not_public: "Votre compte n'est pas public, on ne peut donc pas récupérer vos informations"
 
     charts:
       achievements:

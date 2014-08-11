@@ -25,5 +25,9 @@
     %dd
       = user.steamid
       %i= link_to "(#{t("steam.oauth.synclink")})", '/auth/steam', class: 'user-edit'
+    - if user.is_a_steam_user? && !user.is_a_public_steam_user?
+      %dd
+        %i.fa.fa-warning
+        %i= t("steam.oauth.not_public")
 
 

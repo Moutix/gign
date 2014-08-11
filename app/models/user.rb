@@ -41,7 +41,9 @@ class User < ActiveRecord::Base
   has_many :pages
   has_many :images, :class_name => "Image", :as => "imageable", dependent: :destroy
   has_and_belongs_to_many :groups, :join_table => 'users_groups'
-  
+
+  scope :steam_users, -> {where('steamid IS NOT NULL')}
+  scope :public_steam_users, -> {where('steamid IS NOT NULL AND steam_public = ?', true)}
 
   def ability
     @ability ||= Ability.new(self)
@@ -80,6 +82,10 @@ class User < ActiveRecord::Base
 
   def is_a_steam_user?
     !self.steamid.nil?
+  end
+
+  def is_a_public_steam_user?
+    self.steam_public
   end
 
   def level

@@ -18,6 +18,8 @@
       = @game.name
       = link_to t("steam.show.play_now"), "steam://run/#{@game.app_id}", class: "btn btn-primary"
       = link_to t("steam.show.see_store"), @game.store_url, class: 'btn btn-primary'
+      - if @game.need_permissions? && (can? :ask_permission, @game)
+        = link_to t("steam.firewall.ask_permission"), ask_permission_game_path(@game), class: 'btn btn-warning', method: :post
 
     = t("steam.show.nb_player", count: @game.users.size) + " :"
     %br

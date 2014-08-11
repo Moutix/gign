@@ -13,3 +13,11 @@ fr:
       text2: "Votre demande d'emprunt a été acceptée par notre équipe technique."
       text3: "Nous vous rappelons qu'elle commencera le %{start_date} et finira le %{end_date}"
       text4: "Elle contient :"
+
+    ask_permission_email:
+      subject: "Permission pour %{game_name}"
+      text1: "Bonjour,"
+      text2: "Je souhaiterai obtenir la permission pour le jeu %{game_name}"
+      port: "Ce jeu nécessite l'ouverture des ports suivants :"
+      udp: "UDP :"
+      tcp: "TCP :"

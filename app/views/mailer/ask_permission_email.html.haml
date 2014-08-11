@@ -1,0 +1,7 @@
+%p= t("mailer.ask_permission_email.text1")
+%p= t("mailer.ask_permission_email.text2", game_name: @game.name)
+%hr
+%p= t("mailer.ask_permission_email.port")
+%p= t("udp") + " : " + @game.port_forwarding_udp
+%p= t("tcp") + " : " + @game.port_forwarding_tcp
+%p= @user.name

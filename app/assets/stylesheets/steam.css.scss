@@ -28,6 +28,7 @@
 
 .steam-image{width:200px;height:75px;
   .image-content{position:absolute;
+    i{ position:absolute;left:0;top:0}
     span {position: absolute;right:0;bottom:0;background-color:#299729;border-bottom-right-radius:0px;}
   }
 }
