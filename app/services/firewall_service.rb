@@ -48,10 +48,6 @@ class FirewallService
       l = []
       array_ports.each do |port|
         range = port.split('-')
-        p range.first.to_i
-        p range.last.to_i
-        p port
-        p "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
         if range.size == 2 && ((type == 'tcp' && STEAM_TCP_PORTS.include?(range.first.to_i..range.last.to_i)) || (type == 'udp' && STEAM_UDP_PORTS.include?(range.first.to_i..range.last.to_i)))
           puts "port steam"
         elsif (type == 'tcp' && STEAM_TCP_PORTS.include?(port.to_i)) || (type == 'udp' && STEAM_UDP_PORTS.include?(port.to_i))
