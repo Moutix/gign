@@ -46,7 +46,7 @@ class Supply < ActiveRecord::Base
   end
 
   def loanables(start_at, end_at)
-    self.supply_copies.loanables.joins('LEFT OUTER JOIN "borrowings_supply_copies" ON "borrowings_supply_copies"."supply_copy_id" = "supply_copies"."id" LEFT OUTER JOIN "borrowings" ON "borrowings"."id" = "borrowings_supply_copies"."borrowing_id"').where.not('borrowings.accepted = ? AND borrowings.start_at IS NOT NULL AND borrowings.end_at IS NOT NULL AND ((borrowings.start_at BETWEEN ? AND ?) OR (borrowings.end_at BETWEEN ? AND ?) OR (borrowings.start_at < ? AND borrowings.end_at > ?))', true, start_at, end_at, start_at, end_at, start_at, end_at)
+    self.supply_copies.loanables.joins('LEFT OUTER JOIN borrowings_supply_copies ON borrowings_supply_copies.supply_copy_id = supply_copies.id').joins('LEFT OUTER JOIN borrowings ON borrowings.id = borrowings_supply_copies.borrowing_id').where.not('borrowings.accepted = ? AND borrowings.start_at IS NOT NULL AND borrowings.end_at IS NOT NULL AND ((borrowings.start_at BETWEEN ? AND ?) OR (borrowings.end_at BETWEEN ? AND ?) OR (borrowings.start_at < ? AND borrowings.end_at > ?))', true, start_at, end_at, start_at, end_at, start_at, end_at)
   end
 
   def availability(start_time, end_time)
