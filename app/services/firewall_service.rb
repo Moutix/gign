@@ -22,7 +22,7 @@ class FirewallService
         tcp = remove_steam_ports(remove_usual_ports(column[1].content), 'tcp')
         udp = remove_steam_ports(remove_usual_ports(column[2].content), 'udp')
         
-        if !tcp.blank? && !udp.blank?
+        if !(tcp.blank? && udp.blank?)
           port_forwarding = PortForwarding.find_or_create_by(name: name)
           game = Game.where('name LIKE ?', name)
           if !game.empty?
@@ -48,7 +48,13 @@ class FirewallService
       l = []
       array_ports.each do |port|
         range = port.split('-')
+        p range.first.to_i
+        p range.last.to_i
+        p port
+        p "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
         if range.size == 2 && ((type == 'tcp' && STEAM_TCP_PORTS.include?(range.first.to_i..range.last.to_i)) || (type == 'udp' && STEAM_UDP_PORTS.include?(range.first.to_i..range.last.to_i)))
+          puts "port steam"
+        elsif (type == 'tcp' && STEAM_TCP_PORTS.include?(port.to_i)) || (type == 'udp' && STEAM_UDP_PORTS.include?(port.to_i))
           puts "port steam"
         else
           l << port
