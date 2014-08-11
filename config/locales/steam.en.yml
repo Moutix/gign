@@ -1,6 +1,12 @@
 en:
   steam:
     in_cache: In cache
+    need_permissions: Caution, this game can require a port forwarding
+
+    firewall:
+      ask_permission: Ask for port forwarding
+      success: An email have been sent to firewall@larez.fr
+      error: An error has occurs
 
     oauth:
       synclink: "Link your Steam account"

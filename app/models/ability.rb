@@ -44,6 +44,10 @@ class Ability
 
     if user.is_a_steam_user?
       can :steam, User
+
+      can :ask_permission, Game do |g|
+        g.need_permission? && user.games.include?(g)
+      end
     end
 
     if user.is_in?("manage_lower_groups")
