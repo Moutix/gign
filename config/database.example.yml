@@ -24,8 +24,8 @@ production:
    reconnect: false
    database: gign
    pool: 5
-   username: gign
-   password: 'gign'
+   username: username
+   password: 'password'
    host: localhost
    timeout: 5000
 
