@@ -1,7 +1,7 @@
 <% if session[:games] == 'all'%>
-  $('#content').append("<%=j render 'all_list', games: @games, head: false, format: 'html' %>"); 
+  $('#game-table').append("<%=j render 'tr_all_list', games: @games, format: 'html' %>"); 
 <%else%>
-  $('#content').append("<%=j render 'last_list', games: @games, head: false, format: 'html' %>");
+  $('#game-table').append("<%=j render 'tr_last_list', games: @games, head: false, format: 'html' %>");
 <%end%>
 <% if @games.current_page == @games.total_pages %>
   $('#view-more').remove();

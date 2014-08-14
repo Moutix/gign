@@ -11,16 +11,6 @@
       %th= model_class.human_attribute_name(:nb_comments)
       %th= model_class.human_attribute_name(:nb_users)
       %th= model_class.human_attribute_name(:nb_achievements)
+    
+  = render 'games/tr_all_list', games: games
 
-  - games.each do |game|
-    %tr[game]
-      %td
-        = link_to game_path(game) do
-          = image_tag game.image_link('mini')
-      %td= game.name
-      %td= distance_of_hours_in_words game.recent_playtime*60
-      %td= distance_of_hours_in_words game.total_playtime*60
-      %td= print_boolean(game.in_cache)
-      %td= game.comment_threads.size
-      %td= game.nb_users
-      %td= game.nb_achievements
