@@ -1,0 +1,7 @@
+- games.each do |game|
+  %tr[game]
+    %td= render 'games/image_game', game: game
+    %td= distance_of_hours_in_words game.recent_playtime*60
+    %td= distance_of_hours_in_words game.total_playtime*60
+    %td= game.nb_users
+    %td= game.nb_achievements
