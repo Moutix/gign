@@ -2,17 +2,18 @@ class Game < ActiveRecord::Base
   acts_as_commentable
   searchkick word_start: [:name]
   paginates_per 20
-  
-  has_many :users, through: :user_stats
+  has_many :comments, :class_name => "Comment", :as => "commentable", dependent: :destroy
+  has_many :users, through: :user_stats, :counter_cache => true
   has_many :user_stats, dependent: :destroy
   has_many :images, :class_name => "Image", :as => "imageable", dependent: :destroy
-  has_many :user_achievements, through: :achievements
+  has_many :user_achievements, through: :achievements, :counter_cache => true
   has_many :achievements
   has_one :port_forwarding
 
   has_many :users_with_achievements, -> {distinct}, through: :user_achievements, source: 'user'
 
   scope :played, -> {where('total_playtime > ?', 0)}
+  scope :search_import, -> { includes(:port_forwarding, :images) }  
   
   delegate :udp, :tcp,
     to: :port_forwarding, prefix: true, allow_nil: true

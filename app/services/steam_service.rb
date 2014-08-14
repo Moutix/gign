@@ -70,6 +70,10 @@ class SteamService
       end
     end
     Game.reindex
+    Game.all.each do |p|
+      Game.update_counters p.id, :users_count => p.users.length
+      Game.update_counters p.id, :user_achievements_count => p.user_achievements.length
+    end
   end
 
 end

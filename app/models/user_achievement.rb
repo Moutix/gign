@@ -1,12 +1,18 @@
 class UserAchievement < ActiveRecord::Base
   belongs_to :user
   belongs_to :achievement
+  has_one :game, through: :achievement
 
   delegate :name, :description,
     to: :achievement, allow_nil: true, prefix: true
 
-  delegate :name, :fullname, :email,
+  delegate :name, :fullname, :email, :avatar,
     to: :user, allow_nil: true, prefix: true
+
+  delegate :name,
+    to: :game, allow_nil: true, prefix: true
+
+
 
   default_scope -> { order(:timestamp)}
 
