@@ -1,10 +1,24 @@
 <% if session[:games] == 'all'%>
-  $('#game-table').append("<%=j render 'tr_all_list', games: @games, format: 'html' %>"); 
+  <%if params[:act]%>
+    $('#game-table').remove();
+    $('#content').append("<%=j render 'all_list', games: @games, head: true, format: 'html' %>"); 
+  <%elsif params[:append] && session[:q].blank?%>
+    $('#content').append("<%=j render 'all_list', games: @games, head: true, format: 'html' %>"); 
+    $('#game-table').append("<%=j render 'tr_all_list', games: @games, format: 'html' %>");
+  <%end%>
 <%else%>
-  $('#game-table').append("<%=j render 'tr_last_list', games: @games, head: false, format: 'html' %>");
+  <%if params[:act]%>
+    $('#game-table').remove();
+    $('#content').append("<%=j render 'last_list', games: @games, head: true, format: 'html' %>"); 
+  <%elsif params[:append] && session[:q].blank?%>
+    $('#game-table').append("<%=j render 'tr_last_list', games: @games, head: false, format: 'html' %>");
+  <%end%>
 <%end%>
-<% if @games.current_page == @games.total_pages %>
-  $('#view-more').remove();
-<% else %>
-  $('#view-more a').attr('href', '<%= games_path(page: @games.current_page + 1) %>');
-<% end %>
+
+<% if params[:append]%>
+  <% if @games.current_page == @games.total_pages%>
+    $('#view-more').remove();
+  <% else %>
+    $('#view-more a').attr('href', '<%= games_path(page: @games.current_page + 1, append: 'miku') %>');
+  <% end %>
+<%end%>

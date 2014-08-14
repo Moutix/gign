@@ -3,7 +3,7 @@
     %td
       = link_to game_path(game) do
         = image_tag game.image_link('mini')
-    %td= game.name
+    %td= game.name + " : " + games.total_pages.to_s + " " + games.current_page.to_s
     %td= distance_of_hours_in_words game.recent_playtime*60
     %td= distance_of_hours_in_words game.total_playtime*60
     %td= print_boolean(game.in_cache)

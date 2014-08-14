@@ -90,6 +90,14 @@ GEM
       warden (~> 1.2.3)
     domain_name (0.5.19)
       unf (>= 0.0.5, < 1.0.0)
+    elasticsearch (1.0.4)
+      elasticsearch-api (= 1.0.4)
+      elasticsearch-transport (= 1.0.4)
+    elasticsearch-api (1.0.4)
+      multi_json
+    elasticsearch-transport (1.0.4)
+      faraday
+      multi_json
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.2.1)
@@ -226,6 +234,10 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
+    searchkick (0.8.0)
+      activemodel
+      elasticsearch (>= 1)
+      hashie
     sinatra (1.4.5)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -353,6 +365,7 @@ DEPENDENCIES
   rb-readline
   sass-rails (~> 4.0.0)
   sdoc
+  searchkick
   sqlite3
   steam-condenser
   therubyracer

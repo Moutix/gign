@@ -5,10 +5,15 @@ gem 'rails', '~> 4.1.4'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+# Use mysql2 as the database for Active Record
+gem 'mysql2'
 
+# -- Visual
 gem 'haml'
 gem 'less-rails'
 gem 'bootstrap-sass'
+gem 'font-awesome-rails'
+gem 'ckeditor'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -45,38 +50,41 @@ group :development do
   gem 'mailcatcher', require: false # Mail catcher - http://mailcatcher.me/
 end
 
+# user management
 gem 'devise'
 gem 'cancan'
 
+# upload files
 gem 'carrierwave'
 gem "mini_magick"
 
-gem 'font-awesome-rails'
-
+# make beautiful entity relation diagram
 gem 'rb-readline'
 gem 'rails-erd', require: false
 
-gem 'ckeditor'
-
-gem 'i18n_routing', github: 'ncri/i18n_routing', branch: 'rails4'
-
+# use to add comment
 gem 'acts_as_commentable_with_threading'
 
+# multi language
 gem 'globalize'
+gem 'i18n_routing', github: 'ncri/i18n_routing', branch: 'rails4'
 
-gem 'nokogiri'
-
-gem 'mediawiki_api'
-
+# steam interface (use in services/steam_services)
+gem 'omniauth-steam'
 gem 'steam-condenser'
 
-gem 'omniauth-steam'
-
+# multipage + search
 gem 'kaminari'
-gem 'yaml_db', github: 'jetthoughts/yaml_db', ref: 'fb4b6bd7e12de3cffa93e0a298a1e5253d7e92ba'
-gem 'mysql2'
+gem 'searchkick'
 
+#to dump/load database
+gem 'yaml_db', github: 'jetthoughts/yaml_db', ref: 'fb4b6bd7e12de3cffa93e0a298a1e5253d7e92ba'
+
+#to parse http website (use in services/firewall_services)
+gem 'mediawiki_api'
 gem 'mechanize'
+gem 'nokogiri'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
