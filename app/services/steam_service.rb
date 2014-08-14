@@ -69,6 +69,7 @@ class SteamService
         game.update_columns(total_playtime: total_playtime, recent_playtime: recent_playtime, in_cache: in_cache)
       end
     end
+    Game.reindex
   end
 
 end
