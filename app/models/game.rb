@@ -1,5 +1,7 @@
 class Game < ActiveRecord::Base
   acts_as_commentable
+  searchkick word_start: [:name]
+  paginates_per 20
   
   has_many :users, through: :user_stats
   has_many :user_stats, dependent: :destroy

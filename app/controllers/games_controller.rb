@@ -3,11 +3,16 @@ class GamesController < ApplicationController
 
   def index
     session[:games] = params[:games] if params[:games]
+    session[:q] = params[:q] if params[:q]
 
-    if session[:games] == 'all'
-      @games = Game.all.page(params[:page]).per(25)
+    if !session[:q].blank?
+      @games = Game.search session[:q], fields: [{name: :word_start}]
     else
-      @games = Game.order(recent_playtime: :desc, total_playtime: :desc).page(params[:page]).per(25)
+      if session[:games] == 'all'
+        @games = Game.all.page(params[:page])
+      else
+        @games = Game.order(recent_playtime: :desc, total_playtime: :desc).page(params[:page])
+      end
     end
   end
 
