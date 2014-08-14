@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140811203122) do
+ActiveRecord::Schema.define(version: 20140814222919) do
 
   create_table "achievements", force: true do |t|
     t.string   "api_name"
@@ -74,7 +74,10 @@ ActiveRecord::Schema.define(version: 20140811203122) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "store_url"
-    t.boolean  "in_cache",        default: false
+    t.boolean  "in_cache",                default: false
+    t.integer  "user_achievements_count", default: 0
+    t.integer  "users_count",             default: 0
+    t.integer  "comments_count",          default: 0
   end
 
   create_table "groups", force: true do |t|
@@ -156,10 +159,11 @@ ActiveRecord::Schema.define(version: 20140811203122) do
     t.string   "slug"
     t.integer  "section_id"
     t.text     "content"
-    t.integer  "priority",   default: 0
+    t.integer  "priority",       default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "comments_count", default: 0
   end
 
   add_index "pages", ["section_id"], name: "index_pages_on_section_id"

@@ -21,6 +21,7 @@ class Page < ActiveRecord::Base
   attr_accessor :creator
   belongs_to :section
   belongs_to :user
+  has_many :comments, :class_name => "Comment", :as => "commentable", dependent: :destroy
 
   before_validation :set_slug
   validates :name, uniqueness: {case_sentitive: false, scope: :section_id}

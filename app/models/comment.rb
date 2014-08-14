@@ -22,7 +22,7 @@ class Comment < ActiveRecord::Base
   validates :body, :presence => true
   validates :user, :presence => true
 
-  belongs_to :commentable, :polymorphic => true
+  belongs_to :commentable, :polymorphic => true, counter_cache: true
   belongs_to :user
   
   delegate :name, :email, :fullname, :avatar,

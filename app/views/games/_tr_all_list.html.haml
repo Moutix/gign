@@ -7,6 +7,6 @@
     %td= distance_of_hours_in_words game.recent_playtime*60
     %td= distance_of_hours_in_words game.total_playtime*60
     %td= print_boolean(game.in_cache)
-    %td= game.comment_threads.size
-    %td= game.nb_users
-    %td= game.nb_achievements
+    %td= game.comments_count
+    %td= game.users_count
+    %td= game.user_achievements_count

@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+
   before_action :set_game, only: [:show, :achievements, :ask_permission]
 
   def index
@@ -6,12 +7,12 @@ class GamesController < ApplicationController
     session[:q] = params[:q] if params[:q]
 
     if !session[:q].blank?
-      @games = Game.search session[:q], fields: [{name: :word_start}]
+      @games = Game.search session[:q], fields: [{name: :word_start}], includes: [:port_forwarding, :images]
     else
       if session[:games] == 'all'
-        @games = Game.all.page(params[:page])
+        @games = Game.includes(:images, :port_forwarding).all.page(params[:page])
       else
-        @games = Game.order(recent_playtime: :desc, total_playtime: :desc).page(params[:page])
+        @games = Game.includes(:images, :port_forwarding).order(recent_playtime: :desc, total_playtime: :desc).page(params[:page])
       end
     end
   end
