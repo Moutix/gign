@@ -11,7 +11,6 @@
     $('#game-table').remove();
     $('#content').append("<%=j render 'all_list', games: @games, head: true, format: 'html' %>"); 
   <%elsif params[:append] && session[:q].blank?%>
-    $('#content').append("<%=j render 'all_list', games: @games, head: true, format: 'html' %>"); 
     $('#game-table').append("<%=j render 'tr_all_list', games: @games, format: 'html' %>");
   <%end%>
 <%else%>
