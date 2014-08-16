@@ -4,7 +4,7 @@ class ImagesController < ApplicationController
  
   def index
     authorize! :index, @image
-    @images = Image.all
+    @images = Image.not_games.page(params[:page])
   end
 
 

@@ -16,6 +16,7 @@ require 'net/http'
 require 'uri'
 
 class Image < ActiveRecord::Base
+  paginates_per 30
   attr_accessor :creator
   belongs_to :imageable, :polymorphic => true
   belongs_to :user
@@ -26,6 +27,8 @@ class Image < ActiveRecord::Base
 
   delegate :name, :email, :fullname,
     to: :user, prefix: true, allow_nil: true
+  
+  scope :not_games, -> {where('imageable_type != ?', 'Game')}
   
   def self.upload_url(url, imageable, name = nil, user = nil)
     begin

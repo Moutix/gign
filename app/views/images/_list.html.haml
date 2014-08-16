@@ -27,3 +27,5 @@
                   :class => 'btn btn-xs btn-danger' do
           = t("helpers.links.destroy")
           %i.fa.fa-trash-o
+.center
+  = paginate images, :window => 2
