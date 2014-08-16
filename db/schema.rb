@@ -16,16 +16,15 @@ ActiveRecord::Schema.define(version: 20140814222919) do
   create_table "achievements", force: true do |t|
     t.string   "api_name"
     t.string   "name"
-    t.text     "description",     limit: 255
+    t.text     "description"
     t.integer  "game_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "icon_close_url"
     t.string   "icon_open_url"
     t.string   "icon_closed_url"
   end
 
-  add_index "achievements", ["game_id"], name: "index_achievements_on_game_id"
+  add_index "achievements", ["game_id"], name: "index_achievements_on_game_id", using: :btree
 
   create_table "borrowings", force: true do |t|
     t.integer  "user_id"
@@ -41,7 +40,7 @@ ActiveRecord::Schema.define(version: 20140814222919) do
     t.boolean  "finish",     default: false
   end
 
-  add_index "borrowings", ["user_id"], name: "index_borrowings_on_user_id"
+  add_index "borrowings", ["user_id"], name: "index_borrowings_on_user_id", using: :btree
 
   create_table "borrowings_supply_copies", id: false, force: true do |t|
     t.integer "borrowing_id"
@@ -62,8 +61,8 @@ ActiveRecord::Schema.define(version: 20140814222919) do
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "games", force: true do |t|
     t.string   "name"
@@ -92,12 +91,11 @@ ActiveRecord::Schema.define(version: 20140814222919) do
     t.boolean  "manage_lower_groups", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "manage_section",      default: false
     t.boolean  "manage_sections",     default: false
     t.integer  "user_id"
   end
 
-  add_index "groups", ["user_id"], name: "index_groups_on_user_id"
+  add_index "groups", ["user_id"], name: "index_groups_on_user_id", using: :btree
 
   create_table "images", force: true do |t|
     t.string   "name"
@@ -109,7 +107,7 @@ ActiveRecord::Schema.define(version: 20140814222919) do
     t.integer  "user_id"
   end
 
-  add_index "images", ["user_id"], name: "index_images_on_user_id"
+  add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
 
   create_table "pack_translations", force: true do |t|
     t.integer  "pack_id",    null: false
@@ -119,8 +117,8 @@ ActiveRecord::Schema.define(version: 20140814222919) do
     t.string   "name"
   end
 
-  add_index "pack_translations", ["locale"], name: "index_pack_translations_on_locale"
-  add_index "pack_translations", ["pack_id"], name: "index_pack_translations_on_pack_id"
+  add_index "pack_translations", ["locale"], name: "index_pack_translations_on_locale", using: :btree
+  add_index "pack_translations", ["pack_id"], name: "index_pack_translations_on_pack_id", using: :btree
 
   create_table "packs", force: true do |t|
     t.string   "name"
@@ -131,7 +129,7 @@ ActiveRecord::Schema.define(version: 20140814222919) do
     t.integer  "user_id"
   end
 
-  add_index "packs", ["user_id"], name: "index_packs_on_user_id"
+  add_index "packs", ["user_id"], name: "index_packs_on_user_id", using: :btree
 
   create_table "packs_supplies", force: true do |t|
     t.integer  "pack_id"
@@ -151,8 +149,8 @@ ActiveRecord::Schema.define(version: 20140814222919) do
     t.string   "slug"
   end
 
-  add_index "page_translations", ["locale"], name: "index_page_translations_on_locale"
-  add_index "page_translations", ["page_id"], name: "index_page_translations_on_page_id"
+  add_index "page_translations", ["locale"], name: "index_page_translations_on_locale", using: :btree
+  add_index "page_translations", ["page_id"], name: "index_page_translations_on_page_id", using: :btree
 
   create_table "pages", force: true do |t|
     t.string   "name"
@@ -166,8 +164,8 @@ ActiveRecord::Schema.define(version: 20140814222919) do
     t.integer  "comments_count", default: 0
   end
 
-  add_index "pages", ["section_id"], name: "index_pages_on_section_id"
-  add_index "pages", ["user_id"], name: "index_pages_on_user_id"
+  add_index "pages", ["section_id"], name: "index_pages_on_section_id", using: :btree
+  add_index "pages", ["user_id"], name: "index_pages_on_user_id", using: :btree
 
   create_table "port_forwardings", force: true do |t|
     t.string   "name"
@@ -178,7 +176,7 @@ ActiveRecord::Schema.define(version: 20140814222919) do
     t.datetime "updated_at"
   end
 
-  add_index "port_forwardings", ["game_id"], name: "index_port_forwardings_on_game_id"
+  add_index "port_forwardings", ["game_id"], name: "index_port_forwardings_on_game_id", using: :btree
 
   create_table "section_translations", force: true do |t|
     t.integer  "section_id", null: false
@@ -189,8 +187,8 @@ ActiveRecord::Schema.define(version: 20140814222919) do
     t.string   "slug"
   end
 
-  add_index "section_translations", ["locale"], name: "index_section_translations_on_locale"
-  add_index "section_translations", ["section_id"], name: "index_section_translations_on_section_id"
+  add_index "section_translations", ["locale"], name: "index_section_translations_on_locale", using: :btree
+  add_index "section_translations", ["section_id"], name: "index_section_translations_on_section_id", using: :btree
 
   create_table "sections", force: true do |t|
     t.string   "name"
@@ -202,7 +200,7 @@ ActiveRecord::Schema.define(version: 20140814222919) do
     t.integer  "user_id"
   end
 
-  add_index "sections", ["user_id"], name: "index_sections_on_user_id"
+  add_index "sections", ["user_id"], name: "index_sections_on_user_id", using: :btree
 
   create_table "supplies", force: true do |t|
     t.string   "name",                       null: false
@@ -214,7 +212,7 @@ ActiveRecord::Schema.define(version: 20140814222919) do
     t.integer  "user_id"
   end
 
-  add_index "supplies", ["user_id"], name: "index_supplies_on_user_id"
+  add_index "supplies", ["user_id"], name: "index_supplies_on_user_id", using: :btree
 
   create_table "supply_copies", force: true do |t|
     t.integer  "supply_id"
@@ -224,7 +222,7 @@ ActiveRecord::Schema.define(version: 20140814222919) do
     t.datetime "updated_at"
   end
 
-  add_index "supply_copies", ["supply_id"], name: "index_supply_copies_on_supply_id"
+  add_index "supply_copies", ["supply_id"], name: "index_supply_copies_on_supply_id", using: :btree
 
   create_table "supply_requests", force: true do |t|
     t.integer  "supply_id"
@@ -242,8 +240,8 @@ ActiveRecord::Schema.define(version: 20140814222919) do
     t.string   "name"
   end
 
-  add_index "supply_translations", ["locale"], name: "index_supply_translations_on_locale"
-  add_index "supply_translations", ["supply_id"], name: "index_supply_translations_on_supply_id"
+  add_index "supply_translations", ["locale"], name: "index_supply_translations_on_locale", using: :btree
+  add_index "supply_translations", ["supply_id"], name: "index_supply_translations_on_supply_id", using: :btree
 
   create_table "upload_files", force: true do |t|
     t.string   "name"
@@ -255,7 +253,7 @@ ActiveRecord::Schema.define(version: 20140814222919) do
     t.integer  "user_id"
   end
 
-  add_index "upload_files", ["user_id"], name: "index_upload_files_on_user_id"
+  add_index "upload_files", ["user_id"], name: "index_upload_files_on_user_id", using: :btree
 
   create_table "user_achievements", force: true do |t|
     t.integer  "user_id"
@@ -265,8 +263,8 @@ ActiveRecord::Schema.define(version: 20140814222919) do
     t.datetime "updated_at"
   end
 
-  add_index "user_achievements", ["achievement_id"], name: "index_user_achievements_on_achievement_id"
-  add_index "user_achievements", ["user_id"], name: "index_user_achievements_on_user_id"
+  add_index "user_achievements", ["achievement_id"], name: "index_user_achievements_on_achievement_id", using: :btree
+  add_index "user_achievements", ["user_id"], name: "index_user_achievements_on_user_id", using: :btree
 
   create_table "user_stats", force: true do |t|
     t.integer  "user_id"
@@ -277,19 +275,19 @@ ActiveRecord::Schema.define(version: 20140814222919) do
     t.datetime "updated_at"
   end
 
-  add_index "user_stats", ["game_id"], name: "index_user_stats_on_game_id"
-  add_index "user_stats", ["user_id"], name: "index_user_stats_on_user_id"
+  add_index "user_stats", ["game_id"], name: "index_user_stats_on_game_id", using: :btree
+  add_index "user_stats", ["user_id"], name: "index_user_stats_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "email",                            default: "",    null: false
+    t.string   "encrypted_password",               default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",                    default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -297,15 +295,15 @@ ActiveRecord::Schema.define(version: 20140814222919) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.integer  "steamid"
+    t.integer  "steamid",                limit: 8
     t.string   "steam_name"
     t.string   "steam_url"
-    t.boolean  "steam_public",           default: false
+    t.boolean  "steam_public",                     default: false
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "users_groups", id: false, force: true do |t|
     t.integer "user_id"
