@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140814222919) do
+ActiveRecord::Schema.define(version: 20140816205336) do
 
   create_table "achievements", force: true do |t|
     t.string   "api_name"
@@ -68,8 +68,8 @@ ActiveRecord::Schema.define(version: 20140814222919) do
     t.string   "name"
     t.integer  "app_id"
     t.string   "short_name"
-    t.integer  "recent_playtime"
-    t.integer  "total_playtime"
+    t.integer  "recent_playtime",         default: 0
+    t.integer  "total_playtime",          default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "store_url"
