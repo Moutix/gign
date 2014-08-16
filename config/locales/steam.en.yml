@@ -1,5 +1,6 @@
 en:
   steam:
+    search: "Search a game"
     in_cache: In cache
     need_permissions: Caution, this game can require a port forwarding
 

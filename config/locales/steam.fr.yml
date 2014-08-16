@@ -1,5 +1,6 @@
 fr:
   steam:
+    search: "Rechercher un jeu"
     in_cache: Dans le cache
     need_permissions: Attention ce jeu peut nécessiter une ouverture de port
     

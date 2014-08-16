@@ -26,7 +26,7 @@
   .col-md-6
     = form_tag games_path, method: :get, remote: true, class: 'navbar-form navbar-left' do
       = hidden_field_tag :act, "miku"
-      = text_field_tag :q, session[:q], class: 'form-control', onkeyup: '$(this.form).submit();', placeholder: 'Rechercher un jeu'
+      = text_field_tag :q, session[:q], class: 'form-control', onkeyup: '$(this.form).submit();', placeholder: t("steam.search")
   .col-md-6
     .pull-right
       = link_to games_path(games: 'all', act: 'miku'), remote: true do
