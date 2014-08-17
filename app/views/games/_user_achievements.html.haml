@@ -1,9 +1,10 @@
-- user_achievements.each do |user_achievement|      
-  .user-achievement
-    .show-time
-      = time_ago_in_words(user_achievement.timestamp)
-    .show-achievement
-      = render 'games/show_achievement', achievement: user_achievement.achievement
-    .show-avatar
-      = render 'users/steam_avatar', user: user_achievement.user
-  %br
+#user-achievements
+  - user_achievements.each do |user_achievement|      
+    .user-achievement
+      .show-time
+        = time_ago_in_words(user_achievement.timestamp)
+      .show-achievement
+        = render 'games/show_achievement', achievement: user_achievement.achievement
+      .show-avatar
+        = render 'users/steam_avatar', user: user_achievement.user
+    %br

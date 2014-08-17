@@ -6,6 +6,8 @@ class GamesController < ApplicationController
     session[:games] = params[:games] if params[:games]
     session[:q] = params[:q] if params[:q]
 
+    @user_achievements = UserAchievement.unscoped.order(timestamp: :desc).limit(8).includes(user: :images, achievement: :game)
+
     if !session[:q].blank?
       @games = Game.search session[:q], fields: [{name: :word_start}], includes: [:port_forwarding, :images]
     else
@@ -35,6 +37,21 @@ class GamesController < ApplicationController
     end
     respond_to do |format|
       format.html{redirect_to @game}
+    end
+  end
+
+  def reload_achievements
+    if params[:datemin] && params[:datemax]
+      @datemin = Time.strptime(params[:datemin], '%Y-%m-%d %H:%M:%S')
+      @datemax = Time.strptime(params[:datemax], '%Y-%m-%d %H:%M:%S')
+      @user_achievements = UserAchievement.unscoped.where(timestamp: @datemin..@datemax).order(timestamp: :desc).limit(8).includes(user: :images, achievement: :game)
+    else
+      @datemin = nil
+      @datemax = nil
+      @user_achievements = UserAchievement.unscoped.order(timestamp: :desc).limit(8).includes(user: :images, achievement: :game)
+    end
+    respond_to do |format|
+      format.js
     end
   end
 

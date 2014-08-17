@@ -165,7 +165,7 @@ en:
 
   supply:
     loan:
-      links: Add to basket
+      links: Add to cart
       number: "(%{number} in your basket)"
     add_copy:
       links: Add a copy

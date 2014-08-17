@@ -1,0 +1,10 @@
+$('#user-achievements').remove();
+- if @datemin && @datemax
+  $('#list-achievements h4').remove()
+  $('#list-achievements').append('<h4>#{l @datemin, format: :default} : #{l @datemax, format: :default}</h4>')
+- else
+  $('#list-achievements h4').remove()
+  $('#list-achievements').append('<h4>#{t("steam.show.last_achievements")}</h4>')
+
+$('#list-achievements').append('#{j render 'games/user_achievements', user_achievements: @user_achievements}'); 
+

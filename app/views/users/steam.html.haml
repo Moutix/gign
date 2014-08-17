@@ -20,8 +20,9 @@
   .col-md-8
     #charts_achievements
   .col-md-4
-    %h4= t("steam.show.last_achievements")
-    = render "games/user_achievements", user_achievements: @user.user_achievements.last(5).reverse
+    #list-achievements
+      %h4= t("steam.show.last_achievements")
+      = render "games/user_achievements", user_achievements: @user.user_achievements.last(8).reverse
 
 .row
   .col-md-6
