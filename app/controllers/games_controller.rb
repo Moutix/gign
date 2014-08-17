@@ -44,11 +44,19 @@ class GamesController < ApplicationController
     if params[:datemin] && params[:datemax]
       @datemin = Time.strptime(params[:datemin], '%Y-%m-%d %H:%M:%S')
       @datemax = Time.strptime(params[:datemax], '%Y-%m-%d %H:%M:%S')
-      @user_achievements = UserAchievement.unscoped.where(timestamp: @datemin..@datemax).order(timestamp: :desc).limit(8).includes(user: :images, achievement: :game)
+      if User.find(params[:user_id])
+        @user_achievements = UserAchievement.unscoped.where(timestamp: @datemin..@datemax, user_id: params[:user_id]).order(timestamp: :desc).limit(8).includes(user: :images, achievement: :game)
+      else
+        @user_achievements = UserAchievement.unscoped.where(timestamp: @datemin..@datemax).order(timestamp: :desc).limit(8).includes(user: :images, achievement: :game)
+      end
     else
       @datemin = nil
       @datemax = nil
-      @user_achievements = UserAchievement.unscoped.order(timestamp: :desc).limit(8).includes(user: :images, achievement: :game)
+      if User.find(params[:user_id])  
+        @user_achievements = UserAchievement.unscoped.where(user_id: params[:user_id]).order(timestamp: :desc).limit(8).includes(user: :images, achievement: :game)
+      else
+        @user_achievements = UserAchievement.unscoped.order(timestamp: :desc).limit(8).includes(user: :images, achievement: :game)
+      end
     end
     respond_to do |format|
       format.js
