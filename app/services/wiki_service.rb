@@ -21,7 +21,7 @@ end
 
 class WikiService
   def initialize
-    @client = MediawikiApi::Client.new("http://gign.rez-gif.supelec.fr/api.php")
+    @client = MediawikiApi::Client.new("http://gignwiki.rez-gif.supelec.fr/api.php")
   end
 
   def log_in(user, pass)
