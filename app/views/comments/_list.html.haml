@@ -1,15 +1,2 @@
-- stack = resource.root_comments
-#comments
-  .row
-    .col-sm-3
-    .col-sm-8
-      %h4
-        %i=t(:comment, count: resource.comment_threads.size)
-      %hr
-      .comments-form
-        - if can? :comment, resource
-          = render 'comments/form', resource: resource, comment: nil
-
-      - stack_helper(stack) do |comment, deep|
-        .comments-show[comment]{"data-deep" => deep}
-          = render 'comments/show', comment: comment, resource: resource
+.comments#comments[resource]
+  = render 'comments/content', resource: resource 

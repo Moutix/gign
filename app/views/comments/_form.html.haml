@@ -2,7 +2,7 @@
   .col-sm-1.comment-avatar
     = image_tag current_user.avatar
   .col-sm-11
-    = form_for(Comment.new) do |f|
+    = form_for Comment.new, remote: true do |f|
       .form-group
         = f.hidden_field :parent_id, value: comment.id if comment
         = f.hidden_field :commentable_type, value: resource.class.name.tableize
