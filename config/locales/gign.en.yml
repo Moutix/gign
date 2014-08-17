@@ -77,6 +77,8 @@ en:
         user: Created by
         created_at: Created on
         updated_at: Updated on
+        created_since: Created for
+        created_ago: Created for
       supply:
         <<: *all
         all: all
@@ -185,6 +187,7 @@ en:
       finish: State once you have handed back your borrowing.
   
   section:
+    blog: "Assign to blog"
     activate:
       links: Activate this section
     desactivate:

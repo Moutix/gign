@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: games
+#
+#  id                      :integer          not null, primary key
+#  name                    :string(255)
+#  app_id                  :integer
+#  short_name              :string(255)
+#  recent_playtime         :integer          default(0)
+#  total_playtime          :integer          default(0)
+#  created_at              :datetime
+#  updated_at              :datetime
+#  store_url               :string(255)
+#  in_cache                :boolean          default(FALSE)
+#  user_achievements_count :integer          default(0)
+#  users_count             :integer          default(0)
+#  comments_count          :integer          default(0)
+#
+
 class Game < ActiveRecord::Base
   acts_as_commentable
   searchkick word_start: [:name]

@@ -1,6 +1,6 @@
 fr:
   resources:
-    sections: sections
+    sections: s
     borrowings: emprunts
     users: utilisateurs
     groups: groupes
@@ -29,7 +29,7 @@ fr:
     add_to_basket: ajouter_au_panier
 en:
   resources:
-    sections: sections
+    sections: s
     borrowings: borrowings
     users: users
     groups: groups

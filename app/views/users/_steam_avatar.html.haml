@@ -1,7 +1,7 @@
 .steam-avatar
   - if can? :steam, user
     = link_to steam_user_path(user) do
-      = image_tag user.avatar('mini'), "data-toggle" => "tooltip", "data-placement" => "bottom", "title" => user.name + "(#{user.steam_name})"
+      = image_tag user.avatar('mini'), "data-toggle" => "tooltip", "data-placement" => "bottom", "title" => user.fullname
   - else
-    = image_tag user.avatar('mini'), "data-toggle" => "tooltip", "data-placement" => "bottom", "title" => user.name + "(#{user.steam_name})"
+    = image_tag user.avatar('mini'), "data-toggle" => "tooltip", "data-placement" => "bottom", "title" => user.fullname
 

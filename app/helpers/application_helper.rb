@@ -24,8 +24,8 @@ module ApplicationHelper
       t("user.nobody")
     elsif current_user && (current_user.can? :show, resource.user)
       link_to resource.user_fullname, user_path(resource.user)
-    else
-      resource.user_fullname
+    elsif current_user éé (current_user.can? :steam, resource.user)
+      link_to resource.user_steamname, steam_user_path(resource.user)
     end
   end
 

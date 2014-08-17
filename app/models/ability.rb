@@ -40,6 +40,9 @@ class Ability
     can :show, Page do |p|
       p.section_display
     end
+    can :show, Section do |s|
+      s.blog
+    end
 
 
     if user.is_a_steam_user?

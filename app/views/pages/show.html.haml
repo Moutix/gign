@@ -16,13 +16,12 @@
       %br
       %hr
       .center
-        %h1= @page.name
-    
-      = @page.content.html_safe
+        %h2= @page.name
+      = render 'content', page: @page
 - else
   .center
-    %h1= @page.name
-  = @page.content.html_safe
+    %h2= @page.name
+  = render 'content', page: @page
 
 = render 'comments/list', resource: @page
 
