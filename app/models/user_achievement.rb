@@ -53,7 +53,9 @@ class UserAchievement < ActiveRecord::Base
           h[time] += 1
       else
         time += period
-        h[time] = 0
+        if time < Time.now
+          h[time] = 0
+        end
       end
     end
     h
