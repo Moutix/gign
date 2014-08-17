@@ -13,6 +13,7 @@ var ready = function() {
                                 data: {
                                     datemin : Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', event.xAxis[0].min),
                                     datemax : Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', event.xAxis[0].max),
+                                    user_id : <%=user_id%>,
                                 },
                                 dataType: 'script',
                             });  
@@ -20,6 +21,9 @@ var ready = function() {
                              $.ajax({
                                 type: "GET",
                                 url: '<%=reload_achievements_games_path%>',
+                                data: {
+                                    user_id : <%=user_id%>,
+                                },
                                 dataType: 'script',
                             });  
                         }
