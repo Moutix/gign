@@ -9,7 +9,7 @@
     #list-achievements
       %h4= t("steam.show.last_achievements")
       = render "games/user_achievements", user_achievements: @user_achievements
-= render "charts_achievements", title: t("steam.charts.achievements.title_total.top"), achievements: UserAchievement.number_achievements_by(1.hours, Time.now-15.days)
+= render "charts_achievements", title: t("steam.charts.achievements.title_total.top"), achievements: UserAchievement.number_achievements_by(1.hours, Time.now-15.days), user_id: 0
 
 .row
   .col-md-6
