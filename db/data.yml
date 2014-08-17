@@ -1,70 +1,5 @@
 
 ---
-supply_copies:
-  columns:
-  - id
-  - supply_id
-  - ref
-  - loanable
-  - created_at
-  - updated_at
-  records: 
-  - - 1
-    - 1
-    - '0'
-    - false
-    - '2014-07-27 14:10:45.386966'
-    - '2014-07-27 14:10:45.386966'
-  - - 2
-    - 2
-    - '0'
-    - false
-    - '2014-07-27 14:12:06.562538'
-    - '2014-07-27 14:12:06.562538'
-  - - 3
-    - 2
-    - '0'
-    - false
-    - '2014-07-27 14:12:18.108302'
-    - '2014-07-27 14:12:18.108302'
-  - - 4
-    - 2
-    - '0'
-    - false
-    - '2014-07-27 14:12:19.029268'
-    - '2014-07-27 14:12:19.029268'
-  - - 5
-    - 2
-    - '0'
-    - false
-    - '2014-07-27 14:12:19.874261'
-    - '2014-07-27 14:12:19.874261'
-  - - 6
-    - 3
-    - '0'
-    - false
-    - '2014-07-27 14:14:01.819046'
-    - '2014-07-27 14:14:01.819046'
-  - - 7
-    - 3
-    - '0'
-    - false
-    - '2014-07-27 14:14:08.193861'
-    - '2014-07-27 14:14:08.193861'
-  - - 8
-    - 3
-    - '0'
-    - false
-    - '2014-07-27 14:14:09.060503'
-    - '2014-07-27 14:14:09.060503'
-  - - 9
-    - 3
-    - '0'
-    - false
-    - '2014-07-27 14:14:09.892767'
-    - '2014-07-27 14:14:09.892767'
-
----
 borrowings:
   columns:
   - id
@@ -82,39 +17,39 @@ borrowings:
   records: 
   - - 1
     - 1
-    - 
-    - 
+    - 2014-08-23 21:11:00.000000000 Z
+    - 2014-08-14 18:11:00.000000000 Z
     - 
     - 
     - false
-    - false
-    - false
-    - '2014-07-27 14:10:31.642952'
-    - '2014-07-27 14:10:31.642952'
+    - true
+    - true
+    - 2014-07-27 14:10:31.000000000 Z
+    - 2014-07-27 14:10:31.000000000 Z
     - false
   - - 2
     - 2
-    - '2014-07-31 22:00:00.000000'
-    - '2014-07-29 10:00:00.000000'
-    - '2014-07-27 22:04:04.510279'
-    - '2014-07-27 22:05:15.345014'
+    - 2014-07-31 22:00:00.000000000 Z
+    - 2014-07-29 10:00:00.000000000 Z
+    - 2014-07-27 22:04:04.000000000 Z
+    - 2014-07-27 22:05:15.000000000 Z
     - false
     - true
     - true
-    - '2014-07-27 20:05:58.868175'
-    - '2014-07-27 20:05:58.868175'
+    - 2014-07-27 20:05:58.000000000 Z
+    - 2014-07-27 20:05:58.000000000 Z
     - true
   - - 3
     - 3
-    - '2014-08-01 23:57:00.000000'
-    - '2014-08-01 10:57:00.000000'
-    - '2014-08-01 10:58:21.461734'
-    - '2014-08-04 14:03:13.794665'
+    - 2014-08-01 23:57:00.000000000 Z
+    - 2014-08-01 10:57:00.000000000 Z
+    - 2014-08-01 10:58:21.000000000 Z
+    - 2014-08-04 14:03:13.000000000 Z
     - false
     - false
     - true
-    - '2014-07-27 20:26:49.633855'
-    - '2014-07-27 20:26:49.633855'
+    - 2014-07-27 20:26:49.000000000 Z
+    - 2014-07-27 20:26:49.000000000 Z
     - true
   - - 4
     - 4
@@ -125,32 +60,32 @@ borrowings:
     - false
     - false
     - false
-    - '2014-07-27 21:07:44.153163'
-    - '2014-07-27 21:07:44.153163'
+    - 2014-07-27 21:07:44.000000000 Z
+    - 2014-07-27 21:07:44.000000000 Z
     - false
   - - 6
     - 5
-    - '2015-02-28 23:50:00.000000'
-    - '2014-08-02 00:50:00.000000'
+    - 2015-02-28 23:50:00.000000000 Z
+    - 2014-08-02 00:50:00.000000000 Z
     - 
-    - '2014-08-02 15:25:39.468064'
+    - 2014-08-02 15:25:39.000000000 Z
     - false
     - false
     - true
-    - '2014-07-28 02:45:50.525242'
-    - '2014-07-28 02:45:50.525242'
+    - 2014-07-28 02:45:50.000000000 Z
+    - 2014-07-28 02:45:50.000000000 Z
     - true
   - - 7
     - 5
-    - 
-    - 
+    - 2016-02-19 07:59:00.000000000 Z
+    - 2014-08-10 00:59:00.000000000 Z
     - 
     - 
     - false
-    - false
-    - false
-    - '2014-07-28 02:53:45.135785'
-    - '2014-07-28 02:53:45.135785'
+    - true
+    - true
+    - 2014-07-28 02:53:45.000000000 Z
+    - 2014-07-28 02:53:45.000000000 Z
     - false
   - - 8
     - 2
@@ -161,8 +96,8 @@ borrowings:
     - false
     - false
     - false
-    - '2014-07-29 20:16:59.757475'
-    - '2014-07-29 20:16:59.757475'
+    - 2014-07-29 20:16:59.000000000 Z
+    - 2014-07-29 20:16:59.000000000 Z
     - false
   - - 9
     - 3
@@ -173,8 +108,8 @@ borrowings:
     - false
     - false
     - false
-    - '2014-08-01 10:57:30.115628'
-    - '2014-08-01 10:57:30.115628'
+    - 2014-08-01 10:57:30.000000000 Z
+    - 2014-08-01 10:57:30.000000000 Z
     - false
   - - 10
     - 7
@@ -185,20 +120,20 @@ borrowings:
     - false
     - false
     - false
-    - '2014-08-04 08:48:33.745712'
-    - '2014-08-04 08:48:33.745712'
+    - 2014-08-04 08:48:33.000000000 Z
+    - 2014-08-04 08:48:33.000000000 Z
     - false
   - - 11
     - 6
-    - '2014-08-13 14:53:00.000000'
-    - '2014-08-04 17:53:00.000000'
-    - '2014-08-04 09:17:05.819646'
-    - '2014-08-04 09:17:11.642004'
+    - 2014-08-13 14:53:00.000000000 Z
+    - 2014-08-04 17:53:00.000000000 Z
+    - 2014-08-04 09:17:05.000000000 Z
+    - 2014-08-04 09:17:11.000000000 Z
     - false
     - false
     - true
-    - '2014-08-04 08:49:26.426394'
-    - '2014-08-04 08:49:26.426394'
+    - 2014-08-04 08:49:26.000000000 Z
+    - 2014-08-04 08:49:26.000000000 Z
     - true
   - - 12
     - 6
@@ -209,8 +144,80 @@ borrowings:
     - false
     - false
     - false
-    - '2014-08-04 08:54:15.942697'
-    - '2014-08-04 08:54:15.942697'
+    - 2014-08-04 08:54:15.000000000 Z
+    - 2014-08-04 08:54:15.000000000 Z
+    - false
+  - - 13
+    - 5
+    - 
+    - 
+    - 
+    - 
+    - false
+    - false
+    - false
+    - 2014-08-08 18:02:53.000000000 Z
+    - 2014-08-08 18:02:53.000000000 Z
+    - false
+  - - 14
+    - 8
+    - 
+    - 
+    - 
+    - 
+    - false
+    - false
+    - false
+    - 2014-08-09 15:28:05.000000000 Z
+    - 2014-08-09 15:28:05.000000000 Z
+    - false
+  - - 15
+    - 9
+    - 
+    - 
+    - 
+    - 
+    - false
+    - false
+    - false
+    - 2014-08-10 09:20:07.000000000 Z
+    - 2014-08-10 09:20:07.000000000 Z
+    - false
+  - - 16
+    - 10
+    - 
+    - 
+    - 
+    - 
+    - false
+    - false
+    - false
+    - 2014-08-10 12:54:44.000000000 Z
+    - 2014-08-10 12:54:44.000000000 Z
+    - false
+  - - 17
+    - 1
+    - 
+    - 
+    - 
+    - 
+    - false
+    - false
+    - false
+    - 2014-08-11 19:11:23.000000000 Z
+    - 2014-08-11 19:11:23.000000000 Z
+    - false
+  - - 18
+    - 11
+    - 
+    - 
+    - 
+    - 
+    - false
+    - false
+    - false
+    - 2014-08-13 22:47:48.000000000 Z
+    - 2014-08-13 22:47:48.000000000 Z
     - false
 
 ---
@@ -230,240 +237,86 @@ borrowings_supply_copies:
   - - 2
     - 5
   - - 3
-    - 8
+    - 9
   - - 3
+    - 8
+  - - 6
     - 9
   - - 6
-    - 1
-  - - 6
-    - 2
-  - - 6
-    - 3
-  - - 6
-    - 4
-  - - 6
-    - 5
-  - - 6
-    - 6
+    - 8
   - - 6
     - 7
   - - 6
-    - 8
+    - 6
   - - 6
-    - 9
-  - - 11
+    - 5
+  - - 6
+    - 4
+  - - 6
+    - 3
+  - - 6
+    - 2
+  - - 6
     - 1
-  - - 11
-    - 4
-  - - 11
-    - 4
-  - - 11
-    - 5
-  - - 11
-    - 5
-
----
-images:
-  columns:
-  - id
-  - name
-  - url
-  - imageable_id
-  - imageable_type
-  - created_at
-  - updated_at
-  - user_id
-  records: 
   - - 7
-    - 541970d2
-    - "/uploads/supply/1/541970d2.jpg"
-    - 1
-    - Supply
-    - '2014-07-29 20:55:30.888283'
-    - '2014-07-29 20:55:30.888283'
-    - 1
-  - - 9
-    - acfb0eed
-    - "/uploads/supply/2/acfb0eed.jpg"
-    - 2
-    - Supply
-    - '2014-07-29 20:56:33.953328'
-    - '2014-07-29 20:56:33.953328'
-    - 1
-  - - 10
-    - 6f48b99e
-    - "/uploads/supply/3/6f48b99e.jpg"
-    - 3
-    - Supply
-    - '2014-07-29 20:56:58.904524'
-    - '2014-07-29 20:56:58.904524'
-    - 1
+    - 13
+  - - 7
+    - 14
+  - - 7
+    - 15
+  - - 7
+    - 16
+  - - 7
+    - 17
+  - - 7
+    - 18
+  - - 7
+    - 12
+  - - 7
+    - 11
+  - - 7
+    - 10
+  - - 7
+    - 19
   - - 11
-    - f5c6242f
-    - "/uploads/supply/3/f5c6242f.jpg"
-    - 3
-    - Supply
-    - '2014-07-29 20:57:14.412484'
-    - '2014-07-29 20:57:14.412484'
+    - 5
+  - - 11
+    - 5
+  - - 11
+    - 4
+  - - 11
+    - 4
+  - - 11
     - 1
-  - - 12
-    - 800px-GiGN_blanc.png
-    - "/uploads/section/3/800px-GiGN_blanc.png"
-    - 3
-    - Section
-    - '2014-07-29 20:58:21.755213'
-    - '2014-07-29 20:58:21.755213'
-    - 1
-  - - 13
-    - e8c38b11
-    - "/uploads/section/3/e8c38b11.png"
-    - 3
-    - Section
-    - '2014-07-29 20:59:21.639830'
-    - '2014-07-29 20:59:21.639830'
-    - 1
-  - - 14
-    - ningirsu.gif
-    - "/uploads/user/1/ningirsu.gif"
-    - 1
-    - User
-    - '2014-08-01 20:47:32.965385'
-    - '2014-08-01 20:47:32.965385'
-    - 1
-  - - 480
-    - 3bf281eb
-    - "/uploads/user/3/3bf281eb.jpg"
-    - 3
-    - User
-    - '2014-08-05 18:16:12.986738'
-    - '2014-08-05 18:16:12.986738'
-    - 3
 
 ---
-supply_requests:
+comments:
   columns:
   - id
-  - supply_id
-  - borrowing_id
-  - nb_supplies
-  - created_at
-  - updated_at
-  records: 
-  - - 20
-    - 1
-    - 2
-    - 1
-    - '2014-07-27 22:00:18.984059'
-    - '2014-07-27 22:00:18.984059'
-  - - 21
-    - 2
-    - 2
-    - 4
-    - '2014-07-27 22:00:19.032939'
-    - '2014-07-27 22:00:19.032939'
-  - - 25
-    - 1
-    - 6
-    - 1
-    - '2014-07-28 02:46:24.503345'
-    - '2014-07-28 02:46:24.503345'
-  - - 26
-    - 2
-    - 6
-    - 4
-    - '2014-07-28 02:47:04.357702'
-    - '2014-07-28 02:47:41.876278'
-  - - 27
-    - 3
-    - 6
-    - 4
-    - '2014-07-28 02:47:54.173556'
-    - '2014-07-28 02:48:14.547681'
-  - - 29
-    - 1
-    - 1
-    - 1
-    - '2014-07-29 21:12:45.078728'
-    - '2014-07-29 21:12:45.078728'
-  - - 30
-    - 2
-    - 1
-    - 2
-    - '2014-07-29 21:12:45.133420'
-    - '2014-07-29 21:12:45.133420'
-  - - 31
-    - 3
-    - 3
-    - 2
-    - '2014-08-01 10:56:01.521875'
-    - '2014-08-01 10:56:01.521875'
-  - - 32
-    - 1
-    - 11
-    - 1
-    - '2014-08-04 08:53:42.070168'
-    - '2014-08-04 08:53:42.070168'
-  - - 33
-    - 2
-    - 11
-    - 4
-    - '2014-08-04 08:53:42.129318'
-    - '2014-08-04 08:53:42.129318'
-
----
-packs:
-  columns:
-  - id
-  - name
-  - description
-  - created_at
-  - updated_at
-  - active
+  - commentable_id
+  - commentable_type
+  - title
+  - body
+  - subject
   - user_id
-  records: 
-  - - 1
-    - Pack Wii
-    - 
-    - '2014-07-27 14:14:23.310709'
-    - '2014-08-02 15:57:31.721289'
-    - true
-    - 1
-  - - 2
-    - Double Dance Pad
-    - 
-    - '2014-07-27 19:05:59.587322'
-    - '2014-08-02 15:59:49.559834'
-    - true
-    - 1
-
----
-packs_supplies:
-  columns:
-  - id
-  - pack_id
-  - supply_id
-  - nb_supplies
+  - parent_id
+  - lft
+  - rgt
   - created_at
   - updated_at
   records: 
   - - 1
+    - 2
+    - Page
+    - 
+    - Mais ça à l'air stylé ce que vous faites ! C'est quand la prochaine LAN ?
+    - 
     - 1
-    - 1
-    - 1
-    - '2014-07-27 14:14:32.916713'
-    - '2014-07-27 14:14:32.916713'
-  - - 2
+    - 
     - 1
     - 2
-    - 4
-    - '2014-07-27 14:14:34.328869'
-    - '2014-07-27 14:14:36.789536'
-  - - 3
-    - 2
-    - 3
-    - 2
-    - '2014-07-27 19:06:02.108730'
-    - '2014-07-27 19:06:03.384258'
+    - 2014-08-01 20:55:35.000000000 Z
+    - 2014-08-01 20:55:35.000000000 Z
 
 ---
 groups:
@@ -493,8 +346,8 @@ groups:
     - false
     - false
     - false
-    - '2014-07-27 18:39:27.463874'
-    - '2014-07-27 18:39:27.463874'
+    - 2014-07-27 18:39:27.000000000 Z
+    - 2014-07-27 18:39:27.000000000 Z
     - false
     - 1
   - - 2
@@ -507,466 +360,241 @@ groups:
     - false
     - false
     - false
-    - '2014-07-27 19:36:25.242902'
-    - '2014-07-27 19:36:25.242902'
+    - 2014-07-27 19:36:25.000000000 Z
+    - 2014-07-27 19:36:25.000000000 Z
+    - false
+    - 1
+  - - 3
+    - Bureau
+    - 0
+    - true
+    - false
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 2014-08-14 06:04:00.000000000 Z
+    - 2014-08-14 06:04:00.000000000 Z
     - false
     - 1
 
 ---
-users_groups:
-  columns:
-  - user_id
-  - group_id
-  records: 
-  - - 1
-    - 1
-  - - 2
-    - 2
-  - - 2
-    - 1
-  - - 3
-    - 2
-  - - 3
-    - 1
-  - - 4
-    - 1
-  - - 5
-    - 1
-  - - 6
-    - 1
-  - - 7
-    - 1
-
----
-sections:
-  columns:
-  - id
-  - name
-  - slug
-  - description
-  - display
-  - created_at
-  - updated_at
-  - user_id
-  records: 
-  - - 1
-    - Dance Dance Revolution
-    - dance-dance-revolution
-    - Partie du site dédié à la pratique de ddr
-    - true
-    - '2014-07-29 18:33:50.783524'
-    - '2014-08-01 20:41:39.097882'
-    - 1
-  - - 2
-    - Evénements
-    - evenements
-    - Information sur les LAN du GiGN
-    - true
-    - '2014-07-29 19:14:10.140540'
-    - '2014-08-04 21:44:08.139347'
-    - 1
-  - - 3
-    - Presentation
-    - presentation
-    - Présentation du GiGN
-    - true
-    - '2014-07-29 19:15:22.720841'
-    - '2014-08-01 20:54:19.796587'
-    - 1
-  - - 4
-    - WeG
-    - weg
-    - Weekend Geek
-    - false
-    - '2014-07-29 20:18:04.756986'
-    - '2014-08-01 20:41:39.149430'
-    - 1
-  - - 5
-    - Prêt de la Wii
-    - pret-de-la-wii
-    - Service de prêt de la console
-    - false
-    - '2014-07-29 20:18:52.138422'
-    - '2014-08-01 20:41:39.166279'
-    - 1
-  - - 6
-    - Partenariats
-    - partenariats
-    - Pour les partenariats avec les entreprises
-    - false
-    - '2014-07-29 20:20:25.161784'
-    - '2014-08-01 20:41:39.183338'
-    - 1
-
----
-pages:
-  columns:
-  - id
-  - name
-  - slug
-  - section_id
-  - content
-  - priority
-  - created_at
-  - updated_at
-  - user_id
-  records: 
-  - - 1
-    - Introduction
-    - introduction
-    - 1
-    - "<p><span style=\"font-size:16px\"><strong>C&#39;est trop bien</strong></span></p>\r\n"
-    - 0
-    - '2014-07-29 18:58:54.430905'
-    - '2014-08-01 20:41:38.797696'
-    - 1
-  - - 2
-    - About us
-    - about-us
-    - 3
-    - "<p><img alt=\"logo_gign\" src=\"/uploads/section/3/e8c38b11.png\" style=\"float:left;
-      height:291px; margin-left:350px; margin-right:350px; width:400px\" /><br />\r\n<br
-      />\r\n<br />\r\n&nbsp;</p>\r\n\r\n<p><br />\r\n&nbsp;</p>\r\n\r\n<p><br />\r\n<br
-      />\r\n&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><br />\r\n&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>The&nbsp;<strong>Gif
-      Gaming Network</strong> (GiGN) est le club g&eacute;rant les activit&eacute;s
-      vid&eacute;o-ludiques &agrave; la r&eacute;sidence de Sup&eacute;lec &agrave;
-      Gif-sur-Yvette (environ 700 personnes).</p>\r\n\r\n<p>Les diff&eacute;rentes
-      activit&eacute;s que nous proposons aux r&eacute;sidents regroupent :</p>\r\n\r\n<ul>\r\n\t<li>des<span
-      style=\"color:#00FF00\"> </span><a href=\"http://luigi.larez.fr:3000/sections/les-lan/les-lan-du-gign\"><span
-      style=\"color:#008000\"><strong>s&eacute;ances de jeu &agrave; plusieurs</strong></span></a>
-      en r&eacute;seau local (plus commun&eacute;ment appel&eacute;es &quot;les LAN&quot;)</li>\r\n\t<li>des
-      <a href=\"http://luigi.larez.fr:3000/sections/weg/les-weekend-geek\"><span style=\"color:#008000\"><strong>weekends
-      entiers de jeu</strong></span></a> sur plusieurs supports (plus commun&eacute;ment
-      appel&eacute;es les &quot;Weekend Geek&quot; ou &quot;WeG&quot;)</li>\r\n\t<li>la
-      mise &agrave; disposition d&#39;une <strong>borne d&#39;arcade en salle polyvalente</strong>
-      avec de nombreux jeux</li>\r\n\t<li>un syst&egrave;me de<strong> <a href=\"http://luigi.larez.fr:3000/sections/pret-de-la-wii/service-de-pret-de-la-nintendo-wii\"><span
-      style=\"color:#008000\">pr&ecirc;t d&#39;une Nintendo Wii</span></a></strong>,
-      de ses jeux et de ses manettes</li>\r\n\t<li>un syst&egrave;me de <strong>pr&ecirc;t
-      de tapis de <a href=\"http://luigi.larez.fr:3000/sections/dance-dance-revolution/introduction\"><span
-      style=\"color:#008000\">Dance Dance Revolution</span></a></strong> (DDR)</li>\r\n</ul>\r\n\r\n<p>Vous
-      pouvez trouver les articles d&eacute;taill&eacute;s de chaque partie dans le
-      menu Section ou en utilisant les liens ci-dessus.</p>\r\n\r\n<p><br />\r\n<br
-      />\r\n<br />\r\n&nbsp;</p>\r\n\r\n<p>Nous cherchons en ce moment des entreprises
-      dont le domaine d&#39;activit&eacute; se rapproche aux jeux vid&eacute;o et
-      &agrave; l&#39;informatique pour former des partenariats.</p>\r\n"
-    - 0
-    - '2014-07-29 19:31:51.446794'
-    - '2014-08-01 20:53:36.827698'
-    - 1
-  - - 3
-    - Les LAN du GiGN
-    - les-lan-du-gign
-    - 2
-    - "<div class='wiki'><p>Cette page recense toutes les LANs organisées par le GiGN.\n</p>\n<table
-      id=\"toc\" class=\"toc\"><tr><td>\n<div id=\"toctitle\"><h2>Sommaire</h2></div>\n<ul>\n<li
-      class=\"toclevel-1 tocsection-1\">\n<a href=\"#2010.2F2011\"><span class=\"tocnumber\">1</span>
-      <span class=\"toctext\">2010/2011</span></a>\n<ul>\n<li class=\"toclevel-2 tocsection-2\"><a
-      href=\"#LAN_du_09.2F03.2F2011\"><span class=\"tocnumber\">1.1</span> <span class=\"toctext\">LAN
-      du 09/03/2011</span></a></li>\n<li class=\"toclevel-2 tocsection-3\"><a href=\"#LAN_du_03.2F05.2F2011\"><span
-      class=\"tocnumber\">1.2</span> <span class=\"toctext\">LAN du 03/05/2011</span></a></li>\n</ul>\n</li>\n<li
-      class=\"toclevel-1 tocsection-4\">\n<a href=\"#2011.2F2012\"><span class=\"tocnumber\">2</span>
-      <span class=\"toctext\">2011/2012</span></a>\n<ul>\n<li class=\"toclevel-2 tocsection-5\"><a
-      href=\"#LAN_du_24.2F11.2F2011\"><span class=\"tocnumber\">2.1</span> <span class=\"toctext\">LAN
-      du 24/11/2011</span></a></li>\n<li class=\"toclevel-2 tocsection-6\"><a href=\"#LAN_du_15.2F12.2F2011\"><span
-      class=\"tocnumber\">2.2</span> <span class=\"toctext\">LAN du 15/12/2011</span></a></li>\n<li
-      class=\"toclevel-2 tocsection-7\"><a href=\"#LAN_du_13.2F01.2F2012\"><span class=\"tocnumber\">2.3</span>
-      <span class=\"toctext\">LAN du 13/01/2012</span></a></li>\n</ul>\n</li>\n<li
-      class=\"toclevel-1 tocsection-8\">\n<a href=\"#2012.2F2013\"><span class=\"tocnumber\">3</span>
-      <span class=\"toctext\">2012/2013</span></a>\n<ul>\n<li class=\"toclevel-2 tocsection-9\"><a
-      href=\"#LAN_du_08.2F11.2F2012\"><span class=\"tocnumber\">3.1</span> <span class=\"toctext\">LAN
-      du 08/11/2012</span></a></li>\n<li class=\"toclevel-2 tocsection-10\"><a href=\"#LAN_du_13.2F12.2F2012\"><span
-      class=\"tocnumber\">3.2</span> <span class=\"toctext\">LAN du 13/12/2012</span></a></li>\n</ul>\n</li>\n<li
-      class=\"toclevel-1 tocsection-11\">\n<a href=\"#2013.2F2014\"><span class=\"tocnumber\">4</span>
-      <span class=\"toctext\">2013/2014</span></a>\n<ul>\n<li class=\"toclevel-2 tocsection-12\"><a
-      href=\"#LAN_du_03.2F10.2F2013\"><span class=\"tocnumber\">4.1</span> <span class=\"toctext\">LAN
-      du 03/10/2013</span></a></li>\n<li class=\"toclevel-2 tocsection-13\"><a href=\"#LAN_du_24.2F10.2F2013\"><span
-      class=\"tocnumber\">4.2</span> <span class=\"toctext\">LAN du 24/10/2013</span></a></li>\n<li
-      class=\"toclevel-2 tocsection-14\"><a href=\"#LAN_du_28.2F11.2F2013\"><span
-      class=\"tocnumber\">4.3</span> <span class=\"toctext\">LAN du 28/11/2013</span></a></li>\n<li
-      class=\"toclevel-2 tocsection-15\"><a href=\"#LAN_du_05.2F12.2F2013\"><span
-      class=\"tocnumber\">4.4</span> <span class=\"toctext\">LAN du 05/12/2013</span></a></li>\n<li
-      class=\"toclevel-2 tocsection-16\"><a href=\"#LAN_du_20.2F02.2F2013\"><span
-      class=\"tocnumber\">4.5</span> <span class=\"toctext\">LAN du 20/02/2013</span></a></li>\n</ul>\n</li>\n</ul>\n</td></tr></table>\n<h2>
-      <span class=\"mw-headline\" id=\"2010.2F2011\"> 2010/2011 </span>\n</h2>\n<h3>
-      <span class=\"mw-headline\" id=\"LAN_du_09.2F03.2F2011\"> <span title=\"LAN:2011-03-09\"
-      data-link=\"/index.php/LAN:2011-03-09\">LAN du 09/03/2011</span> </span>\n</h3>\n<p>LAN
-      organisée le jeudi 9 mars après-midi en salle CESAL sur <span title=\"Jeux/ut2004\"
-      data-link=\"/index.php/Jeux/ut2004\">Unreal Tournament 2004</span>.\n</p>\n<p>Il
-      s'agit de la première LAN du GiGN, le lancement officiel du club qui avait déjà
-      proposé des serveurs de jeux (via <span title=\"Mario\" data-link=\"/index.php/Mario\">Mario</span>)
-      mais jamais organisé d'évènement jusque là.\n</p>\n<p>Les replays des matchs
-      sont disponibles sur le serveur FTP <a rel=\"nofollow\" class=\"external autonumber\"
-      href=\"ftp://ftp-rez.rez-gif.supelec.fr/assoces/gign/20110309-LAN01-UT2004-Demos.zip\">[1]</a>\n</p>\n<h3>
-      <span class=\"mw-headline\" id=\"LAN_du_03.2F05.2F2011\"> LAN du 03/05/2011
-      </span>\n</h3>\n<p>LAN organisée le lundi 3 mai au soir en salle CESAL sur <span
-      title=\"Jeux/war3\" data-link=\"/index.php/Jeux/war3\">Warcraft III</span>.\n</p>\n<p>Moins
-      de participants que la LAN précédente, mais toujours fun.\n</p>\n<h2> <span
-      class=\"mw-headline\" id=\"2011.2F2012\"> 2011/2012 </span>\n</h2>\n<h3> <span
-      class=\"mw-headline\" id=\"LAN_du_24.2F11.2F2011\"> <span title=\"LAN:2011-11-24\"
-      data-link=\"/index.php/LAN:2011-11-24\">LAN du 24/11/2011</span> </span>\n</h3>\n<p>Cette
-      LAN a été organisée à l'occasion du Movember le jeudi 24 novembre 2011 après-midi,
-      juste après les exams des séquences 1 et 5, en salle CESAL. Le principal jeu
-      joué a été <span title=\"Jeux/war3\" data-link=\"/index.php/Jeux/war3\">Warcraft
-      III: The Frozen Throne</span> (avec un peu de <span title=\"Jeux/urt\" data-link=\"/index.php/Jeux/urt\">Urbanterror</span>
-      à la fin).\n</p>\n<h3> <span class=\"mw-headline\" id=\"LAN_du_15.2F12.2F2011\">
-      <span class=\"new\" title=\"LAN:2011-12-15 (page inexistante)\" data-link=\"/index.php?title=LAN:2011-12-15&amp;action=edit&amp;redlink=1\">LAN
-      du 15/12/2011</span> </span>\n</h3>\n<p><span title=\"Jeux/lol\" data-link=\"/index.php/Jeux/lol\">League
-      of Legends</span> au local rezo, peu de monde, manque de communication, soirée
-      juste après.\n</p>\n<h3> <span class=\"mw-headline\" id=\"LAN_du_13.2F01.2F2012\">
-      <span class=\"new\" title=\"LAN:2012-01-13 (page inexistante)\" data-link=\"/index.php?title=LAN:2012-01-13&amp;action=edit&amp;redlink=1\">LAN
-      du 13/01/2012</span> </span>\n</h3>\n<p>LAN Switch-On. Le GiGN a seulement prêté
-      le matos (2 switchs et 1 FTP). Au programme <span title=\"Jeux/cs\" data-link=\"/index.php/Jeux/cs\">Counter
-      Strike</span> sur la map Supelec et <span title=\"Jeux/urt\" data-link=\"/index.php/Jeux/urt\">Urban
-      Terror</span>.\n</p>\n<h2> <span class=\"mw-headline\" id=\"2012.2F2013\"> 2012/2013
-      </span>\n</h2>\n<h3> <span class=\"mw-headline\" id=\"LAN_du_08.2F11.2F2012\">
-      <span class=\"new\" title=\"LAN:2012-11-08 (page inexistante)\" data-link=\"/index.php?title=LAN:2012-11-08&amp;action=edit&amp;redlink=1\">LAN
-      du 08/11/2012</span> </span>\n</h3>\n<p>LAN de Age Of Empires 2 en salle Césal
-      décidé après un sondage sur le <a rel=\"nofollow\" class=\"external text\" href=\"https://www.rez-gif.supelec.fr/sondage.php?a=old_disp&amp;id=56\">3w</a>.\n</p>\n<p>Une
-      dizaine de participant, 2 parties ont eu lieu (en 2vs2 et 4vs4)\n</p>\n<p>Une
-      lan de <span title=\"Jeux/war3\" data-link=\"/index.php/Jeux/war3\">Warcraft
-      III</span> a été faite juste après\n</p>\n<h3> <span class=\"mw-headline\" id=\"LAN_du_13.2F12.2F2012\">
-      <span class=\"new\" title=\"LAN:2012-12-13 (page inexistante)\" data-link=\"/index.php?title=LAN:2012-12-13&amp;action=edit&amp;redlink=1\">LAN
-      du 13/12/2012</span> </span>\n</h3>\n<p>LAN de <span title=\"Jeux/lol\" data-link=\"/index.php/Jeux/lol\">League
-      of Legends</span> en salle Césal\n</p>\n<h2> <span class=\"mw-headline\" id=\"2013.2F2014\">
-      2013/2014 </span>\n</h2>\n<h3> <span class=\"mw-headline\" id=\"LAN_du_03.2F10.2F2013\">
-      <span class=\"new\" title=\"LAN:2013-10-03 (page inexistante)\" data-link=\"/index.php?title=LAN:2013-10-03&amp;action=edit&amp;redlink=1\">LAN
-      du 03/10/2013</span> </span>\n</h3>\n<p>LAN de <span title=\"Jeux/utgoty\" data-link=\"/index.php/Jeux/utgoty\">Unreal
-      Tournament GOTY</span> et de Age Of Empire en salle Césal.\n</p>\n<p>L'écran
-      de la salle Césal a été aussi utilisé pour projeter les jeux de la Wii du GIGN\n</p>\n<p>LAN
-      plutôt réussi avec une trentaine de personne a être passé dans la journée. La
-      mise en place d'un ordinateur en libre service a permis à pas mal de monde de
-      jouer. \n</p>\n<h3> <span class=\"mw-headline\" id=\"LAN_du_24.2F10.2F2013\">
-      <span class=\"new\" title=\"LAN:2013-10-24 (page inexistante)\" data-link=\"/index.php?title=LAN:2013-10-24&amp;action=edit&amp;redlink=1\">LAN
-      du 24/10/2013</span> </span>\n</h3>\n<p>LAN de <span title=\"Jeux/utgoty\" data-link=\"/index.php/Jeux/utgoty\">Unreal
-      Tournament GOTY</span> et de Rise Of Nations en salle Césal.\n</p>\n<p>L'écran
-      de la salle Césal a été aussi utilisé pour projeter Smash Bros. Melee depuis
-      la Wii du GIGN\n</p>\n<h3> <span class=\"mw-headline\" id=\"LAN_du_28.2F11.2F2013\">
-      <span class=\"new\" title=\"LAN:2013-11-28 (page inexistante)\" data-link=\"/index.php?title=LAN:2013-11-28&amp;action=edit&amp;redlink=1\">LAN
-      du 28/11/2013</span> </span>\n</h3>\n<p>Lan de <span title=\"Jeux/cs\" data-link=\"/index.php/Jeux/cs\">Counter
-      Strike</span> et de Rise Of Nations en salle Césal\n</p>\n<p>L'écran de la salle
-      Césal a été utilisé pour projeter des jeux de la Wii du GIGN, puis de Injustice
-      depuis une tour.\n</p>\n<h3> <span class=\"mw-headline\" id=\"LAN_du_05.2F12.2F2013\">
-      <span class=\"new\" title=\"LAN:2013-12-05 (page inexistante)\" data-link=\"/index.php?title=LAN:2013-12-05&amp;action=edit&amp;redlink=1\">LAN
-      du 05/12/2013</span> </span>\n</h3>\n<p>LAN de <span title=\"Jeux/lol\" data-link=\"/index.php/Jeux/lol\">League
-      of Legends</span> en salle Césal\n</p>\n<h3> <span class=\"mw-headline\" id=\"LAN_du_20.2F02.2F2013\">
-      <span class=\"new\" title=\"LAN:2014-02-20 (page inexistante)\" data-link=\"/index.php?title=LAN:2014-02-20&amp;action=edit&amp;redlink=1\">LAN
-      du 20/02/2013</span> </span>\n</h3>\n<p>LAN de Halo et de <span title=\"Jeux/war3\"
-      data-link=\"/index.php/Jeux/war3\">Warcraft III</span> en salle Césal.\n</p>\n<p>Peu
-      de monde au début en raison de la visite du cri par le rézo, et d'un lendemain
-      de soirée.\n</p>\n<p>Vers le milieu on atteint une quinzaine de personne, et
-      la lan a fini en partie de left 4 dead 2 à 4 personnes.\n</p>\n\n\n</div>"
-    - 0
-    - '2014-07-29 20:13:57.072572'
-    - '2014-08-04 21:19:18.985493'
-    - 1
-  - - 4
-    - Les Weekend Geek
-    - les-weekend-geek
-    - 4
-    - "<p><br />\r\n&nbsp;</p>\r\n"
-    - 0
-    - '2014-07-29 20:35:12.023452'
-    - '2014-08-01 20:41:38.860773'
-    - 1
-  - - 5
-    - Service de prêt de la Nintendo Wii
-    - service-de-pret-de-la-nintendo-wii
-    - 5
-    - ''
-    - 0
-    - '2014-07-29 20:37:22.877780'
-    - '2014-08-01 20:41:38.877901'
-    - 1
-  - - 6
-    - WEG
-    - weg
-    - 2
-    - "<div class='wiki'><p>Compte rendu du WEG 2014\n</p>\n<p><br></p>\n<table id=\"toc\"
-      class=\"toc\"><tr><td>\n<div id=\"toctitle\"><h2>Sommaire</h2></div>\n<ul>\n<li
-      class=\"toclevel-1 tocsection-1\">\n<a href=\"#Organisation\"><span class=\"tocnumber\">1</span>
-      <span class=\"toctext\">Organisation</span></a>\n<ul>\n<li class=\"toclevel-2
-      tocsection-2\"><a href=\"#Repas\"><span class=\"tocnumber\">1.1</span> <span
-      class=\"toctext\">Repas</span></a></li>\n<li class=\"toclevel-2 tocsection-3\"><a
-      href=\"#Planning_de_Jeu\"><span class=\"tocnumber\">1.2</span> <span class=\"toctext\">Planning
-      de Jeu</span></a></li>\n<li class=\"toclevel-2 tocsection-4\"><a href=\"#Installation\"><span
-      class=\"tocnumber\">1.3</span> <span class=\"toctext\">Installation</span></a></li>\n</ul>\n</li>\n<li
-      class=\"toclevel-1 tocsection-5\">\n<a href=\"#D.C3.A9roulement\"><span class=\"tocnumber\">2</span>
-      <span class=\"toctext\">Déroulement</span></a>\n<ul>\n<li class=\"toclevel-2
-      tocsection-6\"><a href=\"#Repas_2\"><span class=\"tocnumber\">2.1</span> <span
-      class=\"toctext\">Repas</span></a></li>\n<li class=\"toclevel-2 tocsection-7\">\n<a
-      href=\"#Jeux\"><span class=\"tocnumber\">2.2</span> <span class=\"toctext\">Jeux</span></a>\n<ul>\n<li
-      class=\"toclevel-3 tocsection-8\"><a href=\"#Path_Of_Exile\"><span class=\"tocnumber\">2.2.1</span>
-      <span class=\"toctext\">Path Of Exile</span></a></li>\n<li class=\"toclevel-3
-      tocsection-9\"><a href=\"#Unreal_Tournament_GOTY\"><span class=\"tocnumber\">2.2.2</span>
-      <span class=\"toctext\">Unreal Tournament GOTY</span></a></li>\n<li class=\"toclevel-3
-      tocsection-10\"><a href=\"#Rise_Of_Nations\"><span class=\"tocnumber\">2.2.3</span>
-      <span class=\"toctext\">Rise Of Nations</span></a></li>\n<li class=\"toclevel-3
-      tocsection-11\"><a href=\"#Left_4_Dead_2\"><span class=\"tocnumber\">2.2.4</span>
-      <span class=\"toctext\">Left 4 Dead 2</span></a></li>\n<li class=\"toclevel-3
-      tocsection-12\"><a href=\"#Unreal_Tournament_3\"><span class=\"tocnumber\">2.2.5</span>
-      <span class=\"toctext\">Unreal Tournament 3</span></a></li>\n<li class=\"toclevel-3
-      tocsection-13\"><a href=\"#Counter_Strike\"><span class=\"tocnumber\">2.2.6</span>
-      <span class=\"toctext\">Counter Strike</span></a></li>\n<li class=\"toclevel-3
-      tocsection-14\"><a href=\"#League_of_Legends\"><span class=\"tocnumber\">2.2.7</span>
-      <span class=\"toctext\">League of Legends</span></a></li>\n<li class=\"toclevel-3
-      tocsection-15\"><a href=\"#Age_Of_Empires_2\"><span class=\"tocnumber\">2.2.8</span>
-      <span class=\"toctext\">Age Of Empires 2</span></a></li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>\n</td></tr></table>\n<h1>
-      <span class=\"mw-headline\" id=\"Organisation\"> Organisation </span>\n</h1>\n<h2>
-      <span class=\"mw-headline\" id=\"Repas\"> Repas </span>\n</h2>\n<ul>\n<li> Samedi
-      Midi : Repas à base de légume et poulet et  de riz (papsé pendant la campagne),
-      le tout préparé le matin et vendu à 2 euros l'assiette.\n</li>\n<li> Samedi
-      Soir : Commande groupé de pizza\n</li>\n<li> Dimanche Midi : Pâte carbonara,
-      préparé le matin, et vendu 2 euros le plat\n</li>\n<li> Dimanche Soir : Repas
-      avec les restes de Riz et de pâte\n</li>\n</ul>\n<h2> <span class=\"mw-headline\"
-      id=\"Planning_de_Jeu\"> Planning de Jeu </span>\n</h2>\n<ul><li> Samedi\n<ul>\n<li>
-      00h00 - 13h00 : Path Of Exile\n</li>\n<li> 13h00 - 15h00 : <span title=\"Jeux/utgoty\"
-      data-link=\"/index.php/Jeux/utgoty\">Unreal Tournament GOTY</span>\n</li>\n<li>
-      15h00 - 18h00 : Rise Of Nations\n</li>\n<li> 18h00 - 20h00 : Left 4 Dead 2\n</li>\n<li>
-      21h00 - 23h00 : <span class=\"new\" title=\"Jeux/ut3 (page inexistante)\" data-link=\"/index.php?title=Jeux/ut3&amp;action=edit&amp;redlink=1\">Unreal
-      Tournament 3</span>\n</li>\n</ul>\n</li></ul>\n<ul><li> Dimanche\n<ul>\n<li>
-      00h00 - 13h00 : Path Of Exile\n</li>\n<li> 13h00 - 15h00 : <span title=\"Jeux/cs\"
-      data-link=\"/index.php/Jeux/cs\">Counter Strike</span>\n</li>\n<li> 15h00 -
-      18h00 : <span title=\"Jeux/lol\" data-link=\"/index.php/Jeux/lol\">League of
-      Legends</span>\n</li>\n<li> 18h00 - 20h00 : Age Of Empires 2\n</li>\n<li> 21h00
-      - 23h00 : <span class=\"new\" title=\"Jeux/ut3 (page inexistante)\" data-link=\"/index.php?title=Jeux/ut3&amp;action=edit&amp;redlink=1\">Unreal
-      Tournament 3</span>\n</li>\n</ul>\n</li></ul>\n<h2> <span class=\"mw-headline\"
-      id=\"Installation\"> Installation </span>\n</h2>\n<p>2 écrans prêté par le barco,
-      pour projeter :\n</p>\n<ul>\n<li> La Wii du gign\n</li>\n<li> Une xbox 360 avec
-      Dead Or Alive 5 \n</li>\n</ul>\n<p>La sono a fourni l'alimentation nécessaire
-      pour tous les pc (dont 5 pc fixe), et plusieurs multiprise.\n</p>\n<p>En période
-      critique de pénurie de table, le rézo, le gnohm ont fourni les tables\n</p>\n<p>L'installation
-      a commencé le vendredi à 21h00 \n</p>\n<h1> <span class=\"mw-headline\" id=\"D.C3.A9roulement\">
-      Déroulement </span>\n</h1>\n<h2> <span class=\"mw-headline\" id=\"Repas_2\">
-      Repas </span>\n</h2>\n<p>Avec 60 euros dépensé dans les achats, on a récupéré
-      autant.\n</p>\n<h2> <span class=\"mw-headline\" id=\"Jeux\"> Jeux </span>\n</h2>\n<h3>
-      <span class=\"mw-headline\" id=\"Path_Of_Exile\"> Path Of Exile </span>\n</h3>\n<p>Le
-      samedi à minuit, une dizaine de personne était partante pour jouer. On a alors
-      fait 2 équipes, l'idée était de voir qui irait le plus loin à la fin du weekend.\n</p>\n<p>Ce
-      fut un échec, principalement parce que certaine personne connaissait le jeu,
-      et d'autre non.\nLe jeu a été arrêté aux alentours de 3h du matin le samedi\n</p>\n<h3>
-      <span class=\"mw-headline\" id=\"Unreal_Tournament_GOTY\"> <span title=\"Jeux/utgoty\"
-      data-link=\"/index.php/Jeux/utgoty\">Unreal Tournament GOTY</span> </span>\n</h3>\n<p>À
-      13h00, peu de personne était levé, on a donc commencé à 5-6 personnes, et fini
-      à environ 12-13 personnes.\n</p>\n<p>Du deathmatch quand il y avait peu de monde,
-      et du capture the flag pour finir.\n</p>\n<h3> <span class=\"mw-headline\" id=\"Rise_Of_Nations\">
-      Rise Of Nations </span>\n</h3>\n<p>Une seule partie de faite en 4 vs 4. Il est
-      quand même préférable de faire plusieurs match en équilibrant les niveaux pour
-      éviter les massacres.\n</p>\n<h3> <span class=\"mw-headline\" id=\"Left_4_Dead_2\">
-      Left 4 Dead 2 </span>\n</h3>\n<p>6-7 personnes seulement avait le jeu en version
-      payante (alors qu'il était gratuit pendant les vacances de noël).\n</p>\n<p>Un
-      versus en 3 vs 3 a été fait, assez sympa, même si certaines personnes rager
-      pour cause de soi-disant déséquilibre dans les équipes.\n</p>\n<h3> <span class=\"mw-headline\"
-      id=\"Unreal_Tournament_3\"> <span class=\"new\" title=\"Jeux/ut3 (page inexistante)\"
-      data-link=\"/index.php?title=Jeux/ut3&amp;action=edit&amp;redlink=1\">Unreal
-      Tournament 3</span> </span>\n</h3>\n<p>Peur de n'avoir peu de monde, comme le
-      jeu est assez lourd à installer (9go environ), et qu'il ne tourne pas sur tous
-      les pc.\n</p>\n<p>Finalement c'est la lan qui a le mieux marché. Jusqu'à une
-      quinzaine de personne. Même <a rel=\"nofollow\" class=\"external text\" href=\"http://www.lolking.net/summoner/euw/35857223\">Marin</a>
-      a installé le jeu sur son pc\n</p>\n<p>C'était assez intéressant de jouer sur
-      les mêmes map que celle de goty (surtout les 2 tours). C'était assez fun aussi
-      de lancer des maps random créé par la communauté. Ça change complètement le
-      jeu de temps en temps, et ça permet aussi d'équilibré lee jeu en insérant une
-      grande part de chance dans les parties.\n</p>\n<h3> <span class=\"mw-headline\"
-      id=\"Counter_Strike\"> <span title=\"Jeux/cs\" data-link=\"/index.php/Jeux/cs\">Counter
-      Strike</span> </span>\n</h3>\n<p>13h00, c'est toujours trop tôt, mais vers 14h00
-      6-7 personnes ont participé à la lan\n</p>\n<h3> <span class=\"mw-headline\"
-      id=\"League_of_Legends\"> <span title=\"Jeux/lol\" data-link=\"/index.php/Jeux/lol\">League
-      of Legends</span> </span>\n</h3>\n<p>Une dizaine de personne, intéressant à
-      faire, ça attire des personnes qui ne serait pas forcément resté le weekend
-      si il n'y avait pas ce jeu là.\n</p>\n<h3> <span class=\"mw-headline\" id=\"Age_Of_Empires_2\">
-      Age Of Empires 2 </span>\n</h3>\n<p>Les loleurs étant encore en train de jouer,
-      et pour cause de fatigue, la lan fut annulé\n</p>\n\n\n</div>"
-    - 0
-    - '2014-08-04 21:44:31.644085'
-    - '2014-08-04 21:45:24.823350'
-    - 3
-
----
-supplies:
-  columns:
-  - id
-  - name
-  - price
-  - description
-  - loanable
-  - created_at
-  - updated_at
-  - user_id
-  records: 
-  - - 1
-    - Wii
-    - 180
-    - ''
-    - true
-    - '2014-07-27 14:10:45.362366'
-    - '2014-08-02 15:57:31.458816'
-    - 1
-  - - 2
-    - Game Cube Gamepad
-    - 25
-    - ''
-    - true
-    - '2014-07-27 14:12:06.556168'
-    - '2014-08-02 15:59:00.694731'
-    - 1
-  - - 3
-    - Impact Soft DancePad
-    - 30
-    - ''
-    - true
-    - '2014-07-27 14:14:01.812636'
-    - '2014-08-02 15:57:31.507984'
-    - 1
-
----
-upload_files:
+images:
   columns:
   - id
   - name
   - url
-  - fileable_type
-  - fileable_id
+  - imageable_id
+  - imageable_type
   - created_at
   - updated_at
   - user_id
   records: 
+  - - 7
+    - 541970d2
+    - "/uploads/supply/1/541970d2.jpg"
+    - 1
+    - Supply
+    - 2014-07-29 20:55:30.000000000 Z
+    - 2014-07-29 20:55:30.000000000 Z
+    - 1
+  - - 9
+    - acfb0eed
+    - "/uploads/supply/2/acfb0eed.jpg"
+    - 2
+    - Supply
+    - 2014-07-29 20:56:33.000000000 Z
+    - 2014-07-29 20:56:33.000000000 Z
+    - 1
+  - - 10
+    - 6f48b99e
+    - "/uploads/supply/3/6f48b99e.jpg"
+    - 3
+    - Supply
+    - 2014-07-29 20:56:58.000000000 Z
+    - 2014-07-29 20:56:58.000000000 Z
+    - 1
+  - - 11
+    - f5c6242f
+    - "/uploads/supply/3/f5c6242f.jpg"
+    - 3
+    - Supply
+    - 2014-07-29 20:57:14.000000000 Z
+    - 2014-07-29 20:57:14.000000000 Z
+    - 1
+  - - 12
+    - 800px-GiGN_blanc.png
+    - "/uploads/section/3/800px-GiGN_blanc.png"
+    - 3
+    - Section
+    - 2014-07-29 20:58:21.000000000 Z
+    - 2014-07-29 20:58:21.000000000 Z
+    - 1
+  - - 13
+    - e8c38b11
+    - "/uploads/section/3/e8c38b11.png"
+    - 3
+    - Section
+    - 2014-07-29 20:59:21.000000000 Z
+    - 2014-07-29 20:59:21.000000000 Z
+    - 1
+  - - 14
+    - ningirsu.gif
+    - "/uploads/user/1/ningirsu.gif"
+    - 1
+    - User
+    - 2014-08-01 20:47:32.000000000 Z
+    - 2014-08-01 20:47:32.000000000 Z
+    - 1
+  - - 480
+    - 3bf281eb
+    - "/uploads/user/3/3bf281eb.jpg"
+    - 3
+    - User
+    - 2014-08-05 18:16:12.000000000 Z
+    - 2014-08-05 18:16:12.000000000 Z
+    - 3
+  - - 966
+    - 0d13ebfe
+    - "/uploads/user/2/0d13ebfe.jpg"
+    - 2
+    - User
+    - 2014-08-07 05:14:24.000000000 Z
+    - 2014-08-07 05:14:24.000000000 Z
+    - 2
+  - - 1027
+    - bc074865
+    - "/uploads/user/5/bc074865.jpg"
+    - 5
+    - User
+    - 2014-08-08 17:48:52.000000000 Z
+    - 2014-08-08 17:48:52.000000000 Z
+    - 5
+  - - 1050
+    - d07da9f9
+    - "/uploads/user/8/d07da9f9.jpg"
+    - 8
+    - User
+    - 2014-08-09 15:30:08.000000000 Z
+    - 2014-08-09 15:30:08.000000000 Z
+    - 8
+  - - 1052
+    - c508d609
+    - "/uploads/user/9/c508d609.jpg"
+    - 9
+    - User
+    - 2014-08-10 09:22:02.000000000 Z
+    - 2014-08-10 09:22:02.000000000 Z
+    - 9
+  - - 1053
+    - 9805e399
+    - "/uploads/user/10/9805e399.jpg"
+    - 10
+    - User
+    - 2014-08-10 12:55:32.000000000 Z
+    - 2014-08-10 12:55:32.000000000 Z
+    - 10
+  - - 1064
+    - 17229c93
+    - "/uploads/user/9/17229c93.jpg"
+    - 9
+    - User
+    - 2014-08-13 22:02:27.000000000 Z
+    - 2014-08-13 22:02:27.000000000 Z
+    - 9
+  - - 1065
+    - a4e29654
+    - "/uploads/user/11/a4e29654.jpg"
+    - 11
+    - User
+    - 2014-08-13 22:51:31.000000000 Z
+    - 2014-08-13 22:51:31.000000000 Z
+    - 11
+
+---
+pack_translations:
+  columns:
+  - id
+  - pack_id
+  - locale
+  - created_at
+  - updated_at
+  - name
+  records: 
   - - 1
-    - pika_girl.mp3
-    - pika_girl.mp3
+    - 1
+    - fr
+    - 2014-08-02 15:57:31.000000000 Z
+    - 2014-08-02 15:57:31.000000000 Z
+    - Pack Wii
+  - - 2
+    - 2
+    - fr
+    - 2014-08-02 15:57:31.000000000 Z
+    - 2014-08-02 15:57:31.000000000 Z
+    - Double Tapis
+  - - 3
+    - 2
+    - en
+    - 2014-08-02 15:59:49.000000000 Z
+    - 2014-08-02 15:59:49.000000000 Z
+    - Double Dance Pad
+
+---
+packs:
+  columns:
+  - id
+  - name
+  - description
+  - created_at
+  - updated_at
+  - active
+  - user_id
+  records: 
+  - - 1
+    - Pack Wii
     - 
+    - 2014-07-27 14:14:23.000000000 Z
+    - 2014-08-02 15:57:31.000000000 Z
+    - true
+    - 1
+  - - 2
+    - Double Dance Pad
     - 
-    - '2014-07-30 23:24:03.345351'
-    - '2014-07-30 23:24:03.345351'
+    - 2014-07-27 19:05:59.000000000 Z
+    - 2014-08-02 15:59:49.000000000 Z
+    - true
     - 1
 
 ---
-comments:
+packs_supplies:
   columns:
   - id
-  - commentable_id
-  - commentable_type
-  - title
-  - body
-  - subject
-  - user_id
-  - parent_id
-  - lft
-  - rgt
+  - pack_id
+  - supply_id
+  - nb_supplies
   - created_at
   - updated_at
   records: 
   - - 1
-    - 2
-    - Page
-    - 
-    - Mais ça à l'air stylé ce que vous faites ! C'est quand la prochaine LAN ?
-    - 
     - 1
-    - 
+    - 1
+    - 1
+    - 2014-07-27 14:14:32.000000000 Z
+    - 2014-07-27 14:14:32.000000000 Z
+  - - 2
     - 1
     - 2
-    - '2014-08-01 20:55:35.600995'
-    - '2014-08-01 20:55:35.600995'
+    - 4
+    - 2014-07-27 14:14:34.000000000 Z
+    - 2014-07-27 14:14:36.000000000 Z
+  - - 3
+    - 2
+    - 3
+    - 2
+    - 2014-07-27 19:06:02.000000000 Z
+    - 2014-07-27 19:06:03.000000000 Z
 
 ---
 page_translations:
@@ -983,16 +611,16 @@ page_translations:
   - - 1
     - 1
     - fr
-    - '2014-08-01 20:41:38.778324'
-    - '2014-08-01 20:41:38.778324'
+    - 2014-08-01 20:41:38.000000000 Z
+    - 2014-08-01 20:41:38.000000000 Z
     - Introduction
     - "<p><span style=\"font-size:16px\"><strong>C&#39;est trop bien</strong></span></p>\r\n"
     - introduction
   - - 2
     - 2
     - fr
-    - '2014-08-01 20:41:38.819161'
-    - '2014-08-01 20:41:38.819161'
+    - 2014-08-01 20:41:38.000000000 Z
+    - 2014-08-01 20:41:38.000000000 Z
     - Qui sommes-nous ?
     - "<p><img alt=\"logo_gign\" src=\"/uploads/section/3/e8c38b11.png\" style=\"float:left;
       height:291px; margin-left:350px; margin-right:350px; width:400px\" /><br />\r\n<br
@@ -1023,8 +651,8 @@ page_translations:
   - - 3
     - 3
     - fr
-    - '2014-08-01 20:41:38.836527'
-    - '2014-08-04 21:19:18.970818'
+    - 2014-08-01 20:41:38.000000000 Z
+    - 2014-08-04 21:19:18.000000000 Z
     - Les LAN du GiGN
     - "<div class='wiki'><p>Cette page recense toutes les LANs organisées par le GiGN.\n</p>\n<table
       id=\"toc\" class=\"toc\"><tr><td>\n<div id=\"toctitle\"><h2>Sommaire</h2></div>\n<ul>\n<li
@@ -1128,24 +756,24 @@ page_translations:
   - - 4
     - 4
     - fr
-    - '2014-08-01 20:41:38.853671'
-    - '2014-08-01 20:41:38.853671'
+    - 2014-08-01 20:41:38.000000000 Z
+    - 2014-08-01 20:41:38.000000000 Z
     - Les Weekend Geek
     - "<p><br />\r\n&nbsp;</p>\r\n"
     - les-weekend-geek
   - - 5
     - 5
     - fr
-    - '2014-08-01 20:41:38.870370'
-    - '2014-08-01 20:41:38.870370'
+    - 2014-08-01 20:41:38.000000000 Z
+    - 2014-08-01 20:41:38.000000000 Z
     - Service de prêt de la Nintendo Wii
     - ''
     - service-de-pret-de-la-nintendo-wii
   - - 6
     - 2
     - en
-    - '2014-08-01 20:53:36.812444'
-    - '2014-08-01 20:53:36.812444'
+    - 2014-08-01 20:53:36.000000000 Z
+    - 2014-08-01 20:53:36.000000000 Z
     - About us
     - "<p><img alt=\"logo_gign\" src=\"/uploads/section/3/e8c38b11.png\" style=\"float:left;
       height:291px; margin-left:350px; margin-right:350px; width:400px\" /><br />\r\n<br
@@ -1176,8 +804,8 @@ page_translations:
   - - 7
     - 6
     - fr
-    - '2014-08-04 21:44:31.653494'
-    - '2014-08-04 21:45:24.814627'
+    - 2014-08-04 21:44:31.000000000 Z
+    - 2014-08-04 21:45:24.000000000 Z
     - WEG
     - "<div class='wiki'><p>Compte rendu du WEG 2014\n</p>\n<p><br></p>\n<table id=\"toc\"
       class=\"toc\"><tr><td>\n<div id=\"toctitle\"><h2>Sommaire</h2></div>\n<ul>\n<li
@@ -1277,6 +905,296 @@ page_translations:
     - weg
 
 ---
+pages:
+  columns:
+  - id
+  - name
+  - slug
+  - section_id
+  - content
+  - priority
+  - created_at
+  - updated_at
+  - user_id
+  - comments_count
+  records: 
+  - - 1
+    - Introduction
+    - introduction
+    - 1
+    - "<p><span style=\"font-size:16px\"><strong>C&#39;est trop bien</strong></span></p>\r\n"
+    - 0
+    - 2014-07-29 18:58:54.000000000 Z
+    - 2014-08-01 20:41:38.000000000 Z
+    - 1
+    - 0
+  - - 2
+    - About us
+    - about-us
+    - 3
+    - "<p><img alt=\"logo_gign\" src=\"/uploads/section/3/e8c38b11.png\" style=\"float:left;
+      height:291px; margin-left:350px; margin-right:350px; width:400px\" /><br />\r\n<br
+      />\r\n<br />\r\n&nbsp;</p>\r\n\r\n<p><br />\r\n&nbsp;</p>\r\n\r\n<p><br />\r\n<br
+      />\r\n&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><br />\r\n&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>The&nbsp;<strong>Gif
+      Gaming Network</strong> (GiGN) est le club g&eacute;rant les activit&eacute;s
+      vid&eacute;o-ludiques &agrave; la r&eacute;sidence de Sup&eacute;lec &agrave;
+      Gif-sur-Yvette (environ 700 personnes).</p>\r\n\r\n<p>Les diff&eacute;rentes
+      activit&eacute;s que nous proposons aux r&eacute;sidents regroupent :</p>\r\n\r\n<ul>\r\n\t<li>des<span
+      style=\"color:#00FF00\"> </span><a href=\"http://luigi.larez.fr:3000/sections/les-lan/les-lan-du-gign\"><span
+      style=\"color:#008000\"><strong>s&eacute;ances de jeu &agrave; plusieurs</strong></span></a>
+      en r&eacute;seau local (plus commun&eacute;ment appel&eacute;es &quot;les LAN&quot;)</li>\r\n\t<li>des
+      <a href=\"http://luigi.larez.fr:3000/sections/weg/les-weekend-geek\"><span style=\"color:#008000\"><strong>weekends
+      entiers de jeu</strong></span></a> sur plusieurs supports (plus commun&eacute;ment
+      appel&eacute;es les &quot;Weekend Geek&quot; ou &quot;WeG&quot;)</li>\r\n\t<li>la
+      mise &agrave; disposition d&#39;une <strong>borne d&#39;arcade en salle polyvalente</strong>
+      avec de nombreux jeux</li>\r\n\t<li>un syst&egrave;me de<strong> <a href=\"http://luigi.larez.fr:3000/sections/pret-de-la-wii/service-de-pret-de-la-nintendo-wii\"><span
+      style=\"color:#008000\">pr&ecirc;t d&#39;une Nintendo Wii</span></a></strong>,
+      de ses jeux et de ses manettes</li>\r\n\t<li>un syst&egrave;me de <strong>pr&ecirc;t
+      de tapis de <a href=\"http://luigi.larez.fr:3000/sections/dance-dance-revolution/introduction\"><span
+      style=\"color:#008000\">Dance Dance Revolution</span></a></strong> (DDR)</li>\r\n</ul>\r\n\r\n<p>Vous
+      pouvez trouver les articles d&eacute;taill&eacute;s de chaque partie dans le
+      menu Section ou en utilisant les liens ci-dessus.</p>\r\n\r\n<p><br />\r\n<br
+      />\r\n<br />\r\n&nbsp;</p>\r\n\r\n<p>Nous cherchons en ce moment des entreprises
+      dont le domaine d&#39;activit&eacute; se rapproche aux jeux vid&eacute;o et
+      &agrave; l&#39;informatique pour former des partenariats.</p>\r\n"
+    - 0
+    - 2014-07-29 19:31:51.000000000 Z
+    - 2014-08-01 20:53:36.000000000 Z
+    - 1
+    - 1
+  - - 3
+    - Les LAN du GiGN
+    - les-lan-du-gign
+    - 2
+    - "<div class='wiki'><p>Cette page recense toutes les LANs organisées par le GiGN.\n</p>\n<table
+      id=\"toc\" class=\"toc\"><tr><td>\n<div id=\"toctitle\"><h2>Sommaire</h2></div>\n<ul>\n<li
+      class=\"toclevel-1 tocsection-1\">\n<a href=\"#2010.2F2011\"><span class=\"tocnumber\">1</span>
+      <span class=\"toctext\">2010/2011</span></a>\n<ul>\n<li class=\"toclevel-2 tocsection-2\"><a
+      href=\"#LAN_du_09.2F03.2F2011\"><span class=\"tocnumber\">1.1</span> <span class=\"toctext\">LAN
+      du 09/03/2011</span></a></li>\n<li class=\"toclevel-2 tocsection-3\"><a href=\"#LAN_du_03.2F05.2F2011\"><span
+      class=\"tocnumber\">1.2</span> <span class=\"toctext\">LAN du 03/05/2011</span></a></li>\n</ul>\n</li>\n<li
+      class=\"toclevel-1 tocsection-4\">\n<a href=\"#2011.2F2012\"><span class=\"tocnumber\">2</span>
+      <span class=\"toctext\">2011/2012</span></a>\n<ul>\n<li class=\"toclevel-2 tocsection-5\"><a
+      href=\"#LAN_du_24.2F11.2F2011\"><span class=\"tocnumber\">2.1</span> <span class=\"toctext\">LAN
+      du 24/11/2011</span></a></li>\n<li class=\"toclevel-2 tocsection-6\"><a href=\"#LAN_du_15.2F12.2F2011\"><span
+      class=\"tocnumber\">2.2</span> <span class=\"toctext\">LAN du 15/12/2011</span></a></li>\n<li
+      class=\"toclevel-2 tocsection-7\"><a href=\"#LAN_du_13.2F01.2F2012\"><span class=\"tocnumber\">2.3</span>
+      <span class=\"toctext\">LAN du 13/01/2012</span></a></li>\n</ul>\n</li>\n<li
+      class=\"toclevel-1 tocsection-8\">\n<a href=\"#2012.2F2013\"><span class=\"tocnumber\">3</span>
+      <span class=\"toctext\">2012/2013</span></a>\n<ul>\n<li class=\"toclevel-2 tocsection-9\"><a
+      href=\"#LAN_du_08.2F11.2F2012\"><span class=\"tocnumber\">3.1</span> <span class=\"toctext\">LAN
+      du 08/11/2012</span></a></li>\n<li class=\"toclevel-2 tocsection-10\"><a href=\"#LAN_du_13.2F12.2F2012\"><span
+      class=\"tocnumber\">3.2</span> <span class=\"toctext\">LAN du 13/12/2012</span></a></li>\n</ul>\n</li>\n<li
+      class=\"toclevel-1 tocsection-11\">\n<a href=\"#2013.2F2014\"><span class=\"tocnumber\">4</span>
+      <span class=\"toctext\">2013/2014</span></a>\n<ul>\n<li class=\"toclevel-2 tocsection-12\"><a
+      href=\"#LAN_du_03.2F10.2F2013\"><span class=\"tocnumber\">4.1</span> <span class=\"toctext\">LAN
+      du 03/10/2013</span></a></li>\n<li class=\"toclevel-2 tocsection-13\"><a href=\"#LAN_du_24.2F10.2F2013\"><span
+      class=\"tocnumber\">4.2</span> <span class=\"toctext\">LAN du 24/10/2013</span></a></li>\n<li
+      class=\"toclevel-2 tocsection-14\"><a href=\"#LAN_du_28.2F11.2F2013\"><span
+      class=\"tocnumber\">4.3</span> <span class=\"toctext\">LAN du 28/11/2013</span></a></li>\n<li
+      class=\"toclevel-2 tocsection-15\"><a href=\"#LAN_du_05.2F12.2F2013\"><span
+      class=\"tocnumber\">4.4</span> <span class=\"toctext\">LAN du 05/12/2013</span></a></li>\n<li
+      class=\"toclevel-2 tocsection-16\"><a href=\"#LAN_du_20.2F02.2F2013\"><span
+      class=\"tocnumber\">4.5</span> <span class=\"toctext\">LAN du 20/02/2013</span></a></li>\n</ul>\n</li>\n</ul>\n</td></tr></table>\n<h2>
+      <span class=\"mw-headline\" id=\"2010.2F2011\"> 2010/2011 </span>\n</h2>\n<h3>
+      <span class=\"mw-headline\" id=\"LAN_du_09.2F03.2F2011\"> <span title=\"LAN:2011-03-09\"
+      data-link=\"/index.php/LAN:2011-03-09\">LAN du 09/03/2011</span> </span>\n</h3>\n<p>LAN
+      organisée le jeudi 9 mars après-midi en salle CESAL sur <span title=\"Jeux/ut2004\"
+      data-link=\"/index.php/Jeux/ut2004\">Unreal Tournament 2004</span>.\n</p>\n<p>Il
+      s'agit de la première LAN du GiGN, le lancement officiel du club qui avait déjà
+      proposé des serveurs de jeux (via <span title=\"Mario\" data-link=\"/index.php/Mario\">Mario</span>)
+      mais jamais organisé d'évènement jusque là.\n</p>\n<p>Les replays des matchs
+      sont disponibles sur le serveur FTP <a rel=\"nofollow\" class=\"external autonumber\"
+      href=\"ftp://ftp-rez.rez-gif.supelec.fr/assoces/gign/20110309-LAN01-UT2004-Demos.zip\">[1]</a>\n</p>\n<h3>
+      <span class=\"mw-headline\" id=\"LAN_du_03.2F05.2F2011\"> LAN du 03/05/2011
+      </span>\n</h3>\n<p>LAN organisée le lundi 3 mai au soir en salle CESAL sur <span
+      title=\"Jeux/war3\" data-link=\"/index.php/Jeux/war3\">Warcraft III</span>.\n</p>\n<p>Moins
+      de participants que la LAN précédente, mais toujours fun.\n</p>\n<h2> <span
+      class=\"mw-headline\" id=\"2011.2F2012\"> 2011/2012 </span>\n</h2>\n<h3> <span
+      class=\"mw-headline\" id=\"LAN_du_24.2F11.2F2011\"> <span title=\"LAN:2011-11-24\"
+      data-link=\"/index.php/LAN:2011-11-24\">LAN du 24/11/2011</span> </span>\n</h3>\n<p>Cette
+      LAN a été organisée à l'occasion du Movember le jeudi 24 novembre 2011 après-midi,
+      juste après les exams des séquences 1 et 5, en salle CESAL. Le principal jeu
+      joué a été <span title=\"Jeux/war3\" data-link=\"/index.php/Jeux/war3\">Warcraft
+      III: The Frozen Throne</span> (avec un peu de <span title=\"Jeux/urt\" data-link=\"/index.php/Jeux/urt\">Urbanterror</span>
+      à la fin).\n</p>\n<h3> <span class=\"mw-headline\" id=\"LAN_du_15.2F12.2F2011\">
+      <span class=\"new\" title=\"LAN:2011-12-15 (page inexistante)\" data-link=\"/index.php?title=LAN:2011-12-15&amp;action=edit&amp;redlink=1\">LAN
+      du 15/12/2011</span> </span>\n</h3>\n<p><span title=\"Jeux/lol\" data-link=\"/index.php/Jeux/lol\">League
+      of Legends</span> au local rezo, peu de monde, manque de communication, soirée
+      juste après.\n</p>\n<h3> <span class=\"mw-headline\" id=\"LAN_du_13.2F01.2F2012\">
+      <span class=\"new\" title=\"LAN:2012-01-13 (page inexistante)\" data-link=\"/index.php?title=LAN:2012-01-13&amp;action=edit&amp;redlink=1\">LAN
+      du 13/01/2012</span> </span>\n</h3>\n<p>LAN Switch-On. Le GiGN a seulement prêté
+      le matos (2 switchs et 1 FTP). Au programme <span title=\"Jeux/cs\" data-link=\"/index.php/Jeux/cs\">Counter
+      Strike</span> sur la map Supelec et <span title=\"Jeux/urt\" data-link=\"/index.php/Jeux/urt\">Urban
+      Terror</span>.\n</p>\n<h2> <span class=\"mw-headline\" id=\"2012.2F2013\"> 2012/2013
+      </span>\n</h2>\n<h3> <span class=\"mw-headline\" id=\"LAN_du_08.2F11.2F2012\">
+      <span class=\"new\" title=\"LAN:2012-11-08 (page inexistante)\" data-link=\"/index.php?title=LAN:2012-11-08&amp;action=edit&amp;redlink=1\">LAN
+      du 08/11/2012</span> </span>\n</h3>\n<p>LAN de Age Of Empires 2 en salle Césal
+      décidé après un sondage sur le <a rel=\"nofollow\" class=\"external text\" href=\"https://www.rez-gif.supelec.fr/sondage.php?a=old_disp&amp;id=56\">3w</a>.\n</p>\n<p>Une
+      dizaine de participant, 2 parties ont eu lieu (en 2vs2 et 4vs4)\n</p>\n<p>Une
+      lan de <span title=\"Jeux/war3\" data-link=\"/index.php/Jeux/war3\">Warcraft
+      III</span> a été faite juste après\n</p>\n<h3> <span class=\"mw-headline\" id=\"LAN_du_13.2F12.2F2012\">
+      <span class=\"new\" title=\"LAN:2012-12-13 (page inexistante)\" data-link=\"/index.php?title=LAN:2012-12-13&amp;action=edit&amp;redlink=1\">LAN
+      du 13/12/2012</span> </span>\n</h3>\n<p>LAN de <span title=\"Jeux/lol\" data-link=\"/index.php/Jeux/lol\">League
+      of Legends</span> en salle Césal\n</p>\n<h2> <span class=\"mw-headline\" id=\"2013.2F2014\">
+      2013/2014 </span>\n</h2>\n<h3> <span class=\"mw-headline\" id=\"LAN_du_03.2F10.2F2013\">
+      <span class=\"new\" title=\"LAN:2013-10-03 (page inexistante)\" data-link=\"/index.php?title=LAN:2013-10-03&amp;action=edit&amp;redlink=1\">LAN
+      du 03/10/2013</span> </span>\n</h3>\n<p>LAN de <span title=\"Jeux/utgoty\" data-link=\"/index.php/Jeux/utgoty\">Unreal
+      Tournament GOTY</span> et de Age Of Empire en salle Césal.\n</p>\n<p>L'écran
+      de la salle Césal a été aussi utilisé pour projeter les jeux de la Wii du GIGN\n</p>\n<p>LAN
+      plutôt réussi avec une trentaine de personne a être passé dans la journée. La
+      mise en place d'un ordinateur en libre service a permis à pas mal de monde de
+      jouer. \n</p>\n<h3> <span class=\"mw-headline\" id=\"LAN_du_24.2F10.2F2013\">
+      <span class=\"new\" title=\"LAN:2013-10-24 (page inexistante)\" data-link=\"/index.php?title=LAN:2013-10-24&amp;action=edit&amp;redlink=1\">LAN
+      du 24/10/2013</span> </span>\n</h3>\n<p>LAN de <span title=\"Jeux/utgoty\" data-link=\"/index.php/Jeux/utgoty\">Unreal
+      Tournament GOTY</span> et de Rise Of Nations en salle Césal.\n</p>\n<p>L'écran
+      de la salle Césal a été aussi utilisé pour projeter Smash Bros. Melee depuis
+      la Wii du GIGN\n</p>\n<h3> <span class=\"mw-headline\" id=\"LAN_du_28.2F11.2F2013\">
+      <span class=\"new\" title=\"LAN:2013-11-28 (page inexistante)\" data-link=\"/index.php?title=LAN:2013-11-28&amp;action=edit&amp;redlink=1\">LAN
+      du 28/11/2013</span> </span>\n</h3>\n<p>Lan de <span title=\"Jeux/cs\" data-link=\"/index.php/Jeux/cs\">Counter
+      Strike</span> et de Rise Of Nations en salle Césal\n</p>\n<p>L'écran de la salle
+      Césal a été utilisé pour projeter des jeux de la Wii du GIGN, puis de Injustice
+      depuis une tour.\n</p>\n<h3> <span class=\"mw-headline\" id=\"LAN_du_05.2F12.2F2013\">
+      <span class=\"new\" title=\"LAN:2013-12-05 (page inexistante)\" data-link=\"/index.php?title=LAN:2013-12-05&amp;action=edit&amp;redlink=1\">LAN
+      du 05/12/2013</span> </span>\n</h3>\n<p>LAN de <span title=\"Jeux/lol\" data-link=\"/index.php/Jeux/lol\">League
+      of Legends</span> en salle Césal\n</p>\n<h3> <span class=\"mw-headline\" id=\"LAN_du_20.2F02.2F2013\">
+      <span class=\"new\" title=\"LAN:2014-02-20 (page inexistante)\" data-link=\"/index.php?title=LAN:2014-02-20&amp;action=edit&amp;redlink=1\">LAN
+      du 20/02/2013</span> </span>\n</h3>\n<p>LAN de Halo et de <span title=\"Jeux/war3\"
+      data-link=\"/index.php/Jeux/war3\">Warcraft III</span> en salle Césal.\n</p>\n<p>Peu
+      de monde au début en raison de la visite du cri par le rézo, et d'un lendemain
+      de soirée.\n</p>\n<p>Vers le milieu on atteint une quinzaine de personne, et
+      la lan a fini en partie de left 4 dead 2 à 4 personnes.\n</p>\n\n\n</div>"
+    - 0
+    - 2014-07-29 20:13:57.000000000 Z
+    - 2014-08-04 21:19:18.000000000 Z
+    - 1
+    - 0
+  - - 4
+    - Les Weekend Geek
+    - les-weekend-geek
+    - 4
+    - "<p><br />\r\n&nbsp;</p>\r\n"
+    - 0
+    - 2014-07-29 20:35:12.000000000 Z
+    - 2014-08-01 20:41:38.000000000 Z
+    - 1
+    - 0
+  - - 5
+    - Service de prêt de la Nintendo Wii
+    - service-de-pret-de-la-nintendo-wii
+    - 5
+    - ''
+    - 0
+    - 2014-07-29 20:37:22.000000000 Z
+    - 2014-08-01 20:41:38.000000000 Z
+    - 1
+    - 0
+  - - 6
+    - WEG
+    - weg
+    - 2
+    - "<div class='wiki'><p>Compte rendu du WEG 2014\n</p>\n<p><br></p>\n<table id=\"toc\"
+      class=\"toc\"><tr><td>\n<div id=\"toctitle\"><h2>Sommaire</h2></div>\n<ul>\n<li
+      class=\"toclevel-1 tocsection-1\">\n<a href=\"#Organisation\"><span class=\"tocnumber\">1</span>
+      <span class=\"toctext\">Organisation</span></a>\n<ul>\n<li class=\"toclevel-2
+      tocsection-2\"><a href=\"#Repas\"><span class=\"tocnumber\">1.1</span> <span
+      class=\"toctext\">Repas</span></a></li>\n<li class=\"toclevel-2 tocsection-3\"><a
+      href=\"#Planning_de_Jeu\"><span class=\"tocnumber\">1.2</span> <span class=\"toctext\">Planning
+      de Jeu</span></a></li>\n<li class=\"toclevel-2 tocsection-4\"><a href=\"#Installation\"><span
+      class=\"tocnumber\">1.3</span> <span class=\"toctext\">Installation</span></a></li>\n</ul>\n</li>\n<li
+      class=\"toclevel-1 tocsection-5\">\n<a href=\"#D.C3.A9roulement\"><span class=\"tocnumber\">2</span>
+      <span class=\"toctext\">Déroulement</span></a>\n<ul>\n<li class=\"toclevel-2
+      tocsection-6\"><a href=\"#Repas_2\"><span class=\"tocnumber\">2.1</span> <span
+      class=\"toctext\">Repas</span></a></li>\n<li class=\"toclevel-2 tocsection-7\">\n<a
+      href=\"#Jeux\"><span class=\"tocnumber\">2.2</span> <span class=\"toctext\">Jeux</span></a>\n<ul>\n<li
+      class=\"toclevel-3 tocsection-8\"><a href=\"#Path_Of_Exile\"><span class=\"tocnumber\">2.2.1</span>
+      <span class=\"toctext\">Path Of Exile</span></a></li>\n<li class=\"toclevel-3
+      tocsection-9\"><a href=\"#Unreal_Tournament_GOTY\"><span class=\"tocnumber\">2.2.2</span>
+      <span class=\"toctext\">Unreal Tournament GOTY</span></a></li>\n<li class=\"toclevel-3
+      tocsection-10\"><a href=\"#Rise_Of_Nations\"><span class=\"tocnumber\">2.2.3</span>
+      <span class=\"toctext\">Rise Of Nations</span></a></li>\n<li class=\"toclevel-3
+      tocsection-11\"><a href=\"#Left_4_Dead_2\"><span class=\"tocnumber\">2.2.4</span>
+      <span class=\"toctext\">Left 4 Dead 2</span></a></li>\n<li class=\"toclevel-3
+      tocsection-12\"><a href=\"#Unreal_Tournament_3\"><span class=\"tocnumber\">2.2.5</span>
+      <span class=\"toctext\">Unreal Tournament 3</span></a></li>\n<li class=\"toclevel-3
+      tocsection-13\"><a href=\"#Counter_Strike\"><span class=\"tocnumber\">2.2.6</span>
+      <span class=\"toctext\">Counter Strike</span></a></li>\n<li class=\"toclevel-3
+      tocsection-14\"><a href=\"#League_of_Legends\"><span class=\"tocnumber\">2.2.7</span>
+      <span class=\"toctext\">League of Legends</span></a></li>\n<li class=\"toclevel-3
+      tocsection-15\"><a href=\"#Age_Of_Empires_2\"><span class=\"tocnumber\">2.2.8</span>
+      <span class=\"toctext\">Age Of Empires 2</span></a></li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>\n</td></tr></table>\n<h1>
+      <span class=\"mw-headline\" id=\"Organisation\"> Organisation </span>\n</h1>\n<h2>
+      <span class=\"mw-headline\" id=\"Repas\"> Repas </span>\n</h2>\n<ul>\n<li> Samedi
+      Midi : Repas à base de légume et poulet et  de riz (papsé pendant la campagne),
+      le tout préparé le matin et vendu à 2 euros l'assiette.\n</li>\n<li> Samedi
+      Soir : Commande groupé de pizza\n</li>\n<li> Dimanche Midi : Pâte carbonara,
+      préparé le matin, et vendu 2 euros le plat\n</li>\n<li> Dimanche Soir : Repas
+      avec les restes de Riz et de pâte\n</li>\n</ul>\n<h2> <span class=\"mw-headline\"
+      id=\"Planning_de_Jeu\"> Planning de Jeu </span>\n</h2>\n<ul><li> Samedi\n<ul>\n<li>
+      00h00 - 13h00 : Path Of Exile\n</li>\n<li> 13h00 - 15h00 : <span title=\"Jeux/utgoty\"
+      data-link=\"/index.php/Jeux/utgoty\">Unreal Tournament GOTY</span>\n</li>\n<li>
+      15h00 - 18h00 : Rise Of Nations\n</li>\n<li> 18h00 - 20h00 : Left 4 Dead 2\n</li>\n<li>
+      21h00 - 23h00 : <span class=\"new\" title=\"Jeux/ut3 (page inexistante)\" data-link=\"/index.php?title=Jeux/ut3&amp;action=edit&amp;redlink=1\">Unreal
+      Tournament 3</span>\n</li>\n</ul>\n</li></ul>\n<ul><li> Dimanche\n<ul>\n<li>
+      00h00 - 13h00 : Path Of Exile\n</li>\n<li> 13h00 - 15h00 : <span title=\"Jeux/cs\"
+      data-link=\"/index.php/Jeux/cs\">Counter Strike</span>\n</li>\n<li> 15h00 -
+      18h00 : <span title=\"Jeux/lol\" data-link=\"/index.php/Jeux/lol\">League of
+      Legends</span>\n</li>\n<li> 18h00 - 20h00 : Age Of Empires 2\n</li>\n<li> 21h00
+      - 23h00 : <span class=\"new\" title=\"Jeux/ut3 (page inexistante)\" data-link=\"/index.php?title=Jeux/ut3&amp;action=edit&amp;redlink=1\">Unreal
+      Tournament 3</span>\n</li>\n</ul>\n</li></ul>\n<h2> <span class=\"mw-headline\"
+      id=\"Installation\"> Installation </span>\n</h2>\n<p>2 écrans prêté par le barco,
+      pour projeter :\n</p>\n<ul>\n<li> La Wii du gign\n</li>\n<li> Une xbox 360 avec
+      Dead Or Alive 5 \n</li>\n</ul>\n<p>La sono a fourni l'alimentation nécessaire
+      pour tous les pc (dont 5 pc fixe), et plusieurs multiprise.\n</p>\n<p>En période
+      critique de pénurie de table, le rézo, le gnohm ont fourni les tables\n</p>\n<p>L'installation
+      a commencé le vendredi à 21h00 \n</p>\n<h1> <span class=\"mw-headline\" id=\"D.C3.A9roulement\">
+      Déroulement </span>\n</h1>\n<h2> <span class=\"mw-headline\" id=\"Repas_2\">
+      Repas </span>\n</h2>\n<p>Avec 60 euros dépensé dans les achats, on a récupéré
+      autant.\n</p>\n<h2> <span class=\"mw-headline\" id=\"Jeux\"> Jeux </span>\n</h2>\n<h3>
+      <span class=\"mw-headline\" id=\"Path_Of_Exile\"> Path Of Exile </span>\n</h3>\n<p>Le
+      samedi à minuit, une dizaine de personne était partante pour jouer. On a alors
+      fait 2 équipes, l'idée était de voir qui irait le plus loin à la fin du weekend.\n</p>\n<p>Ce
+      fut un échec, principalement parce que certaine personne connaissait le jeu,
+      et d'autre non.\nLe jeu a été arrêté aux alentours de 3h du matin le samedi\n</p>\n<h3>
+      <span class=\"mw-headline\" id=\"Unreal_Tournament_GOTY\"> <span title=\"Jeux/utgoty\"
+      data-link=\"/index.php/Jeux/utgoty\">Unreal Tournament GOTY</span> </span>\n</h3>\n<p>À
+      13h00, peu de personne était levé, on a donc commencé à 5-6 personnes, et fini
+      à environ 12-13 personnes.\n</p>\n<p>Du deathmatch quand il y avait peu de monde,
+      et du capture the flag pour finir.\n</p>\n<h3> <span class=\"mw-headline\" id=\"Rise_Of_Nations\">
+      Rise Of Nations </span>\n</h3>\n<p>Une seule partie de faite en 4 vs 4. Il est
+      quand même préférable de faire plusieurs match en équilibrant les niveaux pour
+      éviter les massacres.\n</p>\n<h3> <span class=\"mw-headline\" id=\"Left_4_Dead_2\">
+      Left 4 Dead 2 </span>\n</h3>\n<p>6-7 personnes seulement avait le jeu en version
+      payante (alors qu'il était gratuit pendant les vacances de noël).\n</p>\n<p>Un
+      versus en 3 vs 3 a été fait, assez sympa, même si certaines personnes rager
+      pour cause de soi-disant déséquilibre dans les équipes.\n</p>\n<h3> <span class=\"mw-headline\"
+      id=\"Unreal_Tournament_3\"> <span class=\"new\" title=\"Jeux/ut3 (page inexistante)\"
+      data-link=\"/index.php?title=Jeux/ut3&amp;action=edit&amp;redlink=1\">Unreal
+      Tournament 3</span> </span>\n</h3>\n<p>Peur de n'avoir peu de monde, comme le
+      jeu est assez lourd à installer (9go environ), et qu'il ne tourne pas sur tous
+      les pc.\n</p>\n<p>Finalement c'est la lan qui a le mieux marché. Jusqu'à une
+      quinzaine de personne. Même <a rel=\"nofollow\" class=\"external text\" href=\"http://www.lolking.net/summoner/euw/35857223\">Marin</a>
+      a installé le jeu sur son pc\n</p>\n<p>C'était assez intéressant de jouer sur
+      les mêmes map que celle de goty (surtout les 2 tours). C'était assez fun aussi
+      de lancer des maps random créé par la communauté. Ça change complètement le
+      jeu de temps en temps, et ça permet aussi d'équilibré lee jeu en insérant une
+      grande part de chance dans les parties.\n</p>\n<h3> <span class=\"mw-headline\"
+      id=\"Counter_Strike\"> <span title=\"Jeux/cs\" data-link=\"/index.php/Jeux/cs\">Counter
+      Strike</span> </span>\n</h3>\n<p>13h00, c'est toujours trop tôt, mais vers 14h00
+      6-7 personnes ont participé à la lan\n</p>\n<h3> <span class=\"mw-headline\"
+      id=\"League_of_Legends\"> <span title=\"Jeux/lol\" data-link=\"/index.php/Jeux/lol\">League
+      of Legends</span> </span>\n</h3>\n<p>Une dizaine de personne, intéressant à
+      faire, ça attire des personnes qui ne serait pas forcément resté le weekend
+      si il n'y avait pas ce jeu là.\n</p>\n<h3> <span class=\"mw-headline\" id=\"Age_Of_Empires_2\">
+      Age Of Empires 2 </span>\n</h3>\n<p>Les loleurs étant encore en train de jouer,
+      et pour cause de fatigue, la lan fut annulé\n</p>\n\n\n</div>"
+    - 0
+    - 2014-08-04 21:44:31.000000000 Z
+    - 2014-08-04 21:45:24.000000000 Z
+    - 3
+    - 0
+
+---
 section_translations:
   columns:
   - id
@@ -1290,52 +1208,364 @@ section_translations:
   - - 1
     - 1
     - fr
-    - '2014-08-01 20:41:39.085996'
-    - '2014-08-01 20:41:39.085996'
+    - 2014-08-01 20:41:39.000000000 Z
+    - 2014-08-01 20:41:39.000000000 Z
     - Dance Dance Revolution
     - dance-dance-revolution
   - - 2
     - 2
     - fr
-    - '2014-08-01 20:41:39.108563'
-    - '2014-08-04 21:44:08.126600'
+    - 2014-08-01 20:41:39.000000000 Z
+    - 2014-08-04 21:44:08.000000000 Z
     - Evénements
     - evenements
   - - 3
     - 3
     - fr
-    - '2014-08-01 20:41:39.125437'
-    - '2014-08-01 20:41:39.125437'
+    - 2014-08-01 20:41:39.000000000 Z
+    - 2014-08-01 20:41:39.000000000 Z
     - Présentation
     - presentation
   - - 4
     - 4
     - fr
-    - '2014-08-01 20:41:39.142401'
-    - '2014-08-01 20:41:39.142401'
+    - 2014-08-01 20:41:39.000000000 Z
+    - 2014-08-01 20:41:39.000000000 Z
     - WeG
     - weg
   - - 5
     - 5
     - fr
-    - '2014-08-01 20:41:39.159136'
-    - '2014-08-01 20:41:39.159136'
+    - 2014-08-01 20:41:39.000000000 Z
+    - 2014-08-01 20:41:39.000000000 Z
     - Prêt de la Wii
     - pret-de-la-wii
   - - 6
     - 6
     - fr
-    - '2014-08-01 20:41:39.176334'
-    - '2014-08-01 20:41:39.176334'
+    - 2014-08-01 20:41:39.000000000 Z
+    - 2014-08-01 20:41:39.000000000 Z
     - Partenariats
     - partenariats
   - - 7
     - 3
     - en
-    - '2014-08-01 20:54:19.783886'
-    - '2014-08-01 20:54:19.783886'
+    - 2014-08-01 20:54:19.000000000 Z
+    - 2014-08-01 20:54:19.000000000 Z
     - Presentation
     - presentation
+
+---
+sections:
+  columns:
+  - id
+  - name
+  - slug
+  - description
+  - display
+  - created_at
+  - updated_at
+  - user_id
+  records: 
+  - - 1
+    - Dance Dance Revolution
+    - dance-dance-revolution
+    - Partie du site dédié à la pratique de ddr
+    - true
+    - 2014-07-29 18:33:50.000000000 Z
+    - 2014-08-01 20:41:39.000000000 Z
+    - 1
+  - - 2
+    - Evénements
+    - evenements
+    - Information sur les LAN du GiGN
+    - true
+    - 2014-07-29 19:14:10.000000000 Z
+    - 2014-08-04 21:44:08.000000000 Z
+    - 1
+  - - 3
+    - Presentation
+    - presentation
+    - Présentation du GiGN
+    - true
+    - 2014-07-29 19:15:22.000000000 Z
+    - 2014-08-01 20:54:19.000000000 Z
+    - 1
+  - - 4
+    - WeG
+    - weg
+    - Weekend Geek
+    - false
+    - 2014-07-29 20:18:04.000000000 Z
+    - 2014-08-01 20:41:39.000000000 Z
+    - 1
+  - - 5
+    - Prêt de la Wii
+    - pret-de-la-wii
+    - Service de prêt de la console
+    - false
+    - 2014-07-29 20:18:52.000000000 Z
+    - 2014-08-01 20:41:39.000000000 Z
+    - 1
+  - - 6
+    - Partenariats
+    - partenariats
+    - Pour les partenariats avec les entreprises
+    - false
+    - 2014-07-29 20:20:25.000000000 Z
+    - 2014-08-01 20:41:39.000000000 Z
+    - 1
+
+---
+supplies:
+  columns:
+  - id
+  - name
+  - price
+  - description
+  - loanable
+  - created_at
+  - updated_at
+  - user_id
+  records: 
+  - - 1
+    - Wii
+    - 180
+    - ''
+    - true
+    - 2014-07-27 14:10:45.000000000 Z
+    - 2014-08-05 21:00:49.000000000 Z
+    - 1
+  - - 2
+    - Game Cube Gamepad
+    - 25
+    - ''
+    - true
+    - 2014-07-27 14:12:06.000000000 Z
+    - 2014-08-02 15:59:00.000000000 Z
+    - 1
+  - - 3
+    - Impact Soft DancePad
+    - 30
+    - ''
+    - true
+    - 2014-07-27 14:14:01.000000000 Z
+    - 2014-08-02 15:57:31.000000000 Z
+    - 1
+
+---
+supply_copies:
+  columns:
+  - id
+  - supply_id
+  - ref
+  - loanable
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - 1
+    - '0'
+    - false
+    - 2014-07-27 14:10:45.000000000 Z
+    - 2014-07-27 14:10:45.000000000 Z
+  - - 2
+    - 2
+    - '0'
+    - false
+    - 2014-07-27 14:12:06.000000000 Z
+    - 2014-07-27 14:12:06.000000000 Z
+  - - 3
+    - 2
+    - '0'
+    - false
+    - 2014-07-27 14:12:18.000000000 Z
+    - 2014-07-27 14:12:18.000000000 Z
+  - - 4
+    - 2
+    - '0'
+    - false
+    - 2014-07-27 14:12:19.000000000 Z
+    - 2014-07-27 14:12:19.000000000 Z
+  - - 5
+    - 2
+    - '0'
+    - false
+    - 2014-07-27 14:12:19.000000000 Z
+    - 2014-07-27 14:12:19.000000000 Z
+  - - 6
+    - 3
+    - '0'
+    - false
+    - 2014-07-27 14:14:01.000000000 Z
+    - 2014-07-27 14:14:01.000000000 Z
+  - - 7
+    - 3
+    - '0'
+    - false
+    - 2014-07-27 14:14:08.000000000 Z
+    - 2014-07-27 14:14:08.000000000 Z
+  - - 8
+    - 3
+    - '0'
+    - false
+    - 2014-07-27 14:14:09.000000000 Z
+    - 2014-07-27 14:14:09.000000000 Z
+  - - 9
+    - 3
+    - '0'
+    - false
+    - 2014-07-27 14:14:09.000000000 Z
+    - 2014-07-27 14:14:09.000000000 Z
+  - - 10
+    - 1
+    - '0'
+    - false
+    - 2014-08-05 21:01:00.000000000 Z
+    - 2014-08-05 21:01:00.000000000 Z
+  - - 11
+    - 1
+    - '0'
+    - false
+    - 2014-08-05 21:01:08.000000000 Z
+    - 2014-08-05 21:01:08.000000000 Z
+  - - 12
+    - 2
+    - '0'
+    - false
+    - 2014-08-05 21:01:17.000000000 Z
+    - 2014-08-05 21:01:17.000000000 Z
+  - - 13
+    - 2
+    - '0'
+    - false
+    - 2014-08-05 21:01:18.000000000 Z
+    - 2014-08-05 21:01:18.000000000 Z
+  - - 14
+    - 2
+    - '0'
+    - false
+    - 2014-08-05 21:01:19.000000000 Z
+    - 2014-08-05 21:01:19.000000000 Z
+  - - 15
+    - 2
+    - '0'
+    - false
+    - 2014-08-05 21:01:20.000000000 Z
+    - 2014-08-05 21:01:20.000000000 Z
+  - - 16
+    - 3
+    - '0'
+    - false
+    - 2014-08-05 21:01:30.000000000 Z
+    - 2014-08-05 21:01:30.000000000 Z
+  - - 17
+    - 3
+    - '0'
+    - false
+    - 2014-08-05 21:01:31.000000000 Z
+    - 2014-08-05 21:01:31.000000000 Z
+  - - 18
+    - 3
+    - '0'
+    - false
+    - 2014-08-05 21:01:32.000000000 Z
+    - 2014-08-05 21:01:32.000000000 Z
+  - - 19
+    - 3
+    - '0'
+    - false
+    - 2014-08-05 21:01:33.000000000 Z
+    - 2014-08-05 21:01:33.000000000 Z
+
+---
+supply_requests:
+  columns:
+  - id
+  - supply_id
+  - borrowing_id
+  - nb_supplies
+  - created_at
+  - updated_at
+  records: 
+  - - 20
+    - 1
+    - 2
+    - 1
+    - 2014-07-27 22:00:18.000000000 Z
+    - 2014-07-27 22:00:18.000000000 Z
+  - - 21
+    - 2
+    - 2
+    - 4
+    - 2014-07-27 22:00:19.000000000 Z
+    - 2014-07-27 22:00:19.000000000 Z
+  - - 25
+    - 1
+    - 6
+    - 1
+    - 2014-07-28 02:46:24.000000000 Z
+    - 2014-07-28 02:46:24.000000000 Z
+  - - 26
+    - 2
+    - 6
+    - 4
+    - 2014-07-28 02:47:04.000000000 Z
+    - 2014-07-28 02:47:41.000000000 Z
+  - - 27
+    - 3
+    - 6
+    - 4
+    - 2014-07-28 02:47:54.000000000 Z
+    - 2014-07-28 02:48:14.000000000 Z
+  - - 29
+    - 1
+    - 1
+    - 1
+    - 2014-07-29 21:12:45.000000000 Z
+    - 2014-08-09 10:22:02.000000000 Z
+  - - 30
+    - 2
+    - 1
+    - 2
+    - 2014-07-29 21:12:45.000000000 Z
+    - 2014-07-29 21:12:45.000000000 Z
+  - - 31
+    - 3
+    - 3
+    - 2
+    - 2014-08-01 10:56:01.000000000 Z
+    - 2014-08-01 10:56:01.000000000 Z
+  - - 32
+    - 1
+    - 11
+    - 1
+    - 2014-08-04 08:53:42.000000000 Z
+    - 2014-08-04 08:53:42.000000000 Z
+  - - 33
+    - 2
+    - 11
+    - 4
+    - 2014-08-04 08:53:42.000000000 Z
+    - 2014-08-04 08:53:42.000000000 Z
+  - - 34
+    - 1
+    - 7
+    - 2
+    - 2014-08-08 18:01:23.000000000 Z
+    - 2014-08-08 18:02:07.000000000 Z
+  - - 35
+    - 2
+    - 7
+    - 4
+    - 2014-08-08 18:01:33.000000000 Z
+    - 2014-08-08 18:02:03.000000000 Z
+  - - 36
+    - 3
+    - 7
+    - 4
+    - 2014-08-08 18:01:40.000000000 Z
+    - 2014-08-08 18:01:46.000000000 Z
 
 ---
 supply_translations:
@@ -1350,56 +1580,48 @@ supply_translations:
   - - 1
     - 1
     - fr
-    - '2014-08-02 15:57:31.439257'
-    - '2014-08-02 15:57:31.439257'
+    - 2014-08-02 15:57:31.000000000 Z
+    - 2014-08-02 15:57:31.000000000 Z
     - Wii
   - - 2
     - 2
     - fr
-    - '2014-08-02 15:57:31.483948'
-    - '2014-08-02 15:57:31.483948'
+    - 2014-08-02 15:57:31.000000000 Z
+    - 2014-08-02 15:57:31.000000000 Z
     - Manette de Game Cube
   - - 3
     - 3
     - fr
-    - '2014-08-02 15:57:31.501025'
-    - '2014-08-02 15:57:31.501025'
+    - 2014-08-02 15:57:31.000000000 Z
+    - 2014-08-02 15:57:31.000000000 Z
     - Impact Soft DancePad
   - - 4
     - 2
     - en
-    - '2014-08-02 15:59:00.680392'
-    - '2014-08-02 15:59:00.680392'
+    - 2014-08-02 15:59:00.000000000 Z
+    - 2014-08-02 15:59:00.000000000 Z
     - Game Cube Gamepad
 
 ---
-pack_translations:
+upload_files:
   columns:
   - id
-  - pack_id
-  - locale
+  - name
+  - url
+  - fileable_type
+  - fileable_id
   - created_at
   - updated_at
-  - name
+  - user_id
   records: 
   - - 1
+    - pika_girl.mp3
+    - pika_girl.mp3
+    - 
+    - 
+    - 2014-07-30 23:24:03.000000000 Z
+    - 2014-07-30 23:24:03.000000000 Z
     - 1
-    - fr
-    - '2014-08-02 15:57:31.708985'
-    - '2014-08-02 15:57:31.708985'
-    - Pack Wii
-  - - 2
-    - 2
-    - fr
-    - '2014-08-02 15:57:31.731969'
-    - '2014-08-02 15:57:31.731969'
-    - Double Tapis
-  - - 3
-    - 2
-    - en
-    - '2014-08-02 15:59:49.546011'
-    - '2014-08-02 15:59:49.546011'
-    - Double Dance Pad
 
 ---
 users:
@@ -1424,144 +1646,263 @@ users:
   - steamid
   - steam_name
   - steam_url
+  - steam_public
   records: 
   - - 1
     - Sélim
-    - '2014-07-27 14:09:54.571240'
-    - '2014-08-05 19:43:26.392217'
+    - 2014-07-27 14:09:54.000000000 Z
+    - 2014-08-16 15:58:39.000000000 Z
     - selim.menouarmenari@supelec.fr
     - "$2a$10$NUCru9D2BF6n/ZY5m495vOirNTsuZ30sVSrV7SXKbyIW3mS/77s76"
     - 
     - 
     - 
-    - 50
-    - '2014-08-05 19:43:26.389187'
-    - '2014-08-05 18:11:18.007412'
-    - 10.11.156.164
+    - 88
+    - 2014-08-16 15:58:39.000000000 Z
+    - 2014-08-16 15:16:33.000000000 Z
+    - 10.13.156.164
     - 10.13.156.164
     - 
-    - '2014-07-27 14:10:12.245489'
-    - '2014-07-27 14:09:55.888211'
+    - 2014-07-27 14:10:12.000000000 Z
+    - 2014-07-27 14:09:55.000000000 Z
     - 76561198051077030
     - Ningirsu
     - http://steamcommunity.com/id/ningirsu/
+    - true
   - - 2
     - Jean-sebastien Renaud
-    - '2014-07-27 20:05:19.826671'
-    - '2014-08-05 07:27:13.055276'
+    - 2014-07-27 20:05:19.000000000 Z
+    - 2014-08-14 09:41:20.000000000 Z
     - jean-sebastien.renaud@supelec.fr
     - "$2a$10$362VePdhZlELlGA4wcbPOu.aqaj8aZnqobomQczWn/7Z08ncHyAgi"
     - 
     - 
     - 
-    - 3
-    - '2014-08-05 07:27:13.052723'
-    - '2014-07-29 19:12:54.913927'
-    - 92.90.16.219
-    - 82.237.114.104
+    - 7
+    - 2014-08-14 09:41:20.000000000 Z
+    - 2014-08-08 06:49:25.000000000 Z
+    - 92.90.20.219
+    - 92.90.26.26
     - 
-    - '2014-07-27 20:05:47.656921'
-    - '2014-07-27 20:05:21.192716'
-    - 
-    - 
-    - 
+    - 2014-07-27 20:05:47.000000000 Z
+    - 2014-07-27 20:05:21.000000000 Z
+    - 76561198120211177
+    - BackIsBachus
+    - http://steamcommunity.com/profiles/76561198120211177/
+    - true
   - - 3
     - CSDT
-    - '2014-07-27 20:26:10.311951'
-    - '2014-08-05 18:15:18.029086'
+    - 2014-07-27 20:26:10.000000000 Z
+    - 2014-08-05 18:15:18.000000000 Z
     - florian.lemaitre@supelec.fr
     - "$2a$10$1NXce1Jqd82aQ8uvo8x50egaFFCgBEadr/hoNTye88O7w3KCACm8W"
     - 
     - 
-    - '2014-08-05 18:15:17.971004'
+    - 2014-08-05 18:15:17.000000000 Z
     - 6
-    - '2014-08-05 18:15:18.025136'
-    - '2014-08-04 21:42:28.989636'
+    - 2014-08-05 18:15:18.000000000 Z
+    - 2014-08-04 21:42:28.000000000 Z
     - 10.18.158.187
     - 10.18.158.187
     - 
-    - '2014-07-27 20:26:31.424717'
-    - '2014-07-27 20:26:10.315707'
+    - 2014-07-27 20:26:31.000000000 Z
+    - 2014-07-27 20:26:10.000000000 Z
     - 76561198079706686
     - CSDT
     - http://steamcommunity.com/id/csdt/
+    - true
   - - 4
     - Verene Houdebine
-    - '2014-07-27 21:05:16.749458'
-    - '2014-07-30 16:26:48.639510'
+    - 2014-07-27 21:05:16.000000000 Z
+    - 2014-07-30 16:26:48.000000000 Z
     - verene.houdebine@supelec.fr
     - "$2a$10$v2IiVwhjUjDvtJ/v2jvROuP3iZsaptJaBdT4eW0VAKMV9oz5tyvIO"
     - 
     - 
     - 
     - 5
-    - '2014-07-30 16:26:48.635248'
-    - '2014-07-29 17:46:17.132302'
+    - 2014-07-30 16:26:48.000000000 Z
+    - 2014-07-29 17:46:17.000000000 Z
     - 85.180.209.12
     - 85.180.208.5
     - 
-    - '2014-07-27 21:07:22.945163'
-    - '2014-07-27 21:05:18.128581'
+    - 2014-07-27 21:07:22.000000000 Z
+    - 2014-07-27 21:05:18.000000000 Z
     - 
     - 
     - 
+    - false
   - - 5
     - Guillaume Borrits
-    - '2014-07-28 02:43:50.411706'
-    - '2014-07-29 04:00:57.338032'
+    - 2014-07-28 02:43:50.000000000 Z
+    - 2014-08-08 17:43:19.000000000 Z
     - guillaume.borrits@supelec.fr
-    - "$2a$10$95XU5h6n5d2n2x30Rbi8DeBVmI96xOHpZY0SYRKz.4/SZKsHRLoWm"
+    - "$2a$10$IQQV6fWHGpUtaz1/T9xIAeT4fBciFxdktrO1weTAqXTRjTtmNAM0W"
+    - 5xzTMiaERPaUVSxFZBPj
     - 
     - 
-    - 
-    - 2
-    - '2014-07-29 04:00:57.335803'
-    - '2014-07-28 02:45:49.984136'
+    - 3
+    - 2014-08-08 17:43:19.000000000 Z
+    - 2014-07-29 04:00:57.000000000 Z
+    - 10.15.154.66
     - 220.214.165.213
-    - 27.253.251.110
     - 
-    - '2014-07-28 02:45:30.119086'
-    - '2014-07-28 02:43:50.415611'
-    - 
-    - 
-    - 
+    - 2014-07-28 02:45:30.000000000 Z
+    - 2014-07-28 02:43:50.000000000 Z
+    - 76561197987212494
+    - guillaumeb
+    - http://steamcommunity.com/profiles/76561197987212494/
+    - true
   - - 6
     - Maxime Pruneau
-    - '2014-08-04 08:46:04.467588'
-    - '2014-08-04 08:49:25.315504'
+    - 2014-08-04 08:46:04.000000000 Z
+    - 2014-08-04 08:49:25.000000000 Z
     - maxime.pruneau@supelec.fr
     - "$2a$10$2.Cr5.UlTPFC9NaMHsHjfe4jsp.7.olRoG16NW.2aR9Dg3nA53xVK"
     - 
     - 
     - 
     - 1
-    - '2014-08-04 08:49:25.313114'
-    - '2014-08-04 08:49:25.313114'
+    - 2014-08-04 08:49:25.000000000 Z
+    - 2014-08-04 08:49:25.000000000 Z
     - 131.113.66.12
     - 131.113.66.12
     - 2378baca747bec4153248fc682ffb815fef4407d00dc702c323a5fcc6fbca2d4
-    - '2014-08-04 08:49:11.469670'
-    - '2014-08-04 08:46:06.322969'
+    - 2014-08-04 08:49:11.000000000 Z
+    - 2014-08-04 08:46:06.000000000 Z
     - 
     - 
     - 
+    - false
   - - 7
     - Jean-alix David
-    - '2014-08-04 08:47:51.821711'
-    - '2014-08-04 08:48:33.312406'
+    - 2014-08-04 08:47:51.000000000 Z
+    - 2014-08-04 08:48:33.000000000 Z
     - jean-alix.david@supelec.fr
     - "$2a$10$efNYM1LjwM/ds2h1fZzPKOXOeEW4D6a4d1zn5P/wVqMPf3dc3EaT6"
     - 
     - 
-    - '2014-08-04 08:48:33.257244'
+    - 2014-08-04 08:48:33.000000000 Z
     - 1
-    - '2014-08-04 08:48:33.310121'
-    - '2014-08-04 08:48:33.310121'
+    - 2014-08-04 08:48:33.000000000 Z
+    - 2014-08-04 08:48:33.000000000 Z
     - 82.225.210.8
     - 82.225.210.8
     - b4edd753e1a0ec0776fff551e15c850d7d033f14a4a51ddcfdcec2d70948085f
-    - '2014-08-04 08:48:28.072138'
-    - '2014-08-04 08:47:51.825977'
+    - 2014-08-04 08:48:28.000000000 Z
+    - 2014-08-04 08:47:51.000000000 Z
     - 
     - 
     - 
+    - false
+  - - 8
+    - Florian Makhloufi
+    - 2014-08-09 15:27:30.000000000 Z
+    - 2014-08-09 15:28:05.000000000 Z
+    - florian.makhloufi@supelec.fr
+    - "$2a$10$TzrYnsGI/Vjp7.3p0FJoquR2H4BcjGwQiUdB8DnKPpLLTq1B54QJO"
+    - 
+    - 
+    - 
+    - 1
+    - 2014-08-09 15:28:05.000000000 Z
+    - 2014-08-09 15:28:05.000000000 Z
+    - 10.11.159.110
+    - 10.11.159.110
+    - 5de2dbef45fe8d89a6df39e1936521b6f95685651bd8cf28aa2da684d09bba39
+    - 2014-08-09 15:27:52.000000000 Z
+    - 2014-08-09 15:27:31.000000000 Z
+    - 76561198119604530
+    - Jack
+    - http://steamcommunity.com/profiles/76561198119604530/
+    - true
+  - - 9
+    - Arthur Villard
+    - 2014-08-10 09:17:16.000000000 Z
+    - 2014-08-15 08:27:58.000000000 Z
+    - arthur.villard@supelec.fr
+    - "$2a$10$50bM4S5yJk6C1p5mYUZvPuhZMG/ZFnh/yTr3g8xSQFeWYRZO8NfbS"
+    - 
+    - 
+    - 
+    - 4
+    - 2014-08-15 08:27:58.000000000 Z
+    - 2014-08-13 22:00:32.000000000 Z
+    - 92.141.84.76
+    - 90.6.60.117
+    - 88e844b62d6f03a59bf265f272ad7ad4a7c63823c5d6e69150d3419e2ce72a2e
+    - 2014-08-10 09:19:50.000000000 Z
+    - 2014-08-10 09:17:16.000000000 Z
+    - 76561198038645405
+    - It Was Me
+    - http://steamcommunity.com/profiles/76561198038645405/
+    - true
+  - - 10
+    - Stephane-jean Martini
+    - 2014-08-10 12:53:05.000000000 Z
+    - 2014-08-10 12:54:44.000000000 Z
+    - stephane-jean.martini@supelec.fr
+    - "$2a$10$by3MdZIKAScr2hIEPaH91.iOMoU1IcPwxhfm0IkCNDp3go9vPyxRW"
+    - 
+    - 
+    - 2014-08-10 12:54:44.000000000 Z
+    - 1
+    - 2014-08-10 12:54:44.000000000 Z
+    - 2014-08-10 12:54:44.000000000 Z
+    - 10.12.157.167
+    - 10.12.157.167
+    - 04f4f629eee303c0995ba57b25557f2138444656445a2b7ed220579fe13d7d90
+    - 2014-08-10 12:54:31.000000000 Z
+    - 2014-08-10 12:53:05.000000000 Z
+    - 76561198131410000
+    - stephanejean.martini
+    - http://steamcommunity.com/id/makaxfr/
+    - true
+  - - 11
+    - Gauthier Sebaux
+    - 2014-08-13 22:43:35.000000000 Z
+    - 2014-08-16 10:32:23.000000000 Z
+    - gauthier.sebaux@supelec.fr
+    - "$2a$10$YnTqeO.AQa0YSbDxM9qerupzsJiB9Fl4kFBYtXJ0OFA8flNEz/oEW"
+    - 
+    - 
+    - 
+    - 2
+    - 2014-08-16 10:32:23.000000000 Z
+    - 2014-08-13 22:47:48.000000000 Z
+    - 10.13.159.195
+    - 10.11.159.195
+    - d5a624a811cb9b07cab8dc345ce130e2beddc1f155ff17eeac3f22820615851f
+    - 2014-08-13 22:47:37.000000000 Z
+    - 2014-08-13 22:43:37.000000000 Z
+    - 76561198035552929
+    - zeroNounours
+    - http://steamcommunity.com/profiles/76561198035552929/
+    - true
+
+---
+users_groups:
+  columns:
+  - user_id
+  - group_id
+  records: 
+  - - 1
+    - 1
+  - - 2
+    - 3
+  - - 3
+    - 1
+  - - 4
+    - 1
+  - - 5
+    - 1
+  - - 6
+    - 1
+  - - 7
+    - 1
+  - - 8
+    - 2
+  - - 9
+    - 3
+  - - 11
+    - 3
