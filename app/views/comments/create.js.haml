@@ -1,0 +1,2 @@
+$('#comments_content_#{@commentable.class.name.downcase}_#{@commentable.id}').remove()
+$('#comments_#{@commentable.class.name.downcase}_#{@commentable.id}').append('#{j render 'comments/content', resource: @commentable}')
