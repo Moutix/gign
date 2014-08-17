@@ -4,6 +4,9 @@ Gign::Application.routes.draw do
     localized do
       
       resources :games, only: [:index, :show] do
+        collection do
+          get :reload_achievements
+        end
         member do
           get :achievements
           post :ask_permission

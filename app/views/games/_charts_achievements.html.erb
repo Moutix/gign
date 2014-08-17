@@ -4,7 +4,28 @@ var ready = function() {
     $(function () { 
         $('#charts_achievements').highcharts({
             chart: {
-                zoomType: 'x'
+                zoomType: 'x',
+                events :{
+                    selection: function(event) {
+                        if (event.xAxis) {
+                            $.ajax({
+                                type: "GET",
+                                url: '<%=reload_achievements_games_path%>',
+                                data: {
+                                    datemin : Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', event.xAxis[0].min),
+                                    datemax : Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', event.xAxis[0].max),
+                                },
+                                dataType: 'script',
+                            });  
+                        } else{
+                             $.ajax({
+                                type: "GET",
+                                url: '<%=reload_achievements_games_path%>',
+                                dataType: 'script',
+                            });  
+                        }
+                    }
+                }
             },
             title: {
                 text: '<%= title%>'

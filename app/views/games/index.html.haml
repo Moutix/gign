@@ -6,9 +6,9 @@
   .col-md-8
     %div{id: "charts_achievements"}
   .col-md-4
-    %h4= t("steam.show.last_achievements")
-    = render "games/user_achievements", user_achievements: UserAchievement.unscoped.order(timestamp: :desc).limit(5).includes(user: :images, achievement: :game)
-
+    #list-achievements
+      %h4= t("steam.show.last_achievements")
+      = render "games/user_achievements", user_achievements: @user_achievements
 = render "charts_achievements", title: t("steam.charts.achievements.title_total.top"), achievements: UserAchievement.number_achievements_by(1.days, Time.now-15.days)
 
 .row
