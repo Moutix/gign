@@ -44,7 +44,7 @@ class GamesController < ApplicationController
     if params[:datemin] && params[:datemax]
       @datemin = Time.strptime(params[:datemin], '%Y-%m-%d %H:%M:%S')
       @datemax = Time.strptime(params[:datemax], '%Y-%m-%d %H:%M:%S')
-      if User.find(params[:user_id])
+      if !User.where(id: params[:user_id]).empty?
         @user_achievements = UserAchievement.unscoped.where(timestamp: @datemin..@datemax, user_id: params[:user_id]).order(timestamp: :desc).limit(8).includes(user: :images, achievement: :game)
       else
         @user_achievements = UserAchievement.unscoped.where(timestamp: @datemin..@datemax).order(timestamp: :desc).limit(8).includes(user: :images, achievement: :game)
@@ -52,7 +52,7 @@ class GamesController < ApplicationController
     else
       @datemin = nil
       @datemax = nil
-      if User.find(params[:user_id])  
+      if !User.where(id: params[:user_id]).empty?
         @user_achievements = UserAchievement.unscoped.where(user_id: params[:user_id]).order(timestamp: :desc).limit(8).includes(user: :images, achievement: :game)
       else
         @user_achievements = UserAchievement.unscoped.order(timestamp: :desc).limit(8).includes(user: :images, achievement: :game)
