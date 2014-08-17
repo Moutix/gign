@@ -1,5 +1,4 @@
 <script>
-<% int = achievements.keys.second - achievements.keys.first%>
 var ready = function() {
     $(function () { 
         $('#charts_achievements').highcharts({
@@ -45,9 +44,7 @@ var ready = function() {
             series: [{
                 type: 'line',
                 name: '<%= I18n.t("steam.charts.achievements.title.yaxis")%>',
-                pointInterval: 1000*<%=int%>,
-                pointStart: Date.UTC(<%=achievements.keys.first.year%>, <%=achievements.keys.first.month-1%>, <%=achievements.keys.first.day%>),
-                data: <%=achievements.values%>
+                data: <%=achievements.map{|k, v| [k.to_i*1000, v]}%>
                 }
             ]
         });
