@@ -1,0 +1,44 @@
+.center
+  %h1= @section.name
+  = @section.description
+
+%hr
+.row
+  .col-sm-3
+    = render 'pages/left_menu', pages: @pages
+  .col-sm-9
+    = render 'pages/list_pages', pages: @pages
+
+
+.form-actions
+  - if can? :update, @section
+    %button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#sectionModal"}
+      = t("helpers.links.edit")
+
+    = render 'sections/form', section: @section
+  
+  - if can? :activate, @section
+    - if @section.display
+      = link_to t("section.desactivate.links"), activate_section_path(@section), class: 'btn btn-primary', method: :post
+    -else
+      = link_to t("section.activate.links"), activate_section_path(@section), class: 'btn btn-primary', method: :post
+
+
+    
+    - if can? :create, Page
+      = link_to t('.new', :default => t("helpers.links.new"), name: Page.model_name.human),
+                new_section_page_path(@section),
+                :class => 'btn btn-primary'
+    - if can? :upload, @section
+      %button.btn.btn-default{"data-toggle" => "modal", "data-target" => "#imageModal"}
+        %i.fa.fa-upload
+        = t("form.image.title")
+      = render 'images/form', resource: @section
+
+      
+      = render 'shared/errors_messages', resource: @section
+    %a.btn.btn-default{"data-toggle" => "collapse", href: "#list_images"}
+      = t("image.collapse")
+
+#list_images.panel-collapse.collapse
+  = render 'images/list', images: @section.images

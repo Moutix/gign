@@ -19,6 +19,10 @@
 #  confirmation_token     :string(255)
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
+#  steamid                :integer
+#  steam_name             :string(255)
+#  steam_url              :string(255)
+#  steam_public           :boolean          default(FALSE)
 #
 
 class User < ActiveRecord::Base
@@ -99,13 +103,8 @@ class User < ActiveRecord::Base
   end
 
   def fullname
-    if name.blank?
-      email
-    else
-      name
-    end
+    t = steam_name ? "#{name}(#{steam_name})" : name
   end
-
 
   def active_basket
     active_basket = self.borrowings.where(effective: false).last

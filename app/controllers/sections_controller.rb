@@ -37,7 +37,7 @@ class SectionsController < ApplicationController
     authorize! :update, @section
     respond_to do |format|
       if @section.update(section_params)
-        format.html { redirect_to @section, notice: 'Section was successfully updated.' }
+        format.html { redirect_to ((request.referer =~ /\/s$/) ? sections_path : @section), notice: 'Section was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'show' }
@@ -59,7 +59,7 @@ class SectionsController < ApplicationController
   
   def activate
     authorize! :activate, @section
-    @section.activate
+    @section.activate!
   
     if @section.display
       flash[:info] = t("info.section.activate")
@@ -80,6 +80,6 @@ class SectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def section_params
-      params.require(:section).permit(:name, :description)
+      params.require(:section).permit(:name, :description, :blog)
     end
 end

@@ -3,4 +3,5 @@
 %h1= t '.title', :default => model_class.model_name.human.pluralize.titleize
 
 = render 'list', images: @images
-
+.center
+  = paginate @images, :window => 2

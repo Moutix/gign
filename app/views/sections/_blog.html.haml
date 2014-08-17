@@ -1,0 +1,13 @@
+- if can? :create, Page
+  = link_to t('.new', :default => t("helpers.links.new"), name: Page.model_name.human),
+          new_section_page_path(@section),
+          :class => 'btn btn-primary'
+ 
+- @pages.each do |page|
+  .well
+    .center
+      %h4= link_to page.name, section_page_path(@section, page)
+
+    = render 'pages/content', page: page
+    = render "comments/list", resource: page
+  %hr

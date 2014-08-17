@@ -76,6 +76,7 @@ fr:
         user: Crée par
         created_at: Crée le
         created_since: Crée depuis
+        created_ago: Crée il y a
         updated_at: Mis à jour le
       supply:
         <<: *all
@@ -183,6 +184,7 @@ fr:
       finish: Etat lorsque vous avez rendu votre emprunt.
   
   section:
+    blog: "Assigner au blog"
     activate:
       links: Activer cette section
     desactivate:

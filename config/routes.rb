@@ -10,7 +10,7 @@ Gign::Application.routes.draw do
         end
       end
       
-      resources :sections, only: [:index, :show, :destroy, :create, :update] do
+      resources :sections, only: [:index, :show, :destroy, :create, :update], path: 's' do
         resources :pages, except: [:index], path: '/' do
           member do
             post :import
