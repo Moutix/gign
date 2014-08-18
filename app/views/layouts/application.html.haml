@@ -1,7 +1,14 @@
 !!!
 %html
   %head
-    %title GiGN
+    %meta{:charset => "UTF-8"}
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}
+    %title GiGN - Gif Gaming Network
+    %meta{:name => "description", :content => t("meta.description")}
+    %meta{:name => "keywords", :content => t("meta.keywords")}
+    %meta{:name => "author", :content => t("meta.author")}
+    - hreflang = I18n.locale == :fr ? 'en' : 'fr'
+    %link{href: request.host + current_url_with_locale(hreflang), hreflang: hreflang, rel: "alternate"}
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "/ace/ace", "/ace/ext-language_tools", "data-turbolinks-track" => true
     = favicon_link_tag 'favicon.ico'
