@@ -58,6 +58,7 @@ class SteamService
   end
   
   def self.update_all
+    start_script = Time.now
     User.public_steam_users.each do |user|
       puts "----------------------------------------------------------"
       puts user.name
@@ -76,6 +77,8 @@ class SteamService
         game.update_columns(total_playtime: total_playtime, recent_playtime: recent_playtime, in_cache: in_cache, users_count: game.users.length, user_achievements_count: game.user_achievements.length)
       end
     end
+    end_script = Time.now
+    puts "executed in #{ActionController::Base.helpers.distance_of_time_in_words(start_script, end_script)}"
     Game.reindex
   end
 
