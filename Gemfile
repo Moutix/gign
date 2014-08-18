@@ -86,6 +86,9 @@ gem 'mechanize'
 gem 'nokogiri'
 gem 'whenever'
 
+#generate sitemap
+gem 'sitemap_generator'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

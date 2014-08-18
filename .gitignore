@@ -17,3 +17,4 @@
 /public/uploads
 /config/application.rb
 /config/database.yml
+/public/sitemap.xml.gz
