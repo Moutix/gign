@@ -14,9 +14,10 @@ class GamesController < ApplicationController
       if session[:games] == 'all'
         @games = Game.includes(:images, :port_forwarding).all.page(params[:page])
       else
-        @games = Game.includes(:images, :port_forwarding).order(recent_playtime: :desc, total_playtime: :desc).page(params[:page])
+        @games = Game.includes(:images, :port_forwarding).order(total_playtime: :desc).page(params[:page])
       end
     end
+    @last_games = Game.includes(:images, :port_forwarding).order(recent_playtime: :desc, total_playtime: :desc).limit(5)
   end
 
   def show

@@ -3,7 +3,8 @@ fr:
     search: "Rechercher un jeu"
     in_cache: Dans le cache
     need_permissions: Attention ce jeu peut nécessiter une ouverture de port
-    
+    last_played_games: Derniers jeux joués
+
     firewall:
       ask_permission: Demander une ouverture de port
       success: Un email a été envoyé à firewall@larez.fr

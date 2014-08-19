@@ -56,7 +56,18 @@ class SteamService
     end
     return this_user_achievement
   end
-  
+
+  def update_online_state!
+    p @id.online?
+    @user.update_column(:online, @id.online?)
+  end
+
+  def self.update_online!
+    User.public_steam_users.each do |user|
+      self.new(user).update_online_state!
+    end
+  end
+
   def self.update_all
     start_script = Time.now
     User.public_steam_users.each do |user|
