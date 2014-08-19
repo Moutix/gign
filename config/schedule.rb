@@ -19,8 +19,12 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.day, :at => '5am' do
+every 3.hours do
   runner "SteamService.update_all"
+end
+
+every 1.minutes do
+  runner "SteamService.update_online!"
 end
 
 every 1.day, :at => '6am' do

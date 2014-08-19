@@ -1,0 +1,6 @@
+.center
+  %h4= t("steam.last_played_games")
+  .last-games
+    %span
+      - games.each do |game|
+        = render 'games/image_game', game: game

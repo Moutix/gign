@@ -2,6 +2,8 @@
 
 = render "games_resume", games: Game.all, user_achievements: UserAchievement.all, game_played: Game.all.played, user_stats: UserStat.all
 
+= render "last_games", games: @last_games
+
 .row
   .col-md-8
     %div{id: "charts_achievements"}

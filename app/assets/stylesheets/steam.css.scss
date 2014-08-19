@@ -34,9 +34,10 @@
 }
 
 .list-steam-user{display:inline-flex;}
+.steam-avatar.online{background: linear-gradient(to bottom, #278D1E 5%,#003004 95%);}
 .steam-avatar{
   width:36px;height:36px;position:relative;padding:2px;border-radius:3px;margin:1px;
-  background: linear-gradient(to bottom, #278D1E 5%,#003004 95%);
+  background: linear-gradient(to bottom, rgba(134, 134, 134, 0.77) 5%,#003004 95%);
   img {width:32px;height:32px;border:1px solid #3B3D3A;border-radius:3px;background-color:white;position:absolute}
 }
 
@@ -44,4 +45,5 @@
   .show-time{width:50px;}
   display: inline-flex;
 }
+.last-games{.steam-image{display: inline-block;margin:5px;}}
 
