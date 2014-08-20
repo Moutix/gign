@@ -45,9 +45,10 @@ module ApplicationHelper
   end
   
   def distance_of_hours_in_words(number)
-    return 0 if number == 0
-    return distance_of_time_in_words(number) if number < 3600
-    t "datetime.distance_in_words.about_x_hours", count: number/3600
+    return 0 if (number.nil?)
+    return 0 if (number == 0)
+    return distance_of_time_in_words(number*60) if number < 60
+    t "datetime.distance_in_words.about_x_hours", count: (number/60).round
   end
 
 end

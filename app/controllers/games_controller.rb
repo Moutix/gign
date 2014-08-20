@@ -6,7 +6,7 @@ class GamesController < ApplicationController
     session[:games] = params[:games] if params[:games]
     session[:q] = params[:q] if params[:q]
 
-    @user_achievements = UserAchievement.unscoped.order(timestamp: :desc).limit(8).includes(user: :images, achievement: :game)
+    @user_achievements = UserAchievement.unscoped.order(timestamp: :desc).limit(6).includes(user: :images, achievement: :game)
 
     if !session[:q].blank?
       @games = Game.search session[:q], fields: [{name: :word_start}], includes: [:port_forwarding, :images]
@@ -46,17 +46,21 @@ class GamesController < ApplicationController
       @datemin = Time.strptime(params[:datemin], '%Y-%m-%d %H:%M:%S')
       @datemax = Time.strptime(params[:datemax], '%Y-%m-%d %H:%M:%S')
       if !User.where(id: params[:user_id]).empty?
-        @user_achievements = UserAchievement.unscoped.where(timestamp: @datemin..@datemax, user_id: params[:user_id]).order(timestamp: :desc).limit(8).includes(user: :images, achievement: :game)
+        @user_achievements = UserAchievement.unscoped.where(timestamp: @datemin..@datemax, user_id: params[:user_id]).order(timestamp: :desc).limit(6).includes(user: :images, achievement: :game)
+      elsif !Game.where(id: params[:game_id]).empty?
+        @user_achievements = UserAchievement.unscoped.joins(:game).where(timestamp: @datemin..@datemax, 'games.id' => params[:game_id]).order(timestamp: :desc).limit(6).includes(user: :images, achievement: :game)
       else
-        @user_achievements = UserAchievement.unscoped.where(timestamp: @datemin..@datemax).order(timestamp: :desc).limit(8).includes(user: :images, achievement: :game)
+        @user_achievements = UserAchievement.unscoped.where(timestamp: @datemin..@datemax).order(timestamp: :desc).limit(6).includes(user: :images, achievement: :game)
       end
     else
       @datemin = nil
       @datemax = nil
       if !User.where(id: params[:user_id]).empty?
-        @user_achievements = UserAchievement.unscoped.where(user_id: params[:user_id]).order(timestamp: :desc).limit(8).includes(user: :images, achievement: :game)
+        @user_achievements = UserAchievement.unscoped.where(user_id: params[:user_id]).order(timestamp: :desc).limit(6).includes(user: :images, achievement: :game)
+      elsif !Game.where(id: params[:game_id]).empty?
+        @user_achievements = Game.find(params[:game_id]).user_achievements.order(timestamp: :desc).limit(6).includes(user: :images, achievement: :game)
       else
-        @user_achievements = UserAchievement.unscoped.order(timestamp: :desc).limit(8).includes(user: :images, achievement: :game)
+        @user_achievements = UserAchievement.unscoped.order(timestamp: :desc).limit(6).includes(user: :images, achievement: :game)
       end
     end
     respond_to do |format|

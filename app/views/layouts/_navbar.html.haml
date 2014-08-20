@@ -10,9 +10,10 @@
         .visible-sm= image_tag "logo_gign.png"
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
-        - if Section.blog
-          %li{class: current_page?(section_path(Section.blog)) ? 'active' : ''}
-            %a{href: section_path(Section.blog)}= Section.blog.name
+        - blog = Section.blog
+        - if blog
+          %li{class: current_page?(section_path(blog)) ? 'active' : ''}
+            %a{href: section_path(blog)}= blog.name
         %li{class: current_page?(supplies_path) ? 'active' : ''}
           %a{href: supplies_path}= t '.title', :default => Supply.model_name.human.pluralize.titleize
         %li{class: current_page?(games_path) ? 'active' : ''}

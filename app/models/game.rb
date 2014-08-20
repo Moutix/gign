@@ -33,7 +33,7 @@ class Game < ActiveRecord::Base
 
   scope :played, -> {where('total_playtime > ?', 0)}
   scope :search_import, -> { includes(:port_forwarding, :images) }  
-  
+
   delegate :udp, :tcp,
     to: :port_forwarding, prefix: true, allow_nil: true
   

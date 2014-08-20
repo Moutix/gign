@@ -4,8 +4,9 @@
       = render 'games/image_game', game: @game
     
     - if @game.has_achievements?
-      %h4= t("steam.show.last_achievements")
-      = render "user_achievements", user_achievements: @game.user_achievements.last(5).reverse
+      #list-achievements
+        %h4= t("steam.show.last_achievements")
+        = render "user_achievements", user_achievements: @game.user_achievements.reverse_order.limit(6).includes(user: :images, achievement: :game)
       = link_to t("steam.show.link_achievement"), achievements_game_path(@game)
 
     - else
@@ -22,10 +23,17 @@
         = link_to t("steam.firewall.ask_permission"), ask_permission_game_path(@game), class: 'btn btn-warning', method: :post
 
     = render 'game_resume', game: @game
-    = t("steam.show.nb_player", count: @game.users.size) + " :"
+    = t("steam.show.nb_player", count: @game.users.count) + " :"
     %br
     .list-steam-user
-      - @game.users.each do |user|
+      - @game.users.includes(:images).each do |user|
         = render 'users/steam_avatar', user: user
+    - if @game.has_achievements?
+      #charts_achievements
+        - if @game.user_achievements.empty?
+          %h4= t("steam.show.no_user_achievement") 
 
 = render 'comments/list', resource: @game
+
+- if @game.has_achievements? && !@game.user_achievements.empty?
+  = render "games/charts_achievements", title: t("steam.charts.achievements.title_total.game", game: @game.name.encode(Encoding::UTF_8)), achievements: @game.user_achievements.number_achievements_by(1.days), user_id: 0, game_id: @game.id

@@ -8,21 +8,23 @@ var ready = function() {
                     selection: function(event) {
                         if (event.xAxis) {
                             $.ajax({
-                                type: "GET",
+                                type: "POST",
                                 url: '<%=reload_achievements_games_path%>',
                                 data: {
                                     datemin : Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', event.xAxis[0].min),
                                     datemax : Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', event.xAxis[0].max),
                                     user_id : <%=user_id%>,
+                                    game_id : <%=game_id%>,
                                 },
                                 dataType: 'script',
                             });  
                         } else{
                              $.ajax({
-                                type: "GET",
+                                type: "POST",
                                 url: '<%=reload_achievements_games_path%>',
                                 data: {
                                     user_id : <%=user_id%>,
+                                    game_id : <%=game_id%>,
                                 },
                                 dataType: 'script',
                             });  

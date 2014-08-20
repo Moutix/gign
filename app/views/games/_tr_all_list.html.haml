@@ -4,8 +4,8 @@
       = link_to game_path(game) do
         = image_tag game.image_link('mini')
     %td= game.name
-    %td= distance_of_hours_in_words game.recent_playtime*60
-    %td= distance_of_hours_in_words game.total_playtime*60
+    %td= distance_of_hours_in_words game.recent_playtime
+    %td= distance_of_hours_in_words game.total_playtime
     %td= print_boolean(game.in_cache)
     %td= game.comments_count
     %td= game.users_count

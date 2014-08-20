@@ -3,7 +3,7 @@
   .col-sm-3
   .col-sm-8
     %h4
-      %i=t(:comment, count: resource.comment_threads.size)
+      %i=t(:comment, count: resource.comments_count)
     %hr
     .comments-form
       - if can? :comment, resource

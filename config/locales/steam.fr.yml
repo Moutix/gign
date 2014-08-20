@@ -21,6 +21,7 @@ fr:
         title_total: 
           top: "Nombre total de succès obtenu depuis 2 semaines"
           user: "Succès obtenu depuis la création de compte"
+          game: "Succès obtenu pour %{game}"
         title:
           yaxis: "Nombres de succès"
       games:
@@ -43,6 +44,7 @@ fr:
       see_store: Voir sur Steam
       link_achievement: "Voir les stats de succès générale"
       no_achievement: "Ce jeu n'a pas de succès T.T"
+      no_user_achievement: "Aucun succès obtenu pour le moment"
 
     user:
       see_on_steam: "Voir sur steam"
@@ -53,5 +55,6 @@ fr:
       played_game: "Nombre de jeu joué"
       total_playtime: "Temps total en jeu"
       recent_playtime: "Temps de jeu depuis 2 semaines"
+      average_playtime: "Temps moyen en jeu"
       total_success: "Nombre total de succès"
       recent_success: "Nombre de succès depuis 2 semaines"
