@@ -24,7 +24,7 @@ class Achievement < ActiveRecord::Base
     if self.game.users_with_achievements.empty?
       0
     else
-      self.users.size/self.game.users_with_achievements.size.to_f*100
+      self.users.count/self.game.users_with_achievements.count.to_f*100
     end
   end
 

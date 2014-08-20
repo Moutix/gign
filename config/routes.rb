@@ -5,7 +5,7 @@ Gign::Application.routes.draw do
       
       resources :games, only: [:index, :show] do
         collection do
-          get :reload_achievements
+          post :reload_achievements
         end
         member do
           get :achievements

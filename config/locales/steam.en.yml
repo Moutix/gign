@@ -20,6 +20,7 @@ en:
         title_total: 
           top: "Achievements unlocked in two weeks"
           user: "Achievements unlocked since the beginning"
+          game: "Achievements unlocked for %{game}"
         title:
           yaxis: "Number of achievements"
       games:
@@ -42,11 +43,13 @@ en:
       see_store: See on Steam
       link_achievement: "View global achievement stats"
       no_achievement: "This game don't have any achievement T.T"
+      no_user_achievement: "0 achievement unlocked for now"
 
     resume_games:
       total_game: "Games owned"
       played_game: "Games played"
       total_playtime: "Total hours"
       recent_playtime: "Total hours for two weeks"
+      average_playtime: "Average playtime"
       total_success: "Total achievements"
       recent_success: "Total achievements for two weeks"
