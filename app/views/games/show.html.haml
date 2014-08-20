@@ -21,11 +21,11 @@
       - if @game.need_permissions? && (can? :ask_permission, @game)
         = link_to t("steam.firewall.ask_permission"), ask_permission_game_path(@game), class: 'btn btn-warning', method: :post
 
+    = render 'game_resume', game: @game
     = t("steam.show.nb_player", count: @game.users.size) + " :"
     %br
     .list-steam-user
       - @game.users.each do |user|
         = render 'users/steam_avatar', user: user
-
 
 = render 'comments/list', resource: @game
