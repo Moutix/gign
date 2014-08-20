@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
 
   scope :steam_users, -> {where('steamid IS NOT NULL')}
   scope :public_steam_users, -> {where('steamid IS NOT NULL AND steam_public = ?', true)}
-
+  scope :online, -> {where(online: true)}
   def ability
     @ability ||= Ability.new(self)
   end
