@@ -58,7 +58,7 @@ class GamesController < ApplicationController
       if !User.where(id: params[:user_id]).empty?
         @user_achievements = UserAchievement.unscoped.where(user_id: params[:user_id]).order(timestamp: :desc).limit(6).includes(user: :images, achievement: :game)
       elsif !Game.where(id: params[:game_id]).empty?
-        @user_achievements = Game.find(params[:game_id]).user_achievements.order(timestamp: :desc).limit(6).includes(user: :images, achievement: :game)
+        @user_achievements = UserAchievement.unscoped.joins(:game).where('games.id' => params[:game_id]).order(timestamp: :desc).limit(6).includes(user: :images, achievement: :game)
       else
         @user_achievements = UserAchievement.unscoped.order(timestamp: :desc).limit(6).includes(user: :images, achievement: :game)
       end
