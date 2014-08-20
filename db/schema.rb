@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140819171632) do
+ActiveRecord::Schema.define(version: 20140820202406) do
 
   create_table "achievements", force: true do |t|
     t.string   "api_name"
@@ -179,6 +179,19 @@ ActiveRecord::Schema.define(version: 20140819171632) do
   end
 
   add_index "port_forwardings", ["game_id"], name: "index_port_forwardings_on_game_id"
+
+  create_table "save_data", force: true do |t|
+    t.integer  "nb_users"
+    t.integer  "nb_steam_users"
+    t.integer  "nb_online_users"
+    t.integer  "nb_games"
+    t.integer  "nb_played_games"
+    t.integer  "nb_achievements"
+    t.integer  "recent_playtime"
+    t.integer  "total_playtime"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "section_translations", force: true do |t|
     t.integer  "section_id", null: false
