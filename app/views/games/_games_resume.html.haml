@@ -1,37 +1,13 @@
 .center.row.resume-games
   .col-md-4
-    .stat-games
-      .info
-        = t("steam.resume_games.total_game")
-      .stat
-        %h4= games.size
+    = render 'games/div_stats', text: t("steam.resume_games.total_game"), stat:games.size
   .col-md-4
-    .stat-games
-      .info
-        = t("steam.resume_games.played_game")
-      .stat
-        %h4= game_played.size
+    = render 'games/div_stats', text: t("steam.resume_games.played_game"), stat: game_played.size
   .col-md-4
-    .stat-games
-      .info
-        = t("steam.resume_games.total_playtime")
-      .stat
-        %h4= distance_of_hours_in_words user_stats.all.sum(:total_playtime)*60
+    = render 'games/div_stats', text: t("steam.resume_games.total_playtime"), stat: distance_of_hours_in_words(user_stats.all.sum(:total_playtime)*60)
   .col-md-4
-    .stat-games
-      .info
-        = t("steam.resume_games.recent_playtime")
-      .stat
-        %h4= distance_of_hours_in_words user_stats.sum(:recent_playtime)*60
+    = render 'games/div_stats', text: t("steam.resume_games.recent_playtime"), stat: distance_of_hours_in_words(user_stats.sum(:recent_playtime)*60)
   .col-md-4
-    .stat-games
-      .info
-        = t("steam.resume_games.recent_success")
-      .stat
-        %h4= user_achievements.where('timestamp > ?', Time.now-15.days).size
+    = render 'games/div_stats', text: t("steam.resume_games.recent_success"), stat: user_achievements.where('timestamp > ?', Time.now-15.days).size
   .col-md-4
-    .stat-games
-      .info
-        = t("steam.resume_games.total_success")
-      .stat
-        %h4= user_achievements.size
+    = render 'games/div_stats', text: t("steam.resume_games.total_success"), stat: user_achievements.size

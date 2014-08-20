@@ -23,6 +23,7 @@
 #  steam_name             :string(255)
 #  steam_url              :string(255)
 #  steam_public           :boolean          default(FALSE)
+#  online                 :boolean          default(FALSE)
 #
 
 class User < ActiveRecord::Base
