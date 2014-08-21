@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
-  before_action :set_locale
+  before_action :set_locale, :set_last_connection
  
 
   def set_locale
@@ -30,6 +30,13 @@ class ApplicationController < ActionController::Base
     respond_to do |format|
       format.html { render "shared/not_found", :status => 404 }
       format.all { render nothing: true, status: 404 }
+    end
+  end
+
+  def set_last_connection
+    if current_user && ((session[:last_update] && (Time.now - session[:last_update]) > 1.minutes) || (session[:last_update].nil?))
+      current_user.update_column(:current_sign_in_at, Time.now)
+      session[:last_update] = Time.now
     end
   end
 
