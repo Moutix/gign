@@ -51,6 +51,7 @@ class Borrowing < ActiveRecord::Base
   end
 
   def ask_for_loan(supply, number = nil)
+    return false if (!number.nil? && number < 1)
     supply_request = supply_requests.find_by(supply: supply)
     
     if supply_request

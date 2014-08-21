@@ -42,7 +42,7 @@ class BorrowingsController < ApplicationController
     @supply_request = SupplyRequest.find(params[:request_id])
     authorize! :number_supply, @supply_request
 
-    @supply_request.borrowing.ask_for_loan(@supply_request.supply, params[:supply_request][:nb_supplies].to_i)
+    @borrowing.ask_for_loan(@supply_request.supply, params[:supply_request][:nb_supplies].to_i)
 
     respond_to do |format|
       format.html { redirect_to @borrowing}
