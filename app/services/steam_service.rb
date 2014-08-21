@@ -72,6 +72,7 @@ class SteamService
 
   def self.update_all
     start_script = Time.now
+    Game.disable_search_callbacks
     User.public_steam_users.each do |user|
       puts "----------------------------------------------------------"
       puts user.name
@@ -90,6 +91,8 @@ class SteamService
         game.update_columns(total_playtime: total_playtime, recent_playtime: recent_playtime, in_cache: in_cache, users_count: game.users.length, user_achievements_count: game.user_achievements.length)
       end
     end
+    
+    Game.enable_search_callbacks
     Game.reindex
     
     SaveData.create(nb_games: Game.count, nb_played_games: Game.played.count, nb_achievements: UserAchievement.count, recent_playtime: UserStat.all.sum(:recent_playtime), total_playtime: UserStat.all.sum(:total_playtime))
