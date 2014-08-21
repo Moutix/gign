@@ -12,6 +12,8 @@ Gign::Application.routes.draw do
           post :ask_permission
         end
       end
+
+      resources :save_data, only: :index, path: 'stats'
       
       resources :sections, only: [:index, :show, :destroy, :create, :update], path: 's' do
         resources :pages, except: [:index], path: '/' do
