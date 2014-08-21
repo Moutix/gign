@@ -5,11 +5,8 @@
 
     = f.email_field :email, placeholder: t("form.devise.session.email"), :autofocus => true, class: 'form-control'
     = f.password_field :password, placeholder: t("form.devise.session.password"), required: true, class: 'form-control'
-
-    - if devise_mapping.rememberable?
-      %label.checkbox
-        = f.check_box :remember_me
-        = t("form.devise.session.remember_me")
+    
+    = f.hidden_field :remember_me, :value => true
 
     = f.submit t("form.devise.session.submit"), class: 'btn btn-primary'
 
