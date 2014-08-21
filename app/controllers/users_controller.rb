@@ -67,6 +67,7 @@ class UsersController < ApplicationController
       user = User.find_by(steamid: auth_hash.uid.to_i)
       if user
         sign_in(user)
+        user.update_column(:remember_created_at, Time.now)
         redirect_to user_path(user)
       else
         flash[:error] = t("steam.oauth.no_id")
