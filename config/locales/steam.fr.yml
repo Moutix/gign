@@ -4,6 +4,7 @@ fr:
     in_cache: Dans le cache
     need_permissions: Attention ce jeu peut nécessiter une ouverture de port
     last_played_games: Derniers jeux joués
+    last_update: "Dernière mise à jour : "
 
     firewall:
       ask_permission: Demander une ouverture de port

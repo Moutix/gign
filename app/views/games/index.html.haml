@@ -1,4 +1,6 @@
 - model_class = Game
+- if !SaveData.games.empty?
+  %i= t("steam.last_update") + l(SaveData.games.last.created_at, format: :default)
 
 = render "games_resume", games: Game.all, user_achievements: UserAchievement.all, game_played: Game.all.played, user_stats: UserStat.all
 
