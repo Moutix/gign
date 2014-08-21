@@ -30,10 +30,10 @@ class UserAchievement < ActiveRecord::Base
 
   def self.number_achievements_by(period = 1.days, since = nil)
     if since.nil?
-      achievements = self.all.pluck(:timestamp)
+      achievements = self.all.pluck(:timestamp).compact
       since = achievements.first
     else
-      achievements = self.where('timestamp > ?', since).pluck(:timestamp)
+      achievements = self.where('timestamp > ?', since).pluck(:timestamp).compact
     end
 
     since = Time.now - 2.days if since.nil?
