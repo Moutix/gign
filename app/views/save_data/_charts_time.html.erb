@@ -1,0 +1,38 @@
+<div id = "charts_<%=title.parameterize%>"></div>
+<script>
+var ready = function() {
+    $(function () { 
+        $('#charts_<%=title.parameterize%>').highcharts({
+            chart: {
+                zoomType: 'x',
+            },
+            title: {
+                text: '<%= title%>'
+            },
+            xAxis: {
+                type: 'datetime',
+                maxZoom: 5000*12,
+                title: {
+                    text: null
+                    }
+            },
+            yAxis: {
+                title: {
+                    text: '<%= ytitle%>'
+                }
+            },
+            series: [{
+                type: 'line',
+                name: '<%= ytitle%>',
+                data: <%=data%>
+                }
+            ]
+        });
+    });
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
+
+</script>
