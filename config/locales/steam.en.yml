@@ -29,6 +29,10 @@ en:
           recent: "Most played games for two weeks"
           total: "Most played games"
           yaxis: Hours played
+      stats:
+        online_users:
+          title: "Nombre d'utilisateurs en ligne depuis 2 jours"
+          ytitle: "Nombre d'utilisateurs en ligne"
 
     achievements:
       title: "General stat of"
