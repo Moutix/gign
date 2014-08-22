@@ -30,6 +30,11 @@ fr:
           recent: "Les jeux les plus joué ces 15 derniers jours"
           total: "Les jeux les plus joué au total"
           yaxis: Heures de jeu
+      stats:
+        online_users:
+          title: "Nombre d'utilisateurs en ligne depuis 2 jours"
+          ytitle: "Nombre d'utilisateurs en ligne"
+
 
     achievements:
       title: "Stats de jeu générale de"
