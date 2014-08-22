@@ -82,7 +82,7 @@ fr:
         <<: *all
         all: Tous
         name: Nom
-        price: Prix
+        price: Caution
         description: Description
         loanable: Empruntable
         loanables: Empruntables
@@ -96,7 +96,7 @@ fr:
         <<: *all
         state: État
         user: Utilisateur
-        price: prix
+        price: Caution
         start_at: Date de début
         started_at: Date de début réelle
         end_at: Date de fin
@@ -111,7 +111,7 @@ fr:
         state: État
         name: Nom
         nb_supplies: Nombre d'exemplaires
-        price: Prix
+        price: Caution
       group:
         <<: *all
         name: Nom

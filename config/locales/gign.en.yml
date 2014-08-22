@@ -83,7 +83,7 @@ en:
         <<: *all
         all: all
         name: Name
-        price: Price
+        price: Deposit
         description: Description
         loanable: Loanable
         loanables: Loanables
@@ -97,7 +97,7 @@ en:
         <<: *all
         state: State
         user: User
-        price: price
+        price: Deposit
         start_at: Start date
         started_at: Real start date
         end_at: End date
@@ -112,7 +112,7 @@ en:
         state: State
         name: Name
         nb_supplies: Nb supplies
-        price: Price
+        price: Deposit
       group:
         <<: *all
         name: Name
