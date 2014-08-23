@@ -17,7 +17,7 @@ class GamesController < ApplicationController
         @games = Game.includes(:images, :port_forwarding).order(total_playtime: :desc).page(params[:page])
       end
     end
-    @last_games = Game.includes(:images, :port_forwarding).order(recent_playtime: :desc, total_playtime: :desc).limit(5)
+    @last_games = Game.where('recent_playtime > 0').order('rand()').includes(:images, :port_forwarding).limit(5)
   end
 
   def show
