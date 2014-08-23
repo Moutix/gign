@@ -1,1 +1,1 @@
-= render "charts_time", title: t("steam.charts.stats.online_users.title"), ytitle: t("steam.charts.stats.online_users.ytitle"), data: SaveData.users.where('created_at > ?', Time.now - 2.days).pluck(:created_at, :nb_online_users).map{|a, b| [a.to_i, b]}
+= render "charts_time", title: t("steam.charts.stats.online_users.title"), ytitle: t("steam.charts.stats.online_users.ytitle"), data: SaveData.users.where('created_at > ?', Time.now - 2.days).pluck(:created_at, :nb_online_users).map{|a, b| [(a.to_i+a.utc_offset)*1000, b]}
