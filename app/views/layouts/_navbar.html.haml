@@ -95,8 +95,12 @@
             .btn-group.navbar-btn
               %a.btn.btn-default.dropdown-toggle{type: "button", "data-toggle" =>"dropdown", style: 'width: 220px;'}
                 = current_user.fullname[0..17]
-                %i.fa.fa-shopping-cart
-                = current_user.active_basket.supply_requests.sum(:nb_supplies)
+                - if current_user.active_basket.supply_requests.exists?
+                  %i.fa.fa-shopping-cart
+                  = current_user.active_basket.supply_requests.sum(:nb_supplies)
+                - if current_user.box.comments.exists?
+                  %i.fa.fa-envelope
+                  = current_user.box.comments.count
                 %span.caret.color-green
               %ul.dropdown-menu{role: 'menu', style: 'width:220px;margin-left:10px'}
                 %li
@@ -111,6 +115,10 @@
                   = link_to borrowing_path(current_user.active_basket), :rel => "nofollow", title: t("navbar.basket.title") do
                     %i.fa.fa-shopping-cart
                     = t("navbar.basket.link")
+                %li
+                  = link_to mail_boxes_path, :rel => "nofollow", title: t("navbar.mail.title") do
+                    %i.fa.fa-envelope
+                    = t("navbar.mail.link", count: current_user.box.comments.count)
                 %li.divider
                 %li
                   = link_to destroy_user_session_path, method: :delete, :rel => "nofollow", title: t("navbar.logout") do

@@ -171,7 +171,7 @@ html, body {color: black; height: 100%;;
   .navbar-btn {padding: 8px 0 8px 8px; margin: 0;
     img {height: 35px}
     a.btn.width180 {width: 180px;}
-  }
+    }
   .navbar-nav > li > a {color: #022a04; font-size: 16px;}
   .navbar-nav.navbar-right:last-child {margin-right: 0px;}
   .dropdown-header {font-size: 14px;}
@@ -181,6 +181,11 @@ html, body {color: black; height: 100%;;
     li.active > a {background-color: #054405}
     li{margin:0px}
   }
+  .navbar-mail{
+    padding-top:14px;
+    a{color: black}
+  }
+
 }
 
 .sidebar-nav .navbar .navbar-collapse {

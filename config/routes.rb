@@ -14,7 +14,9 @@ Gign::Application.routes.draw do
       end
 
       resources :save_data, only: :index, path: 'stats'
-      
+     
+      resources :mail_boxes, only: :index
+
       resources :sections, only: [:index, :show, :destroy, :create, :update], path: 's' do
         resources :pages, except: [:index], path: '/' do
           member do
@@ -28,7 +30,11 @@ Gign::Application.routes.draw do
 
       end
 
-      resources :comments, only: [:create, :update, :destroy]
+      resources :comments, only: [:create, :update, :destroy] do
+        collection do
+          post :follow
+        end
+      end
       
       resources :borrowings, only: [:index, :show, :destroy] do
         member do

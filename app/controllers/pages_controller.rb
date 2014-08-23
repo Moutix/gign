@@ -1,11 +1,14 @@
 class PagesController < ApplicationController
   before_filter :load_section
-  before_action :set_page, only: [:show, :edit, :update, :destroy, :import]
+  before_action :set_page, only: [:show, :edit, :update, :destroy, :import, :follow]
 
   # GET /pages/1
   # GET /pages/1.json
   def show
     authorize! :show, @page
+    if current_user
+      current_user.box.read_notification(@page)
+    end
   end
 
   # GET /pages/new
@@ -80,6 +83,17 @@ class PagesController < ApplicationController
       end
     end
   end
+  
+  def follow
+    authorize! :follow, @page
+    @page.followers << current_user
+    
+    respond_to do |format|
+      format.html{redirect_to [@section, @page]}
+      format.js
+    end
+  end
+
 
   private
  

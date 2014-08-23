@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
 
-  before_action :set_game, only: [:show, :achievements, :ask_permission]
+  before_action :set_game, only: [:show, :achievements, :ask_permission, :follow]
 
   def index
     session[:games] = params[:games] if params[:games]
@@ -21,7 +21,9 @@ class GamesController < ApplicationController
   end
 
   def show
-
+    if current_user
+      current_user.box.read_notification(@game)
+    end
   end
   
   def achievements
@@ -64,6 +66,16 @@ class GamesController < ApplicationController
       end
     end
     respond_to do |format|
+      format.js
+    end
+  end
+
+  def follow
+    authorize! :follow, @game
+    @game.followers << current_user
+    
+    respond_to do |format|
+      format.html{redirect_to @game}
       format.js
     end
   end

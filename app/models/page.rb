@@ -23,6 +23,8 @@ class Page < ActiveRecord::Base
   belongs_to :section
   belongs_to :user
   has_many :comments, :class_name => "Comment", :as => "commentable", dependent: :destroy
+  has_many :resource_followers, class_name: "ResourceFollower", as: "resource", dependent: :destroy
+  has_many :followers, through: :resource_followers, class_name: "User", source: 'user'
 
   before_validation :set_slug
   validates :name, uniqueness: {case_sentitive: false, scope: :section_id}

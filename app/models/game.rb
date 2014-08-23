@@ -27,6 +27,8 @@ class Game < ActiveRecord::Base
   has_many :images, :class_name => "Image", :as => "imageable", dependent: :destroy
   has_many :user_achievements, through: :achievements, :counter_cache => true
   has_many :achievements
+  has_many :resource_followers, class_name: "ResourceFollower", as: "resource", dependent: :destroy
+  has_many :followers, through: :resource_followers, class_name: "User", source: 'user'
   has_one :port_forwarding
 
   has_many :users_with_achievements, -> {distinct}, through: :user_achievements, source: 'user'
@@ -70,5 +72,4 @@ class Game < ActiveRecord::Base
   def need_permissions?
     !port_forwarding.nil?
   end
-
 end

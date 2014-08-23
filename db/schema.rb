@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140820202406) do
+ActiveRecord::Schema.define(version: 20140823092529) do
 
   create_table "achievements", force: true do |t|
     t.string   "api_name"
@@ -47,6 +47,16 @@ ActiveRecord::Schema.define(version: 20140820202406) do
     t.integer "borrowing_id"
     t.integer "supply_copy_id"
   end
+
+  create_table "comment_boxes", force: true do |t|
+    t.integer  "mail_box_id"
+    t.integer  "comment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comment_boxes", ["comment_id"], name: "index_comment_boxes_on_comment_id"
+  add_index "comment_boxes", ["mail_box_id"], name: "index_comment_boxes_on_mail_box_id"
 
   create_table "comments", force: true do |t|
     t.integer  "commentable_id",   default: 0
@@ -110,6 +120,14 @@ ActiveRecord::Schema.define(version: 20140820202406) do
   end
 
   add_index "images", ["user_id"], name: "index_images_on_user_id"
+
+  create_table "mail_boxes", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "mail_boxes", ["user_id"], name: "index_mail_boxes_on_user_id"
 
   create_table "pack_translations", force: true do |t|
     t.integer  "pack_id",    null: false
@@ -179,6 +197,17 @@ ActiveRecord::Schema.define(version: 20140820202406) do
   end
 
   add_index "port_forwardings", ["game_id"], name: "index_port_forwardings_on_game_id"
+
+  create_table "resource_followers", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "resource_followers", ["resource_id", "resource_type"], name: "index_resource_followers_on_resource_id_and_resource_type"
+  add_index "resource_followers", ["user_id"], name: "index_resource_followers_on_user_id"
 
   create_table "save_data", force: true do |t|
     t.integer  "nb_users"
