@@ -15,6 +15,11 @@ en:
     basket:
       title: Basket Access
       link: My basket
+    mail:
+      title: Notifications
+      link:
+        one: One new comment
+        other: "%{count} new comments"
     dropdown_admin:
       title: Site management
       borrowing: Borrowing management
@@ -225,6 +230,9 @@ en:
     reply: Reply
     one: One comment
     other: '%{count} comments'
+    follow: Follow
+    unfollow: Unfollow
+    no_comment: "You have no comment notifications at this time."
 
   form:
     comment:

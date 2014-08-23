@@ -2,8 +2,14 @@
 .row#comments_content[resource]
   .col-sm-3
   .col-sm-8
-    %h4
-      %i=t(:comment, count: resource.comments_count)
+    .pull-left
+      %h4
+        %i=t(:comment, count: resource.comments_count)
+
+    - if (can? :follow, resource) && resource.class.reflect_on_all_associations.map{|a| a.name}.include?(:followers)
+      .pull-right
+        = link_to resource.followers.where(id: current_user.id).empty? ? t("comment.follow") : t("comment.unfollow"), follow_comments_path(type: resource.class.name.tableize, id: resource.id), method: :post, class: 'btn btn-default', remote: true, id: "btn-follow-#{resource.id}"
+    %br
     %hr
     .comments-form
       - if can? :comment, resource

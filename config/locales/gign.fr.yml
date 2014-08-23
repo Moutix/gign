@@ -15,6 +15,11 @@ fr:
     basket:
       title: Accès à mon panier
       link: Mon panier
+    mail:
+      title: Notifications
+      link:
+        one: Un nouveau commentaire
+        other: "%{count} nouveaux commentaires"
     dropdown_admin:
       title: Gestion du site
       borrowing: Gestion des emprunts
@@ -223,6 +228,10 @@ fr:
     reply: Répondre
     one: Un commentaire
     other: '%{count} commentaires'
+    follow: Suivre
+    unfollow: Ne plus suivre
+  mail_boxes:
+    no_comment: "Vous n'avez aucun commentaire non lu pour l'instant"
 
   form:
     comment:

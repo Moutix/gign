@@ -24,13 +24,15 @@ class Comment < ActiveRecord::Base
 
   belongs_to :commentable, :polymorphic => true, counter_cache: true
   belongs_to :user
-  
+  has_many :comment_boxes
+  has_many :mail_boxes, through: :comment_box
+
   delegate :name, :email, :fullname, :avatar,
     to: :user, prefix: true, allow_nil: true
 
   default_scope -> { order('created_at DESC') }
 
-
+  after_create :add_to_boxes
   
   def self.build_from(obj, user_id, comment)
     new \
@@ -54,4 +56,12 @@ class Comment < ActiveRecord::Base
   def self.find_commentable(commentable_str, commentable_id)
     commentable_str.constantize.find(commentable_id)
   end
+
+  private
+    def add_to_boxes
+      if commentable.class.reflect_on_all_associations.map{|a| a.name}.include?(:followers)
+        commentable.followers.where.not(id: self.user_id).each{|f| f.box.comments << self} if commentable.followers.exists?
+        commentable.followers << self.user unless commentable.followers.where(id: self.user_id).exists?
+      end
+    end
 end

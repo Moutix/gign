@@ -34,7 +34,9 @@ class Ability
       can :manage, Image do |i|
         i.imageable == user
       end
-      can :comment, Page
+      can [:comment, :follow], Page
+
+      can :index, MailBox
     end
   
     can :show, Page do |p|
@@ -48,7 +50,7 @@ class Ability
     if user.is_a_steam_user?
       can :steam, User
 
-      can :ask_permission, Game do |g|
+      can [:ask_permission, :follow], Game do |g|
         g.need_permission? && user.games.include?(g)
       end
     end

@@ -42,6 +42,26 @@ class CommentsController < ApplicationController
     end
   end
 
+  def follow
+    if params[:type] && params[:id]
+      model_class = params[:type].classify.constantize
+      @commentable = model_class.find(params[:id])
+      authorize! :follow, @commentable
+      if @commentable.followers.where(id: current_user.id).exists?
+        @commentable.followers.delete(current_user)
+        @btntext = t("comment.follow")
+      else
+        @commentable.followers << current_user
+        @btntext = t("comment.unfollow")
+      end
+    end
+   
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js
+    end
+
+  end
   private
     
     def set_comment

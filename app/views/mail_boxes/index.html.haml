@@ -1,0 +1,9 @@
+- if @comments.empty?
+  %h4= t("mail_boxes.no_comment")
+- else
+  - @comments.each do |comment|
+    .well
+      - if comment.commentable.class.name == 'Page'
+        = link_to comment.commentable.name, section_page_path(comment.commentable.section, comment.commentable)
+      - else
+        = link_to comment.commentable.name, comment.commentable

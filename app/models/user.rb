@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   has_many :achievements, through: :user_achievements
   has_many :recent_plays, -> { joins(:user_stats).where('user_stats.recent_playtime > ?', 0)}, through: :user_stats, source: 'game'
   has_many :favorite_games, -> { joins(:user_stats).order('user_stats.total_playtime DESC').limit(10)}, through: :user_stats, source: 'game'
-  has_many :games, through: :user_stats
+  has_many :games, through: :user_stats, after_add: :follow_this_game
   has_many :user_stats, dependent: :destroy
   has_many :borrowings
   has_many :supplies
@@ -46,6 +46,8 @@ class User < ActiveRecord::Base
   has_many :pages
   has_many :images, :class_name => "Image", :as => "imageable", dependent: :destroy
   has_and_belongs_to_many :groups, :join_table => 'users_groups'
+  has_one :mail_box
+  has_many :resource_followers
 
   scope :steam_users, -> {where('steamid IS NOT NULL')}
   scope :public_steam_users, -> {where('steamid IS NOT NULL AND steam_public = ?', true)}
@@ -133,6 +135,14 @@ class User < ActiveRecord::Base
     Borrowing.create(user: self)
   end
 
+  def box
+    mail_box.nil? ? new_box : mail_box
+  end
+
+  def new_box
+    MailBox.create(user: self)
+  end
+
   def save_basket!
     active_basket.update_columns(effective: true)
   end
@@ -168,4 +178,9 @@ class User < ActiveRecord::Base
   def recent_playtime
     user_stats.sum(:recent_playtime)
   end
+
+  private
+    def follow_this_game(game)
+      game.followers << self
+    end
 end
