@@ -46,8 +46,10 @@ class SteamService
 
   def find_achievement(achievement, game)
     this_achievement = Achievement.find_or_create_by(game_id: game.id, api_name: achievement.api_name)
+    name = achievement.name
+    name.force_encoding(Encoding::UTF_8)
     begin
-      this_achievement.update_columns(name: achievement.name, description: achievement.description, icon_open_url: achievement.icon_open_url, icon_closed_url: achievement.icon_closed_url)
+      this_achievement.update_columns(name: name, description: achievement.description, icon_open_url: achievement.icon_open_url, icon_closed_url: achievement.icon_closed_url)
     rescue
       p "random error"
     end
