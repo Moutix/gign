@@ -33,7 +33,7 @@
                   = t("navbar.dropdown_section.name")
 
               %li.divider
-            - Section.displays.each do |section|
+            - Section.displays.includes(ordered_pages: :translations).includes(:translations).each do |section|
               %li
                 = link_to section.name, section_page_path(section, section.pages.first) 
 

@@ -26,7 +26,7 @@ class Supply < ActiveRecord::Base
   has_many :packs_supplies
   has_many :packs, through: :packs_supplies
   has_many :active_packs, -> {where(active: true)}, through: :packs_supplies, source: 'pack', class_name: 'Pack'
-  
+
   before_create :set_user
   after_create :create_supply_copy
   
