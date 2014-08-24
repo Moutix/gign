@@ -10,7 +10,7 @@
     - hreflang = I18n.locale == :fr ? 'en' : 'fr'
     %link{href: request.host + current_url_with_locale(hreflang), hreflang: hreflang, rel: "alternate"}
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
-    = javascript_include_tag "application", "/ace/ace", "/ace/ext-language_tools", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
     = favicon_link_tag 'favicon.ico'
     = csrf_meta_tags
   %body
