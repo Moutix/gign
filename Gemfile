@@ -50,6 +50,12 @@ group :development do
   gem 'mailcatcher', require: false # Mail catcher - http://mailcatcher.me/
 end
 
+group :production, :staging do
+  # Configuration in config/environnements/production.rb
+  gem "exception_notification", github: 'smartinez87/exception_notification'  # exception catching - https://github.com/smartinez87/exception_notification
+end
+
+
 # user management
 gem 'devise'
 gem 'cancan'
