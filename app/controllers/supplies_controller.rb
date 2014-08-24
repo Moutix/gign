@@ -10,15 +10,15 @@ class SuppliesController < ApplicationController
 
     if can? :manage, Supply
       if session[:loanable] == '1'
-        @supplies = Supply.loanables
+        @supplies = Supply.loanables.includes(:translations, :supply_copies)
       elsif session[:loanable] == '0'
-        @supplies = Supply.not_loanables
+        @supplies = Supply.not_loanables.includes(:translations, :supply_copies)
       else
-        @supplies = Supply.all
+        @supplies = Supply.all.includes(:translations, :supply_copies)
       end
 
     else
-      @supplies = Supply.loanables
+      @supplies = Supply.loanables.includes(:translations, :supply_copies)
     end
   end
 

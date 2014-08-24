@@ -11,10 +11,10 @@
 
 %h1= t '.title', :default => model_class.model_name.human.pluralize.titleize
 
-- if session[:display].blank? || session[:display] == "list"
-  = render 'supplies/list_supplies', supplies: @supplies
-- elsif session[:display] == "thumb"
+- if session[:display].blank? || session[:display] == "thumb"
   = render 'supplies/thumb', supplies: @supplies
+- else session[:display] == "list"
+  = render 'supplies/list_supplies', supplies: @supplies
 
 %br
 
