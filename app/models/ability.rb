@@ -49,8 +49,9 @@ class Ability
 
     if user.is_a_steam_user?
       can :steam, User
+      can :follow, Game
 
-      can [:ask_permission, :follow], Game do |g|
+      can :ask_permission, Game do |g|
         g.need_permission? && user.games.include?(g)
       end
     end
