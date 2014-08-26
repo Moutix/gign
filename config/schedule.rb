@@ -18,12 +18,14 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+#
+set :output, 'log/cron.log'
 
-every 3.hours do
+every "0 0,9,15,18,21 * * *" do
   runner "SteamService.update_all"
 end
 
-every 1.minutes do
+every 5.minutes do
   runner "SteamService.update_online!"
 end
 
