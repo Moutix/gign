@@ -10,14 +10,30 @@
               = t("helpers.links.close")
           %h4.modal-title= t("form.uploaded_file.title")
         .modal-body
+          %div{id: 'file_progress'}
+            .progress.hide
+              .progress-bar.progress-bar-striped.progress-bar-success.active{role:'progressbar', style: 'width: 0%', 'aria-valuemin' => '0', 'aria-valuemax' => '100', 'aria-valuenow' => '0'}
           .row
             .col-xs-6
               .form-group
                 = f.text_field :name, class: 'form-control', placeholder: t("form.uploaded_file.placeholder.name")
             .col-xs-6
               .form-group
-                = f.file_field :url, class: 'filestyle', "data-buttonText" => t("form.uploaded_file.placeholder.file"), "data-input" => "false"
+
+                = f.file_field :url, class: 'filestyle', "data-buttonText" => t("form.uploaded_file.placeholder.file"), "data-input" => "false", id: 'fileupload'
         .modal-footer
           %button.btn.btn-default{"data-dismiss" => "modal"}
             = t("helpers.links.close")
           = f.submit t("form.uploaded_file.submit"), class: 'btn btn-primary'
+
+%script
+  $('#fileupload').fileupload({
+  done: function (e, data) {location.reload();},
+  progressall: function (e, data) {
+  var progress = parseInt(data.loaded / data.total * 100, 10);
+  $('#file_progress .progress').removeClass('hide')
+  $('#file_progress .progress .progress-bar').css('width', progress + '%');
+  $('#file_progress .progress .progress-bar').text(progress + '%');
+  $('#file_progress .progress .progress-bar').aria('valuenow', progress);
+  },
+  });

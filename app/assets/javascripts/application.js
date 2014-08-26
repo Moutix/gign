@@ -20,6 +20,8 @@
 //= require ckeditor/init
 //= require highcharts.js
 //= require jquery.elastic.source.js
+//= require jquery-fileupload/basic
+//= require jquery.aria.js
 //= require gign.js
 //= require turbolinks
 //= require_tree .

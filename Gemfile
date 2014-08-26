@@ -14,6 +14,7 @@ gem 'less-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'ckeditor'
+gem 'jquery-fileupload-rails'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
