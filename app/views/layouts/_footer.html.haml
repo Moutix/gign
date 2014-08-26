@@ -1,5 +1,20 @@
-.center
-  %h1 Powered by
-  = image_tag 'steam_footer.png'
-  = image_tag 'opera.png'
-  = image_tag 'rails.png'
+.row
+  .col-md-2
+  .col-md-2
+    %h4 About US
+    %ul
+      %li Contact
+      %li L'équipe
+      %li Jobs
+  .col-md-2
+    %h4 Nos autres sites
+    %ul
+      %li= link_to 'GiGN PAPS', 'https://camion.larez.fr'
+      %li= link_to 'GiGN Date', 'https://gigndate.larez.fr'
+      %li= link_to 'GiGN Bin', 'https://gignbin.larez.fr'
+  .col-md-4
+    %h4 See us on
+    = link_to 'http://steamcommunity.com/groups/gifgn/' do
+      = image_tag 'steam_footer.png'
+    = link_to 'https://github.com/gifgn' do
+      = image_tag 'github_footer.png'
