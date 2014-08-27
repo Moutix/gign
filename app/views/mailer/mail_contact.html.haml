@@ -1,0 +1,5 @@
+%p= t("mailer.mail_contact.text1")
+%p= t("mailer.mail_contact.text2", user_name: @name, user_email: @email)
+%p= @message
+%hr
+%p= t("mailer.mail_contact.text3", user_ip: @ip)

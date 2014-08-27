@@ -23,5 +23,13 @@ class Mailer < ActionMailer::Base
     @game = Game.find(game_id)
     mail(:to => FIREWALL_MAIL, :from => @user.email, :cc => ADMIN_MAIL, :bcc => @user.email, :subject => t("mailer.ask_permission_email.subject", game_name: @game.name))
   end
+  
+  def mail_contact email, message, name, ip
+    @email = email
+    @name = name
+    @message = message
+    @ip = ip
+    mail(to: ADMIN_MAIL, subject: t("mailer.mail_contact.subject", user_name: @name))
+  end
 
 end

@@ -88,7 +88,9 @@ Gign::Application.routes.draw do
         end
       end
     end
-    
+   
+    get '/contact' => 'base#contact', as: 'contact'
+    post '/contact' => 'base#mail_contact', as: 'mail_contact'
     root 'base#index'
   end
   post '/auth/:provider/callback', to: 'users#steamid'

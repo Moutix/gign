@@ -1,0 +1,22 @@
+fr:
+  contact:
+    form:
+      name: Nom complet
+      email: Email
+      message: Message
+      success: "Votre message a bien été transmis"
+      error: "Une erreur est survenue, êtes vous sûr d'avoir bien remplie tous les champs ?"
+    
+    name: GiGN
+    address: "1 rue juliot curie"
+    address_ext: "91 192 Gif Sur Yvette"
+    email: "gign_bureau@larez.fr"
+
+
+
+en:
+  contact:
+    form:
+      name: Fullname
+      email: Email
+      message: Message

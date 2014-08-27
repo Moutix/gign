@@ -21,3 +21,9 @@ fr:
       port: "Ce jeu nécessite l'ouverture des ports suivants :"
       udp: "UDP :"
       tcp: "TCP :"
+
+    mail_contact:
+      subject: "Nouvelle demande de contact de %{user_name}"
+      text1: "Coucou le bureau"
+      text2: "Un certain %{user_name}, avec l'adresse mail %{user_email} vous a laisser un message :"
+      text3: "Au passage son IP était : %{user_ip}"
