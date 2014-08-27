@@ -1,0 +1,14 @@
+= form_for :contact do |f|
+  .row
+    .col-sm-6
+      .form-group
+        = f.label :name, t("contact.form.name")
+        = f.text_field :name, placeholder: t("contact.form.name"), required: "", class: "form-control"
+    .col-sm-6
+      .form-group
+        = f.label :email, t("contact.form.email")
+        = f.email_field :email, placeholder: t("contact.form.email"), required: "", class: "form-control"
+  .form-group
+    = f.label :message, t("contact.form.message")
+    = f.text_area :message, required: "", class: 'form-control', rows: "7", placeholder: t("contact.form.message"), style: 'resize:vertical'
+  .pull-right= f.submit("Envoyer", class: 'btn btn-primary', :"data-disable-with" => "Envoi...")
