@@ -1,5 +1,6 @@
 fr:
   contact:
+    title: Contactez nous
     form:
       name: Nom complet
       email: Email
@@ -11,11 +12,13 @@ fr:
     address: "1 rue juliot curie"
     address_ext: "91 192 Gif Sur Yvette"
     email: "gign_bureau@larez.fr"
+    irc: "irc.larez.fr:6667#gign"
 
 
 
 en:
   contact:
+    title: Contact us
     form:
       name: Fullname
       email: Email
