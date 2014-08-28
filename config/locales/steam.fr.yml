@@ -45,7 +45,7 @@ fr:
       last_achievements: "Les derniers succès obtenus"
       nb_player:
         one: Une personne joue à ce jeu
-        other: "%{count} personnes joues à ce jeu"
+        other: "%{count} personnes jouent à ce jeu"
       play_now: "Jouer maintenant !"
       see_store: Voir sur Steam
       link_achievement: "Voir les stats de succès générale"
