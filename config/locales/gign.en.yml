@@ -84,6 +84,7 @@ en:
         updated_at: Updated on
         created_since: Created for
         created_ago: Created for
+        nb_comments: Nb Comments
       supply:
         <<: *all
         all: all

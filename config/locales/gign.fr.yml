@@ -83,6 +83,7 @@ fr:
         created_since: Crée depuis
         created_ago: Crée il y a
         updated_at: Mis à jour le
+        nb_comments: Nombre de commentaires
       supply:
         <<: *all
         all: Tous
