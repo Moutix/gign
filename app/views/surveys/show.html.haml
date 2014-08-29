@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @survey.name
+%p
+  %b Description:
+  = @survey.description
+%p
+  %b Is extensible:
+  = @survey.is_extensible
+%p
+  %b Responses per user:
+  = @survey.responses_per_user
+%p
+  %b User:
+  = @survey.user
+
+= link_to 'Edit', edit_survey_path(@survey)
+\|
+= link_to 'Back', surveys_path
