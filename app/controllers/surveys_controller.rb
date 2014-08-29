@@ -12,11 +12,6 @@ class SurveysController < ApplicationController
   def show
   end
 
-  # GET /surveys/new
-  def new
-    @survey = Survey.new
-  end
-
   # GET /surveys/1/edit
   def edit
   end
@@ -32,7 +27,7 @@ class SurveysController < ApplicationController
         format.html { redirect_to @survey, notice: 'Survey was successfully created.' }
         format.json { render action: 'show', status: :created, location: @survey }
       else
-        format.html { render action: 'new' }
+        format.html { render action: 'index' }
         format.json { render json: @survey.errors, status: :unprocessable_entity }
       end
     end

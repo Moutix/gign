@@ -4,6 +4,7 @@ class CreateSurveys < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.boolean :is_extensible, default: false
+      t.boolean :is_active, default: false
       t.integer :responses_per_user, default: 1
       t.references :user, index: true
 

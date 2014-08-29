@@ -77,7 +77,11 @@
                   = link_to upload_files_path do
                     %i.fa.fa-file
                     = t("navbar.dropdown_admin.file")
- 
+              - if can? :index, Survey
+                %li
+                  = link_to surveys_path do
+                    %i.fa.fa-file
+                    = t("navbar.dropdown_admin.survey")
 
         - if !current_user
           %li

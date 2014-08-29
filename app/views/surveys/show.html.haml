@@ -1,4 +1,7 @@
-%p#notice= notice
+.pull-right
+  %button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#surveyModal"}
+    %i.fa.fa-wrench
+    = t("helpers.links.params")
 
 %p
   %b Name:
@@ -16,6 +19,12 @@
   %b User:
   = @survey.user
 
+%h4 Réponses
+= render 'responses', survey: @survey
+
 = link_to 'Edit', edit_survey_path(@survey)
 \|
 = link_to 'Back', surveys_path
+
+
+= render 'form', survey: @survey

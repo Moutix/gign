@@ -1,0 +1,6 @@
+%ul
+- survey.responses.each do |survey_response|
+  %li= render 'response', survey_response: survey_response
+
+= form_for ([survey, survey.responses.new]) do |f|
+  = f.text_field :name, class: 'form-control'

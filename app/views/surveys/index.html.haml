@@ -1,6 +1,12 @@
 - model_class = Survey
 %h1= t '.title', :default => model_class.model_name.human.pluralize.titleize
 
+%h4 Nouveau Sondage
+= form_for Survey.new do |f|
+  = f.text_field :name, placeholder: "Entrez votre question", class: 'form-control'
+ 
+
+
 %table.table.table-striped
   %tr
     %th= model_class.human_attribute_name(:name)
@@ -28,8 +34,3 @@
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' 
       
-%br
-
-= link_to t('.new', :default => t("helpers.links.new"), name: model_class.model_name.human),
-            new_survey_path,
-            :class => 'btn btn-primary'

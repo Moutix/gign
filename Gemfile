@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.1.4'
+gem 'rails', '4.2.0.beta1'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -11,13 +11,13 @@ gem 'mysql2'
 # -- Visual
 gem 'haml'
 gem 'less-rails'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.2.0'
 gem 'font-awesome-rails'
 gem 'ckeditor'
 gem 'jquery-fileupload-rails'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '5.0.0.beta1'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -58,7 +58,8 @@ end
 
 
 # user management
-gem 'devise'
+
+gem 'devise', git: 'https://github.com/plataformatec/devise.git', :branch => 'lm-rails-4-2'
 gem 'cancan'
 
 # upload files
@@ -74,7 +75,7 @@ gem 'acts_as_commentable_with_threading'
 
 # multi language
 gem 'globalize'
-gem 'i18n_routing', github: 'ncri/i18n_routing', branch: 'rails4'
+#gem 'i18n_routing', github: 'ncri/i18n_routing', branch: 'rails4'
 
 # steam interface (use in services/steam_services)
 gem 'omniauth-steam'
