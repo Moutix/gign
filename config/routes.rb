@@ -1,6 +1,7 @@
 Gign::Application.routes.draw do
 
-  scope "(:locale)", locale: /fr|en/ do  
+
+  scope "(:locale)", locale: /fr|en/ do
     localized do
       
       resources :games, only: [:index, :show] do
@@ -29,6 +30,8 @@ Gign::Application.routes.draw do
         end
 
       end
+      
+      resources :surveys
 
       resources :comments, only: [:create, :update, :destroy] do
         collection do

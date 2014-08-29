@@ -48,6 +48,9 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :groups, :join_table => 'users_groups'
   has_one :mail_box
   has_many :resource_followers
+  has_many :user_responses
+  has_many :response_surveys, through: :user_responses
+  has_many :surveys, through: :response_surveys
 
   scope :steam_users, -> {where('steamid IS NOT NULL')}
   scope :public_steam_users, -> {where('steamid IS NOT NULL AND steam_public = ?', true)}

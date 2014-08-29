@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140823092529) do
+ActiveRecord::Schema.define(version: 20140829104431) do
 
   create_table "achievements", force: true do |t|
     t.string   "api_name"
@@ -207,6 +207,13 @@ ActiveRecord::Schema.define(version: 20140823092529) do
   add_index "resource_followers", ["resource_id", "resource_type"], name: "index_resource_followers_on_resource_id_and_resource_type", using: :btree
   add_index "resource_followers", ["user_id"], name: "index_resource_followers_on_user_id", using: :btree
 
+  create_table "response_surveys", force: true do |t|
+    t.string   "name"
+    t.integer  "survey_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "save_data", force: true do |t|
     t.integer  "nb_users"
     t.integer  "nb_steam_users"
@@ -286,6 +293,18 @@ ActiveRecord::Schema.define(version: 20140823092529) do
   add_index "supply_translations", ["locale"], name: "index_supply_translations_on_locale", using: :btree
   add_index "supply_translations", ["supply_id"], name: "index_supply_translations_on_supply_id", using: :btree
 
+  create_table "surveys", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "is_extensible",      default: false
+    t.integer  "responses_per_user", default: 1
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "surveys", ["user_id"], name: "index_surveys_on_user_id", using: :btree
+
   create_table "upload_files", force: true do |t|
     t.string   "name"
     t.string   "url"
@@ -308,6 +327,16 @@ ActiveRecord::Schema.define(version: 20140823092529) do
 
   add_index "user_achievements", ["achievement_id"], name: "index_user_achievements_on_achievement_id", using: :btree
   add_index "user_achievements", ["user_id"], name: "index_user_achievements_on_user_id", using: :btree
+
+  create_table "user_responses", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "response_survey_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_responses", ["response_survey_id"], name: "index_user_responses_on_response_survey_id", using: :btree
+  add_index "user_responses", ["user_id"], name: "index_user_responses_on_user_id", using: :btree
 
   create_table "user_stats", force: true do |t|
     t.integer  "user_id"
