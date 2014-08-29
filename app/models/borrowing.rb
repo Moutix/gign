@@ -103,7 +103,7 @@ class Borrowing < ActiveRecord::Base
    
     if test
       self.update_columns(effective: true, start_at: start_time, end_at: end_time)
-      Mailer.new_valid_basket_email(user_id, self.id).deliver
+      Mailer.new_valid_basket_email(user_id, self.id).deliver_later
     end
     return test
   end
@@ -113,7 +113,7 @@ class Borrowing < ActiveRecord::Base
       self.loan!(start_at, end_at, supply_request.supply, supply_request.nb_supplies)
     end
     self.update_column(:accepted, true)
-    Mailer.basket_accepted_email(user_id, self.id).deliver
+    Mailer.basket_accepted_email(user_id, self.id).deliver_later
   end
 
   def beginning

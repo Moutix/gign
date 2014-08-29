@@ -98,13 +98,13 @@ class PagesController < ApplicationController
   private
  
     def load_section
-      @section = Section.find_by(slug: params[:section_id])
+      @section = Section.where(slug: params[:section_id]).first
       render 'shared/not_found', :status => 404 unless @section
     end
     
     # Use callbacks to share common setup or constraints between actions.
     def set_page
-      @page = @section.pages.find_by(slug: params[:id])
+      @page = @section.pages.where(slug: params[:id]).first
       render 'shared/not_found', :status => 404 unless @page
     end
 

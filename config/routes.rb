@@ -2,7 +2,6 @@ Gign::Application.routes.draw do
 
 
   scope "(:locale)", locale: /fr|en/ do
-    localized do
       
       resources :games, only: [:index, :show] do
         collection do
@@ -31,7 +30,9 @@ Gign::Application.routes.draw do
 
       end
       
-      resources :surveys
+      resources :surveys do
+        resources :response_surveys
+      end
 
       resources :comments, only: [:create, :update, :destroy] do
         collection do
@@ -90,7 +91,6 @@ Gign::Application.routes.draw do
           post 'upload/:type', :action => 'upload', as: 'upload'
         end
       end
-    end
    
     get '/contact' => 'base#contact', as: 'contact'
     post '/contact' => 'base#mail_contact', as: 'mail_contact'

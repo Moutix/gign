@@ -74,7 +74,7 @@ class SectionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_section
-      @section = Section.find_by(slug: params[:id])
+      @section = Section.where(slug: params[:id]).first
       render 'shared/not_found', :status => 404 unless @section
     end
 

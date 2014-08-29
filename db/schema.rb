@@ -297,6 +297,7 @@ ActiveRecord::Schema.define(version: 20140829104431) do
     t.string   "name"
     t.text     "description"
     t.boolean  "is_extensible",      default: false
+    t.boolean  "is_active",          default: false
     t.integer  "responses_per_user", default: 1
     t.integer  "user_id"
     t.datetime "created_at"

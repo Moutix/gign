@@ -1,8 +1,8 @@
 class Survey < ActiveRecord::Base
   attr_accessor :creator
 
-  has_many :response_survey
-  has_many :users, through: :response_survey
+  has_many :responses, class_name: 'ResponseSurvey'
+  has_many :users, through: :responses
   belongs_to :user
   
   before_create :set_user
