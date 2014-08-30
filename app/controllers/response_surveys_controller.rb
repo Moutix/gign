@@ -1,6 +1,6 @@
 class ResponseSurveysController < ApplicationController
   before_filter :load_survey
-  before_action :set_response, only: :update
+  before_action :set_response, only: [:update, :destroy]
 
   # POST /pages
   # POST /pages.json
@@ -31,12 +31,10 @@ class ResponseSurveysController < ApplicationController
     end
   end
 
-  # DELETE /pages/1
-  # DELETE /pages/1.json
   def destroy
     @response_survey.destroy
     respond_to do |format|
-      format.html { redirect_to :back }
+      format.html { redirect_to @response_survey.survey }
       format.json { head :no_content }
     end
   end
@@ -50,7 +48,7 @@ class ResponseSurveysController < ApplicationController
     
     # Use callbacks to share common setup or constraints between actions.
     def set_response
-      @response_survey = @survey.survey_responses.find(slug: params[:id])
+      @response_survey = @survey.responses.find(params[:id])
       render 'shared/not_found', :status => 404 unless @response_survey
     end
 

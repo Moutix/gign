@@ -1,2 +1,5 @@
 = survey_response.users.count
 = survey_response.name
+= link_to survey_response_survey_path(survey_response.survey, survey_response), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
+  %i.fa.fa-trash-o
+
