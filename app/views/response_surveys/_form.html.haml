@@ -1,0 +1,5 @@
+= form_for ([survey, response_survey]), remote: true do |f|
+  - if auto_vote
+    = hidden_field_tag "auto_vote", "true"
+  = f.text_field :name, placeholder: "Nouvelle réponse"
+  

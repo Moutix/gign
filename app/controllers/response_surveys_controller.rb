@@ -1,17 +1,22 @@
 class ResponseSurveysController < ApplicationController
   before_filter :load_survey
-  before_action :set_response, only: [:update, :destroy]
+  before_action :set_response, only: [:update, :destroy, :vote, :edit]
 
   # POST /pages
   # POST /pages.json
   def create
     @response_survey = @survey.responses.new(response_survey_params)
+    @auto_vote = (params[:auto_vote] ? true : false)
+    @response_survey.vote(current_user) if @auto_vote
+    @reload = true if current_user && !@survey.can_vote?(current_user)
 
     respond_to do |format|
       if @response_survey.save
         format.html { redirect_to :back }
+        format.js
         format.json { render action: 'show', status: :created, location: @survey }
       else
+        format.js
         format.html { render action: 'new' }
         format.json { render json: @survey.errors, status: :unprocessable_entity }
       end
@@ -24,9 +29,10 @@ class ResponseSurveysController < ApplicationController
     respond_to do |format|
       if @response_survey.update(response_survey_params)
           format.html { redirect_to :back }
+          format.js
       else
-        format.html { render action: 'edit' }
-        format.json { render json: @response_survey.errors, status: :unprocessable_entity }
+        format.html
+        format.js
       end
     end
   end
@@ -35,7 +41,21 @@ class ResponseSurveysController < ApplicationController
     @response_survey.destroy
     respond_to do |format|
       format.html { redirect_to @response_survey.survey }
-      format.json { head :no_content }
+      format.js
+    end
+  end
+  
+  def vote
+    @response_survey.vote(current_user)
+
+    respond_to do |format|
+      format.html { redirect_to @survey}
+    end
+  end
+
+  def edit
+    respond_to do |format|
+      format.js
     end
   end
 

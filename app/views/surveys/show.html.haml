@@ -2,29 +2,20 @@
   %button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#surveyModal"}
     %i.fa.fa-wrench
     = t("helpers.links.params")
-
-%p
-  %b Name:
-  = @survey.name
-%p
-  %b Description:
-  = @survey.description
-%p
-  %b Is extensible:
-  = @survey.is_extensible
+.center
+  %h1= @survey.name
+  %p= @survey.description
 %p
   %b Responses per user:
   = @survey.responses_per_user
-%p
-  %b User:
-  = @survey.user
+%h4= "Il vous reste #{@survey.nb_available_vote(current_user)} votes disponible"
+
+= render 'responses_edit', survey: @survey
 
 %h4 Réponses
-= render 'responses', survey: @survey
-
-= link_to 'Edit', edit_survey_path(@survey)
-\|
-= link_to 'Back', surveys_path
-
+%hr
+= render 'responses_result', survey: @survey
+%hr
+=# render 'responses', survey: @survey
 
 = render 'form', survey: @survey

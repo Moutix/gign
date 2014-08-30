@@ -19,15 +19,13 @@
 
   - @surveys.each do |survey|
     %tr[survey]
-      %td= survey.name
+      %td= link_to survey.name, survey
       %td= survey.description
       %td= survey.is_extensible
       %td= survey.responses_per_user
       %td= survey.user
       %td= survey.created_at.to_s(:pretty)
       %td 
-        = link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_survey_path(survey), :class => 'btn btn-default btn-xs'
         = link_to t('.destroy', :default => t("helpers.links.destroy")),
                         survey_path(survey),
                       :method => :delete,

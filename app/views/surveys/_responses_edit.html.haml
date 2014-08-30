@@ -1,0 +1,5 @@
+#list_edit_responses[survey]
+  - survey.responses.each do |survey_response|
+    = render 'response_surveys/edit', survey_response: survey_response
+
+= render 'response_surveys/form', survey: survey, response_survey: survey.responses.new, auto_vote: false
