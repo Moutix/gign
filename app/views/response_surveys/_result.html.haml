@@ -1,0 +1,7 @@
+.row
+  .col-md-2
+    = survey_response.name
+  .col-md-10
+    .progress
+      .progress-bar.progress-bar-striped.progress-bar-success.active{role:'progressbar', style: "width: #{survey_response.percentage.to_i}%", 'aria-valuemin' => '0', 'aria-valuemax' => '100', 'aria-valuenow' => survey_response.percentage.to_i}
+        = number_to_percentage(survey_response.percentage, precision: 1)

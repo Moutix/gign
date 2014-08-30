@@ -30,8 +30,16 @@ Gign::Application.routes.draw do
 
       end
       
-      resources :surveys do
-        resources :response_surveys
+      resources :surveys, only: [:index, :show, :create, :update, :destroy] do
+        member do
+          get :display
+        end
+        resources :response_surveys, only: [:destroy, :update, :create] do
+          member do
+            post :vote
+            post :edit
+          end
+        end
       end
 
       resources :comments, only: [:create, :update, :destroy] do

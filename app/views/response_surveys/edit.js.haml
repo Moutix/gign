@@ -1,0 +1,8 @@
+var id_selector = "#response_survey_" + #{@response_survey.id}
+if($(id_selector + " form").size()===0){
+$(id_selector + " b").remove();
+$(id_selector).prepend("#{j render 'response_surveys/form', survey: @survey, response_survey: @response_survey, auto_vote: false}")
+}else{
+$(id_selector + " form").remove()
+$(id_selector).prepend("<b>#{@response_survey.name}</b>")
+}

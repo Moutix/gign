@@ -20,6 +20,9 @@
             = f.label :is_extensible
             = f.check_box :is_extensible, class: 'form-control'
           .form-group
+            = f.label :is_active
+            = f.check_box :is_active, class: 'form-control'
+          .form-group
             = f.label :responses_per_user
             = f.number_field :responses_per_user, class: 'form-control'
           .modal-footer
