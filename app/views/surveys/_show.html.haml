@@ -9,6 +9,7 @@
 
 .center
   %p= t("survey.nb_users", count: survey.nb_users)
+.center
   - if survey.responses_per_user > 1
     %p= t("survey.nb_vote", count: survey.nb_vote)
 

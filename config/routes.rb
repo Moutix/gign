@@ -32,7 +32,7 @@ Gign::Application.routes.draw do
       
       resources :surveys, only: [:index, :show, :create, :update, :destroy] do
         member do
-          get :display
+          #get :display
         end
         resources :response_surveys, only: [:destroy, :update, :create] do
           member do
