@@ -9,7 +9,8 @@
   %p= @survey.description
 .row
   .col-md-6
-    = render 'responses_result', survey: @survey
+    #result_survey
+      = render 'responses_result', survey: @survey
   .col-md-6
     %p= t("survey.responses_per_user", count: @survey.responses_per_user)
     = render 'responses_edit', survey: @survey

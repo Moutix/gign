@@ -1,3 +1,5 @@
+$('#result_survey').empty();
+$('#result_survey').append('#{j render 'surveys/responses_result', survey: @survey}');
 var id_selector = "#response_survey_" + #{@response_survey.id}
 if($(id_selector + " form").size()===0){
 $(id_selector + " b").remove();

@@ -1,1 +1,3 @@
+$('#result_survey').empty();
+$('#result_survey').append('#{j render 'surveys/responses_result', survey: @survey}');
 $("#response_survey_" + "#{@response_survey.id}").remove()
