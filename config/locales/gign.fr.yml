@@ -32,6 +32,10 @@ fr:
     dropdown_section:
       title: Section
       name: Gestion des pages
+    dropdown_supply:
+      title: Matériels
+      supply: Emprunt
+      computer: Nos configs
     form:
       email: Email (@supelec.fr)
       password: Mot de passe
@@ -191,6 +195,8 @@ fr:
       ongoing: Etat lorsque vous avez récupéré votre commande.
       finish: Etat lorsque vous avez rendu votre emprunt.
   
+  computer:
+    title: Exemples de config afin de jouer dans les meilleures conditions
   section:
     blog: "Assigner au blog"
     activate:

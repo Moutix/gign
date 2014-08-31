@@ -22,8 +22,8 @@ fr:
       one: "Un vote restant"
       other: "%{count} votes restant"
     nb_vote:
-      one: "Nombre de vote : 1"
-      other: "Nombre de vote : %{count}"
+      one: "Nombre de votes : 1"
+      other: "Nombre de votes : %{count}"
     nb_users:
       one: "Nombre de votants : 1"
       other: "Nombre de votants : %{count}"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140831110316) do
+ActiveRecord::Schema.define(version: 20140831155420) do
 
   create_table "achievements", force: true do |t|
     t.string   "api_name"
@@ -73,6 +73,26 @@ ActiveRecord::Schema.define(version: 20140831110316) do
 
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "components", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.decimal  "price",       precision: 10, scale: 2
+    t.text     "link"
+    t.integer  "computer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "components", ["computer_id"], name: "index_components_on_computer_id", using: :btree
+
+  create_table "computers", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "games", force: true do |t|
     t.string   "name"

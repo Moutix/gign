@@ -14,8 +14,15 @@
         - if blog
           %li{class: current_page?(section_path(blog)) ? 'active' : ''}
             %a{href: section_path(blog)}= blog.name
-        %li{class: current_page?(supplies_path) ? 'active' : ''}
-          %a{href: supplies_path}= t '.title', :default => Supply.model_name.human.pluralize.titleize
+        %li.dropdown
+          %a.dropdown-toggle{"data-toggle" => 'dropdown'}
+            = t("navbar.dropdown_supply.title")
+            %i.caret 
+          %ul.dropdown-menu{role: 'menu'}
+            %li
+              %a{href: supplies_path}= t '.title', :default => t("navbar.dropdown_supply.supply")
+            %li
+              %a{href: computers_path}= t '.title', :default => t("navbar.dropdown_supply.computer")
         %li{class: current_page?(games_path) ? 'active' : ''}
           = link_to games_path do 
             %i.fa.fa-steam

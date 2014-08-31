@@ -1,6 +1,6 @@
-= render 'shared/errors_messages', resource: survey
-#surveyModal.modal.fade{"aria-hidden" => "true", "tabindex" => "-1"}
-  = form_for survey do |f|
+= render 'shared/errors_messages', resource: computer
+#Modal.modal.fade[computer]{"aria-hidden" => "true", "tabindex" => "-1"}
+  = form_for computer do |f|
     .modal-dialog
       .modal-content
         .modal-header
@@ -8,7 +8,7 @@
             %span{"aria-hidden" => "true"}×
             %span.sr-only
               = t("helpers.links.close")
-          %h4.modal-title= t("form.survey.title")
+          %h4.modal-title= t("form.computer.title")
         .modal-body   
           .form-group
             = f.label :name
@@ -16,15 +16,6 @@
           .form-group
             = f.label :description
             = f.text_area :description, class: 'form-control'
-          .form-group
-            = f.label :is_extensible
-            = f.check_box :is_extensible, class: 'form-control'
-          .form-group
-            = f.label :is_active
-            = f.check_box :is_active, class: 'form-control'
-          .form-group
-            = f.label :responses_per_user
-            = f.number_field :responses_per_user, class: 'form-control'
           .modal-footer
             %button.btn.btn-default{"data-dismiss" => "modal"}
               = t("helpers.links.close")

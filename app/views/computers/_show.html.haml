@@ -1,0 +1,30 @@
+- if can? :edit, computer
+  = render 'computers/form', computer: computer
+  .pull-right
+    %a{"data-toggle" => "modal", "data-target" => "#Modal_computer_#{computer.id}", style: 'cursor:pointer'}
+      %i.fa.fa-wrench
+    = link_to computer_path(computer), method: :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
+      %i.fa.fa-trash
+
+.center#name[computer]
+  %h1
+    = computer.name
+    \~
+    = number_to_currency computer.price
+
+.center
+  = computer.description
+%hr
+.center
+  #list_component
+    - computer.components.each do |component|
+      .component_show[component]
+        = render 'components/show', component: component
+
+- if can? :create, Component
+  .center
+    %a{"data-toggle" => "collapse", href: "#collapse_form"}
+      Nouveau composant
+  #collapse_form.panel-collapse.collapse
+    = render 'components/form', computer: computer, component: computer.components.new
+

@@ -1,6 +1,5 @@
 Gign::Application.routes.draw do
 
-
   scope "(:locale)", locale: /fr|en/ do
     localized do      
       resources :games, only: [:index, :show] do
@@ -48,6 +47,15 @@ Gign::Application.routes.draw do
         end
       end
       
+      resources :computers, only: [:index, :create, :update, :destroy] do
+        resources :components, only: [:create, :update, :destroy] do
+          member do
+            post :edit
+          end
+        end
+      end
+
+
       resources :borrowings, only: [:index, :show, :destroy] do
         member do
           post 'number_supply/:request_id', :action => 'number_supply', as: 'number_supply'
