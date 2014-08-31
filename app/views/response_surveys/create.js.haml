@@ -6,4 +6,6 @@
     $('#display_survey').empty();
     $('#display_survey').append('#{j render 'surveys/show', survey: @survey, result: false}')
 - else
+  $('#result_survey').empty();
+  $('#result_survey').append('#{j render 'surveys/responses_result', survey: @survey}');
   $('#list_edit_responses_survey_#{@survey.id}').append('#{j render 'response_surveys/edit', survey_response: @response_survey}')
