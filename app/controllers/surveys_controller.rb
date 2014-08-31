@@ -1,21 +1,25 @@
 class SurveysController < ApplicationController
   before_action :set_survey, only: [:show, :edit, :update, :destroy, :display]
+  #layout "survey", only: :display
 
   # GET /surveys
   # GET /surveys.json
   def index
+    authorize! :index, Survey
     @surveys = Survey.all
   end
 
   # GET /surveys/1
   # GET /surveys/1.json
   def show
+    authorize! :show, @survey
   end
 
 
   # POST /surveys
   # POST /surveys.json
   def create
+    authorize! :create, Survey
     @survey = Survey.new(survey_params)
     @survey.creator = current_user
 
@@ -33,6 +37,7 @@ class SurveysController < ApplicationController
   # PATCH/PUT /surveys/1
   # PATCH/PUT /surveys/1.json
   def update
+    authorize! :update, @survey
     respond_to do |format|
       if @survey.update(survey_params)
         format.html { redirect_to @survey, notice: 'Survey was successfully updated.' }
@@ -47,6 +52,7 @@ class SurveysController < ApplicationController
   # DELETE /surveys/1
   # DELETE /surveys/1.json
   def destroy
+    authorize! :destroy, @survey
     @survey.destroy
     respond_to do |format|
       format.html { redirect_to surveys_url }
@@ -55,6 +61,7 @@ class SurveysController < ApplicationController
   end
 
   def display
+    authorize! :display, @survey
   end
 
   private

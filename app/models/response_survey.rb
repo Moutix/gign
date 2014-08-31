@@ -20,7 +20,11 @@ class ResponseSurvey < ActiveRecord::Base
   end
 
   def percentage
-    self.users.count == 0 ? 0 : nb_vote/survey.nb_vote.to_f*100
+    survey.nb_vote == 0 ? 0 : nb_vote/survey.nb_vote.to_f*100
+  end
+
+  def relative_percentage
+    max_percentage == 0 ? 0 : percentage/max_percentage*100
   end
 
 end

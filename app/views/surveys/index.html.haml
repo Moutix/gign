@@ -21,10 +21,10 @@
     %tr[survey]
       %td= link_to survey.name, survey
       %td= survey.description
-      %td= survey.is_extensible
+      %td= print_boolean(survey.is_extensible)
       %td= survey.responses_per_user
-      %td= survey.user
-      %td= survey.created_at.to_s(:pretty)
+      %td= survey.user_name
+      %td= l survey.created_at, format: :default
       %td 
         = link_to t('.destroy', :default => t("helpers.links.destroy")),
                         survey_path(survey),

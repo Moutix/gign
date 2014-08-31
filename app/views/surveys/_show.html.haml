@@ -1,15 +1,14 @@
 .center
-  %h1= survey.name
+  %h4= survey.name
+.center
   %p= survey.description
-%hr
 - if result
   = render 'surveys/responses_result', survey: survey
 - else
   = render 'surveys/responses', survey: survey
 
 .center
-  %p
-    = "Il y a eu #{survey.nb_vote} vote pour le moment"
-    - if survey.responses_per_user > 1
-      = "parmis les quelques #{survey.nb_users} votants"
+  %p= t("survey.nb_users", count: survey.nb_users)
+  - if survey.responses_per_user > 1
+    %p= t("survey.nb_vote", count: survey.nb_vote)
 

@@ -6,7 +6,10 @@ class Survey < ActiveRecord::Base
   belongs_to :user
   
   before_create :set_user
- 
+  
+  delegate :name, :email, :fullname,
+    to: :user, prefix: true, allow_nil: true
+
   def nb_users
     self.users.distinct.count
   end
@@ -28,7 +31,7 @@ class Survey < ActiveRecord::Base
   end
 
   def max_percentage
-    self.responses.max{|a| a.percentage}.percentage
+    self.responses.max_by{|a| a.percentage}.percentage
   end
  
   private

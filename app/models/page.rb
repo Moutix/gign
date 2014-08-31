@@ -21,12 +21,15 @@ class Page < ActiveRecord::Base
 
   attr_accessor :creator
   belongs_to :section
+  belongs_to :survey
   belongs_to :user
   has_many :comments, :class_name => "Comment", :as => "commentable", dependent: :destroy
   has_many :resource_followers, class_name: "ResourceFollower", as: "resource", dependent: :destroy
   has_many :followers, through: :resource_followers, class_name: "User", source: 'user'
 
   before_validation :set_slug
+  before_create :set_user
+  
   validates :name, uniqueness: {case_sentitive: false, scope: :section_id}
   validates :slug, uniqueness: {case_sentitive: false, scope: :section_id}
 
@@ -36,7 +39,6 @@ class Page < ActiveRecord::Base
     to: :user, prefix: true, allow_nil: true
 
 
-  before_create :set_user
   
   def to_param
     slug

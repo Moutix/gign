@@ -28,6 +28,7 @@ fr:
       group: Gestion des groupes
       image: Gestion des images
       file: Gestion des fichiers
+      survey: Gestion des sondages
     dropdown_section:
       title: Section
       name: Gestion des pages
@@ -140,6 +141,7 @@ fr:
         <<: *all
         name: Nom
         priority: Priorité
+        survey: Sondage
       image:
         <<: *all
         name: Nom

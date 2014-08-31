@@ -28,6 +28,7 @@ en:
       group: Groups management
       image: Picture management
       file: File management
+      survey: Survey management
     dropdown_section:
       title: Section
       name: Section management
@@ -141,6 +142,7 @@ en:
         <<: *all
         name: Name
         priority: Priority
+        survey: Survey
       image:
         <<: *all
         name: Name
