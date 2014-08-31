@@ -1,7 +1,7 @@
-%h4= "Il vous reste #{@survey.nb_available_vote(current_user)} votes disponible"
 #list_responses[survey]
   - survey.responses.each do |survey_response|
     = render 'response_surveys/show', survey_response: survey_response
-
 - if survey.is_extensible
   = render 'response_surveys/form', survey: survey, response_survey: survey.responses.new, auto_vote: true
+
+%i= t("survey.nb_available_votes", count: survey.nb_available_vote(current_user))

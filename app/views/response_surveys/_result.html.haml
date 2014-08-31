@@ -1,7 +1,7 @@
 .row
   .col-xs-4
     .progress
-      .progress-bar.progress-bar-striped.progress-bar-success.active{role:'progressbar', style: "width: #{survey_response.percentage/survey_response.max_percentage*100}%", 'aria-valuemin' => '0', 'aria-valuemax' => '100', 'aria-valuenow' => survey_response.percentage.to_i}
+      .progress-bar.progress-bar-striped.progress-bar-success.active{role:'progressbar', style: "width: #{survey_response.relative_percentage}%", 'aria-valuemin' => '0', 'aria-valuemax' => '100', 'aria-valuenow' => survey_response.percentage.to_i}
         = number_to_percentage(survey_response.percentage, precision: 1)
   .col-xs-8
     = survey_response.name

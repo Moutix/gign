@@ -1,3 +1,4 @@
+= render 'surveys/display', survey: page.survey if page.survey
 .content-page[page]
   = page.content.html_safe
 
@@ -6,4 +7,4 @@
   = time_ago_in_words(page.created_at)
   = " | "
   = link_user page
-
+%hr

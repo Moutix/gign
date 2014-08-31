@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140829104431) do
+ActiveRecord::Schema.define(version: 20140831110316) do
 
   create_table "achievements", force: true do |t|
     t.string   "api_name"
@@ -180,9 +180,11 @@ ActiveRecord::Schema.define(version: 20140829104431) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "comments_count", default: 0
+    t.integer  "survey_id"
   end
 
   add_index "pages", ["section_id"], name: "index_pages_on_section_id", using: :btree
+  add_index "pages", ["survey_id"], name: "index_pages_on_survey_id", using: :btree
   add_index "pages", ["user_id"], name: "index_pages_on_user_id", using: :btree
 
   create_table "port_forwardings", force: true do |t|

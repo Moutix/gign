@@ -29,6 +29,9 @@
     = f.label :name
     = f.text_field :name, class: 'form-control', required: ''
   .form-group
+    = f.label :survey_id
+    = f.collection_select :survey_id, Survey.all, :id, :name, {include_blank: true}, {class: 'selectpicker'}
+  .form-group
     = f.label :content
     = f.cktext_area :content, class: 'form-control'
   .form-group

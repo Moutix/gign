@@ -2,19 +2,16 @@
   %button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#surveyModal"}
     %i.fa.fa-wrench
     = t("helpers.links.params")
+
 .center
   %h1= @survey.name
+.center
   %p= @survey.description
-%p
-  %b Responses per user:
-  = @survey.responses_per_user
-
-= render 'responses_edit', survey: @survey
-
-%h4 Réponses
-%hr
-= render 'responses_result', survey: @survey
-%hr
-=# render 'responses', survey: @survey
+.row
+  .col-md-6
+    = render 'responses_result', survey: @survey
+  .col-md-6
+    %p= t("survey.responses_per_user", count: @survey.responses_per_user)
+    = render 'responses_edit', survey: @survey
 
 = render 'form', survey: @survey

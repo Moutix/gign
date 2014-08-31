@@ -37,6 +37,14 @@ class Ability
       can [:comment, :follow], Page
 
       can :index, MailBox
+      
+      can :display, Survey
+      can :create_response, Survey do |s|
+        s.can_vote?(user) && s.is_extensible
+      end
+      can :vote, ResponseSurvey do |rs|
+        rs.survey.can_vote?(user)
+      end
     end
   
     can :show, Page do |p|

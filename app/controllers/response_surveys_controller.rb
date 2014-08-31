@@ -5,13 +5,14 @@ class ResponseSurveysController < ApplicationController
   # POST /pages
   # POST /pages.json
   def create
+    authorize! :create_response, @survey
     @response_survey = @survey.responses.new(response_survey_params)
     @auto_vote = (params[:auto_vote] ? true : false)
     @response_survey.vote(current_user) if @auto_vote
-    @reload = true if current_user && !@survey.can_vote?(current_user)
 
     respond_to do |format|
       if @response_survey.save
+        @reload = true if current_user && !@survey.can_vote?(current_user)
         format.html { redirect_to :back }
         format.js
         format.json { render action: 'show', status: :created, location: @survey }
@@ -26,6 +27,7 @@ class ResponseSurveysController < ApplicationController
   # PATCH/PUT /pages/1
   # PATCH/PUT /pages/1.json
   def update
+    authorize! :update, @response_survey
     respond_to do |format|
       if @response_survey.update(response_survey_params)
           format.html { redirect_to :back }
@@ -38,6 +40,7 @@ class ResponseSurveysController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @response_survey
     @response_survey.destroy
     respond_to do |format|
       format.html { redirect_to @response_survey.survey }
@@ -46,6 +49,7 @@ class ResponseSurveysController < ApplicationController
   end
   
   def vote
+    authorize! :update, @response_survey
     @response_survey.vote(current_user)
     @reload = true if current_user && !@survey.can_vote?(current_user)
 

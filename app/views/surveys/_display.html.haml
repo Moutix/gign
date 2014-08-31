@@ -1,0 +1,5 @@
+#display_survey
+  - if !current_user || survey.can_vote?(current_user)
+    = render 'surveys/show', survey: survey, result: false
+  - else
+    = render 'surveys/show', survey: survey, result: true
