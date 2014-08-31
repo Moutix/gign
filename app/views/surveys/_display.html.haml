@@ -1,4 +1,4 @@
-#display_survey
+.well.center#display_survey{style: 'width:80%'}
   - if !current_user || survey.can_vote?(current_user)
     = render 'surveys/show', survey: survey, result: false
   - else
