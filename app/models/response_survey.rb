@@ -3,8 +3,14 @@ class ResponseSurvey < ActiveRecord::Base
   has_many :user_responses, dependent: :destroy
   has_many :users, through: :user_responses
 
-  def nb_vote
-    self.users.count
+  delegate :max_percentage, to: :survey, allow_nil: true
+
+  def nb_vote(user = nil)
+    if user.nil?
+      self.users.count
+    else
+      self.users.where(id: user.id).count
+    end
   end
 
   def vote(user)

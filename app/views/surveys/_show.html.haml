@@ -7,7 +7,7 @@
 - else
   = render 'surveys/responses', survey: survey
 
-.pull-right
+.center
   %p
     = "Il y a eu #{survey.nb_vote} vote pour le moment"
     - if survey.responses_per_user > 1

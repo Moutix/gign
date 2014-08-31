@@ -8,7 +8,6 @@
 %p
   %b Responses per user:
   = @survey.responses_per_user
-%h4= "Il vous reste #{@survey.nb_available_vote(current_user)} votes disponible"
 
 = render 'responses_edit', survey: @survey
 

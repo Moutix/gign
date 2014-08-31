@@ -47,9 +47,11 @@ class ResponseSurveysController < ApplicationController
   
   def vote
     @response_survey.vote(current_user)
+    @reload = true if current_user && !@survey.can_vote?(current_user)
 
     respond_to do |format|
-      format.html { redirect_to @survey}
+      format.html { redirect_to display_survey_path(@survey)}
+      format.js
     end
   end
 

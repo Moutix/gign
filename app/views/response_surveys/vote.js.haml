@@ -1,0 +1,6 @@
+- if @reload
+  $('#display_survey').empty();
+  $('#display_survey').append('#{j render 'surveys/show', survey: @survey, result: true}')
+- else
+  $('#display_survey').empty();
+  $('#display_survey').append('#{j render 'surveys/show', survey: @survey, result: false}')
