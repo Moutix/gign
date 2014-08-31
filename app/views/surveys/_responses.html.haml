@@ -1,3 +1,4 @@
+%h4= "Il vous reste #{@survey.nb_available_vote(current_user)} votes disponible"
 #list_responses[survey]
   - survey.responses.each do |survey_response|
     = render 'response_surveys/show', survey_response: survey_response

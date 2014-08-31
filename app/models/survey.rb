@@ -26,6 +26,10 @@ class Survey < ActiveRecord::Base
   def can_vote?(user)
     nb_vote(user) < self.responses_per_user
   end
+
+  def max_percentage
+    self.responses.max{|a| a.percentage}.percentage
+  end
  
   private
     def set_user
