@@ -1,0 +1,15 @@
+= link_to component.link do
+  = component.name
+  \~
+  = number_to_currency component.price
+  
+  - if can? :edit, component
+    = link_to edit_computer_component_path(component.computer, component), :method => :post, remote: true do
+      %i.fa.fa-pencil
+      
+  - if can? :destroy, component
+    = link_to computer_component_path(component.computer, component), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, remote: true do
+      %i.fa.fa-trash
+
+
+%p= component.description

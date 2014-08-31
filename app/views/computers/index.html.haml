@@ -1,0 +1,17 @@
+- model_class = Computer
+.center
+  %h4= t("computer.title")
+
+.row
+  - @computers.each do |computer|
+    .well.col-md-4
+      = render 'show', computer: computer
+  
+%br
+- if can? :create, Computer
+  .form-actions
+    %button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#Modal_computer_new"}
+      = t("helpers.links.new", :name => model_class.model_name.human)
+
+    = render 'computers/form', computer: Computer.new
+

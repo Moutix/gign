@@ -1,0 +1,7 @@
+var id_selector = "#component_" + #{@component.id}
+$(id_selector).empty();
+if($(id_selector + " form").size()===0){
+$(id_selector).append("#{j render 'components/form', computer: @computer, component: @component}")
+}else{
+$(id_selector).append("#{j render 'components/show', component: @component}")
+}

@@ -32,6 +32,10 @@ en:
     dropdown_section:
       title: Section
       name: Section management
+    dropdown_supply:
+      title: Products
+      supply: Borrowing
+      computer: Configs
     form:
       email: Email (@supelec.fr)
       password: Password

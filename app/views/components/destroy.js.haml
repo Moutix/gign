@@ -1,0 +1,4 @@
+$('#name_computer_#{@computer.id}').empty();
+$('#name_computer_#{@computer.id}').append("<h1>#{@computer.name + " ~ " + number_to_currency(@computer.price)}</h1>");
+var id_selector = "#component_" + #{@component.id}
+$(id_selector).remove();
