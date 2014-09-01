@@ -60,7 +60,7 @@ class Ability
       can :follow, Game
 
       can :ask_permission, Game do |g|
-        g.need_permission? && user.games.include?(g)
+        g.need_permissions? && user.games.include?(g)
       end
     end
 
