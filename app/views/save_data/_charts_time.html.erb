@@ -4,7 +4,7 @@ var ready = function() {
     $(function () { 
         $('#charts_<%=title.parameterize%>').highcharts({
             chart: {
-                zoomType: 'x',
+                zoomType: 'x'
             },
             title: {
                 text: '<%= title%>'
@@ -16,16 +16,31 @@ var ready = function() {
                     text: null
                     }
             },
-            yAxis: {
+            yAxis: [
+                <% data.each do |key, value|%>
+                {
+                min: 0,
+                max: <%= value.max_by{|a| a.last}.last%>,
                 title: {
-                    text: '<%= ytitle%>'
+                    text: '<%= key%>'
+                },
+                <% if data.keys.index(key) > 0%>
+                    opposite: true,
+                <%end%>
                 }
-            },
-            series: [{
+                <%= key == data.keys.last ? '' : ',' %>
+            <%end%>
+            ],
+            series: [
+                <% data.each do |key, value|%>
+                    {
                 type: 'spline',
-                name: '<%= ytitle%>',
-                data: <%=data%>
+                yAxis: <%= data.keys.index(key)%>,
+                name: '<%= key%>',
+                data: <%=value%>
                 }
+                <%= key == data.keys.last ? '' : ',' %>
+                <%end%>
             ]
         });
     });
