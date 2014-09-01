@@ -5,6 +5,9 @@ en:
     need_permissions: Caution, this game can require a port forwarding
     last_played_games: Last played games
     last_update: "Last update : "
+    nolife:
+      user: "The biggest nolife is "
+      hours: "with %{game_hours} of recent playtime"
 
     firewall:
       ask_permission: Ask for port forwarding

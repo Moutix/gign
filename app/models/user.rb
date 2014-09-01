@@ -109,7 +109,7 @@ class User < ActiveRecord::Base
   end
 
   def fullname
-    t = steam_name ? "#{name}(#{steam_name})" : name
+    t = steam_name ? "#{name} (#{steam_name})" : name
   end
 
   def active_basket
@@ -180,6 +180,10 @@ class User < ActiveRecord::Base
   end
   def recent_playtime
     user_stats.sum(:recent_playtime)
+  end
+
+  def self.nolife
+    self.joins(:user_stats).group('users.id').order('SUM(user_stats.recent_playtime) ASC').last
   end
 
   private

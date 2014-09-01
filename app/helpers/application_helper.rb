@@ -19,13 +19,14 @@ module ApplicationHelper
     content_tag(:span, text, :class => 'status_tag ' + class_name)
   end
 
-  def link_user(resource)
-    if resource.user.nil?
+  def link_user(resource, user = nil)
+    user = resource.user if user.nil?
+    if user.nil?
       t("user.nobody")
-    elsif current_user && (current_user.can? :show, resource.user)
-      link_to resource.user_fullname, user_path(resource.user)
-    elsif current_user && (current_user.can? :steam, resource.user)
-      link_to resource.user_fullname, steam_user_path(resource.user)
+    elsif current_user && (current_user.can? :show, user)
+      link_to user.fullname, user_path(user)
+    elsif current_user && (current_user.can? :steam, user)
+      link_to user.fullname, steam_user_path(user)
     else
       resource.user_fullname
     end

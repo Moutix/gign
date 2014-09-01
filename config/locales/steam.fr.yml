@@ -5,6 +5,9 @@ fr:
     need_permissions: Attention ce jeu peut nécessiter une ouverture de port
     last_played_games: Derniers jeux joués
     last_update: "Dernière mise à jour : "
+    nolife:
+      user: "Le plus gros no life du moment est "
+      hours: "avec %{game_hours} de jeu"
 
     firewall:
       ask_permission: Demander une ouverture de port
