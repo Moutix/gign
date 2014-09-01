@@ -1,6 +1,6 @@
 class ComponentsController < ApplicationController
   before_filter :load_computer
-  before_action :set_component, only: [:show, :edit, :update, :destroy]
+  before_action :set_component, only: [:update, :destroy, :edit]
 
   # POST /components.json
   def create

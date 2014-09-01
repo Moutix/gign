@@ -1,19 +1,18 @@
 .row
   .col-md-2
   .col-md-2
-    %h4 About US
+    %h4= t("footer.about_us")
     %ul.unstyled
-      %li= link_to "Contact", contact_path
-      %li L'équipe
-      %li Jobs
+      %li= link_to t("footer.contact"), contact_path
+      %li= link_to t("footer.team"), promotions_path
   .col-md-2
-    %h4 Nos autres sites
+    %h4= t("footer.websites")
     %ul.unstyled
       %li= link_to 'GiGN PAPS', 'https://camion.larez.fr'
       %li= link_to 'GiGN Date', 'https://gigndate.larez.fr'
       %li= link_to 'GiGN Bin', 'https://gignbin.larez.fr'
   .col-md-4
-    %h4 See us on
+    %h4= t("footer.see_us")
     = link_to 'http://steamcommunity.com/groups/gifgn/' do
       = image_tag 'steam_footer.png'
     = link_to 'https://github.com/gifgn' do

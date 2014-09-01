@@ -1,6 +1,6 @@
-= render 'shared/errors_messages', resource: computer
-#Modal.modal.fade[computer]{"aria-hidden" => "true", "tabindex" => "-1"}
-  = form_for computer do |f|
+= render 'shared/errors_messages', resource: promotion
+#Modal.modal.fade[promotion]{"aria-hidden" => "true", "tabindex" => "-1"}
+  = form_for promotion do |f|
     .modal-dialog
       .modal-content
         .modal-header
@@ -8,11 +8,14 @@
             %span{"aria-hidden" => "true"}×
             %span.sr-only
               = t("helpers.links.close")
-          %h4.modal-title= t("form.computer.title")
+          %h4.modal-title= t("form.promotion.title")
         .modal-body
           .form-group
+            = f.label :year
+            = f.number_field :year, class: 'form-control', required: ''
+          .form-group
             = f.label :name
-            = f.text_field :name, class: 'form-control', required: ''
+            = f.text_field :name, class: 'form-control'
           .form-group
             = f.label :description
             = f.text_area :description, class: 'form-control'

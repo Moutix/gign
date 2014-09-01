@@ -1,0 +1,8 @@
+= form_for ([promotion, member]), remote: true do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control' 
+  .form-group
+    = f.label :role
+    = f.text_field :role, class: 'form-control' 
+  = f.submit t('.save', :default => t("helpers.links.save")), :class => 'btn btn-primary'

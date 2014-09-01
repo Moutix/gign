@@ -16,15 +16,15 @@
   = computer.description
 %hr
 .center
-  #list_component
+  #list_component[computer]
     - computer.components.each do |component|
       .component_show[component]
         = render 'components/show', component: component
 
 - if can? :create, Component
   .center
-    %a{"data-toggle" => "collapse", href: "#collapse_form"}
+    %a{"data-toggle" => "collapse", href: "#collapse_form_computer_#{computer.id}"}
       Nouveau composant
-  #collapse_form.panel-collapse.collapse
+  #collapse_form.panel-collapse.collapse[computer]
     = render 'components/form', computer: computer, component: computer.components.new
 

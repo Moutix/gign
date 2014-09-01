@@ -1,0 +1,15 @@
+- model_class = Promotion
+.center
+  %h4= t '.title', :default => t("promotion.title")
+
+- @promotions.each do |promotion|
+  = render 'promotions/show', promotion: promotion
+  %hr
+
+- if can? :create, Promotion
+  .form-actions
+    %button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#Modal_promotion_new"}
+      = t("helpers.links.new", :name => model_class.model_name.human)
+
+    = render 'promotions/form', promotion: Promotion.new
+

@@ -1,4 +1,4 @@
 $('#name_computer_#{@computer.id}').empty();
 $('#name_computer_#{@computer.id}').append("<h1>#{@computer.name + " ~ " + number_to_currency(@computer.price)}</h1>");
-$('#list_component').append("<div id='component_#{@component.id}'></div")
+$('#list_component_computer_#{@computer.id}').append("<div id='component_#{@component.id}'></div")
 $('#component_#{@component.id}').append('#{j render 'components/show', component: @component}')

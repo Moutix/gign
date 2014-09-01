@@ -1,0 +1,10 @@
+#form_up[member]
+  = form_for ([promotion, member]), remote: true do |f|
+    = f.hidden_field :order, value: member.previous_order
+    %i.fa.fa-arrow-up{style: 'cursor:pointer', onclick: "$('#form_up_member_#{member.id} form').submit()"}
+
+#form_down[member]
+  = form_for ([promotion, member]), remote: true do |f|
+    = f.hidden_field :order, value: member.next_order
+    %i.fa.fa-arrow-down{style: 'cursor:pointer', onclick: "$('#form_down_member_#{member.id} form').submit()"}
+

@@ -1,0 +1,7 @@
+var id_selector = "#member_" + #{@member.id}
+$(id_selector).empty();
+if($(id_selector + " form").size()===0){
+$(id_selector).append("#{j render 'members/form', promotion: @promotion, member: @member}")
+}else{
+$(id_selector).append("#{j render 'members/show', member: @member}")
+}

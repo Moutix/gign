@@ -7,6 +7,10 @@ fr:
     supplies: materiels
     packs: packs
     images: images
+    members: membres
+    promotions: equipe
+    computers: configs
+    components: composants
 
     activate: activer
 
@@ -36,6 +40,10 @@ en:
     supplies: supplies
     packs: packs
     images: images
+    members: membres
+    promotions: team
+    computers: configs
+    components: composants
 
     activate: activate
 
