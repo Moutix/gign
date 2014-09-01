@@ -31,8 +31,16 @@ en:
           yaxis: Hours played
       stats:
         online_users:
-          title: "Nombre d'utilisateurs en ligne depuis 2 jours"
-          ytitle: "Nombre d'utilisateurs en ligne"
+          title: "Nb online players through the ages"
+          ytitle: "Nb online players"
+        recent_playtime:
+          title: "Recent playtime through the ages"
+          ytitle: "Recent playtime"
+        total_playtime:
+          title: "Total playtime through the ages"
+          ytitle: "Total playtime"
+
+
 
     achievements:
       title: "General stat of"

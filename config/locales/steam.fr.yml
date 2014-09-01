@@ -34,6 +34,14 @@ fr:
         online_users:
           title: "Nombre d'utilisateurs en ligne depuis 2 jours"
           ytitle: "Nombre d'utilisateurs en ligne"
+        recent_playtime:
+          title: "Temps récent en jeu au cours du temps"
+          ytitle: "Nombre d'heure en jeu"
+        total_playtime:
+          title: "Temps total en jeu au cours du temps"
+          ytitle: "Nombre d'heures en jeu"
+
+
 
 
     achievements:
