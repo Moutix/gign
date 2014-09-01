@@ -44,6 +44,12 @@ en:
     sign_up: Sign up
     sign_in: Sign in
 
+  footer:
+    about_us: About us
+    contact: Contact
+    team: Team
+    websites: Other websites
+    see_us: "See us on:"
 
   activerecord:
     models:
@@ -197,7 +203,12 @@ en:
       accepted: State when admins will have validated your basket.
       ongoing: State once you have retrieved your command.
       finish: State once you have handed back your borrowing.
-  
+  computer:
+    title: Exemples de config afin de jouer dans les meilleures conditions
+  promotion:
+    title: Liste des différents membres du GiGN depuis la création du club
+ 
+
   section:
     blog: "Assign to blog"
     activate:

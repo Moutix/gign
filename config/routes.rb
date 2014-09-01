@@ -55,6 +55,13 @@ Gign::Application.routes.draw do
         end
       end
 
+      resources :promotions, only: [:index, :create, :update, :destroy] do
+        resources :members, only: [:create, :update, :destroy] do
+          member do
+            post :edit
+          end
+        end
+      end
 
       resources :borrowings, only: [:index, :show, :destroy] do
         member do

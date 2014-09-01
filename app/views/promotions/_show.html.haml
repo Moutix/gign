@@ -1,0 +1,24 @@
+- if can? :edit, promotion
+  = render 'promotions/form', promotion: promotion
+  .pull-right
+    %a{"data-toggle" => "modal", "data-target" => "#Modal_promotion_#{promotion.id}", style: 'cursor:pointer'}
+      %i.fa.fa-wrench
+    = link_to promotion_path(promotion), method: :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
+      %i.fa.fa-trash
+
+%h1
+  = promotion.year
+  = " ~ " + promotion.name unless promotion.name.blank?
+
+%p=promotion.description
+
+#list_member[promotion]
+  = render 'members/index', promotion: promotion
+
+- if can? :create, Member
+  .center
+    %a{"data-toggle" => "collapse", href: "#collapse_form_promotion_#{promotion.id}"}
+      Nouveau membre
+  #collapse_form.panel-collapse.collapse[promotion]
+    = render 'members/form', promotion: promotion, member: promotion.members.new
+

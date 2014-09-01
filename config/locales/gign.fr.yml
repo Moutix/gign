@@ -43,6 +43,13 @@ fr:
     logout: Se déconnecter
     sign_up: S'inscrire
     sign_in: Se connecter
+  
+  footer:
+    about_us: À propos
+    contact: Contact
+    team: L'equipe
+    websites: Autres sites
+    see_us: "Retrouve nous aussi sur :"
 
 
   activerecord:
@@ -197,6 +204,9 @@ fr:
   
   computer:
     title: Exemples de config afin de jouer dans les meilleures conditions
+  promotion:
+    title: Liste des différents membres du GiGN depuis la création du club
+ 
   section:
     blog: "Assigner au blog"
     activate:

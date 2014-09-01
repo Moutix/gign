@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140831155420) do
+ActiveRecord::Schema.define(version: 20140901085025) do
 
   create_table "achievements", force: true do |t|
     t.string   "api_name"
@@ -147,6 +147,17 @@ ActiveRecord::Schema.define(version: 20140831155420) do
 
   add_index "mail_boxes", ["user_id"], name: "index_mail_boxes_on_user_id", using: :btree
 
+  create_table "members", force: true do |t|
+    t.string   "name"
+    t.string   "role"
+    t.integer  "order",        default: 0
+    t.integer  "promotion_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "members", ["promotion_id"], name: "index_members_on_promotion_id", using: :btree
+
   create_table "pack_translations", force: true do |t|
     t.integer  "pack_id",    null: false
     t.string   "locale",     null: false
@@ -217,6 +228,14 @@ ActiveRecord::Schema.define(version: 20140831155420) do
   end
 
   add_index "port_forwardings", ["game_id"], name: "index_port_forwardings_on_game_id", using: :btree
+
+  create_table "promotions", force: true do |t|
+    t.string   "name"
+    t.integer  "year",        default: 2015
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "resource_followers", force: true do |t|
     t.integer  "user_id"

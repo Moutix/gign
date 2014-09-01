@@ -1,0 +1,5 @@
+%ul
+  - promotion.members.each do |member|
+    %li[member]= render 'members/show', member: member
+
+
