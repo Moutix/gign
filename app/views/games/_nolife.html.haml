@@ -1,0 +1,5 @@
+%p
+  = t('steam.nolife.user')
+  = link_user(nil, User.nolife)
+  = t('steam.nolife.hours', game_hours: distance_of_hours_in_words(User.nolife.recent_playtime))
+  
