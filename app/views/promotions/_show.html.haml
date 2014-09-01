@@ -10,7 +10,9 @@
   = promotion.year
   = " ~ " + promotion.name unless promotion.name.blank?
 
-%p=promotion.description
+- promotion.description.split("\r\n").each do |line|
+  = line
+  %br
 
 #list_member[promotion]
   = render 'members/index', promotion: promotion
