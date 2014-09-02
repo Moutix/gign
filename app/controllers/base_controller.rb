@@ -1,5 +1,9 @@
 class BaseController < ApplicationController
 
+  def contact
+    add_breadcrumb t("footer.contact")
+  end
+
   def mail_contact
     if !params[:contact][:email].blank? && !params[:contact][:message].blank? && !params[:contact][:name].blank?
       Mailer.mail_contact(params[:contact][:email], params[:contact][:message], params[:contact][:name], request.remote_ip).deliver_later

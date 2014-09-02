@@ -52,4 +52,35 @@ module ApplicationHelper
     t "datetime.distance_in_words.about_x_hours", count: (number/60).round
   end
 
+  def breadcrumb_url
+    breadcrumb = request.fullpath.split('/')
+    breadcrumb.delete_at(0)
+    breadcrumb.delete_at(0) if I18n.available_locales.include?(breadcrumb.first.to_sym)
+    return breadcrumb
+  end
+  
+  def link_if_can(action, resource)
+    if can? action, resource
+      link_to resource, action: action, controller: resource
+    else
+      resource
+    end
+  end
+
+  def link_to_resource_if_can(resource)
+    if can? :show, resource
+      if resource.attribute_names.includes?("name")
+        link_to resource.name, resource
+      else
+        link_to resource.id, resource
+      end
+    else
+      if resource.attribute_names.includes?("name")
+        resource.name
+      else
+        resource.id
+      end
+    end
+  end
+
 end

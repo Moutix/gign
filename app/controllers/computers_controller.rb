@@ -1,6 +1,10 @@
 class ComputersController < ApplicationController
   before_action :set_computer, only: [:update, :destroy]
 
+  before_action only: :index do
+    add_breadcrumb_if_can Computer.model_name.human.pluralize.titleize, computers_path, :index, Computer
+  end
+
   # GET /computers
   # GET /computers.json
   def index

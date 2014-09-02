@@ -1,5 +1,12 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy, :add_user, :del_user]
+  
+  before_action do
+    add_breadcrumb_if_can t("activerecord.models.group", count: 2), groups_path, :index, Group
+  end
+  before_action only: [:show] do
+    add_breadcrumb_if_can @group.name, group_path(@group), :show, @group
+  end
 
   # GET /groups
   # GET /groups.json

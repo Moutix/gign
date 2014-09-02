@@ -1,6 +1,14 @@
 class PacksController < ApplicationController
   before_action :set_pack, only: [:show, :update, :destroy, :add_supply, :activate, :add_to_basket]
   
+  before_action do
+    add_breadcrumb_if_can t("activerecord.models.pack", count: 2), packs_path, :index, Pack
+  end
+  before_action only: [:show] do 
+    add_breadcrumb_if_can @pack.name, pack_path(@pack), :show, @pack
+  end
+
+
   def index
     authorize! :index, Pack
     @packs = Pack.all

@@ -1,11 +1,14 @@
 class ApplicationController < ActionController::Base
+  include BreadcrumbHelper
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception, except: :render_404
  
 
   before_action :set_locale, :set_last_connection
- 
+  before_action do
+    add_breadcrumb t("breadcrumb.home"), :root_path
+  end
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale

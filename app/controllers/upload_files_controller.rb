@@ -1,5 +1,10 @@
 class UploadFilesController < ApplicationController
   before_action :set_upload_file, only: [:destroy]
+  
+  before_action do
+    add_breadcrumb_if_can t("activerecord.models.upload_file", count: 2), upload_files_path, :index, UploadFile
+  end
+
 
   # GET /upload_files
   # GET /upload_files.json

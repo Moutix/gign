@@ -1,5 +1,13 @@
 class SectionsController < ApplicationController
   before_action :set_section, only: [:show, :update, :destroy, :activate]
+  
+  before_action do
+    add_breadcrumb_if_can t("activerecord.models.section", count: 2), sections_path, :index, Section
+  end
+  before_action only: [:show] do 
+    add_breadcrumb_if_can @section.name, section_path(@section), :show, @section
+  end
+
 
   # GET /sections
   # GET /sections.json

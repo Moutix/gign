@@ -2,6 +2,10 @@ class ImagesController < ApplicationController
  
   before_action :set_image, only: :destroy
  
+  before_action do
+    add_breadcrumb_if_can t("activerecord.models.image", count: 2), images_path, :index, Image
+  end
+  
   def index
     authorize! :index, @image
     @images = Image.not_games.page(params[:page])
