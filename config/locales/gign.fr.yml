@@ -269,8 +269,7 @@ fr:
     other: '%{count} commentaires'
     follow: Suivre
     unfollow: Ne plus suivre
-  mail_boxes:
-    no_comment: "Vous n'avez aucun commentaire non lu pour l'instant"
+    no_comment: "Vous avez aucun commentaire non lu pour l'instant"
 
   form:
     comment:
