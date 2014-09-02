@@ -10,7 +10,7 @@ fr:
       hours: "avec %{game_hours} de jeu"
     polard:
       user: "Le plus gros polard du moment est "
-      hours: "avec %{recent_hours} joué recemment et un total de %{total_hours} heures de jeu"
+      hours: "avec %{recent_hours} de jeu récent et un total de %{total_hours} de jeu"
 
 
     firewall:
