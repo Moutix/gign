@@ -1,0 +1,5 @@
+%p
+  = t('steam.polard.user')
+  = link_user(nil, User.polard)
+  = t('steam.polard.hours', recent_hours: distance_of_hours_in_words(User.polard.recent_playtime), total_hours: distance_of_hours_in_words(User.polard.total_playtime))
+ 

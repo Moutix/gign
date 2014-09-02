@@ -185,6 +185,10 @@ class User < ActiveRecord::Base
   def self.nolife
     self.joins(:user_stats).group('users.id').order('SUM(user_stats.recent_playtime) ASC').last
   end
+  
+  def self.polard
+    self.joins(:user_stats).group('users.id').order('SUM(user_stats.recent_playtime) ASC, SUM(user_stats.total_playtime) ASC').first
+  end
 
   private
     def follow_this_game(game)
