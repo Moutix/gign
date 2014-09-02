@@ -3,8 +3,8 @@
   %h4= t '.title', :default => t("promotion.title")
 
 - @promotions.each do |promotion|
-  = render 'promotions/show', promotion: promotion
-  %hr
+  .well
+    = render 'promotions/show', promotion: promotion
 
 - if can? :create, Promotion
   .form-actions

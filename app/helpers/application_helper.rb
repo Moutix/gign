@@ -28,7 +28,7 @@ module ApplicationHelper
     elsif current_user && (current_user.can? :steam, user)
       link_to user.fullname, steam_user_path(user)
     else
-      resource.user_fullname
+      user.fullname
     end
   end
 
