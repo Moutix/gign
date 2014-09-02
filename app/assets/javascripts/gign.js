@@ -7,7 +7,13 @@ var ready = function() {
   language: 'fr',
   startDate: '+0d',
   minView: 1,
-  maxView: 2
+  maxView: 2,
+  icons: {
+    time: "fa fa-clock-o",
+    date: "fa fa-calendar",
+    up: "fa fa-arrow-up",
+    down: "fa fa-arrow-down"
+    }
   });
   
   $.fn.datetimepicker.dates['fr'] = {
