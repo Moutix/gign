@@ -1,7 +1,7 @@
 .btn-group.btn-group-justified
   .btn-group
-    = link_to model_class.human_attribute_name(:all), borrowings_path(type: 'all'), class: "btn btn-default #{!Borrowing::SCOPE_INDEX.include?(session[:borrowing_type]) ? 'active' : ''}"
+    = link_to model_class.human_attribute_name(:all), borrowings_path(type: 'all'), class: "btn btn-default #{!Borrowing::SCOPE_INDEX.include?(session[:borrowing_type]) ? 'active' : ''}", remote: true
   - Borrowing::SCOPE_INDEX.each do |type|
     .btn-group
-      = link_to model_class.human_attribute_name(type.to_sym), borrowings_path(type: type.to_s), class: "btn btn-default #{type == session[:borrowing_type] ? 'active' : ''}"
+      = link_to model_class.human_attribute_name(type.to_sym), borrowings_path(type: type.to_s), class: "btn btn-default #{type == session[:borrowing_type] ? 'active' : ''}", remote: true
   
