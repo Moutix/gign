@@ -1,0 +1,5 @@
+$('#borrowings_list').empty();
+$('#borrowings_list').append('#{j render 'table_index', borrowings: @borrowings}');
+
+$('#borrowings_button_params').empty();
+$('#borrowings_button_params').append('#{j render 'button_params', model_class: Borrowing}')

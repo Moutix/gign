@@ -1,9 +1,11 @@
 - model_class = Borrowing
 %h1= t '.title', :default => model_class.model_name.human.pluralize.titleize
 
-= render 'button_params', model_class: model_class
+#borrowings_button_params
+  = render 'button_params', model_class: model_class
 
 %br
 
-= render 'table_index', borrowings: @borrowings
+#borrowings_list
+  = render 'table_index', borrowings: @borrowings
 
