@@ -11,6 +11,7 @@ fr:
     promotions: equipe
     computers: configs
     components: composants
+    mail_boxes: notifications
 
     activate: activer
 
@@ -44,6 +45,7 @@ en:
     promotions: team
     computers: configs
     components: composants
+    mail_boxes: notifications
 
     activate: activate
 

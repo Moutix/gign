@@ -1,0 +1,30 @@
+en:
+  activerecord:
+    models:
+      survey:
+        one: Survey
+        other: Surveys
+    attributes:
+      survey:
+        name: Name
+        description: Description
+        is_extensible: Allow new answers
+        responses_per_user: Nb answer per user
+        user: Created by
+        created_at: Created at
+        updated_at: Mis à jour le
+
+  survey:
+    responses_per_user:
+      one: "One answer per user"
+      other: "%{count} answers per user"
+    nb_available_votes:
+      one: ""
+      other: "%{count} votes restant"
+    nb_vote:
+      one: "Nombre de votes : 1"
+      other: "Nombre de votes : %{count}"
+    nb_users:
+      one: "Nombre de votants : 1"
+      other: "Nombre de votants : %{count}"
+ 
