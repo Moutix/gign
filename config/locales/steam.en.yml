@@ -8,6 +8,10 @@ en:
     nolife:
       user: "The biggest nolife is "
       hours: "with %{game_hours} of recent playtime"
+    polard:
+      user: "The biggest polard is "
+      hours: "with %{recent_hours} of recent playtime and %{total_hours} of total playtime"
+
 
     firewall:
       ask_permission: Ask for port forwarding

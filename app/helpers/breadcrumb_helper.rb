@@ -11,7 +11,7 @@ module BreadcrumbHelper
     if can? :show, user
       add_breadcrumb user.name, user_path(user)
     else
-      add_bradcrumb user.name
+      add_breadcrumb user.name
     end
   end
   def add_new_breadcrumb

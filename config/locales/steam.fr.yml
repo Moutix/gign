@@ -8,6 +8,10 @@ fr:
     nolife:
       user: "Le plus gros no life du moment est "
       hours: "avec %{game_hours} de jeu"
+    polard:
+      user: "Le plus gros polard du moment est "
+      hours: "avec %{recent_hours} joué recemment et un total de %{total_hours} heures de jeu"
+
 
     firewall:
       ask_permission: Demander une ouverture de port
