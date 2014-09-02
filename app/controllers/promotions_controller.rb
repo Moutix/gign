@@ -1,6 +1,10 @@
 class PromotionsController < ApplicationController
   before_action :set_promotion, only: [:update, :destroy]
-
+  
+  before_action do
+    add_breadcrumb_if_can t("activerecord.models.promotion", count: 2), promotions_path, :index, Promotion
+  end
+ 
   # GET /promotions
   # GET /promotions.json
   def index

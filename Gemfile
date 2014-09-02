@@ -15,6 +15,7 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'font-awesome-rails'
 gem 'ckeditor'
 gem 'jquery-fileupload-rails'
+gem 'breadcrumbs_on_rails'
 
 # Use SCSS for stylesheets
 gem 'sass-rails'

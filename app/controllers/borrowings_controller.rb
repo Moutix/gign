@@ -1,7 +1,14 @@
 class BorrowingsController < ApplicationController
   before_action :set_borrowing, only: [:show, :edit, :update, :destroy, :submit_basket, :ended, :beginning, :accepted, :remove_from_basket, :number_supply]
 
-  # GET /borrowings
+  before_action only: :index do
+    add_breadcrumb_if_can Borrowing.model_name.human.pluralize.titleize, borrowings_path, :index, Borrowing
+  end
+  before_action only: :show do
+    add_user_breadcrumb(current_user)
+  end
+  
+    # GET /borrowings
   # GET /borrowings.json
   def index
     authorize! :index, Borrowing
@@ -24,6 +31,7 @@ class BorrowingsController < ApplicationController
   # GET /borrowings/1
   # GET /borrowings/1.json
   def show
+    add_breadcrumb t("navbar.basket.link")
     authorize! :show, @borrowing
   end
 

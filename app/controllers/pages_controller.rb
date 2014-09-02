@@ -1,6 +1,16 @@
 class PagesController < ApplicationController
   before_filter :load_section
   before_action :set_page, only: [:show, :edit, :update, :destroy, :import, :follow]
+  
+  before_action do
+    add_breadcrumb_if_can t("activerecord.models.section", count: 2), sections_path, :index, Section
+    add_breadcrumb_if_can @section.name, section_path(@section), :show, @section
+  end
+
+  before_action only: [:show] do 
+    add_breadcrumb_if_can @page.name, section_page_path(@section, @page), :show, @page
+  end
+
 
   # GET /pages/1
   # GET /pages/1.json

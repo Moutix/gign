@@ -1,6 +1,14 @@
 class SurveysController < ApplicationController
   before_action :set_survey, only: [:show, :edit, :update, :destroy, :display]
   #layout "survey", only: :display
+  
+  before_action do
+    add_breadcrumb_if_can t("activerecord.models.survey", count: 2), surveys_path, :index, Survey
+  end
+  before_action only: [:show] do 
+    add_breadcrumb_if_can @survey.name, survey_path(@survey), :show, @survey
+  end
+
 
   # GET /surveys
   # GET /surveys.json

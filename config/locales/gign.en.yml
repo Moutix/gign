@@ -5,6 +5,11 @@ en:
     application:
       forbidden: "Warning ! Forbidden action."
 
+  breadcrumb:
+    home: Home
+    new: New
+    edit: Edit
+
   navbar:
     user:
       title: Account access
@@ -74,6 +79,9 @@ en:
       page:
         one: Page
         other: Pages
+      pack:
+        one: Pack
+        other: Packs
       image:
         one: Image
         other: Images
@@ -86,7 +94,18 @@ en:
       game:
         one: Game
         other: Games
-
+      achievement:
+        one: achievement
+        other: achievements
+      computer:
+        one: config
+        other: configs
+      mail_box:
+        one: Notification
+        other: Notifications
+      promotion:
+        one: Promotion
+        other: Promotions
 
     attributes:
       all: &all

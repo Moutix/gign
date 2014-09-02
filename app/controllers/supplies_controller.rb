@@ -1,5 +1,13 @@
 class SuppliesController < ApplicationController
   before_action :set_supply, only: [:show, :update, :destroy, :loan, :add_copy]
+  
+  before_action do
+    add_breadcrumb_if_can t("activerecord.models.supply", count: 2), supplies_path, :index, Supply
+  end
+  before_action only: [:show] do 
+    add_breadcrumb_if_can @supply.name, supply_path(@supply), :show, @supply
+  end
+
 
   # GET /supplies
   # GET /supplies.json

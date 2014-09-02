@@ -17,8 +17,11 @@
     .flash
       = bootstrap_flash
     = render 'layouts/navbar'
-    
-    = render 'layouts/locale'
+
+    .container
+      %ol.breadcrumb
+        = render_breadcrumbs tag: :li, separator: ""
+        = render 'layouts/locale'
     
     .container
       = yield

@@ -5,6 +5,11 @@ fr:
     application:
       forbidden: "Attention : Cette action n'est pas permise."
 
+  breadcrumb:
+    home: Accueil
+    new: Nouveau
+    edit: Édition
+
   navbar:
     user:
       title: Accès au compte
@@ -75,6 +80,9 @@ fr:
       page:
         one: Page
         other: Pages
+      pack:
+        one: Pack
+        other: Packs
       image:
         one: Image
         other: Images
@@ -87,6 +95,18 @@ fr:
       game:
         one: Jeu
         other: Jeux
+      achievement:
+        one: succès
+        other: succès
+      computer:
+        one: config
+        other: configs
+      mail_box:
+        one: Notification
+        other: Notifications
+      promotion:
+        one: Promotion
+        other: Promotions
 
     attributes:
       all: &all

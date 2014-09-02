@@ -2,7 +2,15 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :confirm, :steam]
 
   skip_before_filter :verify_authenticity_token, :only => :steamid
+  
+  before_action only: :index do
+    add_breadcrumb_if_can t("activerecord.models.user", count: 2), users_path, :index, User
+  end
+  before_action only: [:show, :steam] do 
+    add_user_breadcrumb(@user)
+  end
 
+ 
 
   # GET /users
   # GET /users.json
@@ -53,6 +61,7 @@ class UsersController < ApplicationController
   
   def steam
     authorize! :steam, @user
+    add_breadcrumb t("navbar.steam.link")
   end
 
   def steamid

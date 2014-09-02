@@ -2,6 +2,13 @@ class GamesController < ApplicationController
 
   before_action :set_game, only: [:show, :achievements, :ask_permission, :follow]
 
+  before_action do
+    add_breadcrumb_if_can t("activerecord.models.game", count: 2), games_path, :index, Game
+  end
+  before_action only: [:show, :achievements] do 
+    add_breadcrumb_if_can @game.name, game_path(@game), :show, @game
+  end
+
   def index
     session[:games] = params[:games] if params[:games]
     session[:q] = params[:q] if params[:q]
@@ -27,7 +34,7 @@ class GamesController < ApplicationController
   end
   
   def achievements
-
+    add_breadcrumb t("activerecord.models.achievement", count: 2)
   end
 
   def ask_permission
