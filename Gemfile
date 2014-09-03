@@ -98,6 +98,10 @@ gem 'whenever'
 #generate sitemap
 gem 'sitemap_generator'
 
+#callendar
+#gem 'fullcalendar_engine', github: 'ningirsu/fullcalendar-rails-engine'
+gem 'fullcalendar_engine', path: '/home/ningirsu/fullcalendar-rails-engine'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

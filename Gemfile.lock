@@ -21,6 +21,12 @@ GIT
       actionmailer (>= 3.0.4)
       activesupport (>= 3.0.4)
 
+PATH
+  remote: /home/ningirsu/fullcalendar-rails-engine
+  specs:
+    fullcalendar_engine (1.0.6)
+      rails (>= 4.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -324,6 +330,7 @@ DEPENDENCIES
   devise
   exception_notification!
   font-awesome-rails
+  fullcalendar_engine!
   globalize
   haml
   haml-rails
