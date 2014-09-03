@@ -4,3 +4,12 @@
   %hr
   %p
     = t("home.text1")
+
+%div
+  .calendar
+
+#create_event_dialog.dialog{style: 'display:none'}
+#event_desc_dialog.dialog{style: 'display:none'}
+
+%script
+  $('.calendar').fullCalendar(full_calendar_options);

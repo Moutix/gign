@@ -1,7 +1,10 @@
 Gign::Application.routes.draw do
 
   scope "(:locale)", locale: /fr|en/ do
-    localized do      
+    mount FullcalendarEngine::Engine => "/calendar"
+    localized do
+      
+
       resources :games, only: [:index, :show] do
         collection do
           post :reload_achievements
