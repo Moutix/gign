@@ -1,0 +1,8 @@
+fr:
+  fullcalendar:
+    datetime:
+      day: jour
+      week: semaine
+      month: mois
+      year: année
+

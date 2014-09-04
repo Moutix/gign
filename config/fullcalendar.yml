@@ -1,19 +1,19 @@
 # Refer to the http://arshaw.com/fullcalendar/docs/ to know more about the following options in greater depth
 
 mount_path: "/calendar"
-
-# defaultView: 'agendaWeek'
-# aspectRatio: 1.35
-# header:
-#   left: 'prev,next today'
-#   center: 'title'
-#   right: 'month,agendaWeek,agendaDay'
+layout: "calendar"
+defaultView: 'month'
+aspectRatio: 1
+header:
+  left: 'prev,next'
+  center: 'title'
+  right: 'today'
 # weekends: true
 # weekNumbers: false
 # weekNumberCalculation: 'iso'
 # weekNumberTitle: 'W'
   
-# editable: true
+# editable: false
 # disableDragging: false
 # disableResizing: false
 # allDayDefault: true
