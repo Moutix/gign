@@ -1,6 +1,6 @@
 .center
   %h1= t("home.title")
-.center  
+.center
   %p
     = t("home.text1")
 %hr
@@ -19,7 +19,7 @@
     %h2.center= link_to t("home.list_config"), computers_path
 
 
-%hr  
+%hr
   = render "games/last_games", games: @last_games
 .center
   %h4= link_to t("home.see_games"), games_path
