@@ -4,7 +4,7 @@ cancan: true
 mount_path: "/calendar"
 layout: "calendar"
 defaultView: 'month'
-aspectRatio: 1
+aspectRatio: 1.5
 # weekends: true
 # weekNumbers: false
 # weekNumberCalculation: 'iso'
