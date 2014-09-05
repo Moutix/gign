@@ -29,7 +29,8 @@ class Image < ActiveRecord::Base
     to: :user, prefix: true, allow_nil: true
   
   scope :not_games, -> {where('imageable_type != ?', 'Game')}
-  
+  scope :supplies, ->{where('imageable_type = ?', 'Supply').where(imageable_id: Supply.loanables.pluck(:id))}
+
   def self.upload_url(url, imageable, name = nil, user = nil)
     begin
       uploader = ImageUploader.new(imageable)

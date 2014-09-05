@@ -1,20 +1,35 @@
 .center
   %h1= t("home.title")
-%hr
 .center  
   %p
     = t("home.text1")
+%hr
 
 .row
   .col-md-5
-    %h4{style: 'text-align:center'}= t("home.calendar")
+    %h3.center= t("home.calendar")
+    %br
     .calendar
   .col-md-7
-    %h4{style: 'text-align:center'}= t("home.supply")
+    %h3.center= t("home.supply")
+    %br
+    = render 'images/carousel', images: Image.supplies
+    %hr
+    %h3.center= t("home.config")
+    %h2.center= link_to t("home.list_config"), computers_path
 
+
+%hr  
+  = render "games/last_games", games: @last_games
+.center
+  %h4= link_to t("home.see_games"), games_path
 
 #create_event_dialog.dialog{style: 'display:none'}
 #event_desc_dialog.dialog{style: 'display:none'}
 
-%script
-  $('.calendar').fullCalendar(public_calendar_options);
+- if can? :edit, :calendar
+  %script
+    $('.calendar').fullCalendar(full_calendar_options);
+- else
+  %script
+    $('.calendar').fullCalendar(public_calendar_options);

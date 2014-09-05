@@ -65,6 +65,12 @@ en:
       no_achievement: "This game don't have any achievement T.T"
       no_user_achievement: "0 achievement unlocked for now"
 
+    user:
+      see_on_steam: "Voir sur steam"
+      online:
+        one: "One person online"
+        other: "%{count} people online"
+
     resume_games:
       total_game: "Games owned"
       played_game: "Games played"

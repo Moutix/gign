@@ -1,5 +1,9 @@
 class BaseController < ApplicationController
 
+  def index
+    @last_games = Game.where('recent_playtime > 0').order('rand()').includes(:images, :port_forwarding).limit(5)
+  end
+
   def contact
     add_breadcrumb t("footer.contact")
   end

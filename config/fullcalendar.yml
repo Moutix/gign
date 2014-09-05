@@ -1,13 +1,10 @@
 # Refer to the http://arshaw.com/fullcalendar/docs/ to know more about the following options in greater depth
 
+cancan: true
 mount_path: "/calendar"
 layout: "calendar"
 defaultView: 'month'
 aspectRatio: 1
-header:
-  left: 'prev,next'
-  center: 'title'
-  right: 'today'
 # weekends: true
 # weekNumbers: false
 # weekNumberCalculation: 'iso'
