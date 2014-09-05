@@ -13,7 +13,7 @@
   .col-md-7
     %h3.center= t("home.supply")
     %br
-    = render 'images/carousel', images: Image.supplies
+    = render 'images/carousel', images: Image.supplies.order('rand()')
     %hr
     %h3.center= t("home.config")
     %h2.center= link_to t("home.list_config"), computers_path
