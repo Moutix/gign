@@ -1,5 +1,8 @@
 .center
-  %h4= t("steam.last_played_games")
+  %h4
+    = t("steam.last_played_games")
+    \-
+    %i= t("steam.user.online", count: User.online.count)
   .last-games
     %span
       - games.each do |game|
