@@ -22,9 +22,9 @@ class Supply < ActiveRecord::Base
   has_many :borrowings, through: :supply_copies
   has_many :accepted_borrowings, -> { accepted}, through: :supply_copies, source: "borrowings"
   has_many :copy_loanables, -> { joins(:supply).where('(supplies.loanable = ? AND (supply_copies.loanable = ? OR supply_copies.loanable IS NULL))', true, true)}, source: 'supply_copies', class_name: 'SupplyCopy'
-  has_many :supply_requests
-  has_many :packs_supplies
-  has_many :packs, through: :packs_supplies
+  has_many :supply_requests, dependent: :destroy
+  has_many :packs_supplies, dependent: :destroy
+  has_many :packs, through: :packs_supplies, dependent: :destroy
   has_many :active_packs, -> {where(active: true)}, through: :packs_supplies, source: 'pack', class_name: 'Pack'
 
   before_create :set_user
