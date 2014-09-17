@@ -10,7 +10,7 @@ class BaseController < ApplicationController
 
   def mail_contact
     if !params[:contact][:email].blank? && !params[:contact][:message].blank? && !params[:contact][:name].blank?
-      Mailer.mail_contact(params[:contact][:email], params[:contact][:message], params[:contact][:name], request.remote_ip).deliver_later
+      Mailer.mail_contact(params[:contact][:email], params[:contact][:message], params[:contact][:name], request.remote_ip).deliver
       flash[:notice] = t("contact.form.success")
     else
       flash[:error] = t("contact.form.error")
