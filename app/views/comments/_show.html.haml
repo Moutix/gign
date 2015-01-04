@@ -4,10 +4,10 @@
   .col-sm-11.comment-inner
     %header
       %span.comment-username= link_user comment
-      - if comment.parent
+      - if comment.parent && comment.parent.user
         %span.comment-parent
           %i.fa.fa-share
-          %span.comment-parent= comment.parent.user_fullname
+          %span.comment-parent= name_user(comment.parent.user)
       \-
       %span.comment-date= time_ago_in_words(comment.created_at)
       .comment-body
