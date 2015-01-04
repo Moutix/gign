@@ -28,7 +28,15 @@ module ApplicationHelper
     elsif current_user && (current_user.can? :steam, user)
       link_to user.fullname, steam_user_path(user)
     else
+      name_user(user)
+    end
+  end
+
+  def name_user(user)
+    if current_user || user.steam_name.nil?
       user.fullname
+    else
+      user.steam_name
     end
   end
 
