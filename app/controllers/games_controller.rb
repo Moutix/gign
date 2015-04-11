@@ -16,7 +16,7 @@ class GamesController < ApplicationController
     @user_achievements = UserAchievement.unscoped.order(timestamp: :desc).limit(6).includes(user: :images, achievement: :game)
 
     if !session[:q].blank?
-      @games = Game.search session[:q], fields: [{name: :word_start}], includes: [:port_forwarding, :images]
+      @games = Game.where("name LIKE ?", "%#{session[:q]}%").includes(:images, :port_forwarding)
     else
       if session[:games] == 'all'
         @games = Game.includes(:images, :port_forwarding).all.page(params[:page])
