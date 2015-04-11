@@ -18,7 +18,6 @@ class SteamService
       rescue
       end
       if !achievements.nil?
-        puts "load achievements"
         achievements.each do |achievement|
           find_achievement(achievement, this_game)
         end
@@ -31,9 +30,7 @@ class SteamService
   def find_game(game)
     this_game = Game.find_or_create_by(app_id: game.app_id, name: game.name, short_name: game.short_name)
     this_game.update_column(:store_url, game.store_url)
-    puts this_game.id.to_s + " : " + this_game.name
     if this_game.images.empty?
-      puts "upload image"
       Image.upload_url(game.logo_url, this_game, nil, @user)
     end
     return this_game
@@ -76,12 +73,12 @@ class SteamService
     start_script = Time.now
     Game.disable_search_callbacks
     User.public_steam_users.each do |user|
-      puts "----------------------------------------------------------"
-      puts user.name
-      puts "----------------------------------------------------------"
-      steam = self.new(user)
-      ActiveRecord::Base.transaction do
-        steam.update!
+      begin
+        steam = self.new(user)
+        ActiveRecord::Base.transaction do
+          steam.update!
+        end
+      rescue
       end
     end
     puts "End of scan"

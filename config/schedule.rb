@@ -21,11 +21,11 @@
 #
 set :output, 'log/cron.log'
 
-every "0 0,9,15,18,21 * * *" do
+every "0 0,9,15,21 * * *" do
   runner "SteamService.update_all"
 end
 
-every 5.minutes do
+every 15.minutes do
   runner "SteamService.update_online!"
 end
 

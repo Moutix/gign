@@ -19,7 +19,7 @@
 
 class Game < ActiveRecord::Base
   acts_as_commentable
-  searchkick word_start: [:name]
+
   paginates_per 20
   has_many :comments, :class_name => "Comment", :as => "commentable", dependent: :destroy
   has_many :users, through: :user_stats, :counter_cache => true

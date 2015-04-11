@@ -82,9 +82,8 @@ gem 'i18n_routing', github: 'ncri/i18n_routing', branch: 'rails4'
 gem 'omniauth-steam'
 gem 'steam-condenser'
 
-# multipage + search
+# multipage
 gem 'kaminari'
-gem 'searchkick'
 
 #to dump/load database
 gem 'yaml_db', github: 'jetthoughts/yaml_db', ref: 'fb4b6bd7e12de3cffa93e0a298a1e5253d7e92ba'
