@@ -91,9 +91,6 @@ class SteamService
       end
     end
     
-    Game.enable_search_callbacks
-    Game.reindex
-    
     SaveData.create(nb_games: Game.count, nb_played_games: Game.played.count, nb_achievements: UserAchievement.count, recent_playtime: UserStat.all.sum(:recent_playtime), total_playtime: UserStat.all.sum(:total_playtime))
     
     end_script = Time.now
