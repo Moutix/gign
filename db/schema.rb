@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140903220348) do
+ActiveRecord::Schema.define(version: 20150411120240) do
 
   create_table "achievements", force: true do |t|
     t.string   "api_name"
@@ -437,6 +437,7 @@ ActiveRecord::Schema.define(version: 20140903220348) do
     t.string   "steam_url"
     t.boolean  "steam_public",                     default: false
     t.boolean  "online",                           default: false
+    t.boolean  "to_scan",                          default: true
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

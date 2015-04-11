@@ -17,6 +17,7 @@ class SteamService
         achievements = game_stats.achievements
       rescue
       end
+
       if !achievements.nil?
         achievements.each do |achievement|
           find_achievement(achievement, this_game)
@@ -27,9 +28,49 @@ class SteamService
     end
   end
 
+  def short_update!
+    update_game!
+    @user.user_stats.where('recent_playtime != 0').where.not(game_id: Game.where(name: @id.most_played_games.keys).pluck(:id)).update_all(recent_playtime: 0)
+    update_recent_game!
+  end
+
+  def update_game!
+    (@games.keys - Game.pluck(:app_id)).each do |app_id|
+      game = find_game(@games[app_id])
+      this_stat = find_stat(this_game)
+    end
+  end
+
+  def update_recent_game!
+    @id.most_played_games.each do |k, v|
+      this_game = Game.find_by(name: k)
+      return if this_game.nil?
+
+      this_stat = find_stat(this_game)
+
+      begin
+        game_stats = @id.game_stats(k)
+        achievements = game_stats.achievements
+      rescue
+      end
+
+      if !achievements.nil?
+        achievements.each do |achievement|
+          find_achievement(achievement, this_game)
+        end
+      end
+      
+      this_stat.update_columns(total_playtime: @id.total_playtime(this_game.app_id), recent_playtime: @id.recent_playtime(this_game.app_id))
+
+    end
+  end
+
   def find_game(game)
     this_game = Game.find_or_create_by(app_id: game.app_id, name: game.name, short_name: game.short_name)
     this_game.update_column(:store_url, game.store_url)
+
+    p game.name
+
     if this_game.images.empty?
       Image.upload_url(game.logo_url, this_game, nil, @user)
     end
@@ -69,24 +110,26 @@ class SteamService
     SaveData.create(nb_users: User.count, nb_steam_users: User.steam_users.count, nb_online_users: User.online.count)
   end
 
-  def self.update_all
+  def self.update_all!
     start_script = Time.now
     User.public_steam_users.each do |user|
-      begin
         steam = self.new(user)
         ActiveRecord::Base.transaction do
-          steam.update!
+          if user.to_scan
+            steam.update!
+            user.update_columns(to_scan: false)
+          else
+            steam.short_update!
+          end
         end
-      rescue
-      end
     end
-    puts "End of scan"
+
     Game.transaction do
       Game.all.each do |game|
         total_playtime = UserStat.where(game_id: game.id).sum('total_playtime')
         recent_playtime = UserStat.where(game_id: game.id).sum('recent_playtime')
-        in_cache = AckbarService.in_cache?(game.app_id)
-        game.update_columns(total_playtime: total_playtime, recent_playtime: recent_playtime, in_cache: in_cache, users_count: game.users.length, user_achievements_count: game.user_achievements.length)
+#        in_cache = AckbarService.in_cache?(game.app_id)
+        game.update_columns(total_playtime: total_playtime, recent_playtime: recent_playtime, users_count: game.users.length, user_achievements_count: game.user_achievements.length)
       end
     end
     
