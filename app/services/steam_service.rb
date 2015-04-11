@@ -71,7 +71,6 @@ class SteamService
 
   def self.update_all
     start_script = Time.now
-    Game.disable_search_callbacks
     User.public_steam_users.each do |user|
       begin
         steam = self.new(user)
