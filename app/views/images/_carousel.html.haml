@@ -7,8 +7,9 @@
           .center
             = link_to image.imageable do
               = image_tag(image.medium_url)
-            = link_to image_path(image), class: 'btn btn-danger destroy-image', method: :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
-              %i.fa.fa-trash-o
+            - if can? :delete, image
+              = link_to image_path(image), class: 'btn btn-danger destroy-image', method: :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
+                %i.fa.fa-trash-o
  
 
     %a.left.carousel-control{href: "#carousel-image", role: "button", "data-slide" => "prev"}
