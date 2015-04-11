@@ -4,7 +4,7 @@ This app use rails 4.1.4 and ruby 2.1.2.
 
 === Install Rails/Ruby
 
-If you already have rails, you can't skip this part
+If you already have rails, you can skip this part
 
 * Install ruby with rvm
  \curl -sSL https://get.rvm.io | bash -s stable --ruby
