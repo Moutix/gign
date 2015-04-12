@@ -13,6 +13,18 @@ class GamesController < ApplicationController
     session[:games] = params[:games] if params[:games]
     session[:q] = params[:q] if params[:q]
 
+    if params[:achievement_duration] && params[:achievement_duration] =~ /^\d+$/
+      @duration = params[:achievement_duration].to_i
+    else
+      @duration = 15
+    end
+  
+    if params[:achievement_step] && params[:achievement_step] =~ /^\d+$/
+      @step = params[:achievement_step].to_i
+    else
+      @step = 1
+    end
+
     @user_achievements = UserAchievement.unscoped.order(timestamp: :desc).limit(6).includes(user: :images, achievement: :game)
 
     if !session[:q].blank?
