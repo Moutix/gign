@@ -26,8 +26,10 @@ fr:
 
     charts:
       achievements:
+        step: Pas (heures)
+        duration: Durée (jours)
         title_total: 
-          top: "Nombre total de succès obtenu depuis 2 semaines"
+          top: "Nombre total de succès obtenu depuis %{duration} jours"
           user: "Succès obtenu depuis la création de compte"
           game: "Succès obtenu pour %{game}"
         title:
