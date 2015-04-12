@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_last_connection
-    if current_user && ((session[:last_update] && (Time.now - session[:last_update]) > 1.minutes) || (session[:last_update].nil?))
+    if current_user && ((session[:last_update] && (Time.now - session[:last_update]) > 5.minutes) || (session[:last_update].nil?))
       current_user.update_column(:current_sign_in_at, Time.now)
       session[:last_update] = Time.now
     end

@@ -35,9 +35,9 @@ class SteamService
   end
 
   def update_game!
-    (@games.keys - Game.pluck(:app_id)).each do |app_id|
+    (@games.keys - @user.games.pluck(:app_id)).each do |app_id|
       game = find_game(@games[app_id])
-      this_stat = find_stat(this_game)
+      this_stat = find_stat(game)
     end
   end
 
@@ -68,8 +68,6 @@ class SteamService
   def find_game(game)
     this_game = Game.find_or_create_by(app_id: game.app_id, name: game.name, short_name: game.short_name)
     this_game.update_column(:store_url, game.store_url)
-
-    p game.name
 
     if this_game.images.empty?
       Image.upload_url(game.logo_url, this_game, nil, @user)
@@ -112,6 +110,9 @@ class SteamService
 
   def self.update_all!
     start_script = Time.now
+    
+    puts "Update started at : #{start_script}"
+    
     User.public_steam_users.each do |user|
         steam = self.new(user)
         ActiveRecord::Base.transaction do
@@ -136,8 +137,10 @@ class SteamService
     SaveData.create(nb_games: Game.count, nb_played_games: Game.played.count, nb_achievements: UserAchievement.count, recent_playtime: UserStat.all.sum(:recent_playtime), total_playtime: UserStat.all.sum(:total_playtime))
     
     end_script = Time.now
+
+    puts "Update ended at : #{end_script}"
     
-    puts "executed in #{ActionController::Base.helpers.distance_of_time_in_words(start_script, end_script)}"
+    puts "Executed in #{ActionController::Base.helpers.distance_of_time_in_words(start_script, end_script)}"
   end
 
 end
