@@ -11,6 +11,10 @@
 .center
   = render "polard"
 
+- if @lan_parties.count > 0
+  .well
+    = render "lan_parties/index", lan_parties: @lan_parties
+
 .row
   .col-md-8
     .center

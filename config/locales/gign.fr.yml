@@ -198,6 +198,12 @@ fr:
         total_playtime: Temps de jeu total
         nb_users: Nombre de joueurs
         nb_achievements: Nombre de succès obtenus
+      lan_party:
+        <<: *all
+        name: Nom de la partie
+        map: Map
+        mode: Mode
+        nb_players: Nombres de joueurs
 
   supply:
     loan:
@@ -270,6 +276,11 @@ fr:
     follow: Suivre
     unfollow: Ne plus suivre
     no_comment: "Vous avez aucun commentaire non lu pour l'instant"
+
+  lan_party:
+    ongoing_game:
+      one: "%{game} (une partie en cours)"
+      other: "%{game} (%{count} parties en cours)"
 
   form:
     comment:

@@ -100,12 +100,12 @@ class SteamService
   end
 
   def self.update_online!
-    ActiveRecord::Base.transaction do
-      User.public_steam_users.each do |user|
-        self.new(user).update_online_state!
-      end
-    end
-    SaveData.create(nb_users: User.count, nb_steam_users: User.steam_users.count, nb_online_users: User.online.count)
+#    User.public_steam_users.each do |user|
+#      self.new(user).update_online_state!
+#    end
+
+    nb_online = ScanService.scan_steam_players.count
+    SaveData.create(nb_users: User.count, nb_steam_users: User.steam_users.count, nb_online_users: nb_online)
   end
 
   def self.update_all!
@@ -116,6 +116,7 @@ class SteamService
     User.public_steam_users.each do |user|
         steam = self.new(user)
         ActiveRecord::Base.transaction do
+          user.update_column(:online, steam.id.online?)
           if user.to_scan
             steam.update!
             user.update_columns(to_scan: false)

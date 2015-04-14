@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150411120240) do
+ActiveRecord::Schema.define(version: 20150414200855) do
 
   create_table "achievements", force: true do |t|
     t.string   "api_name"
@@ -161,6 +161,22 @@ ActiveRecord::Schema.define(version: 20150411120240) do
   end
 
   add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
+
+  create_table "lan_parties", force: true do |t|
+    t.string   "name"
+    t.string   "ip"
+    t.string   "map"
+    t.string   "mode"
+    t.string   "game_scanner"
+    t.datetime "ended_at"
+    t.integer  "nb_players"
+    t.integer  "game_id"
+    t.boolean  "visible",      default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "lan_parties", ["game_id"], name: "index_lan_parties_on_game_id", using: :btree
 
   create_table "mail_boxes", force: true do |t|
     t.integer  "user_id"

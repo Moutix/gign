@@ -30,6 +30,7 @@ class Game < ActiveRecord::Base
   has_many :resource_followers, class_name: "ResourceFollower", as: "resource", dependent: :destroy
   has_many :followers, through: :resource_followers, class_name: "User", source: 'user'
   has_one :port_forwarding
+  has_many :lan_parties
 
   has_many :users_with_achievements, -> {distinct}, through: :user_achievements, source: 'user'
 
