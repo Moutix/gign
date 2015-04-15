@@ -1,24 +1,11 @@
-- model_class = LanParty
-
 - lan_parties.group(:game_scanner).pluck(:game_scanner).each do |game_scanner|
-  -parties = lan_parties.where(game_scanner: game_scanner)
-  %h4= t("lan_party.ongoing_game", count: parties.count, game: game_scanner)
+  - parties = lan_parties.where(game_scanner: game_scanner)
+  - game = parties.take.game
 
-
-  %table.table.table-striped
-    %tbody
-      %tr
-        %th= model_class.human_attribute_name(:name)
-        %th= model_class.human_attribute_name(:map)
-        %th= model_class.human_attribute_name(:mode)
-        %th= model_class.human_attribute_name(:nb_players)
-        %th= model_class.human_attribute_name(:created_at)
-      
-      - parties.each do |lan_party|
-        %tr[lan_party]
-          %td= lan_party.name
-          %td= lan_party.map
-          %td= lan_party.mode
-          %td= lan_party.nb_players
-          %td= l lan_party.created_at, format: :default
-
+  - if game
+    %h4= link_to t("lan_party.ongoing_game", count: parties.count, game: game_scanner), game_path(game)
+  - else
+    %h4= t("lan_party.ongoing_game", count: parties.count, game: game_scanner)
+  
+  = render 'lan_parties/list', parties: parties
+  

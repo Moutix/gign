@@ -4,19 +4,17 @@
   %p
     = t("home.text1")
 %hr
+.center
+  %h4= link_to @page.name, section_page_path(@section, @page)
 
-.row
-  .col-md-5
-    %h3.center= t("home.calendar")
-    %br
-    .calendar
-  .col-md-7
-    %h3.center= t("home.supply")
-    %br
-    = render 'images/carousel', images: Image.supplies.order('rand()')
-    %hr
-    %h3.center= t("home.config")
-    %h2.center= link_to t("home.list_config"), computers_path
+= render 'pages/content', page: @page
+= render "comments/list", resource: @page
+
+%hr
+
+- if @lan_parties.count > 0
+  .well
+    = render "lan_parties/index", lan_parties: @lan_parties
 
 
 %hr
@@ -24,12 +22,3 @@
 .center
   %h4= link_to t("home.see_games"), games_path
 
-#create_event_dialog.dialog{style: 'display:none'}
-#event_desc_dialog.dialog{style: 'display:none'}
-
-- if can? :edit, :calendar
-  %script
-    $('.calendar').fullCalendar(full_calendar_options);
-- else
-  %script
-    $('.calendar').fullCalendar(public_calendar_options);
