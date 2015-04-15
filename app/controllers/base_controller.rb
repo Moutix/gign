@@ -4,7 +4,12 @@ class BaseController < ApplicationController
     @last_games = Game.where('recent_playtime > 0').order('rand()').includes(:images, :port_forwarding).limit(5)
     @section = Section.blog
     @page = @section.pages.first
-    @lan_parties = LanParty.visible_on_landing
+    
+    if can? :see, LanParty
+      @lan_parties = LanParty.visible_on_lan
+    else
+      @lan_parties = LanParty.visible_on_landing
+    end
   end
 
   def contact

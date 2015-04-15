@@ -13,7 +13,7 @@ class ScanService
   def self.scan_utgoty
     games = []
     maps = {}
-    
+
     data = "REPORTQUERY"
     ips = send_udp(data, 8777).map{|t| t[1][3]}
 
@@ -21,7 +21,7 @@ class ScanService
     ips.each do |ip|
       games += send_udp(data, 7778)
     end
-    
+
     games.each do |game|
       t = game[0].split("\\")
       next if t.length < 12
@@ -66,7 +66,7 @@ class ScanService
     games = {}
     maps = {}
     players = []
-    
+
     data = "\x82\x00\x86\xd3\x67\xe0\x09\x00\x00\x00\x54\x6d\x46\x6f\x72\x65\x76\x65\x72\x03\x00\x00\x00\x31\x30\x30\x9a\x68\x2a\x00"
 
     packets = send_udp(data, 2350)
@@ -74,7 +74,7 @@ class ScanService
     packets.each do |packet|
 
       t = packet[0].scan(/[\w|\d|\-|\ ]+/)
-	
+
       next unless t.index("100")
       players << t[t.index("100") + 1]
       ip = packet[1][3]
@@ -100,9 +100,9 @@ class ScanService
       t = game[0].scan(/[\w|\d|\-\'|\ ]{3,}/)
       i = t.index("SRV")
       next if i.nil?
-	
+
       index = game[0].index("SRV")
-	
+
       maps[ip] = {name: t[i+1], map: t[i+2], nb_players: game[0][index+8].ord}
     end
 
@@ -113,9 +113,11 @@ class ScanService
     LanParty.where(game_scanner: game_scanner).where.not(ip: ash.keys).where('ended_at IS NULL').update_all(ended_at: Time.now)
 
     ash.each do |ip, info|
+      dedicated = GLOBALCONSTANT::DedicatedIP.include?(ip)
       lan_party = LanParty.where('ip = ? AND ended_at is NULL AND game_scanner = ?', ip, game_scanner).take
+
       if lan_party.nil?
-	LanParty.create(ip: ip, name: info[:name], map: info[:map], mode: info[:mode], nb_players: info[:nb_players], game_scanner: game_scanner, game: game)
+	LanParty.create(ip: ip, name: info[:name], map: info[:map], mode: info[:mode], nb_players: info[:nb_players], game_scanner: game_scanner, game: game, dedicated: dedicated)
       else
 	lan_party.update_columns(name: info[:name], map: info[:map], mode: info[:mode], nb_players: info[:nb_players])
       end

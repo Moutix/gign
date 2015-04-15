@@ -21,8 +21,8 @@ If you already have rails, you can skip this part
  cd gign
  
 * copy the example
- cp config/database.example.yml config/database.yml
- cp config/application.example.rb config/application.rb
+ cp config/database.yml.example config/database.yml
+ cp config/application.rb.example config/application.rb
  
 * Add your steam api key (you can skip this part, but the steam module will not work)
 Go to http://steamcommunity.com/dev to get one, then edit config/application.rb with it
@@ -51,19 +51,6 @@ you can now go to localhost:3000
 (you may need to comment the level validation in app/model/group.rb to create the group)
  
 == Dependency
-
-=== elasticsearch for search :
-
-Download and install the Public Signing Key
-
- wget -qO - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add -
-
-Add the following to your /etc/apt/sources.list to enable the repository
- deb http://packages.elasticsearch.org/elasticsearch/1.3/debian stable main
-Update your source
- apt-get update
-Install elasticsearch
- apt-get install elasticsearch
 
 === imagemagick for image resizing
  apt-get install imagemagick
