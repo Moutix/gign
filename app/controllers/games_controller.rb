@@ -41,7 +41,12 @@ class GamesController < ApplicationController
   end
 
   def show
-    @lan_parties = @game.lan_parties.visible_on_landing
+    if can? :see, LanParty
+      @lan_parties = @game.lan_parties.visible_on_lan
+    else
+      @lan_parties = @game.lan_parties.visible_on_landing
+    end
+
     if current_user
       current_user.box.read_notification(@game)
     end

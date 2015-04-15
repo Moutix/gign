@@ -1,7 +1,7 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
+  def initialize(user, ip = nil)
     
     is_connected = !!user
 
@@ -78,20 +78,20 @@ class Ability
         i.imageable.class == Section
       end
     end
-    
+
     if user.is_in?("manage_groups")
       can :manage, Group
     end
-    
+
     if user.is_in?("manage_users")
       can :manage, User
     end
-    
+
     if user.is_in?("manage_borrowings")
       can :manage, Borrowing
       can :manage, SupplyRequest
     end
-    
+
     if user.is_in?("manage_packs")
       can :manage, Pack
     end
@@ -102,10 +102,17 @@ class Ability
         i.imageable.class == Supply
       end
     end
-    
+
     if user.is_in?("admin")
       can :manage, :all
     end
- 
+
+    if ip && ip.match(/^192/)
+      can :see, LanParty
+      can :manage, LanParty do |lan|
+        lan.ip == ip
+      end
+    end
+
   end
 end

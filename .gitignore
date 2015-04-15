@@ -16,5 +16,6 @@
 /tmp
 /public/uploads
 /config/application.rb
+/config/initializer/constant.rb
 /config/database.yml
 /public/sitemap.xml.gz

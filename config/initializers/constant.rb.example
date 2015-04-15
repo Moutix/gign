@@ -1,0 +1,3 @@
+module Constants
+  DedicatedIP = []
+end
