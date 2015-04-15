@@ -32,6 +32,12 @@
       #charts_achievements
         - if @game.user_achievements.empty?
           %h4= t("steam.show.no_user_achievement") 
+    
+    - if @lan_parties.count > 0
+      %hr
+      .well
+        %h4= t("lan_party.ongoing", count: @lan_parties.count)
+        = render 'lan_parties/list', parties: @lan_parties
 
 = render 'comments/list', resource: @game
 

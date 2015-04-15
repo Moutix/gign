@@ -38,10 +38,10 @@ class GamesController < ApplicationController
     end
     @last_games = Game.where('recent_playtime > 0').order('rand()').includes(:images, :port_forwarding).limit(5)
 
-    @lan_parties = LanParty.visible_on_landing
   end
 
   def show
+    @lan_parties = @game.lan_parties.visible_on_landing
     if current_user
       current_user.box.read_notification(@game)
     end

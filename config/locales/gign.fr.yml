@@ -281,6 +281,9 @@ fr:
     ongoing_game:
       one: "%{game} (une partie en cours)"
       other: "%{game} (%{count} parties en cours)"
+    ongoing:
+      one: "Une partie en cours !!!"
+      other: "%{count} parties en cours !!!"
 
   form:
     comment:

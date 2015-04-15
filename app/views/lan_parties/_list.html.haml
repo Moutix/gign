@@ -1,0 +1,27 @@
+- model_class = LanParty
+
+- with_map = parties.pluck(:map).compact.length > 0
+- with_mode = parties.pluck(:mode).compact.length > 0
+
+
+%table.table.table-striped
+  %tbody
+    %tr
+      %th= model_class.human_attribute_name(:name)
+      - if with_map
+        %th= model_class.human_attribute_name(:map)
+      - if with_mode
+        %th= model_class.human_attribute_name(:mode)
+      %th= model_class.human_attribute_name(:nb_players)
+      %th= model_class.human_attribute_name(:created_at)
+    
+    - parties.each do |lan_party|
+      %tr[lan_party]
+        %td= lan_party.name
+        - if with_map
+          %td= lan_party.map
+        - if with_mode
+          %td= lan_party.mode
+        %td= lan_party.nb_players
+        %td= l lan_party.created_at, format: :default
+

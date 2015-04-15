@@ -48,6 +48,20 @@ class ScanService
     return maps
   end
 
+  def self.scan_dst
+    maps = {}
+
+    data = "\x01\x00\x00\x00\x00\x00\x3b\xe8\x8b\x00\xff\xff\x00\xfe\xfe\xfe\xfe\xfd\xfd\xfd\xfd\x12\x34\x56\x78\x0a\x00\x00\x00\xe7\x36\x33\xbc\x80"
+    games = send_udp(data, 10999)
+
+    games.each do |game|
+      t = game[0].scan(/[\w|\d|\-\'|\ ]{3,}/)
+      maps[game[1][3]] = {name: t.last, nb_players: game[0][36].ord}
+    end
+
+    return maps
+  end
+
   def self.scan_trackmania
     games = {}
     maps = {}
@@ -112,6 +126,7 @@ class ScanService
     fill_bdd(scan_utgoty, "Unreal Tournament GOTY", Game.find_by(app_id: 13240))
     fill_bdd(scan_ut3, "Unreal Tournament III", Game.find_by(app_id: 13210))
     fill_bdd(scan_trackmania, "Trackmania United Forever")
+    fill_bdd(scan_dst, "Don't Starve Together", Game.find_by(app_id: 322330))
   end
 
 
