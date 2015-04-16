@@ -110,10 +110,10 @@ fr:
 
     attributes:
       all: &all
-        user: Crée par
-        created_at: Crée le
-        created_since: Crée depuis
-        created_ago: Crée il y a
+        user: Créé par
+        created_at: Créé le
+        created_since: Créé depuis
+        created_ago: Créé il y a
         updated_at: Mis à jour le
         nb_comments: Nombre de commentaires
       supply:
@@ -162,7 +162,7 @@ fr:
         manage_groups: Gère les groupes
         manage_sections: Gère les sections
         manage_lower_groups: Gère les groupes de niveau inférieur
-        user_id: Crée par
+        user_id: Créé par
       section:
         <<: *all
         name: Nom
@@ -177,9 +177,9 @@ fr:
         <<: *all
         name: Nom
         picture: Vignette
-        url: Url taille normal
+        url: Url taille normale
         thumb_url: Url vignette
-        medium_url: Url moyen
+        medium_url: Url moyenne
       upload_file:
         <<: *all
         name: Nom
@@ -188,8 +188,8 @@ fr:
         <<: *all
         name: Nom
         email: Email
-        current_sign_in_at: "Dernière connection"
-        current_sign_in_ip: "Dernière IP utilisé"
+        current_sign_in_at: "Dernière connexion"
+        current_sign_in_ip: "Dernière IP utilisée"
       game:
         <<: *all
         name: Nom
@@ -203,7 +203,7 @@ fr:
         name: Nom de la partie
         map: Map
         mode: Mode
-        nb_players: Nombres de joueurs
+        nb_players: Nombre de joueurs
 
   supply:
     loan:
@@ -284,6 +284,7 @@ fr:
     ongoing:
       one: "Une partie en cours !!!"
       other: "%{count} parties en cours !!!"
+    dedicated: "Serveur dédié"
 
   form:
     comment:
@@ -296,7 +297,7 @@ fr:
         url: "Entrez une url ici"
         file: "Choisir parmi vos images"
         name: "Préciser le nom de l'image"
-      submit: "Uploader votre image !"
+      submit: "Uploadez votre image !"
       title: "Uploadez votre image"
     page:
       import:
@@ -306,9 +307,9 @@ fr:
     uploaded_file:
       placeholder:
         url: "Entrez une url ici"
-        file: "Choisir parmi vos fichier"
+        file: "Choisir parmi vos fichiers"
         name: "Préciser le nom du fichier"
-      submit: "Uploader votre fichier !"
+      submit: "Uploadez votre fichier !"
       title: "Uploadez votre fichier"
 
     borrowing:
@@ -435,10 +436,10 @@ fr:
     supply:
       title:
         top: "disponibilité de %{supply_name}"
-        yaxis: "Nombre disponibles"
+        yaxis: "Nombre disponible"
       basket: "Dans votre panier actuellement"
     borrowing:
       title:
         top: "Disponibilité des éléments dans mon panier"
-        yaxis: "Nombre disponibles"
+        yaxis: "Nombre disponible"
       name_supply: "%{supply_name}"

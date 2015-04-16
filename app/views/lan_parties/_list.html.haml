@@ -18,7 +18,10 @@
 
     - parties.each do |lan_party|
       %tr[lan_party]
-        %td= lan_party.ip
+        %td
+          - if lan_party.dedicated
+            %span.label.label-success= t("lan_party.dedicated")
+          = lan_party.ip
         %td= lan_party.name
         - if with_map
           %td= lan_party.map
