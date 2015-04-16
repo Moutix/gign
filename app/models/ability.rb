@@ -107,7 +107,7 @@ class Ability
       can :manage, :all
     end
 
-    if ip && ip.match(/^192/)
+    if ip && ip.match(/^10\./)
       can :see, LanParty
       can :manage, LanParty do |lan|
         lan.ip == ip
