@@ -56,7 +56,8 @@ class ScanService
 
     games.each do |game|
       t = game[0].scan(/[\w|\d|\-\'|\ ]{3,}/)
-      maps[game[1][3]] = {name: t.last, nb_players: game[0][36].ord}
+      version = game[0][74].ord + game[0][73].ord*256 + game[0][72].ord*65536
+      maps[game[1][3]] = {name: t.last, nb_players: game[0][36].ord, version: version}
     end
 
     return maps
@@ -117,9 +118,9 @@ class ScanService
       lan_party = LanParty.where('ip = ? AND ended_at is NULL AND game_scanner = ?', ip, game_scanner).take
 
       if lan_party.nil?
-	LanParty.create(ip: ip, name: info[:name], map: info[:map], mode: info[:mode], nb_players: info[:nb_players], game_scanner: game_scanner, game: game, dedicated: dedicated)
+	LanParty.create(ip: ip, name: info[:name], map: info[:map], mode: info[:mode], nb_players: info[:nb_players], game_scanner: game_scanner, game: game, dedicated: dedicated, version: info[:version])
       else
-	lan_party.update_columns(name: info[:name], map: info[:map], mode: info[:mode], nb_players: info[:nb_players])
+	lan_party.update_columns(name: info[:name], map: info[:map], mode: info[:mode], nb_players: info[:nb_players], version: info[:version])
       end
     end
   end
