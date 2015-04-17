@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150415212532) do
+ActiveRecord::Schema.define(version: 20150417175334) do
 
   create_table "achievements", force: true do |t|
     t.string   "api_name"
@@ -175,6 +175,7 @@ ActiveRecord::Schema.define(version: 20150415212532) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "dedicated",    default: false
+    t.string   "version"
   end
 
   add_index "lan_parties", ["game_id"], name: "index_lan_parties_on_game_id", using: :btree
