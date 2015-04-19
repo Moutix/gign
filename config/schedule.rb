@@ -29,7 +29,7 @@ every 15.minutes do
   runner "SteamService.update_online!"
 end
 
-every 1.minutes do
+every 2.minutes do
   runner "ScanService.scan_all!"
 end
 

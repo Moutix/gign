@@ -40,9 +40,9 @@ class ScanService
 
     games.each do |game|
       t = game[0].scan(/[\w|\d|\-\'|\ ]{3,}/)
-      next if t[3] != "UTGame"
+      next if t.length < 4
 	
-      maps[game[1][3]] = {name: t[1], map: t[2], mode: t[4], nb_players: game[0][35].ord-game[0][27].ord}
+      maps[game[1][3]] = {name: t[1], map: t[2], mode: t[4], nb_players: game[0][35].ord-game[0][27].ord, nb_max_players: game[0][35].ord}
     end
 
     return maps
@@ -57,7 +57,31 @@ class ScanService
     games.each do |game|
       t = game[0].scan(/[\w|\d|\-\'|\ ]{3,}/)
       version = game[0][74].ord + game[0][73].ord*256 + game[0][72].ord*65536
-      maps[game[1][3]] = {name: t.last, nb_players: game[0][36].ord, version: version}
+      maps[game[1][3]] = {name: t.last, nb_players: game[0][36].ord, version: version, nb_max_players: game[0][34].ord}
+    end
+
+    return maps
+  end
+
+  def self.scan_tf2
+    maps = {}
+
+    data = "\xFF\xFF\xFF\xFF\x54\x53\x6F\x75\x72\x63\x65\x20\x45\x6E\x67\x69\x6E\x65\x20\x51\x75\x65\x72\x79\x00"
+    
+    games = send_udp(data, 27015) 
+
+    (GLOBALCONSTANT::DedicatedIP - games.map{|g| g[1][3]}).each do |ip|
+      games += send_udp(data, 27015, 3, false, ip)
+    end
+    
+    games.each do |game|
+	p game[0]
+	t = game[0].scan(/[\w|\d|\-\'|\ ]{3,}/)	
+	next if t.length < 3
+	
+	i = game[0].index(t[2])
+	
+	maps[game[1][3]] = {name: t[0], map: t[1], nb_players: game[0][i+16].ord, nb_max_players: game[0][i+17].ord}
     end
 
     return maps
@@ -118,9 +142,9 @@ class ScanService
       lan_party = LanParty.where('ip = ? AND ended_at is NULL AND game_scanner = ?', ip, game_scanner).take
 
       if lan_party.nil?
-	LanParty.create(ip: ip, name: info[:name], map: info[:map], mode: info[:mode], nb_players: info[:nb_players], game_scanner: game_scanner, game: game, dedicated: dedicated, version: info[:version])
+	LanParty.create(ip: ip, name: info[:name], map: info[:map], mode: info[:mode], nb_players: info[:nb_players], game_scanner: game_scanner, game: game, dedicated: dedicated, version: info[:version], nb_max_players: info[:nb_max_players])
       else
-	lan_party.update_columns(name: info[:name], map: info[:map], mode: info[:mode], nb_players: info[:nb_players], version: info[:version])
+	lan_party.update_columns(name: info[:name], map: info[:map], mode: info[:mode], nb_players: info[:nb_players], version: info[:version], nb_max_players: info[:nb_max_players])
       end
     end
   end
@@ -130,16 +154,17 @@ class ScanService
     fill_bdd(scan_ut3, "Unreal Tournament III", Game.find_by(app_id: 13210))
     fill_bdd(scan_trackmania, "Trackmania United Forever")
     fill_bdd(scan_dst, "Don't Starve Together", Game.find_by(app_id: 322330))
+    fill_bdd(scan_tf2, "Team Fortress 2", Game.find_by(app_id: 440))
   end
 
 
   private
 
-  def self.send_udp(data, port, timeout = 1, bind = false)
+  def self.send_udp(data, port, timeout = 1, bind = false, ip = "10.255.255.255")
     sock = UDPSocket.new
     sock.setsockopt(Socket::SOL_SOCKET, Socket::SO_BROADCAST, true)
     sock.bind('0.0.0.0', port) if bind
-    sock.send(data, 0, "10.255.255.255", port)
+    sock.send(data, 0, ip, port)
 
     packets = []
 

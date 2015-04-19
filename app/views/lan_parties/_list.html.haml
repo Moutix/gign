@@ -32,6 +32,6 @@
           %td= lan_party.map
         - if with_mode
           %td= lan_party.mode
-        %td= lan_party.nb_players
+        %td= lan_party.nb_players.to_s + (lan_party.nb_max_players.nil? ? "" : ("/" + lan_party.nb_max_players.to_s))
         %td= l lan_party.created_at, format: :default
 
