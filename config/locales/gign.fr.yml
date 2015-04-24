@@ -107,6 +107,13 @@ fr:
       promotion:
         one: Promotion
         other: Promotions
+      stepmania_pack:
+        one: Pack Stepmania
+        other: Packs Stepmania
+      stepmania_song:
+        one: Chanson
+        other: Chansons
+
 
     attributes:
       all: &all
@@ -204,6 +211,12 @@ fr:
         map: Map
         mode: Mode
         nb_players: Nombre de joueurs
+      stepmania_pack:
+        <<: *all
+        name: Nom
+        url: url
+        game_type: Type
+        size: Taille
 
   supply:
     loan:

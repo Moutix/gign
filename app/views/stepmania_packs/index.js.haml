@@ -1,0 +1,17 @@
+- if params[:id]
+  - pack = StepmaniaPack.find(params[:id])
+- if params[:expand] == "1" && pack
+  $('.expand_stepmania_pack').remove(); 
+  $('#stepmania_pack_#{params[:id]}').after('<tr class = "expand_stepmania_pack"><td colspan="5">#{j render 'stepmania_songs/list', stepmania_songs: pack.stepmania_songs.where("(title LIKE ? OR name LIKE ?) AND ARTIST LIKE ?", "%#{session[:sq]}%", "%#{session[:sq]}%", "%#{session[:sqa]}%")}</td> </tr>');
+  $('#expand_stepmania_pack_#{params[:id]} a').attr('href', '#{stepmania_packs_path(id: pack.id, expand: 0)}');
+  $('#expand_stepmania_pack_#{params[:id]} a i').removeClass('fa-toggle-down');
+  $('#expand_stepmania_pack_#{params[:id]} a i').addClass('fa-toggle-up');
+- elsif params[:expand] == "0" && pack
+  $('.expand_stepmania_pack').remove(); 
+  $('#expand_stepmania_pack_#{params[:id]} a').attr('href', '#{stepmania_packs_path(id: pack.id, expand: 1)}');
+  $('#expand_stepmania_pack_#{params[:id]} a i').removeClass('fa-toggle-up');
+  $('#expand_stepmania_pack_#{params[:id]} a i').addClass('fa-toggle-down');
+- else
+  $('#stepmania_packs_list').empty();
+  $('#stepmania_packs_list').append('#{j render 'stepmania_packs/list', stepmania_packs: @stepmania_packs, id_pack: @id, expand: @expand}');
+

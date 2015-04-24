@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150419153214) do
+ActiveRecord::Schema.define(version: 20150423203627) do
 
   create_table "achievements", force: true do |t|
     t.string   "api_name"
@@ -334,6 +334,33 @@ ActiveRecord::Schema.define(version: 20150419153214) do
   end
 
   add_index "sections", ["user_id"], name: "index_sections_on_user_id", using: :btree
+
+  create_table "stepmania_packs", force: true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.string   "game_type"
+    t.integer  "size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "stepmania_songs", force: true do |t|
+    t.string   "name"
+    t.string   "title"
+    t.string   "artist"
+    t.string   "genre"
+    t.boolean  "video",             default: false
+    t.integer  "easy"
+    t.integer  "medium"
+    t.integer  "hard"
+    t.integer  "challenge"
+    t.integer  "expert"
+    t.integer  "stepmania_pack_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "stepmania_songs", ["stepmania_pack_id"], name: "index_stepmania_songs_on_stepmania_pack_id", using: :btree
 
   create_table "supplies", force: true do |t|
     t.string   "name",                       null: false

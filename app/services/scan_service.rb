@@ -5,7 +5,7 @@ class ScanService
 
   def self.scan_steam_players
     data = "\xff\xff\xff\xff\x21\x4c\x5f\xa0\x16\x00\x00\x00\x08\x8e\xe6\xe2\xb7\xe9\xdf\x8f\xb2\x0b\x10\x00\x18\xd7\xfe\xb8\xfc\xf7\xce\xaf\xd7\x4a\x02\x00\x00\x00\x08\x01"
-    ips = send_udp(data, 27036, 3).map{|t| t[1][3]}
+    ips = send_udp(data, 27036, 1).map{|t| t[1][3]}
 
     return ips
   end
@@ -63,6 +63,30 @@ class ScanService
     return maps
   end
 
+  def self.scan_teeworlds
+    maps = {}
+
+    data = "\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\x67\x69\x65\x33\x02"
+
+    games = send_udp(data, 8303)
+    
+    games.each do |game|
+	
+      t = game[0].scan(/[\w|\d|\-\'|\ \.]{2,}/)	
+      next if t.length < 3
+	
+      i = game[0].index(t[4]) + t[4].length + 3
+	
+      str = game[0][i..i+6]
+      str =~ /^(\d+).+?(\d+)/
+	
+      maps[game[1][3]] = {name: t[2], map: t[3], mode: t[4], version: t[1], nb_players: $1, nb_max_players: $2}
+    end
+
+    return maps
+  end
+
+
   def self.scan_tf2
     maps = {}
 
@@ -105,7 +129,7 @@ class ScanService
       ip = packet[1][3]
 	
       begin
-	Timeout::timeout(1.2){
+	Timeout::timeout(0.2){
 	  s = TCPSocket.new ip, 2350
 
 	  data = "\x0e\x00\x00\x00\x82\x03\x99\xf8\x95\x58\x07\x00\x00\x00\x08\x00\x00\x00"
@@ -155,12 +179,13 @@ class ScanService
     fill_bdd(scan_trackmania, "Trackmania United Forever")
     fill_bdd(scan_dst, "Don't Starve Together", Game.find_by(app_id: 322330))
     fill_bdd(scan_tf2, "Team Fortress 2", Game.find_by(app_id: 440))
+    fill_bdd(scan_teeworlds, "Teeworlds")
   end
 
 
   private
 
-  def self.send_udp(data, port, timeout = 1, bind = false, ip = "10.255.255.255")
+  def self.send_udp(data, port, timeout = 0.2, bind = false, ip = "10.255.255.255")
     sock = UDPSocket.new
     sock.setsockopt(Socket::SOL_SOCKET, Socket::SO_BROADCAST, true)
     sock.bind('0.0.0.0', port) if bind

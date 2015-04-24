@@ -1,0 +1,24 @@
+- model_class = StepmaniaSong
+
+%table.table.table-striped.table-condensed
+  %tr
+    %th= model_class.human_attribute_name(:name)
+    %th= model_class.human_attribute_name(:title)
+    %th= model_class.human_attribute_name(:artist)
+    %th= model_class.human_attribute_name(:video)
+    %th= model_class.human_attribute_name(:easy)
+    %th= model_class.human_attribute_name(:medium)
+    %th= model_class.human_attribute_name(:hard)
+    %th= model_class.human_attribute_name(:challenge)
+
+  - stepmania_songs.each do |song|
+    %tr[song]
+      %td= song.name
+      %td= song.title
+      %td= song.artist
+      %td= print_boolean(song.video)
+      %td= song.easy
+      %td= song.medium
+      %td= song.hard
+      %td= song.challenge
+ 
