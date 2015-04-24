@@ -32,6 +32,8 @@ Gign::Application.routes.draw do
 
       end
       
+      resources :stepmania_packs, only: [:index, :show], path: "stepmania"
+      
       resources :surveys, only: [:index, :show, :create, :update, :destroy] do
         member do
           #get :display

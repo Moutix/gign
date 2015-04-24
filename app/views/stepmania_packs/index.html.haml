@@ -1,0 +1,12 @@
+- model_class = StepmaniaPack
+
+%h1= t '.title', :default => model_class.model_name.human.pluralize.titleize
+
+= form_tag stepmania_packs_path, method: :get, remote: true, class: 'navbar-form navbar-left' do
+  = text_field_tag :sq, session[:sq], class: 'form-control', onchange: '$(this.form).submit();', placeholder: "Title"
+  = text_field_tag :sqa, session[:sqa], class: 'form-control', onchange: '$(this.form).submit();', placeholder: "Artist"
+ 
+#stepmania_packs_list
+  = render "stepmania_packs/list", stepmania_packs: @stepmania_packs, id_pack: @id, expand: @expand
+
+
