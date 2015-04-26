@@ -35,7 +35,12 @@ class StepmaniaService
             hard = vs["Hard"].nil? ? vs["hard"] : vs["Hard"]
             challenge = vs["Challenge"].nil? ? vs["challenge"] : vs["Challenge"]
             expert = vs["Expert"].nil? ? vs["expert"] : vs["Expert"]
-            StepmaniaSong.create(name: k, title: vs["title"], artist: vs["artist"], genre: vs["genre"], video: video, easy: easy, medium: medium, hard: hard, challenge: challenge, expert: expert, stepmania_pack: pack)
+
+            title = vs["title"].nil? ? k : vs["title"]
+            artist = vs["artist"].nil? ? "" : vs["artist"]
+            genre = vs["genre"].nil? ? "" : vs["genre"]
+
+            StepmaniaSong.create(name: k, title: title, artist: artist, genre: genre, video: video, easy: easy, medium: medium, hard: hard, challenge: challenge, expert: expert, stepmania_pack: pack)
           end
         end
       else

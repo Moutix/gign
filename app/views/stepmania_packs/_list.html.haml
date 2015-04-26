@@ -23,20 +23,21 @@
           %span.label.label-warning
             = pack.game_type
       %td= link_to pack.name, pack
-      %td= number_to_human_size pack.size*1000000
+      %td= number_to_human_size pack.size*1024*1024
       %td
         = link_to pack.url do
           %i.fa.fa-download
           Télécharger
       %td#expand[pack]
-        - if id_pack == pack.id.to_s && expand == "1"
+        - if (id_pack == pack.id.to_s && expand == "1") || ((!session[:sq].blank? || !session[:sqa].blank?) && @stepmania_packs && @stepmania_packs.count < 10)
           = link_to stepmania_packs_path(id: pack.id, expand: 0), remote: true do
             %i.fa.fa-toggle-up
         - else
           = link_to stepmania_packs_path(id: pack.id, expand: 1), remote: true do
             %i.fa.fa-toggle-down
-    - if id_pack == pack.id.to_s && expand == "1"
+    - if (id_pack == pack.id.to_s && expand == "1") || ((!session[:sq].blank? || !session[:sqa].blank?) && @stepmania_packs && @stepmania_packs.count < 10)
       %tr.expand_stepmania_pack
         %td{colspan: 5}
-          = render "stepmania_songs/list", stepmania_songs: pack.stepmania_songs.where("(title LIKE ? OR name LIKE ?) AND ARTIST LIKE ?", "%#{session[:sq]}%", "%#{session[:sq]}%", "%#{session[:sqa]}%")
+          - if !session[:sq].blank? || !session[:sqa].blank?
+            = render "stepmania_songs/list", stepmania_songs: pack.stepmania_songs.where("(title LIKE ? OR name LIKE ?) AND ARTIST LIKE ?", "%#{session[:sq]}%", "%#{session[:sq]}%", "%#{session[:sqa]}%")
 

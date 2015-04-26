@@ -3,7 +3,7 @@ class StepmaniaPacksController < ApplicationController
   before_action :set_stepmania_pack, only: [:show]
 
   before_action do
-    add_breadcrumb_if_can t("activerecord.models.stepmania_pack", count: 2), stepmania_packs_path, :index, StepmaniaPack
+    add_breadcrumb_if_can "Stepmania", stepmania_packs_path, :index, StepmaniaPack
   end
   before_action only: [:show] do 
     add_breadcrumb_if_can @stepmania_pack.name, stepmania_pack_path(@stepmania_pack), :show, @stepmania_pack
