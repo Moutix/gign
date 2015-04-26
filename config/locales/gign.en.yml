@@ -106,6 +106,13 @@ en:
       promotion:
         one: Promotion
         other: Promotions
+      stepmania_pack:
+        one: Pack Stepmania
+        other: Packs Stepmania
+      stepmania_song:
+        one: Chanson
+        other: Chansons
+
 
     attributes:
       all: &all
@@ -197,8 +204,18 @@ en:
         total_playtime: Total playtime
         nb_users: Nb Players
         nb_achievements: Nb Achievements
-
-
+      lan_party:
+        <<: *all
+        name: Name of the game
+        map: Map
+        mode: Mode
+        nb_players: Number of players
+      stepmania_pack:
+        <<: *all
+        name: Name
+        url: URL
+        game_type: Type
+        size: Size
 
   supply:
     loan:
@@ -270,6 +287,23 @@ en:
     follow: Follow
     unfollow: Unfollow
     no_comment: "You have no comment notifications at this time."
+
+  lan_party:
+    ongoing_game:
+      one: "%{game} (One game in progress)"
+      other: "%{game} (%{count} games in progress)"
+    ongoing:
+      one: "One game in progress !!!"
+      other: "%{count} games in progress !!!"
+    dedicated: "Dedicated Server"
+
+  stepmania:
+    search:
+      title: Title
+      artist: Artist
+      result:
+        one: "One pack found for a total of %{count_songs} songs"
+        other: "%{count} packs found for a total of %{count_songs} songs"
 
   form:
     comment:

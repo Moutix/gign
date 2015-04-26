@@ -214,7 +214,7 @@ fr:
       stepmania_pack:
         <<: *all
         name: Nom
-        url: url
+        url: URL
         game_type: Type
         size: Taille
 
@@ -298,6 +298,17 @@ fr:
       one: "Une partie en cours !!!"
       other: "%{count} parties en cours !!!"
     dedicated: "Serveur dédié"
+
+  stepmania:
+    search:
+      pack: Nom du pack
+      title: Titre
+      artist: Artiste
+      result:
+        one: "Un pack trouvé pour un total de %{count_songs} chansons"
+        other: "%{count} packs trouvés pour un total de %{count_songs} chansons"
+    download: "Télécharger"
+    intern_download: "Télécharger sur les FTPs"
 
   form:
     comment:

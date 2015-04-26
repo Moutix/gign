@@ -2,11 +2,13 @@
 
 %h1= t '.title', :default => model_class.model_name.human.pluralize.titleize
 
-= form_tag stepmania_packs_path, method: :get, remote: true, class: 'navbar-form navbar-left' do
-  = text_field_tag :sq, session[:sq], class: 'form-control', onchange: '$(this.form).submit();', placeholder: "Title"
-  = text_field_tag :sqa, session[:sqa], class: 'form-control', onchange: '$(this.form).submit();', placeholder: "Artist"
- 
+#stepmania_packs_search.row
+  = form_tag stepmania_packs_path, method: :get, remote: true, class: 'navbar-form navbar-left' do
+    = select_tag :sqt, options_for_select(@available_type), class: 'form-control', onchange: '$(this.form).submit();', placeholder: t("stepmania.search.pack")
+    = search_field_tag :sqp, session[:sqp], class: 'form-control', onchange: '$(this.form).submit();', placeholder: t("stepmania.search.pack")
+    = search_field_tag :sq, session[:sq], class: 'form-control', onchange: '$(this.form).submit();', placeholder: t("stepmania.search.title")
+    = search_field_tag :sqa, session[:sqa], class: 'form-control', onchange: '$(this.form).submit();', placeholder: t("stepmania.search.artist")
+
 #stepmania_packs_list
   = render "stepmania_packs/list", stepmania_packs: @stepmania_packs, id_pack: @id, expand: @expand
-
 

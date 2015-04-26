@@ -10,13 +10,19 @@ class StepmaniaPacksController < ApplicationController
   end
 
   def index
+    @available_type = ["All"] + StepmaniaPack.group(:game_type).pluck(:game_type)
+
     session[:sq] = params[:sq] if params[:sq]
     session[:sqa] = params[:sqa] if params[:sqa]
+    session[:sqp] = params[:sqp] if params[:sqp]
+    session[:sqt] = @available_type.include?(params[:sqt]) ? params[:sqt] : "All" if params[:sqt]
 
     if !session[:sq].blank? || !session[:sqa].blank?
-      @stepmania_packs = StepmaniaPack.joins(:stepmania_songs).where("(stepmania_songs.name LIKE ? OR stepmania_songs.title LIKE ?) and stepmania_songs.artist LIKE ?", "%#{session[:sq]}%", "%#{session[:sq]}%", "%#{session[:sqa]}%").uniq
+      @stepmania_packs = StepmaniaPack.joins(:stepmania_songs).where("stepmania_packs.name LIKE ? AND (stepmania_packs.game_type = ? OR 'All' = ?) AND (stepmania_songs.name LIKE ? OR stepmania_songs.title LIKE ?) AND stepmania_songs.artist LIKE ?", "%#{session[:sqp]}%", session[:sqt], session[:sqt], "%#{session[:sq]}%", "%#{session[:sq]}%", "%#{session[:sqa]}%").uniq.page(params[:page])
+      @count = @stepmania_packs.count
+      @count_songs = StepmaniaSong.where(stepmania_pack_id: @stepmania_packs.pluck(:id)).where("(name LIKE ? OR title LIKE ?) and artist LIKE ?", "%#{session[:sq]}%", "%#{session[:sq]}%", "%#{session[:sqa]}%").count
     else
-      @stepmania_packs = StepmaniaPack.all
+      @stepmania_packs = StepmaniaPack.where('name like ? AND (game_type = ? or "All" = ?)', "%#{session[:sqp]}%", session[:sqt], session[:sqt]).page(params[:page])
     end
 
     @id = params[:id]
