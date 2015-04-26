@@ -345,10 +345,10 @@ ActiveRecord::Schema.define(version: 20150423203627) do
   end
 
   create_table "stepmania_songs", force: true do |t|
-    t.string   "name"
-    t.string   "title"
-    t.string   "artist"
-    t.string   "genre"
+    t.string   "name",              default: ""
+    t.string   "title",             default: ""
+    t.string   "artist",            default: ""
+    t.string   "genre",             default: ""
     t.boolean  "video",             default: false
     t.integer  "easy"
     t.integer  "medium"

@@ -1,10 +1,10 @@
 class CreateStepmaniaSongs < ActiveRecord::Migration
   def change
     create_table :stepmania_songs do |t|
-      t.string :name
-      t.string :title
-      t.string :artist
-      t.string :genre
+      t.string :name, default: ""
+      t.string :title, default: ""
+      t.string :artist, default: ""
+      t.string :genre, default: ""
       t.boolean :video, default: false
       t.integer :easy
       t.integer :medium
