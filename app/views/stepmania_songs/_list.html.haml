@@ -6,6 +6,7 @@
     %th= model_class.human_attribute_name(:title)
     %th= model_class.human_attribute_name(:artist)
     %th= model_class.human_attribute_name(:video)
+    %th= model_class.human_attribute_name(:beginner)
     %th= model_class.human_attribute_name(:easy)
     %th= model_class.human_attribute_name(:medium)
     %th= model_class.human_attribute_name(:hard)
@@ -17,6 +18,7 @@
       %td= song.title
       %td= song.artist
       %td= print_boolean(song.video)
+      %td= song.beginner
       %td= song.easy
       %td= song.medium
       %td= song.hard

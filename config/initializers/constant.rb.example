@@ -1,3 +1,4 @@
 module Constants
   DedicatedIP = []
+  STEPMANIA_URL = ""
 end

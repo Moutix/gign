@@ -6,11 +6,11 @@ class CreateStepmaniaSongs < ActiveRecord::Migration
       t.string :artist, default: ""
       t.string :genre, default: ""
       t.boolean :video, default: false
-      t.integer :easy
-      t.integer :medium
-      t.integer :hard
-      t.integer :challenge
-      t.integer :expert
+      t.string :beginner
+      t.string :easy
+      t.string :medium
+      t.string :hard
+      t.string :challenge
       t.references :stepmania_pack, index: true
 
       t.timestamps

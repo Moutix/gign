@@ -53,6 +53,7 @@ class Ability
     can :show, Section do |s|
       s.blog
     end
+    can [:index, :show], StepmaniaPack
 
 
     if user.is_a_steam_user?
@@ -112,6 +113,8 @@ class Ability
       can :manage, LanParty do |lan|
         lan.ip == ip
       end
+
+      can :download, StepmaniaPack
     end
 
   end

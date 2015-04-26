@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150423203627) do
+ActiveRecord::Schema.define(version: 20150426195756) do
 
   create_table "achievements", force: true do |t|
     t.string   "api_name"
@@ -339,9 +339,11 @@ ActiveRecord::Schema.define(version: 20150423203627) do
     t.string   "name"
     t.string   "url"
     t.string   "game_type"
+    t.string   "name_file"
     t.integer  "size"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "comments_count", default: 0
   end
 
   create_table "stepmania_songs", force: true do |t|
@@ -350,11 +352,11 @@ ActiveRecord::Schema.define(version: 20150423203627) do
     t.string   "artist",            default: ""
     t.string   "genre",             default: ""
     t.boolean  "video",             default: false
-    t.integer  "easy"
-    t.integer  "medium"
-    t.integer  "hard"
-    t.integer  "challenge"
-    t.integer  "expert"
+    t.string   "beginner"
+    t.string   "easy"
+    t.string   "medium"
+    t.string   "hard"
+    t.string   "challenge"
     t.integer  "stepmania_pack_id"
     t.datetime "created_at"
     t.datetime "updated_at"

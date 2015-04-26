@@ -4,6 +4,7 @@ class CreateStepmaniaPacks < ActiveRecord::Migration
       t.string :name
       t.string :url
       t.string :game_type
+      t.string :name_file
       t.integer :size
 
       t.timestamps

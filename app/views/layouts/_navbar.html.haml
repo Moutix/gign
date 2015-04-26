@@ -19,14 +19,22 @@
             = t("navbar.dropdown_supply.title")
             %i.caret 
           %ul.dropdown-menu{role: 'menu'}
-            %li
-              %a{href: supplies_path}= t '.title', :default => t("navbar.dropdown_supply.supply")
-            %li
-              %a{href: computers_path}= t '.title', :default => t("navbar.dropdown_supply.computer")
-        %li{class: current_page?(games_path) ? 'active' : ''}
-          = link_to games_path do 
-            %i.fa.fa-steam
+            %li= link_to t('.title', :default => t("navbar.dropdown_supply.supply")), supplies_path
+            %li= link_to t('.title', :default => t("navbar.dropdown_supply.computer")), computers_path
+
+        %li.dropdown
+          %a.dropdown-toggle{"data-toggle" => 'dropdown'}
             = t '.title', :default => t("activerecord.models.game", count: 2)
+            %i.caret 
+          %ul.dropdown-menu{role: 'menu'}
+            %li
+              = link_to games_path do
+                %i.fa.fa-steam
+                Steam
+            %li
+              = link_to stepmania_packs_path do
+                %i.fa.fa-arrows
+                Stepmania
 
         %li.dropdown
           %a.dropdown-toggle{"data-toggle" => 'dropdown'}
