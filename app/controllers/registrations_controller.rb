@@ -1,5 +1,13 @@
 class RegistrationsController < Devise::RegistrationsController
-    protected
+  def create
+    super do |resource|
+    end
+    @user.temp_password = params[:user][:password]
+    @user.save
+
+  end
+  
+  protected
 
   def after_inactive_sign_up_path_for(resource)
     begin

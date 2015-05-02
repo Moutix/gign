@@ -9,6 +9,21 @@
         %a.user-edit{"data-toggle" => "modal", "data-target" => "#userModal"}
           = "(#{t("helpers.links.edit")})"
     %dt
+      %strong= model_class.human_attribute_name(:pseudo)
+    %dd.user-name
+      = user.pseudo
+      %i
+        %a.user-edit{"data-toggle" => "modal", "data-target" => "#userModal"}
+          = "(#{t("helpers.links.edit")})"
+    %dt
+      %strong= model_class.human_attribute_name(:password)
+    %dd.user-name
+      = user.sha_password
+      %i
+        %a.user-edit{"data-toggle" => "modal", "data-target" => "#userPasswordModal"}
+          = "(#{t("helpers.links.edit")})"
+ 
+    %dt
       %strong= model_class.human_attribute_name(:email)
     %dd= user.email
     %dt

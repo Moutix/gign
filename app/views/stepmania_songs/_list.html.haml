@@ -4,6 +4,7 @@
   %tr
     %th= model_class.human_attribute_name(:name)
     %th= model_class.human_attribute_name(:title)
+    %th= model_class.human_attribute_name(:subtitle)
     %th= model_class.human_attribute_name(:artist)
     %th= model_class.human_attribute_name(:video)
     %th= model_class.human_attribute_name(:beginner)
@@ -16,6 +17,7 @@
     %tr[song]
       %td= song.name
       %td= song.title
+      %td= song.subtitle
       %td= song.artist
       %td= print_boolean(song.video)
       %td= song.beginner

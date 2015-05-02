@@ -37,10 +37,11 @@
         = link_to pack.url do
           %i.fa.fa-download
           = t("stepmania.download")
-      %td
-        = link_to GLOBALCONSTANT::STEPMANIA_URL + pack.name_file do
-          %i.fa.fa-download
-          =t("stepmania.intern_download")
+      - if can? :download, StepmaniaPack
+        %td
+          = link_to GLOBALCONSTANT::STEPMANIA_URL + pack.name_file do
+            %i.fa.fa-download
+            =t("stepmania.intern_download")
       %td#expand[pack]
         - if (id_pack == pack.id.to_s && expand == "1") || ((!session[:sq].blank? || !session[:sqa].blank?) && @count_songs && @count_songs < 100)
           = link_to stepmania_packs_path(id: pack.id, expand: 0), remote: true do
@@ -52,7 +53,7 @@
       %tr.expand_stepmania_pack
         %td{colspan: 5}
           - if !session[:sq].blank? || !session[:sqa].blank?
-            = render "stepmania_songs/list", stepmania_songs: pack.stepmania_songs.where("(title LIKE ? OR name LIKE ?) AND ARTIST LIKE ?", "%#{session[:sq]}%", "%#{session[:sq]}%", "%#{session[:sqa]}%")
+            = render "stepmania_songs/list", stepmania_songs: pack.stepmania_songs.where("(title LIKE ? OR name LIKE ? OR subtitle LIKE ?) AND ARTIST LIKE ?", "%#{session[:sq]}%", "%#{session[:sq]}%", "%#{session[:sq]}%", "%#{session[:sqa]}%").order(:name)
 
 .center
   = paginate @stepmania_packs, remote: true

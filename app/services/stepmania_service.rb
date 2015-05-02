@@ -10,6 +10,83 @@ class StepmaniaService
     return JSON.parse(res.body)
   end
 
+  def self.update_stepmania_bdd!
+    client_stepmania = Mysql2::Client.new(host: GLOBALCONSTANT::STEPMANIA_BDD_HOST, username: GLOBALCONSTANT::STEPMANIA_BDD_USER, password: GLOBALCONSTANT::STEPMANIA_BDD_PASSWORD, database: GLOBALCONSTANT::STEPMANIA_BDD_DATABASE)
+    
+    results = client_stepmania.query("Select Email from users")
+  
+    emails = results.map{|r| r["Email"]}
+
+
+    ## Import user to OpenSMO ##
+    User.where("sha_password IS NOT NULL AND pseudo IS NOT NULL").each do |user|
+      if emails.include?(user.email)
+        client_stepmania.query("UPDATE users SET Password='#{user.sha_password}', Username='#{user.pseudo.downcase}' WHERE Email='#{user.email}'")
+      else
+        client_stepmania.query("INSERT INTO users(Username, Password, Email, Rank, XP) VALUES ('#{user.pseudo.downcase}','#{user.sha_password}','#{user.email}',1,0)")
+      end
+    end
+
+    ## Update user xp ##
+    client_stepmania.query("SELECT * FROM users").each do |result|
+      user = User.find_by(email: result["Email"])
+      next unless user  
+      user.update_columns(stepmania_xp: result["XP"], stepmania_id: result["ID"])
+    end
+
+    ## Update Song ##
+    client_stepmania.query("Select * from songs").each do |result|
+      song = OpenSmoSong.find_by(original_id: result["ID"])
+
+      if song.nil?
+        song = OpenSmoSong.create(original_id: result["ID"],
+                                  title: result["Name"],
+                                  artist: result["Artist"],
+                                  subtitle: result["Subtitle"],
+                                  time: result["Time"],
+                                  played: result["Played"]
+                                 )
+
+        StepmaniaSong.where(title: result["Name"],
+                            artist: result["Artist"],
+                            subtitle: result["Subtitle"]
+                           ).update_all(open_smo_song_id: song.id)
+      else
+        song.update_columns(time: result["Time"], played: result["Played"])
+      end
+    end
+
+    ## Update Stats ##
+    if OpenSmoStat.where('original_id IS NOT NULL').count > 0
+      results = client_stepmania.query("SELECT * FROM stats WHERE ID NOT IN (#{OpenSmoStat.pluck(:original_id).join(',')})")
+    else
+      results = client_stepmania.query("SELECT * FROM stats")
+    end
+    results.each do |result|
+      OpenSmoStat.create(original_id: result["ID"],
+                         user: User.find_by(stepmania_id: result["User"]),
+                         open_smo_song: OpenSmoSong.find_by(original_id: result["Song"]),
+                         player_settings: result["PlayerSettings"],
+                         feet: result["Feet"],
+                         difficulty: result["Difficulty"],
+                         grade: result["Grade"],
+                         score: result["Score"],
+                         max_combo: result["MaxCombo"],
+                         note_0: result["Note_0"],
+                         note_1: result["Note_1"],
+                         note_mine: result["Note_Mine"],
+                         note_miss: result["Note_Miss"],
+                         note_barely: result["Note_Barely"],
+                         note_good: result["Note_Good"],
+                         note_great: result["Note_Great"],
+                         note_perfect: result["Note_Perfect"],
+                         note_flawless: result["Note_Flawless"],
+                         note_ng: result["Note_NG"],
+                         note_held: result["Note_Held"],
+                        )
+    end
+  end
+
 
   def self.fill_bdd!
     h = get_json
@@ -43,10 +120,14 @@ class StepmaniaService
               challenge = vs["Challenge"].nil? ? vs["challenge"] : vs["Challenge"]
 
               title = vs["title"].nil? ? k : vs["title"]
+              subtitle = vs["subtitle"].nil? ? k : vs["subtitle"]
               artist = vs["artist"].nil? ? "" : vs["artist"]
               genre = vs["genre"].nil? ? "" : vs["genre"]
+              credit = vs["credit"].nil? ? "" : vs["credit"]
+              music = vs["music"].nil? ? "" : vs["music"]
+              banner = vs["banner"].nil? ? "" : vs["banner"]
 
-              StepmaniaSong.create(name: k, title: title, artist: artist, genre: genre, video: video, beginner: beginner, easy: easy, medium: medium, hard: hard, challenge: challenge, stepmania_pack: pack)
+              StepmaniaSong.create(name: k, title: title, subtitle: subtitle, artist: artist, genre: genre, video: video, credit: credit, music: music, banner: banner, beginner: beginner, easy: easy, medium: medium, hard: hard, challenge: challenge, stepmania_pack: pack)
             end
           end
         else
@@ -55,7 +136,6 @@ class StepmaniaService
       end
     end
 
-    Rails.cache.clear
   end
 
 end

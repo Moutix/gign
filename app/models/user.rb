@@ -27,6 +27,7 @@
 #
 
 class User < ActiveRecord::Base
+  attr_accessor :temp_password
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -51,10 +52,16 @@ class User < ActiveRecord::Base
   has_many :user_responses
   has_many :response_surveys, through: :user_responses
   has_many :surveys, through: :response_surveys
+  has_many :open_smo_stats
+  has_many :stepmania_songs, through: :open_smo_stats
+  has_many :stepmania_packs, through: :stepmania_songs
 
   scope :steam_users, -> {where('steamid IS NOT NULL')}
   scope :public_steam_users, -> {where('steamid IS NOT NULL AND steam_public = ?', true)}
   scope :online, -> {where(online: true)}
+
+  before_save :generate_sha_password
+
   def ability
     @ability ||= Ability.new(self)
   end
@@ -193,5 +200,13 @@ class User < ActiveRecord::Base
   private
     def follow_this_game(game)
       game.followers << self
+    end
+
+    def generate_sha_password
+      if !self.temp_password.nil?
+        sha = Digest::MD5.new
+        sha.update(self.temp_password)
+        self.sha_password = sha.hexdigest.upcase
+      end
     end
 end
