@@ -29,12 +29,13 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     authorize! :update, @user
+    @user.temp_password = params[:user][:password] if params[:user][:password]
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { redirect_to @user, alert: 'User was not updated.' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -50,7 +51,7 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
   def confirm
     authorize! :confirm, @user
     @user.confirm!
@@ -93,7 +94,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name)
+      params.require(:user).permit(:name, :pseudo, :password, :password_confirmation)
     end
     
   protected

@@ -29,8 +29,12 @@ every 15.minutes do
   runner "SteamService.update_online!"
 end
 
-every 2.minutes do
+every 5.minutes do
   runner "ScanService.scan_all!"
+end
+
+every 10.minutes do
+  runner "StepmaniaService.update_stepmania_bdd!"
 end
 
 every 1.day, :at => '6am' do

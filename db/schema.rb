@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426195756) do
+ActiveRecord::Schema.define(version: 20150502102738) do
 
   create_table "achievements", force: true do |t|
     t.string   "api_name"
@@ -200,6 +200,45 @@ ActiveRecord::Schema.define(version: 20150426195756) do
 
   add_index "members", ["promotion_id"], name: "index_members_on_promotion_id", using: :btree
 
+  create_table "open_smo_songs", force: true do |t|
+    t.string   "title"
+    t.string   "subtitle"
+    t.string   "artist"
+    t.integer  "original_id"
+    t.integer  "time",        default: 0
+    t.integer  "played",      default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "open_smo_stats", force: true do |t|
+    t.integer  "original_id"
+    t.integer  "user_id"
+    t.integer  "open_smo_song_id"
+    t.string   "player_settings"
+    t.integer  "feet"
+    t.integer  "difficulty"
+    t.integer  "grade"
+    t.integer  "score"
+    t.integer  "max_combo"
+    t.integer  "note_0"
+    t.integer  "note_1"
+    t.integer  "note_mine"
+    t.integer  "note_miss"
+    t.integer  "note_barely"
+    t.integer  "note_good"
+    t.integer  "note_great"
+    t.integer  "note_perfect"
+    t.integer  "note_flawless"
+    t.integer  "note_ng"
+    t.integer  "note_held"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "open_smo_stats", ["open_smo_song_id"], name: "index_open_smo_stats_on_open_smo_song_id", using: :btree
+  add_index "open_smo_stats", ["user_id"], name: "index_open_smo_stats_on_user_id", using: :btree
+
   create_table "pack_translations", force: true do |t|
     t.integer  "pack_id",    null: false
     t.string   "locale",     null: false
@@ -349,8 +388,12 @@ ActiveRecord::Schema.define(version: 20150426195756) do
   create_table "stepmania_songs", force: true do |t|
     t.string   "name",              default: ""
     t.string   "title",             default: ""
+    t.string   "subtitle",          default: ""
     t.string   "artist",            default: ""
     t.string   "genre",             default: ""
+    t.string   "credit",            default: ""
+    t.text     "music"
+    t.text     "banner"
     t.boolean  "video",             default: false
     t.string   "beginner"
     t.string   "easy"
@@ -360,6 +403,7 @@ ActiveRecord::Schema.define(version: 20150426195756) do
     t.integer  "stepmania_pack_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "open_smo_song_id"
   end
 
   add_index "stepmania_songs", ["stepmania_pack_id"], name: "index_stepmania_songs_on_stepmania_pack_id", using: :btree
@@ -486,6 +530,10 @@ ActiveRecord::Schema.define(version: 20150426195756) do
     t.boolean  "steam_public",                     default: false
     t.boolean  "online",                           default: false
     t.boolean  "to_scan",                          default: true
+    t.string   "sha_password"
+    t.string   "pseudo"
+    t.integer  "stepmania_id"
+    t.integer  "stepmania_xp"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

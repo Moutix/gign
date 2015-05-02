@@ -1,4 +1,9 @@
 module Constants
   DedicatedIP = []
   STEPMANIA_URL = ""
+
+  STEPMANIA_BDD_HOST = ""
+  STEPMANIA_BDD_USER = ""
+  STEPMANIA_BDD_PASSWORD = ""
+  STEPMANIA_BDD_DATABASE = ""
 end
