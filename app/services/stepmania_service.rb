@@ -60,7 +60,7 @@ class StepmaniaService
     if OpenSmoStat.where('original_id IS NOT NULL').count > 0
       results = client_stepmania.query("SELECT * FROM stats WHERE ID NOT IN (#{OpenSmoStat.pluck(:original_id).join(',')})")
     else
-      results = client_stepmania.query("SELECT * FROM stats")
+      results = client_stepmania.query("SELECT * FROM stats where User IS NOT NULL")
     end
     results.each do |result|
       OpenSmoStat.create(original_id: result["ID"],
@@ -83,7 +83,7 @@ class StepmaniaService
                          note_flawless: result["Note_Flawless"],
                          note_ng: result["Note_NG"],
                          note_held: result["Note_Held"],
-                        )
+                        ) unless User.find_by(stepmania_id: result["User"]).nil?
     end
   end
 

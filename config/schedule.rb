@@ -33,7 +33,7 @@ every 5.minutes do
   runner "ScanService.scan_all!"
 end
 
-every 10.minutes do
+every 1.minutes do
   runner "StepmaniaService.update_stepmania_bdd!"
 end
 

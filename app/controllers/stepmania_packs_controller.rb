@@ -14,19 +14,22 @@ class StepmaniaPacksController < ApplicationController
 
     session[:sq] = params[:sq] if params[:sq]
     session[:sqa] = params[:sqa] if params[:sqa]
-    session[:sqp] = params[:sqp] if params[:sqp]
+    session[:sqe] = ((params[:sqe] =~ /\d+/) ?  params[:sqe].to_i : '') if (params[:sqe] || session[:sqe].nil?) # Easier query
+    session[:sqh] = ((params[:sqh] =~ /\d+/) ?  params[:sqh].to_i : '') if (params[:sqh] || session[:sqh].nil?)# Harder query
+    session[:sqp] = params[:sqp].blank? ? '' : params[:sqp]         # Pack query
     session[:sqt] = @available_type.include?(params[:sqt]) ? params[:sqt] : "All" if params[:sqt]
 
     if !session[:sq].blank? || !session[:sqa].blank?
-      @stepmania_packs = StepmaniaPack.joins(:stepmania_songs).where("stepmania_packs.name LIKE ? AND (stepmania_packs.game_type = ? OR 'All' = ?) AND (stepmania_songs.name LIKE ? OR stepmania_songs.title LIKE ? OR stepmania_songs.subtitle LIKE ?) AND stepmania_songs.artist LIKE ?", "%#{session[:sqp]}%", session[:sqt], session[:sqt], "%#{session[:sq]}%", "%#{session[:sq]}%", "%#{session[:sq]}%", "%#{session[:sqa]}%").uniq.page(params[:page])
+      @stepmania_packs = StepmaniaPack.easier_than(session[:sqe]).harder_than(session[:sqh]).search_name(session[:sqp]).with_type(session[:sqt]).search_songs_name(session[:sq]).search_songs_artist(session[:sqa]).uniq.page(params[:page])
       @count = @stepmania_packs.count
-      @count_songs = StepmaniaSong.where(stepmania_pack_id: @stepmania_packs.pluck(:id)).where("(name LIKE ? OR title LIKE ? OR subtitle LIKE ?) and artist LIKE ?", "%#{session[:sq]}%", "%#{session[:sq]}%", "%#{session[:sq]}%", "%#{session[:sqa]}%").count
+      @count_songs = StepmaniaSong.easier_than(session[:sqe]).harder_than(session[:sqh]).search_name(session[:sq]).search_artist(session[:sqa]).where(stepmania_pack_id: @stepmania_packs.pluck(:id)).count
     elsif !session[:sqp].blank? || !session[:sqt].blank?
-      @stepmania_packs = StepmaniaPack.where('name like ? AND (game_type = ? or "All" = ?)', "%#{session[:sqp]}%", session[:sqt], session[:sqt]).page(params[:page])
+      @stepmania_packs = StepmaniaPack.easier_than(session[:sqe]).harder_than(session[:sqh]).search_name(session[:sqp]).with_type(session[:sqt]).order(name: :asc).page(params[:page])
     else
-      @stepmania_packs = StepmaniaPack.all.page(params[:page])
+      @stepmania_packs = StepmaniaPack.easier_than(session[:sqe]).harder_than(session[:sqh]).order(name: :asc).page(params[:page])
     end
 
+    @open_smo_stats = OpenSmoStat.order(created_at: :desc).limit(5)
     @id = params[:id]
     @expand = params[:expand]
   end

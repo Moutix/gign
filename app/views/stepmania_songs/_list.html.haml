@@ -7,15 +7,18 @@
     %th= model_class.human_attribute_name(:subtitle)
     %th= model_class.human_attribute_name(:artist)
     %th= model_class.human_attribute_name(:video)
-    %th= model_class.human_attribute_name(:beginner)
-    %th= model_class.human_attribute_name(:easy)
-    %th= model_class.human_attribute_name(:medium)
-    %th= model_class.human_attribute_name(:hard)
-    %th= model_class.human_attribute_name(:challenge)
+    %th.stepmania-difficulty-beginner= model_class.human_attribute_name(:beginner)
+    %th.stepmania-difficulty-easy= model_class.human_attribute_name(:easy)
+    %th.stepmania-difficulty-medium= model_class.human_attribute_name(:medium)
+    %th.stepmania-difficulty-hard= model_class.human_attribute_name(:hard)
+    %th.stepmania-difficulty-expert= model_class.human_attribute_name(:challenge)
 
   - stepmania_songs.each do |song|
     %tr[song]
-      %td= song.name
+      - if song.open_smo_song_id.nil?
+        %td= song.name
+      - else
+        %td= link_to song.name, song.open_smo_song
       %td= song.title
       %td= song.subtitle
       %td= song.artist
