@@ -1,0 +1,41 @@
+- model_class = OpenSmoStat
+
+%table.table.table-striped.table-condensed
+  %tr
+    %th= model_class.human_attribute_name(:user)
+    - if params[:controller] != "open_smo_songs"
+      %th= model_class.human_attribute_name(:open_smo_song)
+      %th= model_class.human_attribute_name(:artist)
+    %th= model_class.human_attribute_name(:difficulty)
+    %th= model_class.human_attribute_name(:grade)
+    %th= model_class.human_attribute_name(:score)
+    %th= model_class.human_attribute_name(:max_combo)
+    - if params[:controller] == "open_smo_songs"
+      %th.stepmania-note.stepmania-note-flawless= model_class.human_attribute_name(:note_flawless)
+      %th.stepmania-note.stepmania-note-perfect= model_class.human_attribute_name(:note_perfect)
+      %th.stepmania-note.stepmania-note-great= model_class.human_attribute_name(:note_great)
+      %th.stepmania-note.stepmania-note-good= model_class.human_attribute_name(:note_good)
+      %th.stepmania-note.stepmania-note-boo= model_class.human_attribute_name(:note_barely)
+      %th.stepmania-note.stepmania-note-miss= model_class.human_attribute_name(:note_miss)
+    %th= model_class.human_attribute_name(:created_at)
+
+  - open_smo_stats.each do |stat|
+    %tr[stat]
+      %td= render 'users/stepmania_avatar', user: stat.user
+      - if params[:controller] != "open_smo_songs"
+        %td= link_to stat.complete_title, stat.open_smo_song
+        %td= link_to stat.artist, stepmania_packs_path(sqa: stat.artist)
+      %td
+        %span.stepmania-difficulty{class: "stepmania-difficulty-#{stat.pretty_difficulty.downcase}"}= stat.pretty_difficulty_with_feet
+      %td= print_grade(stat.pretty_grade)
+      %td= stat.score
+      %td= stat.max_combo
+      - if params[:controller] == "open_smo_songs"
+        %td= stat.note_flawless
+        %td= stat.note_perfect
+        %td= stat.note_great
+        %td= stat.note_good
+        %td= stat.note_barely
+        %td= stat.note_miss
+      %td= l stat.created_at, format: :default
+   

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150502102738) do
+ActiveRecord::Schema.define(version: 20150506183749) do
 
   create_table "achievements", force: true do |t|
     t.string   "api_name"
@@ -534,6 +534,7 @@ ActiveRecord::Schema.define(version: 20150502102738) do
     t.string   "pseudo"
     t.integer  "stepmania_id"
     t.integer  "stepmania_xp"
+    t.string   "sha1_password"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

@@ -3,8 +3,9 @@
 - if @count
   %div.alert{class: @count > 0 ? "alert-success" : "alert-danger"}= t("stepmania.search.result", count: @count, count_songs: @count_songs)
 
-.center
-  = paginate @stepmania_packs, remote: true
+- if params[:controller] == "stepmania_packs"
+  .center
+    = paginate stepmania_packs, remote: true
 
 %table.table.table-striped.table-condensed
   %tr
@@ -14,7 +15,8 @@
     %th= model_class.human_attribute_name(:url)
     - if can? :download, StepmaniaPack
       %th= model_class.human_attribute_name(:name_file)
-    %th
+    - if params[:controller] == "stepmania_packs"
+      %th
 
   - stepmania_packs.each do |pack|
     %tr[pack]
@@ -42,20 +44,30 @@
           = link_to GLOBALCONSTANT::STEPMANIA_URL + pack.name_file do
             %i.fa.fa-download
             =t("stepmania.intern_download")
-      %td#expand[pack]
-        - if (id_pack == pack.id.to_s && expand == "1") || ((!session[:sq].blank? || !session[:sqa].blank?) && @count_songs && @count_songs < 100)
-          = link_to stepmania_packs_path(id: pack.id, expand: 0), remote: true do
-            %i.fa.fa-toggle-up
-        - else
-          = link_to stepmania_packs_path(id: pack.id, expand: 1), remote: true do
-            %i.fa.fa-toggle-down
-    - if (id_pack == pack.id.to_s && expand == "1") || ((!session[:sq].blank? || !session[:sqa].blank?) && @count_songs && @count_songs < 100)
+
+      - if params[:controller] == "stepmania_packs"
+        %td#expand[pack]
+          - if (id_pack == pack.id.to_s && expand == "1") || ((!session[:sq].blank? || !session[:sqa].blank?) && @count_songs && @count_songs < 100)
+            = link_to stepmania_packs_path(id: pack.id, expand: 0), remote: true do
+              %i.fa.fa-toggle-up
+          - else
+            = link_to stepmania_packs_path(id: pack.id, expand: 1), remote: true do
+              %i.fa.fa-toggle-down
+    - if (params[:controller] == "stepmania_packs") && (id_pack == pack.id.to_s && expand == "1") || ((!session[:sq].blank? || !session[:sqa].blank?) && @count_songs && @count_songs < 100)
       %tr.expand_stepmania_pack
         %td{colspan: 5}
           - if !session[:sq].blank? || !session[:sqa].blank?
-            = render "stepmania_songs/list", stepmania_songs: pack.stepmania_songs.where("(title LIKE ? OR name LIKE ? OR subtitle LIKE ?) AND ARTIST LIKE ?", "%#{session[:sq]}%", "%#{session[:sq]}%", "%#{session[:sq]}%", "%#{session[:sqa]}%").order(:name)
+            = render "stepmania_songs/list", stepmania_songs: pack.stepmania_songs.easier_than(session[:sqe]).harder_than(session[:sqh]).search_name(session[:sq]).search_artist(session[:sqa]).order(:name)
+          - else
+            = render "stepmania_songs/list", stepmania_songs: pack.stepmania_songs.easier_than(session[:sqe]).harder_than(session[:sqh])
+    - elsif params[:controller] == "open_smo_songs" && @open_smo_song
+      %tr
+        %td{colspan: 5}
+          = render "stepmania_songs/list", stepmania_songs: pack.stepmania_songs.where(open_smo_song: @open_smo_song)
 
-.center
-  = paginate @stepmania_packs, remote: true
+
+- if params[:controller] == "stepmania_packs"
+  .center
+    = paginate stepmania_packs, remote: true
 
 

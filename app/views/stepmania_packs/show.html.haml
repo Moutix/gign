@@ -4,7 +4,7 @@
 
 %h1= t '.title', :default => StepmaniaSong.model_name.human.pluralize.titleize
 
-= render 'stepmania_songs/list', stepmania_songs: @stepmania_pack.stepmania_songs
+= render 'stepmania_songs/list', stepmania_songs: @stepmania_pack.stepmania_songs.order(name: :asc)
 
 = render 'comments/list', resource: @stepmania_pack
 

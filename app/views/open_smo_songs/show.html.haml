@@ -1,0 +1,22 @@
+- model_class = OpenSmoSong
+
+%h3= @open_smo_song.complete_title
+%div
+  .dl-horizontal
+    %dt
+      %strong= model_class.human_attribute_name(:time)
+    %dd= distance_of_time_in_words(@open_smo_song.time)
+    %dt
+      %strong= model_class.human_attribute_name(:played)
+    %dd= @open_smo_song.played
+
+- if @open_smo_song.stepmania_packs.count > 0
+  %h4= t("stepmania.open_smo_song.include_in")
+  = render 'stepmania_packs/list', stepmania_packs: @open_smo_song.stepmania_packs
+- else
+  %h4= t("stepmania.open_smo_song.include_in_nothing")
+
+%hr
+%h4= t("stepmania.open_smo_song.scores")
+= render 'open_smo_stats/list', open_smo_stats: @open_smo_song.open_smo_stats.order(score: :desc).limit(10)
+ 

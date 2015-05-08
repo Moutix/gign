@@ -1,5 +1,5 @@
-.steam-avatar{class: user.online ? "online" : ""}
-  - if user && (can? :steam, user)
+.stepmania-avatar
+  - if user && (can? :stepmania, user)
     = link_to steam_user_path(user) do
       = image_tag user.avatar('mini'), "data-toggle" => "tooltip", "data-placement" => "bottom", "title" => name_user(user)
   - elsif user

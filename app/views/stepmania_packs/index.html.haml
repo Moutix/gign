@@ -1,6 +1,7 @@
 - model_class = StepmaniaPack
 
-%h1= t '.title', :default => model_class.model_name.human.pluralize.titleize
+%h2= t("stepmania.last_stats")
+= render 'open_smo_stats/list', open_smo_stats: @open_smo_stats
 
 #stepmania_packs_search.row
   = form_tag stepmania_packs_path, method: :get, remote: true, class: 'navbar-form navbar-left' do
@@ -8,6 +9,7 @@
     = search_field_tag :sqp, session[:sqp], class: 'form-control', onchange: '$(this.form).submit();', placeholder: t("stepmania.search.pack")
     = search_field_tag :sq, session[:sq], class: 'form-control', onchange: '$(this.form).submit();', placeholder: t("stepmania.search.title")
     = search_field_tag :sqa, session[:sqa], class: 'form-control', onchange: '$(this.form).submit();', placeholder: t("stepmania.search.artist")
+    = number_field_tag :sqe, session[:sqe], class: 'form-control', onchange: '$(this.form).submit();', placeholder: t("stepmania.search.easier_than")
 
 #stepmania_packs_list
   = render "stepmania_packs/list", stepmania_packs: @stepmania_packs, id_pack: @id, expand: @expand

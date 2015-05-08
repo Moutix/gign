@@ -113,6 +113,12 @@ fr:
       stepmania_song:
         one: Chanson
         other: Chansons
+      open_smo_song:
+        one: Chanson Stepmania Online
+        other: Chansons Stepmania Online
+      open_smo_stat:
+        one: Résultat Stepmania Online
+        other: Résultats Stepmania Online
 
 
     attributes:
@@ -217,6 +223,37 @@ fr:
         url: URL
         game_type: Type
         size: Taille
+      stepmania_song:
+        <<: *all
+        name: Nom
+        title: Titre
+        subtitle: Sous-Titre
+        artist: Artiste
+        beginner: Beginner
+        easy: Easy
+        medium: Medium
+        hard: Hard
+        challenge: Expert
+      open_smo_song:
+        <<: *all
+        title: Titre
+        subtitle: Sous-Titre
+        artist: Artiste
+        time: Durée
+        played: Nombre de fois joués
+      open_smo_stat:
+        <<: *all
+        user: Joueur
+        difficulty: Difficulté
+        grade: Note
+        score: Score
+        max_combo: Combo Max
+        note_flawless: FLAWLESS
+        note_perfect: PERFECT
+        note_great: GREAT
+        note_good: GOOD
+        note_barely: BOO
+        note_miss: MISS 
 
   supply:
     loan:
@@ -300,15 +337,23 @@ fr:
     dedicated: "Serveur dédié"
 
   stepmania:
+    last_stats: "Les dernières parties jouées"
     search:
       pack: Nom du pack
       title: Titre
       artist: Artiste
+      harder_than: Min difficulté
+      easier_than: Max difficulté
       result:
         one: "Un pack trouvé pour un total de %{count_songs} chansons"
         other: "%{count} packs trouvés pour un total de %{count_songs} chansons"
     download: "Télécharger"
     intern_download: "Télécharger sur les FTPs"
+    full_song_name: "%{name} par %{artist}"
+    open_smo_song:
+      scores: "Meilleurs scores :"
+      include_in: "Inclus dans les packs :"
+      include_in_nothing: "Aucun pack contenant cette musique n'a été trouvé... T.T"
 
   form:
     comment:

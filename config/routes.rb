@@ -33,6 +33,7 @@ Gign::Application.routes.draw do
       end
       
       resources :stepmania_packs, only: [:index, :show], path: "stepmania"
+      resources :open_smo_songs, only: [:show], path: "stepmania_songs"
       
       resources :surveys, only: [:index, :show, :create, :update, :destroy] do
         member do

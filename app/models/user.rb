@@ -188,6 +188,11 @@ class User < ActiveRecord::Base
   def recent_playtime
     user_stats.sum(:recent_playtime)
   end
+  
+  def stepmania_playtime
+    self.open_smo_stats.joins(:open_smo_song).pluck('open_smo_songs.time').sum()
+  end
+
 
   def self.nolife
     self.joins(:user_stats).group('users.id').order('SUM(user_stats.recent_playtime) ASC').last
@@ -196,6 +201,8 @@ class User < ActiveRecord::Base
   def self.polard
     self.joins(:user_stats).group('users.id').order('SUM(user_stats.recent_playtime) ASC, SUM(user_stats.total_playtime) ASC').first
   end
+
+
 
   private
     def follow_this_game(game)
@@ -207,6 +214,7 @@ class User < ActiveRecord::Base
         sha = Digest::MD5.new
         sha.update(self.temp_password)
         self.sha_password = sha.hexdigest.upcase
+        self.sha1_password = ('{SHA}' + Base64.encode64(Digest::SHA1.digest(self.temp_password))).gsub("\n", "")
       end
     end
 end
