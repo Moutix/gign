@@ -1,0 +1,7 @@
+var id_selector = "#body_comment_" + #{@comment.id}
+$(id_selector).empty();
+if($(id_selector + " form").size()===0){
+$(id_selector).append("#{j render 'comments/form_for', comment: @comment, resource: nil, comment_parent: nil}")
+}else{
+$(id_selector).append("#{j render 'comments/body', comment: @comment}")
+}

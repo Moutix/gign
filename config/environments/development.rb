@@ -31,4 +31,6 @@ Gign::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  BetterErrors::Middleware.allow_ip! "192.168.56.0/24"
 end

@@ -48,6 +48,9 @@ Gign::Application.routes.draw do
       end
 
       resources :comments, only: [:create, :update, :destroy] do
+        member do
+          post :edit
+        end
         collection do
           post :follow
         end

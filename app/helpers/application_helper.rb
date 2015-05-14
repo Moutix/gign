@@ -33,10 +33,10 @@ module ApplicationHelper
   end
 
   def name_user(user)
-    if current_user || user.steam_name.nil?
+    if current_user || user.pseudo.blank?
       user.fullname
     else
-      user.steam_name
+      user.pseudo
     end
   end
 

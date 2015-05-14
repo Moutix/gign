@@ -69,7 +69,7 @@ class UsersController < ApplicationController
     if current_user
       authorize! :steamid, current_user 
       public_account = auth_hash.extra.raw_info.communityvisibilitystate == 3 ? true : false
-      current_user.update_columns(steamid: auth_hash.uid.to_i, steam_name: auth_hash.info.nickname, steam_url: auth_hash.info.urls.Profile, steam_public: public_account)
+      current_user.update_columns(steamid: auth_hash.uid.to_i, steam_name: auth_hash.info.nickname, steam_url: auth_hash.info.urls.Profile, steam_public: public_account, pseudo: auth_hash.info.nickname)
       Image.upload_url(auth_hash.info.image, current_user, nil, current_user)
       flash[:notice] = t("steam.oauth.sync")
       redirect_to current_user
@@ -96,7 +96,7 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :pseudo, :password, :password_confirmation)
     end
-    
+
   protected
 
     def auth_hash
