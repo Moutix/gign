@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:update, :destroy]
+  before_action :set_comment, only: [:update, :destroy, :edit]
 
   def create
     authorize! :create, Comment
@@ -25,11 +25,20 @@ class CommentsController < ApplicationController
   def update
     authorize! :update, @comment
     respond_to do |format|
-      if @comment.update(comment_params)
+      if @comment.update(comment_update_params)
           format.html { redirect_to :back, notice: 'Comment was successfully updated.' }
+          format.js
       else
         format.html { redirect_to :back }
+        format.js
       end
+    end
+  end
+
+  def edit
+    authorize! :edit, @comment
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -55,7 +64,7 @@ class CommentsController < ApplicationController
         @btntext = t("comment.unfollow")
       end
     end
-   
+
     respond_to do |format|
       format.html { redirect_to :back }
       format.js
@@ -63,13 +72,18 @@ class CommentsController < ApplicationController
 
   end
   private
-    
+
     def set_comment
       @comment = Comment.find(params[:id])
     end
-    
+
     def comment_params
-      params.require(:page).permit(:commentable_id, :commentable_type, :title, :body, :parent_id)
+      params.require(:comment).permit(:commentable_id, :commentable_type, :body, :parent_id)
     end
+
+    def comment_update_params
+      params.require(:comment).permit(:body)
+    end
+
 
 end

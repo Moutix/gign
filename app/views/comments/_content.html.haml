@@ -13,7 +13,7 @@
     %hr
     .comments-form
       - if can? :comment, resource
-        = render 'comments/form', resource: resource, comment: nil
+        = render 'comments/form', resource: resource, comment_parent: nil, comment: nil
 
     - stack_helper(stack) do |comment, deep|
       .comments-show[comment]{"data-deep" => deep}

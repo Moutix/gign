@@ -1,0 +1,3 @@
+var id_selector = "#body_comment_" + #{@comment.id}
+$(id_selector).empty();
+$(id_selector).append("#{j render 'comments/body', comment: @comment}")

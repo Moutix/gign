@@ -116,7 +116,7 @@ class User < ActiveRecord::Base
   end
 
   def fullname
-    t = steam_name ? "#{name} (#{steam_name})" : name
+    !pseudo.blank? ? "#{name} (#{pseudo})" : name
   end
 
   def active_basket

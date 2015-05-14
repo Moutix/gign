@@ -35,6 +35,13 @@ class Ability
         i.imageable == user
       end
       can [:comment, :follow], Page
+      can [:comment, :follow], Game
+      can [:comment, :follow], StepmaniaPack
+
+      can :create, Comment
+      can [:update, :edit], Comment do |c|
+        c.user == user
+      end
 
       can :index, MailBox
       
