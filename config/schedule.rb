@@ -25,7 +25,7 @@ every "0 0,9,12,15,18,21 * * *" do
   runner "SteamService.update_all!"
 end
 
-every 15.minutes do
+every 30.minutes do
   runner "SteamService.update_online!"
 end
 
@@ -33,7 +33,7 @@ every 5.minutes do
   runner "ScanService.scan_all!"
 end
 
-every 1.minutes do
+every 10.minutes do
   runner "StepmaniaService.update_stepmania_bdd!"
 end
 

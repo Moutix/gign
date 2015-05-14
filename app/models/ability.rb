@@ -113,6 +113,7 @@ class Ability
       can :manage, LanParty do |lan|
         lan.ip == ip
       end
+      can :play, StepmaniaSong
 
       can :download, StepmaniaPack
     end

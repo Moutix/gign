@@ -91,6 +91,27 @@ var ready = function() {
 
 };
 
+var play_stepmania_song = function(song_id){
+  var song = document.getElementById(song_id);
+  if(song.paused){
+    $('.music_stepmania').each(function(){
+      if(!this.paused){this.pause();}
+    });
+    $('.fa-pause').addClass('fa-play');
+    $('.fa-pause').removeClass('fa-pause');
+  
+    song.play();
+    $('#icon_' + song_id).addClass('fa-pause');
+    $('#icon_' + song_id).removeClass('fa-play');
+  }else{
+     $('.music_stepmania').each(function(){
+      if(!this.paused){this.pause();}
+    });
+    $('.fa-pause').addClass('fa-play');
+    $('.fa-pause').removeClass('fa-pause');
+  }
+}
+
 $(document).ready(ready);
 $(document).on('page:load', ready);
 

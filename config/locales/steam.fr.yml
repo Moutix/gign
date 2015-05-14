@@ -36,8 +36,8 @@ fr:
           yaxis: "Nombres de succès"
       games:
         title:
-          recent: "Les jeux les plus joué ces 15 derniers jours"
-          total: "Les jeux les plus joué au total"
+          recent: "Les jeux les plus joués ces 15 derniers jours"
+          total: "Les jeux les plus joués au total"
           yaxis: Heures de jeu
       stats:
         online_users:
@@ -45,7 +45,7 @@ fr:
           ytitle: "Nombre d'utilisateurs en ligne"
         recent_playtime:
           title: "Temps récent en jeu au cours du temps"
-          ytitle: "Nombre d'heure en jeu"
+          ytitle: "Nombre d'heures en jeu"
         total_playtime:
           title: "Temps total en jeu au cours du temps"
           ytitle: "Nombre d'heures en jeu"
@@ -54,7 +54,7 @@ fr:
 
 
     achievements:
-      title: "Stats de jeu générals de"
+      title: "Stats de jeu générales de"
       total: "Total des succès"
       current_user: "Vous en avez obtenu : "
 
@@ -78,7 +78,7 @@ fr:
 
     resume_games:
       total_game: "Nombre de jeu total"
-      played_game: "Nombre de jeu joué"
+      played_game: "Nombre de jeu joués"
       total_playtime: "Temps total en jeu"
       recent_playtime: "Temps de jeu depuis 2 semaines"
       average_playtime: "Temps moyen en jeu"

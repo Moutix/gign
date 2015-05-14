@@ -15,7 +15,10 @@
 /log/*.log
 /tmp
 /public/uploads
+/public/google*
+/public/assets/*
 /config/application.rb
-/config/initializer/constant.rb
+/config/initializers/constant.rb
+/config/initializers/secret_token.rb
 /config/database.yml
 /public/sitemap.xml.gz
