@@ -10,7 +10,7 @@
 
   - users.each do |user|
     %tr[user]
-      %td= link_to user.name, user
+      %td= link_to name_user(user), user
       %td
         = link_to user.email, user
         = link_to t("user.confirm.links"), confirm_user_path(user), method: :post unless user.confirmed?
