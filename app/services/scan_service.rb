@@ -36,7 +36,7 @@ class ScanService
     maps = {}
 
     data = "\x05\x01\x4d\x57\x07\xdb\x53\x51\x23\x38\x44\x42\x19\xda\xee\x63"
-    games = send_udp(data, 14001, 1, true)
+    games = send_udp(data, 14001, 0.2, true)
 
     games.each do |game|
       t = game[0].scan(/[\w|\d|\-\'|\ ]{3,}/)
@@ -95,7 +95,7 @@ class ScanService
     games = send_udp(data, 27015) 
 
     (GLOBALCONSTANT::DedicatedIP - games.map{|g| g[1][3]}).each do |ip|
-      games += send_udp(data, 27015, 3, false, ip)
+      games += send_udp(data, 27015, 0.2, false, ip)
     end
     
     games.each do |game|

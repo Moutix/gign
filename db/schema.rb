@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506183749) do
+ActiveRecord::Schema.define(version: 20150511170854) do
 
   create_table "achievements", force: true do |t|
     t.string   "api_name"
@@ -234,6 +234,10 @@ ActiveRecord::Schema.define(version: 20150506183749) do
     t.integer  "note_held"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "percentage",       precision: 5, scale: 2
+    t.integer  "rate"
+    t.integer  "toasty"
+    t.integer  "timing"
   end
 
   add_index "open_smo_stats", ["open_smo_song_id"], name: "index_open_smo_stats_on_open_smo_song_id", using: :btree

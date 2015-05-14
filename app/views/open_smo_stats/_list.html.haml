@@ -9,6 +9,7 @@
     %th= model_class.human_attribute_name(:difficulty)
     %th= model_class.human_attribute_name(:grade)
     %th= model_class.human_attribute_name(:score)
+    %th= model_class.human_attribute_name(:percentage)
     %th= model_class.human_attribute_name(:max_combo)
     - if params[:controller] == "open_smo_songs"
       %th.stepmania-note.stepmania-note-flawless= model_class.human_attribute_name(:note_flawless)
@@ -29,6 +30,7 @@
         %span.stepmania-difficulty{class: "stepmania-difficulty-#{stat.pretty_difficulty.downcase}"}= stat.pretty_difficulty_with_feet
       %td= print_grade(stat.pretty_grade)
       %td= stat.score
+      %td= number_to_percentage(stat.percentage, precision: 2)
       %td= stat.max_combo
       - if params[:controller] == "open_smo_songs"
         %td= stat.note_flawless

@@ -38,18 +38,19 @@ class StepmaniaService
     client_stepmania.query("Select * from songs").each do |result|
       song = OpenSmoSong.find_by(original_id: result["ID"])
 
+
       if song.nil?
         song = OpenSmoSong.create(original_id: result["ID"],
                                   title: result["Name"],
                                   artist: result["Artist"],
-                                  subtitle: result["Subtitle"],
+                                  subtitle: result["Subtitle"].nil? ? "" : result["Subtitle"],
                                   time: result["Time"],
                                   played: result["Played"]
                                  )
 
         StepmaniaSong.where(title: result["Name"],
                             artist: result["Artist"],
-                            subtitle: result["Subtitle"]
+                            subtitle: result["Subtitle"].nil? ? "" : result["Subtitle"]
                            ).update_all(open_smo_song_id: song.id)
       else
         song.update_columns(time: result["Time"], played: result["Played"])
@@ -63,6 +64,8 @@ class StepmaniaService
       results = client_stepmania.query("SELECT * FROM stats where User IS NOT NULL")
     end
     results.each do |result|
+      note_max = 3 * (result["Note_Flawless"] + result["Note_Perfect"] + result["Note_Great"] + result["Note_Good"] + result["Note_Barely"] + result["Note_Miss"]) + 3 * (result["Note_Held"] + result["Note_NG"])
+      note = 3 * result["Note_Flawless"] + 2 * result["Note_Perfect"] + result["Note_Great"] + 3 * result["Note_Held"]
       OpenSmoStat.create(original_id: result["ID"],
                          user: User.find_by(stepmania_id: result["User"]),
                          open_smo_song: OpenSmoSong.find_by(original_id: result["Song"]),
@@ -83,8 +86,35 @@ class StepmaniaService
                          note_flawless: result["Note_Flawless"],
                          note_ng: result["Note_NG"],
                          note_held: result["Note_Held"],
+                         rate: result["rate"],
+                         percentage: 100.0*note.to_f/note_max.to_f,
+                         toasty: result["Toasty"],
+                         timing: result["timing"],
+                         created_at: result["TimeStamp"]
                         ) unless User.find_by(stepmania_id: result["User"]).nil?
     end
+  end
+
+  def self.update_percentage!
+    OpenSmoStat.where('percentage IS NULL').each do |stat|
+      note_max = 3 * (stat.note_flawless + stat.note_perfect + stat.note_great + stat.note_good + stat.note_barely + stat.note_miss) + 3 * (stat.note_held + stat.note_ng)
+      note = 3 * stat.note_flawless + 2 * stat.note_perfect + stat.note_great + 3 * stat.note_held
+      stat.update_columns(percentage: 100.0*note.to_f/note_max.to_f)
+ 
+    end
+  end
+
+  def self.update_stepmania_song!
+    OpenSmoSong.all.each do |song| 
+      if song.subtitle.nil?
+        song.update_columns(subtitle: "")
+      end
+      StepmaniaSong.where(title: song.title,
+                          artist: song.artist,
+                          subtitle: song.subtitle
+                        ).update_all(open_smo_song_id: song.id)
+    end
+    
   end
 
 

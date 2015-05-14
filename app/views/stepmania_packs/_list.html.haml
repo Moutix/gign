@@ -41,7 +41,7 @@
           = t("stepmania.download")
       - if can? :download, StepmaniaPack
         %td
-          = link_to GLOBALCONSTANT::STEPMANIA_URL + pack.name_file do
+          = link_to GLOBALCONSTANT::STEPMANIA_URL + "/" + pack.name_file do
             %i.fa.fa-download
             =t("stepmania.intern_download")
 

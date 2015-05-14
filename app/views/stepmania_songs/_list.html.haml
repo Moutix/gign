@@ -1,7 +1,11 @@
 - model_class = StepmaniaSong
 
+- with_banner = (can? :play, StepmaniaSong) && stepmania_songs.group(:banner).pluck(:banner) != [""]
+
 %table.table.table-striped.table-condensed
   %tr
+    - if with_banner
+      %th= model_class.human_attribute_name(:banner)
     %th= model_class.human_attribute_name(:name)
     %th= model_class.human_attribute_name(:title)
     %th= model_class.human_attribute_name(:subtitle)
@@ -15,10 +19,21 @@
 
   - stepmania_songs.each do |song|
     %tr[song]
-      - if song.open_smo_song_id.nil?
-        %td= song.name
-      - else
-        %td= link_to song.name, song.open_smo_song
+      - if with_banner
+        %td
+          - if song.banner.blank?
+            = image_tag "/assets/stepmania_logo.png", width: 120
+          - else
+            = image_tag GLOBALCONSTANT::STEPMANIA_URL + "/" + song.banner, width: 120
+      %td          
+        - if song.open_smo_song_id.nil?
+          = song.name
+        - else
+          = link_to song.name, song.open_smo_song
+        - if (can? :play, song) && !song.music.blank?
+          %audio.music_stepmania#audio[song]{src: GLOBALCONSTANT::STEPMANIA_URL + "/" + song.music}
+          %a{onclick: "play_stepmania_song('audio_stepmania_song_#{song.id}').play();", style: "cursor:pointer;"}
+            %i.fa.fa-play#icon_audio[song]
       %td= song.title
       %td= song.subtitle
       %td= song.artist
