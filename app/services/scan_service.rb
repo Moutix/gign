@@ -99,7 +99,6 @@ class ScanService
     end
     
     games.each do |game|
-	p game[0]
 	t = game[0].scan(/[\w|\d|\-\'|\ ]{3,}/)	
 	next if t.length < 3
 	
@@ -180,6 +179,7 @@ class ScanService
     fill_bdd(scan_dst, "Don't Starve Together", Game.find_by(app_id: 322330))
     fill_bdd(scan_tf2, "Team Fortress 2", Game.find_by(app_id: 440))
     fill_bdd(scan_teeworlds, "Teeworlds")
+    return true
   end
 
 

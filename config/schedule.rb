@@ -25,16 +25,8 @@ every "0 0,9,12,15,18,21 * * *" do
   runner "SteamService.update_all!"
 end
 
-every 30.minutes do
-  runner "SteamService.update_online!"
-end
-
 every 5.minutes do
-  runner "ScanService.scan_all!"
-end
-
-every 10.minutes do
-  runner "StepmaniaService.update_stepmania_bdd!"
+  runner "CronService.do_quick_job!"
 end
 
 every 1.day, :at => '6am' do
