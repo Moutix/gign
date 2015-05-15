@@ -12,12 +12,10 @@ class StepmaniaService
 
   def self.update_stepmania_bdd!
     client_stepmania = Mysql2::Client.new(host: GLOBALCONSTANT::STEPMANIA_BDD_HOST, username: GLOBALCONSTANT::STEPMANIA_BDD_USER, password: GLOBALCONSTANT::STEPMANIA_BDD_PASSWORD, database: GLOBALCONSTANT::STEPMANIA_BDD_DATABASE)
+    last_stat_id = OpenSmoStat.last ? OpenSmoStat.last.original_id : 0
     
-    results = client_stepmania.query("Select Email from users")
-  
-    emails = results.map{|r| r["Email"]}
-
-
+    emails = client_stepmania.query("SELECT Email FROM users").map{|r| r["Email"]}
+    
     ## Import user to OpenSMO ##
     User.where("sha_password IS NOT NULL AND pseudo IS NOT NULL").each do |user|
       if emails.include?(user.email)
@@ -27,6 +25,9 @@ class StepmaniaService
       end
     end
 
+    stats = client_stepmania.query("SELECT * FROM stats WHERE ID > '#{last_stat_id}'")
+    return true if stats.count == 0
+
     ## Update user xp ##
     client_stepmania.query("SELECT * FROM users").each do |result|
       user = User.find_by(email: result["Email"])
@@ -35,9 +36,8 @@ class StepmaniaService
     end
 
     ## Update Song ##
-    client_stepmania.query("Select * from songs").each do |result|
+    client_stepmania.query("SELECT * FROM songs LEFT JOIN stats ON songs.ID=stats.Song WHERE stats.ID > #{last_stat_id} GROUP BY songs.ID").each do |result|
       song = OpenSmoSong.find_by(original_id: result["ID"])
-
 
       if song.nil?
         song = OpenSmoSong.create(original_id: result["ID"],
@@ -58,12 +58,9 @@ class StepmaniaService
     end
 
     ## Update Stats ##
-    if OpenSmoStat.where('original_id IS NOT NULL').count > 0
-      results = client_stepmania.query("SELECT * FROM stats WHERE ID NOT IN (#{OpenSmoStat.pluck(:original_id).join(',')})")
-    else
-      results = client_stepmania.query("SELECT * FROM stats where User IS NOT NULL")
-    end
-    results.each do |result|
+    stats.each do |result|
+      next unless OpenSmoStat.find_by(original_id: result["ID"]).nil?
+
       note_max = 3 * (result["Note_Flawless"] + result["Note_Perfect"] + result["Note_Great"] + result["Note_Good"] + result["Note_Barely"] + result["Note_Miss"]) + 3 * (result["Note_Held"] + result["Note_NG"])
       note = 3 * result["Note_Flawless"] + 2 * result["Note_Perfect"] + result["Note_Great"] + 3 * result["Note_Held"]
       OpenSmoStat.create(original_id: result["ID"],
@@ -93,6 +90,7 @@ class StepmaniaService
                          created_at: result["TimeStamp"]
                         ) unless User.find_by(stepmania_id: result["User"]).nil?
     end
+    return true
   end
 
   def self.update_percentage!

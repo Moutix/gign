@@ -109,6 +109,8 @@ class Ability
       can :manage, Image do |i|
         i.imageable.class == Supply
       end
+      can :manage, Computer
+      can :manage, Component
     end
 
     if user.is_in?("admin")
