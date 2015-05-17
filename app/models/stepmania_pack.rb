@@ -16,5 +16,4 @@ class StepmaniaPack < ActiveRecord::Base
   scope :search_songs_name, -> (name) {joins(:stepmania_songs).where('stepmania_songs.name LIKE ? OR stepmania_songs.title LIKE ?', "#{name}%", "%#{name}%").uniq}
   scope :search_songs_artist, -> (artist) {joins(:stepmania_songs).where('stepmania_songs.artist LIKE ?', "%#{artist}%").uniq}
 
-
 end

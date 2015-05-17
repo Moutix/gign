@@ -5,7 +5,7 @@
   .dl-horizontal
     %dt
       %strong= model_class.human_attribute_name(:time)
-    %dd= distance_of_time_in_words(@open_smo_song.time)
+    %dd= number_to_time @open_smo_song.time
     %dt
       %strong= model_class.human_attribute_name(:played)
     %dd= @open_smo_song.played

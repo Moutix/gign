@@ -1,0 +1,9 @@
+.center
+  %h4= t("stepmania.best_songs.title")
+
+%ol
+  - OpenSmoSong.order(played: :desc).limit(10).each do |song|
+    %li
+      = link_to song.complete_title, song
+      = " (" + number_to_human(song.played) + ")"
+

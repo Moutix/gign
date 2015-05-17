@@ -337,7 +337,9 @@ fr:
     dedicated: "Serveur dédié"
 
   stepmania:
+    help: "Comment jouer avec nous ?"
     last_stats: "Les dernières parties jouées"
+    packs: "En recherche d'une musique ? C'est par là :"
     search:
       pack: Nom du pack
       title: Titre
@@ -354,6 +356,16 @@ fr:
       scores: "Meilleurs scores :"
       include_in: "Inclus dans les packs :"
       include_in_nothing: "Aucun pack contenant cette musique n'a été trouvé... T.T"
+    stats:
+      title: Statistiques globales
+      games_played: "Parties jouées :"
+      unique_songs: "Musiques différentes :"
+      nb_players: "Nombre de joueurs :"
+      total_playtime: " Temps de jeu total :"
+    players:
+      title: "Top 5"
+    best_songs:
+      title: "Musiques les plus jouées"
 
   form:
     comment:

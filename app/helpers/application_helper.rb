@@ -60,6 +60,22 @@ module ApplicationHelper
     t "datetime.distance_in_words.about_x_hours", count: (number/60).round
   end
 
+  def number_to_time secondes
+    mm, ss = secondes.divmod 60
+    hh, mm = mm.divmod 60
+    dd, hh = hh.divmod 24
+    yy, dd = dd.divmod 365
+
+    str = ""
+    str += yy.to_s + " " + t("datetime.prompts.year").downcase.pluralize + ", " if yy > 0
+    str += dd.to_s + " " + t("datetime.prompts.day").downcase.pluralize  + ", " if dd > 0
+    str += hh.to_s + " " + t("datetime.prompts.hour").downcase.pluralize + ", " if hh > 0
+    str += mm.to_s + " " + t("datetime.prompts.minute").downcase.pluralize  + ", " if mm > 0
+    str += ss.to_s + " " + t("datetime.prompts.second").downcase.pluralize
+
+    return str
+  end
+
   def breadcrumb_url
     breadcrumb = request.fullpath.split('/')
     breadcrumb.delete_at(0)

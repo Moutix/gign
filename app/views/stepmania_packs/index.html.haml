@@ -1,16 +1,32 @@
 - model_class = StepmaniaPack
 
+%h1.center
+  = image_tag "/assets/stepmania_logo.png", height: 125
+
+%hr
+
+.row
+  .col-md-3
+    %a.center{style: "cursor:pointer", "data-toggle" => "modal", "data-target" => "#StepmaniaHelpModal"}= t("stepmania.help")
+    %br
+    = image_tag "/assets/gign-stepmania.gif", width: 200
+  .col-md-3.well
+    = render 'stepmania_packs/stats'
+  .col-md-3.well
+    = render 'stepmania_packs/players'
+  .col-md-3.well
+    = render 'stepmania_packs/best_songs'
+
+%hr
+
 %h2= t("stepmania.last_stats")
 = render 'open_smo_stats/list', open_smo_stats: @open_smo_stats
 
-#stepmania_packs_search.row
-  = form_tag stepmania_packs_path, method: :get, remote: true, class: 'navbar-form navbar-left' do
-    = select_tag :sqt, options_for_select(@available_type), class: 'form-control', onchange: '$(this.form).submit();', placeholder: t("stepmania.search.pack")
-    = search_field_tag :sqp, session[:sqp], class: 'form-control', onchange: '$(this.form).submit();', placeholder: t("stepmania.search.pack")
-    = search_field_tag :sq, session[:sq], class: 'form-control', onchange: '$(this.form).submit();', placeholder: t("stepmania.search.title")
-    = search_field_tag :sqa, session[:sqa], class: 'form-control', onchange: '$(this.form).submit();', placeholder: t("stepmania.search.artist")
-    = number_field_tag :sqe, session[:sqe], class: 'form-control', onchange: '$(this.form).submit();', placeholder: t("stepmania.search.easier_than")
+%hr
+%h2= t("stepmania.packs")
+= render "stepmania_packs/search", available_type: @available_type
 
 #stepmania_packs_list
   = render "stepmania_packs/list", stepmania_packs: @stepmania_packs, id_pack: @id, expand: @expand
 
+= render 'stepmania_packs/help_modal'
