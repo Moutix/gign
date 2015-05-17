@@ -1,0 +1,19 @@
+.center
+  %h4= t("stepmania.stats.title")
+%div
+  .dl-horizontal
+    %dt
+      %strong= t("stepmania.stats.games_played")
+    %dd= number_to_human OpenSmoStat.count
+    %dt
+      %strong= t("stepmania.stats.unique_songs")
+    %dd= number_to_human OpenSmoSong.count
+    %dt
+      %strong= t("stepmania.stats.nb_players")
+    %dd= number_to_human User.stepmania_users.count
+    %dt
+      %strong= t("stepmania.stats.total_playtime")
+    %br
+    = number_to_time OpenSmoStat.played_time
+    
+ 

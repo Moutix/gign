@@ -1,0 +1,44 @@
+#StepmaniaHelpModal.modal.fade{"aria-hidden" => "true", "tabindex" => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal"}
+          %span{"aria-hidden" => "true"}×
+          %span.sr-only
+            = t("helpers.links.close")
+        %h4.modal-title Aide Stepmania
+      .modal-body   
+        %h4 Se connecter au serveur
+
+        %ul
+          %li
+            Lancer
+            = link_to "Stepmania", "http://stepmania.com"
+          %li Aller dans Options
+          %li Aller dans Network Options
+          %li
+            Sélectionner "Connect" et y entrer : 
+            %i"stepmania.larez.fr"
+        Si tout se passe bien vous devriez voir apparaitre 'Connection to GiGN successful'
+
+        %hr
+
+        %h4 Rejoindre/Créer une partie
+        Vous devez avoir un compte sur le site principal, et y avoir entré un pseudo dans la partie mon compte, ainsi qu'un profil dans le jeu stepmania du même nom que le pseudo
+
+        %ul
+          %li
+            Créer un compte sur le site (si ce n'est pas déjà fait) en cliquant sur
+            = link_to "S'inscrire", new_user_registration_path
+          %li Aller sur la mage 'Mon compte' et y entrer un pseudo
+          %li Créer un profil dans le jeu avec le même nom que le pseudo
+          %li Sélectionner "Game Start" et continuer jusqu'a la page de connexion
+          %li Entrer votre Mot de Passe (Attention le clavier est en qwerty !)
+          %li Utiliser ctrl+entrer pour naviguer
+
+        Vous pouvez maintenant naviguer parmis les salles existantes, ou en créer des nouvelles.
+
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal"}
+          = t("helpers.links.close")
+

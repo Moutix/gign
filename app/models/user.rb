@@ -59,6 +59,7 @@ class User < ActiveRecord::Base
   scope :steam_users, -> {where('steamid IS NOT NULL')}
   scope :public_steam_users, -> {where('steamid IS NOT NULL AND steam_public = ?', true)}
   scope :online, -> {where(online: true)}
+  scope :stepmania_users, -> {where('stepmania_xp > 0')}
 
   before_save :generate_sha_password
 

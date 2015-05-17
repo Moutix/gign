@@ -22,4 +22,8 @@ class OpenSmoStat < ActiveRecord::Base
     GRADES[grade]
   end
 
+  def self.played_time
+    return OpenSmoStat.joins(:open_smo_song).sum(:time)
+  end
+
 end

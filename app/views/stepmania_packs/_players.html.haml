@@ -1,0 +1,7 @@
+.center
+  %h4= t("stepmania.players.title")
+
+%ol
+  - User.stepmania_users.order(stepmania_xp: :desc).limit(5).each do |user|
+    %li= link_user(nil, user) + "(" + number_to_human(user.stepmania_xp, precision: 5) + ")"
+
