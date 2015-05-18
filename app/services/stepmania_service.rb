@@ -36,7 +36,7 @@ class StepmaniaService
     end
 
     ## Update Song ##
-    client_stepmania.query("SELECT * FROM songs LEFT JOIN stats ON songs.ID=stats.Song WHERE stats.ID > #{last_stat_id} GROUP BY songs.ID").each do |result|
+    client_stepmania.query("SELECT songs.* FROM songs LEFT JOIN stats ON songs.ID=stats.Song WHERE stats.ID > #{last_stat_id} GROUP BY songs.ID").each do |result|
       song = OpenSmoSong.find_by(original_id: result["ID"])
 
       if song.nil?
