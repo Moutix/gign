@@ -1,7 +1,6 @@
-- model_class = StepmaniaPack
-
-%h1.center
-  = image_tag "/assets/stepmania_logo.png", height: 125
+.center
+  = link_to stepmania_packs_path do
+    = image_tag "/assets/stepmania_logo.png", height: 125
 
 %hr
 
@@ -11,16 +10,17 @@
     %br
     = image_tag "/assets/gign-stepmania.gif", width: 200
   .col-md-3.well
-    = render 'stepmania_packs/stats'
+    = render 'stepmania_shared/stats'
   .col-md-3.well
-    = render 'stepmania_packs/players'
+    = render 'stepmania_shared/players'
   .col-md-3.well
-    = render 'stepmania_packs/best_songs'
+    = render 'stepmania_shared/best_songs'
 
 %hr
 
 %h2= t("stepmania.last_stats")
 = render 'open_smo_stats/list', open_smo_stats: @open_smo_stats
+= link_to t("stepmania.link_stats"), open_smo_stats_path
 
 %hr
 %h2= t("stepmania.packs")
@@ -29,4 +29,4 @@
 #stepmania_packs_list
   = render "stepmania_packs/list", stepmania_packs: @stepmania_packs, id_pack: @id, expand: @expand
 
-= render 'stepmania_packs/help_modal'
+= render 'stepmania_shared/help_modal'

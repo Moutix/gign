@@ -1,4 +1,6 @@
 class OpenSmoStat < ActiveRecord::Base
+  paginates_per 30
+
   belongs_to :user
   belongs_to :open_smo_song
   has_many :stepmania_songs, through: :open_smo_song
