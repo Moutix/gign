@@ -1,9 +1,9 @@
-module Constants
-  DedicatedIP = []
-  STEPMANIA_URL = ""
-
-  STEPMANIA_BDD_HOST = ""
-  STEPMANIA_BDD_USER = ""
-  STEPMANIA_BDD_PASSWORD = ""
-  STEPMANIA_BDD_DATABASE = ""
+module GLOBALCONSTANT
+  DedicatedIP = ["6.6.6.6"]
+  STEPMANIA_URL = "https://laouyastepmania.com"
+  
+  STEPMANIA_BDD_HOST = "monhostdebdd"
+  STEPMANIA_BDD_USER = "stepmania_user"
+  STEPMANIA_BDD_PASSWORD = "stepmania_pass"
+  STEPMANIA_BDD_DATABASE = "stepmania"
 end
