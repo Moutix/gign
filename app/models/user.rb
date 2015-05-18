@@ -24,6 +24,12 @@
 #  steam_url              :string(255)
 #  steam_public           :boolean          default(FALSE)
 #  online                 :boolean          default(FALSE)
+#  to_scan                :boolean          default(TRUE)
+#  sha_password           :string(255)
+#  pseudo                 :string(255)
+#  stepmania_id           :integer
+#  stepmania_xp           :integer
+#  sha1_password          :string(255)
 #
 
 class User < ActiveRecord::Base
