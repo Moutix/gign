@@ -1,11 +1,16 @@
 - model_class = OpenSmoStat
 
+- if params[:controller] == "open_smo_stats"
+  .center
+    = paginate open_smo_stats, remote: true
+
+
 %table.table.table-striped.table-condensed
   %tr
     %th= model_class.human_attribute_name(:user)
     - if params[:controller] != "open_smo_songs"
-      %th= model_class.human_attribute_name(:open_smo_song)
-      %th= model_class.human_attribute_name(:artist)
+      %th.col-sm-2= model_class.human_attribute_name(:open_smo_song)
+      %th.col-sm-2= model_class.human_attribute_name(:artist)
     %th= model_class.human_attribute_name(:difficulty)
     %th= model_class.human_attribute_name(:grade)
     %th= model_class.human_attribute_name(:score)
@@ -40,4 +45,9 @@
         %td= stat.note_barely
         %td= stat.note_miss
       %td= l stat.created_at, format: :default
-   
+
+- if params[:controller] == "open_smo_stats"
+  .center
+    = paginate open_smo_stats, remote: true
+
+

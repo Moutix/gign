@@ -1,0 +1,9 @@
+.center
+  = link_to stepmania_packs_path do
+    = image_tag "/assets/stepmania_logo.png", height: 125
+
+%h2= t("stepmania.results.title")
+
+#open_smo_stats_list
+  = render "open_smo_stats/list", open_smo_stats: @open_smo_stats
+

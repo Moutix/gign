@@ -245,6 +245,7 @@ fr:
         <<: *all
         user: Joueur
         difficulty: Difficulté
+        open_smo_song: Musique
         grade: Note
         score: Score
         max_combo: Combo Max
@@ -254,6 +255,7 @@ fr:
         note_good: GOOD
         note_barely: BOO
         note_miss: MISS 
+        percentage: Pourcentage
 
   supply:
     loan:
@@ -337,6 +339,7 @@ fr:
     dedicated: "Serveur dédié"
 
   stepmania:
+    link_stats: "Voir tous les résultats"
     help: "Comment jouer avec nous ?"
     last_stats: "Les dernières parties jouées"
     packs: "En recherche d'une musique ? C'est par là :"
@@ -366,6 +369,8 @@ fr:
       title: "Top 5"
     best_songs:
       title: "Musiques les plus jouées"
+    results:
+      title: Tous les résultats
 
   form:
     comment:
