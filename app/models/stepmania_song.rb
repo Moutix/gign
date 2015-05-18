@@ -1,3 +1,28 @@
+# == Schema Information
+#
+# Table name: stepmania_songs
+#
+#  id                :integer          not null, primary key
+#  name              :string(255)      default("")
+#  title             :string(255)      default("")
+#  subtitle          :string(255)      default("")
+#  artist            :string(255)      default("")
+#  genre             :string(255)      default("")
+#  credit            :string(255)      default("")
+#  music             :text
+#  banner            :text
+#  video             :boolean          default(FALSE)
+#  beginner          :string(255)
+#  easy              :string(255)
+#  medium            :string(255)
+#  hard              :string(255)
+#  challenge         :string(255)
+#  stepmania_pack_id :integer
+#  created_at        :datetime
+#  updated_at        :datetime
+#  open_smo_song_id  :integer
+#
+
 class StepmaniaSong < ActiveRecord::Base
   belongs_to :stepmania_pack
   belongs_to :open_smo_song
