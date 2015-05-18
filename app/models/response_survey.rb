@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: response_surveys
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  survey_id  :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class ResponseSurvey < ActiveRecord::Base
   belongs_to :survey
   has_many :user_responses, dependent: :destroy

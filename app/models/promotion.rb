@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: promotions
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  year        :integer          default(2015)
+#  description :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 class Promotion < ActiveRecord::Base
   has_many :members, -> {order(order: :asc)}
   validates_uniqueness_of :year
