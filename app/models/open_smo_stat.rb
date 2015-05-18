@@ -1,3 +1,36 @@
+# == Schema Information
+#
+# Table name: open_smo_stats
+#
+#  id               :integer          not null, primary key
+#  original_id      :integer
+#  user_id          :integer
+#  open_smo_song_id :integer
+#  player_settings  :string(255)
+#  feet             :integer
+#  difficulty       :integer
+#  grade            :integer
+#  score            :integer
+#  max_combo        :integer
+#  note_0           :integer
+#  note_1           :integer
+#  note_mine        :integer
+#  note_miss        :integer
+#  note_barely      :integer
+#  note_good        :integer
+#  note_great       :integer
+#  note_perfect     :integer
+#  note_flawless    :integer
+#  note_ng          :integer
+#  note_held        :integer
+#  created_at       :datetime
+#  updated_at       :datetime
+#  percentage       :decimal(5, 2)
+#  rate             :integer
+#  toasty           :integer
+#  timing           :integer
+#
+
 class OpenSmoStat < ActiveRecord::Base
   paginates_per 30
 

@@ -12,6 +12,7 @@
 #  updated_at     :datetime
 #  user_id        :integer
 #  comments_count :integer          default(0)
+#  survey_id      :integer
 #
 
 class Page < ActiveRecord::Base
