@@ -1,0 +1,5 @@
+%script
+  $(function(){
+  var availableValues = #{raw values.to_json};
+  $("#{field}").autocomplete({source: availableValues});
+  });
