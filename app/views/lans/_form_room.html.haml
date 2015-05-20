@@ -1,0 +1,12 @@
+= render "shared/autocomplete", values: Room.all.order(name: :asc).pluck(:name), field: "#room_name_field"
+
+- if lan.room.nil? || @edit == true
+  = form_tag add_room_lan_path, method: :post do
+    = label_tag :name, "Salle :"
+    = text_field_tag :name, lan.room_name, id: "room_name_field"
+
+- else
+  %strong= @lan.room_name
+  = link_to lan_path(@lan, edit: 1), remote: true do
+    %i.fa.fa-edit
+

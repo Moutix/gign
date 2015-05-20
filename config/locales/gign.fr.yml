@@ -511,6 +511,7 @@ fr:
     links:
       new: "Nouveau %{name}"
       destroy: "Supprimer"
+      destroy_image: "Supprimer l'image"
       edit: "Éditer"
       save: "Sauvegarder"
       close: "Fermer"

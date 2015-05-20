@@ -3,7 +3,7 @@
 .row#user-info
   .col-sm-2.user-avatar
     = image_tag @user.avatar("thumb")
-    %a.user-edit{"data-toggle" => "modal", "data-target" => "#imageModal"}
+    %a.user-edit{"data-toggle" => "modal", "data-target" => "#imageModal_user_#{@user.id}"}
       = t("helpers.links.edit")
     
     - if !@user.images.empty?

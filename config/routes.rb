@@ -3,7 +3,7 @@ Gign::Application.routes.draw do
   scope "(:locale)", locale: /fr|en/ do
     mount FullcalendarEngine::Engine => "/calendar"
     localized do
-      
+
 
       resources :games, only: [:index, :show] do
         collection do
@@ -16,7 +16,7 @@ Gign::Application.routes.draw do
       end
 
       resources :save_data, only: :index, path: 'stats'
-     
+
       resources :mail_boxes, only: :index
 
       resources :sections, only: [:index, :show, :destroy, :create, :update], path: 's' do
@@ -31,11 +31,22 @@ Gign::Application.routes.draw do
         end
 
       end
-      
+
+      ## Stepmania ##
       resources :open_smo_stats, only: [:index], path: "stepmania/results"
       resources :open_smo_songs, only: [:show], path: "stepmania/song"
       resources :stepmania_packs, only: [:index, :show], path: "stepmania"
-      
+
+
+      ## Lan ##
+      resources :lans, only: [:index, :create, :show, :update, :destroy] do
+        member do
+          post :add_room
+          post :add_game
+        end
+      end
+      resources :lan_game_relations, only: [:destroy]
+
       resources :surveys, only: [:index, :show, :create, :update, :destroy] do
         member do
           #get :display

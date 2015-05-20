@@ -210,6 +210,7 @@ fr:
     formats:
       default: "%d %B %Y %H:%M"
       speak: "%d %B %Y à %H:%M"
+      short_speak: "%A %d %B à %Hh%M"
       long: "%A %d %B %Y %H:%M"
       short: "%d %b %H:%M"
     pm: 'pm'

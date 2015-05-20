@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150511170854) do
+ActiveRecord::Schema.define(version: 20150520215326) do
 
   create_table "achievements", force: true do |t|
     t.string   "api_name"
@@ -162,6 +162,31 @@ ActiveRecord::Schema.define(version: 20150511170854) do
 
   add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
 
+  create_table "lan_game_relations", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "lan_id"
+    t.integer  "lan_game_id"
+    t.integer  "order",       default: 0
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "lan_game_relations", ["lan_game_id"], name: "index_lan_game_relations_on_lan_game_id", using: :btree
+  add_index "lan_game_relations", ["lan_id"], name: "index_lan_game_relations_on_lan_id", using: :btree
+
+  create_table "lan_games", force: true do |t|
+    t.string   "name"
+    t.string   "game_scanner"
+    t.integer  "game_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "lan_games", ["game_id"], name: "index_lan_games_on_game_id", using: :btree
+
   create_table "lan_parties", force: true do |t|
     t.string   "name"
     t.string   "ip"
@@ -180,6 +205,16 @@ ActiveRecord::Schema.define(version: 20150511170854) do
   end
 
   add_index "lan_parties", ["game_id"], name: "index_lan_parties_on_game_id", using: :btree
+
+  create_table "lans", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "comments_count", default: 0
+  end
 
   create_table "mail_boxes", force: true do |t|
     t.integer  "user_id"
@@ -336,6 +371,25 @@ ActiveRecord::Schema.define(version: 20150511170854) do
   create_table "response_surveys", force: true do |t|
     t.string   "name"
     t.integer  "survey_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "room_locations", force: true do |t|
+    t.integer  "room_id"
+    t.integer  "lan_id"
+    t.datetime "end_at"
+    t.datetime "start_at"
+    t.boolean  "has_key",    default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "room_locations", ["lan_id"], name: "index_room_locations_on_lan_id", using: :btree
+  add_index "room_locations", ["room_id"], name: "index_room_locations_on_room_id", using: :btree
+
+  create_table "rooms", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

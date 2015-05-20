@@ -3,7 +3,7 @@
     = render 'images/carousel', images: @supply.images
     %br
     - if can? :upload, @supply
-      %button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#imageModal"}
+      %button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#imageModal_supply_#{@supply.id}"}
         %i.fa.fa-upload
         = t("form.image.title")
       = render 'images/form', resource: @supply
