@@ -73,4 +73,13 @@ class Game < ActiveRecord::Base
   def need_permissions?
     !port_forwarding.nil?
   end
+
+  def has_lan_parties?
+    !self.lan_parties.empty?
+  end
+
+  def game_scanner
+    self.lan_parties.group(:game_scanner).uniq.pluck(:game_scanner).first
+  end
+
 end

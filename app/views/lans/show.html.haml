@@ -1,0 +1,43 @@
+- model_class = Lan
+
+%h1.center= @lan.name
+%br
+%h3.center= @lan.description
+
+%hr
+
+%h2 Horaires
+%p
+  Début :
+  %strong= l @lan.start_at, format: :short_speak
+%p
+  Fin :
+  %strong= l @lan.end_at, format: :short_speak
+
+%h2 Salle
+
+#RoomLanForm
+  = render 'lans/form_room', lan: @lan
+
+%hr
+
+%h2 Programme
+
+- @lan.lan_game_relations.each do |game|
+  = render 'lans/show_game', game: game
+
+
+#GameLanForm
+  = render 'lans/form_games', lan: Lan.new, available_games: @available_games
+
+%hr
+
+- if can? :edit, Lan
+  .form-actions
+    %button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#LanModal"}
+      = t("helpers.links.edit")
+
+    = render 'lans/form', lan: @lan
+
+= render 'comments/list', resource: @lan
+

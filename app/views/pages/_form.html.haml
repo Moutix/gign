@@ -1,7 +1,7 @@
 = render 'shared/errors_messages', resource: @page
 .form-actions
   - if can? :upload, @section
-    %button.btn.btn-default{"data-toggle" => "modal", "data-target" => "#imageModal"}
+    %button.btn.btn-default{"data-toggle" => "modal", "data-target" => "#imageModal_section_#{@section.id}"}
       %i.fa.fa-upload
       = t("form.image.title")
     = render 'images/form', resource: @section

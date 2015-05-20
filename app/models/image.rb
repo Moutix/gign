@@ -112,6 +112,32 @@ class Image < ActiveRecord::Base
     turl.join('/')
   end
 
+  def copy_to(imageable)
+    uploader = ImageUploader.new(imageable)
+
+    
+    begin
+      File.open('public' + self.url, 'r') do |file|
+        uploader.store!(file)
+      end
+    rescue
+      return false
+    end
+
+    Image.create(
+        url: "/" + uploader.store_dir + "/" + self.filename, 
+        imageable: imageable,
+        name: name,
+        user: user
+      )
+    return true
+  end
+
+  def filename
+    self.url =~ /.+\/(.+)?/
+    return $1
+  end
+
   private
  
     def set_user
