@@ -8,6 +8,6 @@
 - else
   %strong= lan.room_name
   - if can? :edit, lan
-    = link_to lan_path(@lan, edit: 1), remote: true do
+    = link_to lan_path(lan, edit: 1), remote: true do
       %i.fa.fa-edit
 

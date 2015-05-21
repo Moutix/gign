@@ -2,8 +2,9 @@
 
 %h1 Lan \o/
 
-= render 'lans/list', lans: @lans
-
+- @lans.each do |lan|
+  .well
+    = render 'lans/lan_resume', lan: lan
 
 - if can? :create, Lan
   .form-actions
