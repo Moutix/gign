@@ -1,0 +1,31 @@
+- model_class = Lan
+
+%h2.center= link_to lan.name, lan
+%br
+%h4.center= lan.description
+
+%h3 Détail :
+%ul
+  %li
+    Début :
+    %strong= l lan.start_at, format: :short_speak
+  %li
+    Fin :
+    %strong= l lan.end_at, format: :short_speak
+  %li
+    Salle :
+    %strong= lan.room_name
+
+%h2 Programme
+
+%ul
+  - lan.lan_game_relations.each do |game|
+    %li
+      - if game.lan_game_game
+        = link_to game.name, game.lan_game_game
+      - else
+        = game.name
+
+
+
+
