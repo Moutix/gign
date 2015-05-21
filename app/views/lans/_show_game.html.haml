@@ -14,7 +14,7 @@
       = t("form.image.title")
     = render 'images/form', resource: game
 
-  - if !game.images.empty?
+  - if !game.images.empty? && (can? :destroy, game.images.last)
     = link_to image_path(game.images.last), method: :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, class: 'btn btn-xs btn-warning' do
       %i.fa.fa-trash-o
       = t('.destroy', :default => t("helpers.links.destroy_image"))

@@ -21,6 +21,8 @@
 
     = render 'lans/form', lan: @lan
 
+%hr
+
 %h2 Salle
 
 = render 'lans/room_status', lan: @lan
@@ -33,9 +35,9 @@
   = render 'lans/show_game', game: game
 
 
-#GameLanForm
-  = render 'lans/form_games', lan: Lan.new, available_games: @available_games
-
+- if can? :add_game, Lan
+  #GameLanForm
+    = render 'lans/form_games', lan: @lan, available_games: @available_games
 %hr
 
 = render 'comments/list', resource: @lan
