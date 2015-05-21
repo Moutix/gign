@@ -37,6 +37,7 @@ class Ability
       can [:comment, :follow], Page
       can [:comment, :follow], Game
       can [:comment, :follow], StepmaniaPack
+      can [:comment, :follow], Lan
 
       can :create, Comment
       can [:update, :edit], Comment do |c|
@@ -61,7 +62,7 @@ class Ability
       s.blog
     end
     can [:index, :show], StepmaniaPack
-
+    can [:index, :show], Lan
 
     if user.is_a_steam_user?
       can :steam, User

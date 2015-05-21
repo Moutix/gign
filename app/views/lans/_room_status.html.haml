@@ -27,9 +27,10 @@
           - else
             Clé non récupérée
           .pull-right
-            = print_boolean has_key
-            %button.btn.btn-default.btn-xs.pull-right{"data-toggle" => "modal", "data-target" => "#RoomLocationModal"}
-              = t("helpers.links.edit")
+            = form_for lan.room_location do |f|
+              = print_boolean has_key
+              = f.hidden_field :has_key, value: !lan.room_location.has_key
+              = f.submit t("helpers.links.edit"), :class => 'btn btn-default btn-xs'
 
       = render 'lans/form_room_location', room_location: lan.room_location
     - else
