@@ -14,10 +14,16 @@
   Fin :
   %strong= l @lan.end_at, format: :short_speak
 
+- if can? :edit, Lan
+  .form-actions
+    %button.btn.btn-primary.btn-xs.pull-right{"data-toggle" => "modal", "data-target" => "#LanModal"}
+      = t("helpers.links.edit")
+
+    = render 'lans/form', lan: @lan
+
 %h2 Salle
 
-#RoomLanForm
-  = render 'lans/form_room', lan: @lan
+= render 'lans/room_status', lan: @lan
 
 %hr
 
@@ -31,13 +37,6 @@
   = render 'lans/form_games', lan: Lan.new, available_games: @available_games
 
 %hr
-
-- if can? :edit, Lan
-  .form-actions
-    %button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#LanModal"}
-      = t("helpers.links.edit")
-
-    = render 'lans/form', lan: @lan
 
 = render 'comments/list', resource: @lan
 

@@ -1,0 +1,24 @@
+#RoomLocationModal.modal.fade{"aria-hidden" => "true", "tabindex" => "-1"}
+  = form_for room_location do |f|
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"data-dismiss" => "modal"}
+            %span{"aria-hidden" => "true"}×
+            %span.sr-only
+              = t("helpers.links.close")
+          %h4.modal-title= t("form.room_location.title")
+        .modal-body   
+          .form-group
+            = f.label :start_at
+            = f.datetime_select :start_at, class: 'form-control'
+          .form-group
+            = f.label :end_at
+            = f.datetime_select :end_at, class: 'form-control'
+          .form-group
+            = f.label :has_key
+            = f.check_box :has_key, class: 'form-control'
+          .modal-footer
+            %button.btn.btn-default{"data-dismiss" => "modal"}
+              = t("helpers.links.close")
+            = f.submit t('.save', :default => t("helpers.links.save")), :class => 'btn btn-primary'

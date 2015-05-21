@@ -46,6 +46,7 @@ Gign::Application.routes.draw do
         end
       end
       resources :lan_game_relations, only: [:destroy]
+      resources :room_locations, only: [:update]
 
       resources :surveys, only: [:index, :show, :create, :update, :destroy] do
         member do
