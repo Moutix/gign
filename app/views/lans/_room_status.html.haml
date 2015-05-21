@@ -1,0 +1,36 @@
+.panel{class: lan.room.nil? ? 'panel-danger' : 'panel-default'}
+  .panel-heading
+    .panel-title
+      #RoomLanForm
+        = render 'lans/form_room', lan: lan
+  .panel-body
+    - if lan.room
+      %ul.list-group
+        - reserved = lan.room_location.reserved?
+        %li.list-group-item{class: reserved ? 'list-group-item-success' : 'list-group-item-warning'}
+          - if reserved
+            Salle réservée de
+            = l lan.room_location.start_at, format: :short
+            au
+            = l lan.room_location.end_at, format: :short
+          - else
+            Salle non réservée
+          .pull-right
+            %button.btn.btn-default.btn-xs.pull-right{"data-toggle" => "modal", "data-target" => "#RoomLocationModal"}
+              = t("helpers.links.edit")
+            = print_boolean reserved
+
+        - has_key = lan.room_location.has_key
+        %li.list-group-item{class: has_key ? 'list-group-item-success' : 'list-group-item-warning'}
+          - if has_key
+            Clé récupérée
+          - else
+            Clé non récupérée
+          .pull-right
+            = print_boolean has_key
+            %button.btn.btn-default.btn-xs.pull-right{"data-toggle" => "modal", "data-target" => "#RoomLocationModal"}
+              = t("helpers.links.edit")
+
+      = render 'lans/form_room_location', room_location: lan.room_location
+    - else
+      Aucun salle n'a été choisi pour l'instant...
