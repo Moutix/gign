@@ -4,6 +4,19 @@
   %p
     = t("home.text1")
 %hr
+
+- if @lan
+  %h3
+    Prochaine Lan (
+    = link_to @lan.name, @lan
+    ) en
+    %strong= @lan.room_name
+    dans
+    %strong= time_ago_in_words @lan.start_at
+    \!!!
+
+%hr
+
 .center
   %h4= link_to @page.name, section_page_path(@section, @page)
 

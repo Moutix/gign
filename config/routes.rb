@@ -45,7 +45,7 @@ Gign::Application.routes.draw do
           post :add_game
         end
       end
-      resources :lan_game_relations, only: [:destroy]
+      resources :lan_game_relations, only: [:destroy, :update]
       resources :room_locations, only: [:update]
 
       resources :surveys, only: [:index, :show, :create, :update, :destroy] do

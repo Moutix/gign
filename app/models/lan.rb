@@ -2,13 +2,14 @@
 #
 # Table name: lans
 #
-#  id          :integer          not null, primary key
-#  name        :string(255)
-#  description :string(255)
-#  start_at    :datetime
-#  end_at      :datetime
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id             :integer          not null, primary key
+#  name           :string(255)
+#  description    :string(255)
+#  start_at       :datetime
+#  end_at         :datetime
+#  created_at     :datetime
+#  updated_at     :datetime
+#  comments_count :integer          default(0)
 #
 
 class Lan < ActiveRecord::Base
@@ -21,6 +22,8 @@ class Lan < ActiveRecord::Base
   has_many :lan_games, through: :lan_game_relations
 
   has_many :comments, :class_name => "Comment", :as => "commentable", dependent: :destroy
+  has_many :resource_followers, class_name: "ResourceFollower", as: "resource", dependent: :destroy
+  has_many :followers, through: :resource_followers, class_name: "User", source: 'user'
 
   delegate :name,
     to: :room, prefix: true, allow_nil: true

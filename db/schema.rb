@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150520215326) do
+ActiveRecord::Schema.define(version: 20150522171623) do
 
   create_table "achievements", force: true do |t|
     t.string   "api_name"
@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(version: 20150520215326) do
 
   create_table "lan_game_relations", force: true do |t|
     t.string   "name"
-    t.string   "description"
+    t.text     "description"
     t.integer  "lan_id"
     t.integer  "lan_game_id"
     t.integer  "order",       default: 0

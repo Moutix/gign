@@ -1,5 +1,7 @@
 = render "shared/autocomplete", values: available_games, field: "#game_name_field_" + lan.id.to_s
 
-= form_tag add_game_lan_path, method: :post do
+= form_tag add_game_lan_path, method: :post, id: "AddGameLanForm" do
   = label_tag :name, "Ajouter un jeu :"
-  = text_field_tag :name, lan.name, id: "game_name_field_" + lan.id.to_s
+  = text_field_tag :name, "", id: "game_name_field_" + lan.id.to_s
+  %a{style: 'cursor:pointer;', onclick: '$("#AddGameLanForm").submit();'}
+    %i.fa.fa-plus

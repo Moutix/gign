@@ -5,6 +5,14 @@
 - @lans.each do |lan|
   .well
     = render 'lans/lan_resume', lan: lan
+    - if can? :destroy, lan
+      = link_to t('.destroy', :default => t("helpers.links.destroy")),
+                  lan_path(lan),
+                :method => :delete,
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-xs btn-danger pull-right' 
+      %br
+
 
 - if can? :create, Lan
   .form-actions

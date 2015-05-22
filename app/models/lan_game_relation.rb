@@ -4,7 +4,7 @@
 #
 #  id          :integer          not null, primary key
 #  name        :string(255)
-#  description :string(255)
+#  description :text
 #  lan_id      :integer
 #  lan_game_id :integer
 #  order       :integer          default(0)
