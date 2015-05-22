@@ -1,10 +1,11 @@
 = render "shared/autocomplete", values: Room.all.order(name: :asc).pluck(:name), field: "#room_name_field"
 
 - if (can? :edit, lan) && (lan.room.nil? || @edit == true)
-  = form_tag add_room_lan_path, method: :post do
+  = form_tag add_room_lan_path, method: :post, id: "AddRoomLanForm" do
     = label_tag :name, "Salle :"
     = text_field_tag :name, lan.room_name, id: "room_name_field"
-
+    %a{style: 'cursor:pointer;', onclick: '$("#AddRoomLanForm").submit();'}
+      %i.fa.fa-plus
 - else
   %strong= lan.room_name
   - if can? :edit, lan

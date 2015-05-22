@@ -1,5 +1,5 @@
-#RoomLocationModal.modal.fade{"aria-hidden" => "true", "tabindex" => "-1"}
-  = form_for room_location do |f|
+#Modal.modal.fade[lan_game_relation]{"aria-hidden" => "true", "tabindex" => "-1"}
+  = form_for lan_game_relation do |f|
     .modal-dialog
       .modal-content
         .modal-header
@@ -7,8 +7,11 @@
             %span{"aria-hidden" => "true"}×
             %span.sr-only
               = t("helpers.links.close")
-          %h4.modal-title= t("form.room_location.title")
+          %h4.modal-title= t("form.lan_game_relation.title")
         .modal-body   
+          .form-group
+            = f.label :description
+            = f.text_area :description, class: 'form-control'
           .form-group
             = f.label :start_at
             = f.datetime_select :start_at, class: 'form-control'

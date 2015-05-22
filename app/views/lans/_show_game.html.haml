@@ -3,11 +3,14 @@
     = link_to game.name, game.lan_game_game
   - else
     = game.name
+.center
+  = game.description
 
 - if game.image
   = image_tag game.image, class: 'center', width: 300
 
 .pull-right
+  %br
   - if can? :upload, game
     %button.btn.btn-default.btn-xs{"data-toggle" => "modal", "data-target" => "#imageModal_lan_game_relation_#{game.id}"}
       %i.fa.fa-upload
@@ -19,10 +22,16 @@
       %i.fa.fa-trash-o
       = t('.destroy', :default => t("helpers.links.destroy_image"))
 
+  - if can? :edit, game
+    %button.btn.btn-default.btn-xs{"data-toggle" => "modal", "data-target" => "#Modal_lan_game_relation_#{game.id}"}
+      = t("helpers.links.edit")
+ 
+    = render 'lans/form_game_relation', lan_game_relation: game
+
   - if can? :destroy, game
     = link_to lan_game_relation_path(game), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger' do
       %i.fa.fa-trash-o
       = t('.destroy', :default => t("helpers.links.destroy"))
-
+  
 %br
 %hr
