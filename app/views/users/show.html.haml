@@ -14,8 +14,14 @@
   .col-sm-10.user-info
     = render 'users/info', user: @user
 
+%hr
+
 %h2 Mes demandes en cours :
 = render 'borrowings/table_index', borrowings: @user.borrowings
+%hr
+
+%h2 Mes commentaires :
+= render 'users/comments', comments: @user.comments
 
 = render 'form', user: @user
 = render 'password_form', user: @user

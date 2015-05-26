@@ -56,6 +56,7 @@ class User < ActiveRecord::Base
   has_one :mail_box
   has_many :resource_followers
   has_many :user_responses
+  has_many :comments
   has_many :response_surveys, through: :user_responses
   has_many :surveys, through: :response_surveys
   has_many :open_smo_stats
