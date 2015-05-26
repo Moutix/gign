@@ -53,6 +53,27 @@ class Comment < ActiveRecord::Base
     where(:commentable_type => commentable_str.to_s, :commentable_id => commentable_id).order('created_at DESC')
   }
 
+  def print_commentable
+    str = "["
+    if self.commentable
+      str += self.commentable.class.name
+    elsif self.commentable_type
+      str += self.commentable_type
+      str += "] #" + self.commentable_id.to_s
+      return str
+    else
+      str += "????"
+      return str
+    end
+    str += "] "
+    if self.commentable.attributes.include?("name")
+      str += self.commentable.name
+    else
+      str += "#" + self.id.to_s
+    end
+    return str
+  end
+
   def self.find_commentable(commentable_str, commentable_id)
     commentable_str.constantize.find(commentable_id)
   end

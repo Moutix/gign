@@ -1,0 +1,8 @@
+- comments.each do |comment|
+  %strong
+    - if comment.commentable
+      = link_to comment.print_commentable, comment.commentable
+    - else
+      = comment.print_commentable
+  = render 'comments/show', comment: comment
+  %br
