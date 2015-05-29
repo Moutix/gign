@@ -1,0 +1,52 @@
+.gign-navbar .navbar .container .navbar-header .navbar-brand {
+  padding-top: 5px;
+}
+
+.gign-navbar .navbar .navbar-btn {
+  padding: 8px 0 8px 8px;
+  margin: 0;
+}
+
+.gign-navbar .navbar .navbar-btn img {
+  height: 35px;
+}
+
+.gign-navbar .navbar .navbar-btn a.btn.width180 {
+  width: 180px;
+}
+
+.gign-navbar .navbar .navbar-nav > li > a {
+  color: #022a04;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.gign-navbar .navbar .navbar-nav.navbar-right:last-child {
+  margin-right: 0px;
+}
+
+.gign-navbar .navbar .dropdown-header {
+  font-size: 14px;
+}
+
+.gign-navbar .navbar .nav-pills {
+  margin: 0px;
+  text-align: center;
+}
+
+.gign-navbar .navbar .nav-pills li.active > a {
+  background-color: #054405;
+}
+
+.gign-navbar .navbar .nav-pills li {
+  margin: 0px;
+}
+
+.gign-navbar .navbar .navbar-mail {
+  padding-top: 14px;
+}
+
+.gign-navbar .navbar .navbar-mail a {
+  color: black;
+}
+

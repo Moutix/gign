@@ -39,9 +39,9 @@ class ScanService
     games = send_udp(data, 14001, 0.2, true)
 
     games.each do |game|
-      t = game[0].scan(/[\w|\d|\-\'|\ ]{3,}/)
+      t = game[0].scan(/[\w|\d|\-\'|\ \.]{3,}/)  
       next if t.length < 4
-	
+  
       maps[game[1][3]] = {name: t[1], map: t[2], mode: t[4], nb_players: game[0][35].ord-game[0][27].ord, nb_max_players: game[0][35].ord}
     end
 
@@ -55,7 +55,7 @@ class ScanService
     games = send_udp(data, 10999)
 
     games.each do |game|
-      t = game[0].scan(/[\w|\d|\-\'|\ ]{3,}/)
+      t = game[0].scan(/[\w|\d|\-\'|\ \.]{3,}/)  
       version = game[0][74].ord + game[0][73].ord*256 + game[0][72].ord*65536
       maps[game[1][3]] = {name: t.last, nb_players: game[0][36].ord, version: version, nb_max_players: game[0][34].ord}
     end
@@ -71,44 +71,50 @@ class ScanService
     games = send_udp(data, 8303)
     
     games.each do |game|
-	
-      t = game[0].scan(/[\w|\d|\-\'|\ \.]{2,}/)	
+
+      t = game[0].scan(/[\w|\d|\-|\'|\ |\:]{2,}/)
       next if t.length < 3
-	
+
       i = game[0].index(t[4]) + t[4].length + 3
-	
+
       str = game[0][i..i+6]
       str =~ /^(\d+).+?(\d+)/
-	
+
       maps[game[1][3]] = {name: t[2], map: t[3], mode: t[4], version: t[1], nb_players: $1, nb_max_players: $2}
     end
 
     return maps
   end
-
-
-  def self.scan_tf2
+  
+  def self.scan_steam_game
     maps = {}
 
     data = "\xFF\xFF\xFF\xFF\x54\x53\x6F\x75\x72\x63\x65\x20\x45\x6E\x67\x69\x6E\x65\x20\x51\x75\x65\x72\x79\x00"
-    
-    games = send_udp(data, 27015) 
 
-    (GLOBALCONSTANT::DedicatedIP - games.map{|g| g[1][3]}).each do |ip|
-      games += send_udp(data, 27015, 0.2, false, ip)
+
+    games = []
+    for i in 27015..27020
+        games += send_udp(data, i)
+         (GLOBALCONSTANT::DedicatedIP).each do |ip|
+           games += send_udp(data, i, 0.3, false, ip)
+      end
     end
-    
-    games.each do |game|
-	t = game[0].scan(/[\w|\d|\-\'|\ ]{3,}/)	
-	next if t.length < 3
-	
-	i = game[0].index(t[2])
-	
-	maps[game[1][3]] = {name: t[0], map: t[1], nb_players: game[0][i+16].ord, nb_max_players: game[0][i+17].ord}
+
+    games.compact.each do |game|
+      t = game[0].scan(/[\w|\d|\-|\'|\ |\:|\.]{2,}/)
+      next if t.length < 5
+
+      i = game[0].index("\x00dl\x00")
+
+      if maps[t[2]].nil?
+        maps[t[2]] = [t[3], {}]
+      end
+      maps[t[2]][1][game[1][3]] = {name: t[0], map: t[1], version: t[5], nb_players: game[0][i-2].ord, nb_max_players: game[0][i-1].ord}
     end
 
     return maps
   end
+
 
   def self.scan_trackmania
     games = {}
@@ -126,20 +132,20 @@ class ScanService
       next unless t.index("100")
       players << t[t.index("100") + 1]
       ip = packet[1][3]
-	
+  
       begin
-	Timeout::timeout(0.2){
-	  s = TCPSocket.new ip, 2350
+  Timeout::timeout(0.2){
+    s = TCPSocket.new ip, 2350
 
-	  data = "\x0e\x00\x00\x00\x82\x03\x99\xf8\x95\x58\x07\x00\x00\x00\x08\x00\x00\x00"
-	  s.write data
-	  data = "\x12\x00\x00\x00\x82\x03\xee\xd1\xc2\x7e\x07\x00\x00\x00\x07\x00\x00\x00\xae\xbe\x2d\x00"
-	  s.write data
-	  
-	  games[ip] = s.recvfrom(4096)
-	}	
+    data = "\x0e\x00\x00\x00\x82\x03\x99\xf8\x95\x58\x07\x00\x00\x00\x08\x00\x00\x00"
+    s.write data
+    data = "\x12\x00\x00\x00\x82\x03\xee\xd1\xc2\x7e\x07\x00\x00\x00\x07\x00\x00\x00\xae\xbe\x2d\x00"
+    s.write data
+    
+    games[ip] = s.recvfrom(4096)
+  }  
       rescue Timeout::Error
-	next
+  next
       end
     end
 
@@ -165,9 +171,9 @@ class ScanService
       lan_party = LanParty.where('ip = ? AND ended_at is NULL AND game_scanner = ?', ip, game_scanner).take
 
       if lan_party.nil?
-	LanParty.create(ip: ip, name: info[:name], map: info[:map], mode: info[:mode], nb_players: info[:nb_players], game_scanner: game_scanner, game: game, dedicated: dedicated, version: info[:version], nb_max_players: info[:nb_max_players])
+  LanParty.create(ip: ip, name: info[:name], map: info[:map], mode: info[:mode], nb_players: info[:nb_players], game_scanner: game_scanner, game: game, dedicated: dedicated, version: info[:version], nb_max_players: info[:nb_max_players])
       else
-	lan_party.update_columns(name: info[:name], map: info[:map], mode: info[:mode], nb_players: info[:nb_players], version: info[:version], nb_max_players: info[:nb_max_players])
+  lan_party.update_columns(name: info[:name], map: info[:map], mode: info[:mode], nb_players: info[:nb_players], version: info[:version], nb_max_players: info[:nb_max_players])
       end
     end
   end
@@ -177,8 +183,27 @@ class ScanService
     fill_bdd(scan_ut3, "Unreal Tournament III", Game.find_by(app_id: 13210))
     fill_bdd(scan_trackmania, "Trackmania United Forever")
     fill_bdd(scan_dst, "Don't Starve Together", Game.find_by(app_id: 322330))
-    fill_bdd(scan_tf2, "Team Fortress 2", Game.find_by(app_id: 440))
     fill_bdd(scan_teeworlds, "Teeworlds")
+
+    scan_steam_game.each do |k, v|
+      case
+      when k == "cstrike"
+        if v[0] == "Counter-Strike: Source"
+          fill_bdd(v[1], v[0], Game.find_by(app_id: 240))
+        else
+          fill_bdd(v[1], "Counter Strike 1.6")
+        end
+      when k == "csgo"
+        fill_bdd(v[1], "Counter Strike : Global Offensive", Game.find_by(app_id: 730))
+      when k == "tf"
+        fill_bdd(v[1], "Team Fortress 2", Game.find_by(app_id: 440))
+      when k == "insurgery"
+        fill_bdd(v[1], "Insurgery", Game.find_by(app_id: 222880))
+      else
+        fill_bdd(v[1], v[0], Game.find_by(name: v[0]))
+      end
+    end
+
     return true
   end
 
@@ -196,11 +221,11 @@ class ScanService
     test = true
     while test
       begin
-	Timeout::timeout(timeout){
-	  packets << sock.recvfrom(4096)
-	}
+  Timeout::timeout(timeout){
+    packets << sock.recvfrom(4096)
+  }
       rescue Timeout::Error
-	test = false
+  test = false
       end
     end
     sock.close
