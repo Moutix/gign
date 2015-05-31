@@ -3,7 +3,7 @@ require 'uri'
 require 'json'
 
 class StepmaniaService
-  STEPMANIA_URL = 'http://luigi.larez.fr:4242'
+  STEPMANIA_URL = 'http://link.larez.fr/stepmania.json'
 
   def self.get_json
     res = Net::HTTP.get_response(URI(STEPMANIA_URL))
@@ -162,6 +162,7 @@ class StepmaniaService
           next
         end
       end
+      return 1
     end
 
   end
