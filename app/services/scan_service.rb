@@ -72,7 +72,7 @@ class ScanService
     
     games.each do |game|
 
-      t = game[0].scan(/[\w|\d|\-|\'|\ |\:]{2,}/)
+      t = game[0].scan(/[\w|\d|\-|\'|\ |\:|\.]{2,}/)
       next if t.length < 3
 
       i = game[0].index(t[4]) + t[4].length + 3
