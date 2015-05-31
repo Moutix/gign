@@ -6,6 +6,6 @@
     %h4= link_to t("lan_party.ongoing_game", count: parties.count, game: game_scanner), game_path(game)
   - else
     %h4= t("lan_party.ongoing_game", count: parties.count, game: game_scanner)
-  
+
   = render 'lan_parties/list', parties: parties
-  
+

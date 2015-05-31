@@ -1,0 +1,43 @@
+- model_class = DedicatedServer
+%h1= t '.title', :default => t("activerecord.models.dedicated_server", count: 2)
+
+
+- @dedicated_servers.each do |dedicated_server|
+  %h3
+    - if (can? :monitor, dedicated_server) && !dedicated_server.monitor_link.blank?
+      = link_to dedicated_server.name_with_ip, dedicated_server.monitor_link
+    - else
+      %strong= dedicated_server.name_with_ip
+  %h4
+    %i= dedicated_server.description
+
+  = render 'lan_parties/list', parties: dedicated_server.lan_parties.order(game_scanner: :asc)
+
+  - if can? :destroy, @dedicated_server
+    .form-actions.pull-right
+      %button.btn.btn-primary.btn-xs{"data-toggle" => "modal", "data-target" => "#Modal_dedicated_server_#{dedicated_server.id}"}
+        = t("helpers.links.edit")
+      = render 'form', dedicated_server: dedicated_server
+
+      = link_to t('.destroy', :default => t("helpers.links.destroy")),
+                  dedicated_server_path(dedicated_server),
+                :method => :delete,
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-xs btn-danger' 
+  %br
+
+%hr
+
+- if @lan_parties
+  %h2 Autres serveurs
+  - @lan_parties.pluck(:ip).uniq.each do |ip|
+    %h3
+      %strong= ip
+    = render 'lan_parties/list', parties: LanParty.ongoing.where(ip: ip)
+
+- if can? :create, DedicatedServer
+  .form-actions
+    %button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#Modal_dedicated_server_new"}
+      = t("helpers.links.new", :name => model_class.model_name.human)
+
+= render 'form', dedicated_server: DedicatedServer.new

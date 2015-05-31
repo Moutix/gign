@@ -6,8 +6,8 @@ class Ability
     is_connected = !!user
 
     user ||= User.new
-    
-   
+
+    ## -------  Connected  ------- ##
     if is_connected
       
       can :show, Borrowing do |b|
@@ -53,17 +53,18 @@ class Ability
       can :vote, ResponseSurvey do |rs|
         rs.survey.can_vote?(user)
       end
-    end
-  
-    can :show, Page do |p|
-      p.section_display
-    end
-    can :show, Section do |s|
-      s.blog
-    end
-    can [:index, :show], StepmaniaPack
-    can [:index, :show], Lan
 
+      can :play, StepmaniaSong
+      can :download, StepmaniaPack
+
+      can :see, LanParty
+      can :manage, LanParty do |lan|
+        lan.ip == ip
+      end
+
+    end
+
+    ## -------  With a steam account  ------- ##
     if user.is_a_steam_user?
       can :steam, User
       can :follow, Game
@@ -73,13 +74,43 @@ class Ability
       end
     end
 
+    ## -------  In local network  ------- ##
+    if ip && ip.match(/^10\./)
+      can :see, LanParty
+      can :manage, LanParty do |lan|
+        lan.ip == ip
+      end
+      can :monitor, DedicatedServer
+
+      can :play, StepmaniaSong
+      can :download, StepmaniaPack
+    end
+
+
+    ## -------  Everyone  ------- ##
+    can :show, Page do |p|
+      p.section_display
+    end
+
+    can :show, Section do |s|
+      s.blog
+    end
+
+    can [:index, :show], StepmaniaPack
+    can [:index, :show], Lan
+    can :index, DedicatedServer
+
+
+
+    ## -------  With manage_lower_groups privileges  ------- ##
     if user.is_in?("manage_lower_groups")
       can [:see, :show, :create], Group
       can [:add_user, :del_user, :update], Group do |g|
         g.level < user.level
       end
     end
-    
+
+    ## -------  With manage_sections privileges  ------- ##
     if user.is_in?("manage_sections")
       can :manage, Section
       can :manage, Page
@@ -88,23 +119,28 @@ class Ability
       end
     end
 
+    ## -------  With manage_groups privileges  ------- ##
     if user.is_in?("manage_groups")
       can :manage, Group
     end
 
+    ## -------  With manage_users privileges  ------- ##
     if user.is_in?("manage_users")
       can :manage, User
     end
 
+    ## -------  With manage_borrowings privileges  ------- ##
     if user.is_in?("manage_borrowings")
       can :manage, Borrowing
       can :manage, SupplyRequest
     end
 
+    ## -------  With manage_packs privileges  ------- ##
     if user.is_in?("manage_packs")
       can :manage, Pack
     end
 
+    ## -------  With manage_supplies privileges  ------- ##
     if user.is_in?("manage_supplies")
       can :manage, Supply
       can :manage, Image do |i|
@@ -114,18 +150,9 @@ class Ability
       can :manage, Component
     end
 
+    ## -------  Admin  ------- ##
     if user.is_in?("admin")
       can :manage, :all
-    end
-
-    if ip && ip.match(/^10\./)
-      can :see, LanParty
-      can :manage, LanParty do |lan|
-        lan.ip == ip
-      end
-      can :play, StepmaniaSong
-
-      can :download, StepmaniaPack
     end
 
   end

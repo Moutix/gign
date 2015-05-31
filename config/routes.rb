@@ -1,5 +1,6 @@
 Gign::Application.routes.draw do
 
+
   scope "(:locale)", locale: /fr|en/ do
     mount FullcalendarEngine::Engine => "/calendar"
     localized do
@@ -47,6 +48,8 @@ Gign::Application.routes.draw do
       end
       resources :lan_game_relations, only: [:destroy, :update]
       resources :room_locations, only: [:update]
+
+      resources :dedicated_servers, only: [:index, :create, :update, :destroy]
 
       resources :surveys, only: [:index, :show, :create, :update, :destroy] do
         member do
