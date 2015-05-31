@@ -8,9 +8,9 @@ class BaseController < ApplicationController
     @page = @section.pages.first
     
     if can? :see, LanParty
-      @lan_parties = LanParty.visible_on_lan
+      @lan_parties = LanParty.visible_on_lan.order(game_scanner: :asc)
     else
-      @lan_parties = LanParty.visible_on_landing
+      @lan_parties = LanParty.visible_on_landing.order(game_scanner: :asc)
     end
   end
 

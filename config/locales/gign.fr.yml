@@ -119,6 +119,9 @@ fr:
       open_smo_stat:
         one: Résultat Stepmania Online
         other: Résultats Stepmania Online
+      dedicated_server:
+        one: Serveur dédié
+        other: Serveurs dédiés
 
 
     attributes:

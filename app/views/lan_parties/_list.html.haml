@@ -1,5 +1,4 @@
 - model_class = LanParty
-
 - with_map = parties.pluck(:map).compact.length > 0
 - with_mode = parties.pluck(:mode).compact.length > 0
 - with_version = parties.pluck(:version).compact.length > 0
@@ -8,7 +7,10 @@
 %table.table.table-striped
   %tbody
     %tr
-      %th= model_class.human_attribute_name(:ip)
+      - if params[:controller] == "base" || params[:action] == "index"
+        %th= model_class.human_attribute_name(:game)
+      - if params[:controller] != "dedicated_servers"
+        %th= model_class.human_attribute_name(:ip)
       - if with_version
         %th= model_class.human_attribute_name(:version)
       %th= model_class.human_attribute_name(:name)
@@ -21,10 +23,19 @@
 
     - parties.each do |lan_party|
       %tr[lan_party]
-        %td
-          - if lan_party.dedicated
-            %span.label.label-success= t("lan_party.dedicated")
-          = lan_party.ip
+        - if params[:controller] == "base" || params[:action] == "index"
+          - if lan_party.game
+            %td
+              %strong= link_to lan_party.game_scanner, game_path(lan_party.game)
+          - else
+            %td
+              %strong= lan_party.game_scanner
+        - if params[:controller] != "dedicated_servers"
+          %td
+            - if lan_party.dedicated?
+              = link_to lan_party.dedicated_server.name_with_ip, dedicated_servers_path
+            - else
+              = lan_party.ip
         - if with_version
           %td= lan_party.version
         %td= lan_party.name

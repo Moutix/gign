@@ -27,7 +27,9 @@
 
 - if @lan_parties.count > 0
   .well
-    = render "lan_parties/index", lan_parties: @lan_parties
+    %h3
+      %strong Parties en cours :
+    = render "lan_parties/list", parties: @lan_parties
 
 
 %hr

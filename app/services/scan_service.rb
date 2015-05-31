@@ -167,13 +167,27 @@ class ScanService
     LanParty.where(game_scanner: game_scanner).where.not(ip: ash.keys).where('ended_at IS NULL').update_all(ended_at: Time.now)
 
     ash.each do |ip, info|
-      dedicated = GLOBALCONSTANT::DedicatedIP.include?(ip)
       lan_party = LanParty.where('ip = ? AND ended_at is NULL AND game_scanner = ?', ip, game_scanner).take
 
       if lan_party.nil?
-  LanParty.create(ip: ip, name: info[:name], map: info[:map], mode: info[:mode], nb_players: info[:nb_players], game_scanner: game_scanner, game: game, dedicated: dedicated, version: info[:version], nb_max_players: info[:nb_max_players])
+        LanParty.create(ip: ip,
+                        name: info[:name],
+                        map: info[:map],
+                        mode: info[:mode],
+                        nb_players: info[:nb_players],
+                        game_scanner: game_scanner,
+                        game: game,
+                        version: info[:version],
+                        nb_max_players: info[:nb_max_players]
+                       )
       else
-  lan_party.update_columns(name: info[:name], map: info[:map], mode: info[:mode], nb_players: info[:nb_players], version: info[:version], nb_max_players: info[:nb_max_players])
+        lan_party.update_columns(name: info[:name],
+                                 map: info[:map],
+                                 mode: info[:mode],
+                                 nb_players: info[:nb_players],
+                                 version: info[:version],
+                                 nb_max_players: info[:nb_max_players]
+                                )
       end
     end
   end

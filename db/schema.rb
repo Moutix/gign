@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150522171623) do
+ActiveRecord::Schema.define(version: 20150531110313) do
 
   create_table "achievements", force: true do |t|
     t.string   "api_name"
@@ -92,6 +92,15 @@ ActiveRecord::Schema.define(version: 20150522171623) do
     t.integer  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "dedicated_servers", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "monitor_link"
   end
 
   create_table "fullcalendar_engine_event_series", force: true do |t|
@@ -199,7 +208,6 @@ ActiveRecord::Schema.define(version: 20150522171623) do
     t.boolean  "visible",        default: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "dedicated",      default: false
     t.string   "version"
     t.integer  "nb_max_players"
   end
