@@ -101,6 +101,11 @@ gem 'sitemap_generator'
 #gem 'fullcalendar_engine', github: 'ningirsu/fullcalendar-rails-engine'
 gem 'fullcalendar_engine', github: 'ningirsu/fullcalendar-rails-engine'
 
+#Monitoring
+gem 'net-ping'
+gem 'snmp'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

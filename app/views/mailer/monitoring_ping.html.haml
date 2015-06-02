@@ -1,0 +1,28 @@
+%table{width: "100%", border: "0", cellpading: "0", cellspacing: "0"}
+  %tr
+    %td{align: "center", valign: "top"}
+      %table{width: "650", border: "0", cellpading: "0", cellspacing: "20"}
+        %tr
+          - if @up
+            %td{style: "text-align:center;padding: 10px;border: 1px solid #A9FFA3; background-color: #C3FFB3"}
+              %h3{style: "color:#043A02"}
+                = @server.name
+                IS UP
+              %hr
+              IP :
+              = @server.ip
+              %br
+              ETAT :
+              = @server.print_up.upcase
+          - else
+            %td{style: "text-align:center;padding: 10px;border: 1px solid #eed3d7; background-color: #f2dede"}
+              %h3{style: "color:#b94a48"}
+                = @server.name
+                IS DOWN (Don't respond to ping)
+              %hr
+              IP :
+              = @server.ip
+              %br
+              ETAT :
+              = @server.print_up.upcase
+

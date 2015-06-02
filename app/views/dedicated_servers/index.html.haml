@@ -8,6 +8,16 @@
       = link_to dedicated_server.name_with_ip, dedicated_server.monitor_link
     - else
       %strong= dedicated_server.name_with_ip
+    - if dedicated_server.up
+      %span.label.label-success
+        - if dedicated_server.sys_up_time
+          Uptime:
+          = number_to_time dedicated_server.sys_up_time
+        - else
+          = dedicated_server.print_up
+
+    -else
+      %span.label.label-error= dedicated_server.print_up
   %h4
     %i= dedicated_server.description
 

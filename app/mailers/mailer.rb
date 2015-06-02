@@ -1,8 +1,9 @@
 class Mailer < ActionMailer::Base
-  
+
   ADMIN_MAIL = "GiGN Bureau <gign_bureau@larez.fr>"
+  ALERTE_MAIL = "GiGN Alert <gign.serveur@larez.fr>"
   FIREWALL_MAIL = "firewall <firewall@larez.fr"
-  
+
   default from: "GiGN <gign-noreply@larez.fr>", reply_to: ADMIN_MAIL
 
   def new_valid_basket_email user_id, borrowing_id
@@ -30,6 +31,12 @@ class Mailer < ActionMailer::Base
     @message = message
     @ip = ip
     mail(to: ADMIN_MAIL, subject: t("mailer.mail_contact.subject", user_name: @name))
+  end
+
+  def monitoring_ping server_id, up
+    @server = DedicatedServer.find(server_id)
+    @up = up
+    mail(to: ALERTE_MAIL, subject: t("mailer.monitoring_ping.subject." + (@up ? "up" : "down"), server: @server.name))
   end
 
 end
