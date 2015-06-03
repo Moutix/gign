@@ -11,8 +11,7 @@
     - if dedicated_server.up
       %span.label.label-success
         - if dedicated_server.sys_up_time
-          Uptime:
-          = number_to_time dedicated_server.sys_up_time
+          = dedicated_server.print_up
         - else
           = dedicated_server.print_up
 

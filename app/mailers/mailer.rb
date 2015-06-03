@@ -1,7 +1,7 @@
 class Mailer < ActionMailer::Base
 
   ADMIN_MAIL = "GiGN Bureau <gign_bureau@larez.fr>"
-  ALERTE_MAIL = "GiGN Alert <gign.serveur@larez.fr>"
+  ALERTE_MAIL = "GiGN Alert <gign.serveurs@larez.fr>"
   FIREWALL_MAIL = "firewall <firewall@larez.fr"
 
   default from: "GiGN <gign-noreply@larez.fr>", reply_to: ADMIN_MAIL
