@@ -1,26 +1,9 @@
 - model_class = DedicatedServer
 %h1= t '.title', :default => t("activerecord.models.dedicated_server", count: 2)
-
-
 - @dedicated_servers.each do |dedicated_server|
-  %h3
-    - if (can? :monitor, dedicated_server) && !dedicated_server.monitor_link.blank?
-      = link_to dedicated_server.name_with_ip, dedicated_server.monitor_link
-    - else
-      %strong= dedicated_server.name_with_ip
-    - if dedicated_server.up
-      %span.label.label-success
-        - if dedicated_server.sys_up_time
-          = dedicated_server.print_up
-        - else
-          = dedicated_server.print_up
-
-    -else
-      %span.label.label-error= dedicated_server.print_up
-  %h4
-    %i= dedicated_server.description
-
-  = render 'lan_parties/list', parties: dedicated_server.lan_parties.order(game_scanner: :asc)
+  = render 'dedicated_servers/name_server', server: dedicated_server
+  - if !dedicated_server.lan_parties.empty?
+    = render 'lan_parties/list', parties: dedicated_server.lan_parties.order(game_scanner: :asc)
 
   - if can? :destroy, @dedicated_server
     .form-actions.pull-right

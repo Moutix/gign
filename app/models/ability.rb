@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user, ip = nil)
-    
+
     is_connected = !!user
 
     user ||= User.new
@@ -45,7 +45,7 @@ class Ability
       end
 
       can :index, MailBox
-      
+
       can :display, Survey
       can :create_response, Survey do |s|
         s.can_vote?(user) && s.is_extensible
@@ -56,6 +56,8 @@ class Ability
 
       can :play, StepmaniaSong
       can :download, StepmaniaPack
+
+      can [:monitor, :show, :index], DedicatedServer
 
       can :see, LanParty
       can :manage, LanParty do |lan|
@@ -80,7 +82,7 @@ class Ability
       can :manage, LanParty do |lan|
         lan.ip == ip
       end
-      can :monitor, DedicatedServer
+      can [:monitor, :show, :index], DedicatedServer
 
       can :play, StepmaniaSong
       can :download, StepmaniaPack

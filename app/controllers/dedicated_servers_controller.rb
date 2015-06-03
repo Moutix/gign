@@ -1,6 +1,16 @@
 class DedicatedServersController < ApplicationController
   before_action :set_dedicated_server, only: [:show, :update, :destroy]
 
+  before_action do
+    add_breadcrumb_if_can t("activerecord.models.dedicated_server", count: 2), dedicated_servers_path, :index, DedicatedServer
+  end
+  before_action only: [:show] do 
+    add_breadcrumb_if_can @dedicated_server.name, dedicated_server_path(@dedicated_server), :show, @dedicated_server
+  end
+
+
+
+
   # GET /dedicated_servers
   # GET /dedicated_servers.json
   def index
@@ -10,6 +20,10 @@ class DedicatedServersController < ApplicationController
       @lan_parties = LanParty.visible_on_lan.not_dedicated.order(name: :asc)
     end
 
+  end
+
+  def show
+    authorize! :show, DedicatedServer
   end
 
   # POST /dedicated_servers

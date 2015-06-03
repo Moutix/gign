@@ -1,0 +1,21 @@
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %strong System
+  .panel-body
+    %table.table.table-striped
+      %tr
+        %td.col-sm-4
+          %strong SysInfo
+        %td
+          = server.sys_descr
+      %tr
+        %td.col-sm-4
+          %strong Uptime
+        %td
+          = number_to_time server.sys_up_time
+      %tr
+        %td.col-sm-4
+          %strong Current User(s)
+        %td
+          = server.user_count

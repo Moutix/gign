@@ -49,7 +49,7 @@ Gign::Application.routes.draw do
       resources :lan_game_relations, only: [:destroy, :update]
       resources :room_locations, only: [:update]
 
-      resources :dedicated_servers, only: [:index, :create, :update, :destroy]
+      resources :dedicated_servers, only: [:index, :show, :create, :update, :destroy]
 
       resources :surveys, only: [:index, :show, :create, :update, :destroy] do
         member do

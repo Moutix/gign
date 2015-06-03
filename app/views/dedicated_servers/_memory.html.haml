@@ -1,0 +1,28 @@
+- percentage = 100 - free.to_f/total.to_f*100.0
+- if percentage > 80
+  - status = "danger"
+- elsif percentage > 60
+  - status = "warning"
+- else
+  - status = "success"
+
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %strong= title
+  .panel-body
+    %table.table.table-striped
+      %tr
+        %td.col-sm-2 Used %
+        %td
+          .progress-bar{class: "progress-bar-#{status}", role: "progressbar", "aria-valuenow" => percentage.to_i, "aria-valuemin" => 0, "aria-valuemax" => 100, style: "width: #{percentage.to_i}%;"}
+            = number_to_percentage percentage, precision: 1
+      %tr
+        %td Used
+        %td= number_to_human_size total - free, precision: 4
+      %tr
+        %td Free
+        %td= number_to_human_size free, precision: 4
+      %tr
+        %td Total
+        %td= number_to_human_size total, precision: 4

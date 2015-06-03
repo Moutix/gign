@@ -1,0 +1,20 @@
+%h3
+  - if (can? :show, server)
+    = link_to server.name_with_ip, server
+  - else
+    = server.name_with_ip
+
+  - if server.up
+    - if (can? :monitor, server) && !server.monitor_link.blank?
+      = link_to server.monitor_link do
+        %i.fa.fa-dashboard
+    - else
+      %span.label.label-success= server.print_up
+
+  - else
+    %span.label.label-error= server.print_up
+
+%h4
+  %i= server.description
+
+

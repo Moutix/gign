@@ -1,0 +1,39 @@
+= render 'dedicated_servers/name_server', server: @dedicated_server
+
+- if !@dedicated_server.lan_parties.empty?
+  %hr
+  = render 'lan_parties/list', parties: @dedicated_server.lan_parties.order(game_scanner: :asc)
+
+%hr
+
+- if @dedicated_server.have_snmp
+  %i.pull-right
+    Last check :
+    = l @dedicated_server.last_check, format: :default
+  .row
+    .col-md-6
+      = render 'dedicated_servers/system', server: @dedicated_server
+    .col-md-6
+      = render 'dedicated_servers/cpu_info', server: @dedicated_server
+
+  .row
+    .col-md-6
+      = render 'dedicated_servers/memory', free: @dedicated_server.ram_free_space*1024, total: @dedicated_server.ram_total_space*1024, title: "RAM"
+    .col-md-6
+      = render 'dedicated_servers/memory', free: @dedicated_server.swap_free_space*1024, total: @dedicated_server.swap_total_space*1024, title: "SWAP"
+
+  = render 'dedicated_servers/memory', free: @dedicated_server.disk_free_space*1024, total: @dedicated_server.disk_total_space*1024, title: "DISK"
+
+- if can? :destroy, @dedicated_server
+  .form-actions.pull-right
+    %button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#Modal_dedicated_server_#{@dedicated_server.id}"}
+      = t("helpers.links.edit")
+    = render 'form', dedicated_server: @dedicated_server
+
+    = link_to t('.destroy', :default => t("helpers.links.destroy")),
+                dedicated_server_path(@dedicated_server),
+              :method => :delete,
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' 
+
+

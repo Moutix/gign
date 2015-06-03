@@ -1,0 +1,44 @@
+- if server.percentage_cpu_one_minute > 80
+  - status_one = "danger"
+- elsif server.percentage_cpu_one_minute > 60
+  - status_one = "warning"
+- else
+  - status_one = "success"
+
+- if server.percentage_cpu_five_minutes > 80
+  - status_five = "danger"
+- elsif server.percentage_cpu_five_minutes > 60
+  - status_five = "warning"
+- else
+  - status_five = "success"
+
+- if server.percentage_cpu_fifteen_minutes > 80
+  - status_fifteen = "danger"
+- elsif server.percentage_cpu_fifteen_minutes > 60
+  - status_fifteen = "warning"
+- else
+  - status_fifteen = "success"
+
+
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      %strong CPU
+  .panel-body
+    %table.table.table-striped
+      %tr
+        %td.col-sm-4 Load Average (1 min)
+        %td
+          .progress-bar{class: "progress-bar-#{status_one}", role: "progressbar", "aria-valuenow" => server.percentage_cpu_one_minute.to_i, "aria-valuemin" => 0, "aria-valuemax" => 100, style: "width: #{server.percentage_cpu_one_minute.to_i}%;"}
+            = number_to_percentage server.percentage_cpu_one_minute, precision: 1
+      %tr
+        %td.col-sm-4 Load Average (5 min)
+        %td
+          .progress-bar{class: "progress-bar-#{status_five}", role: "progressbar", "aria-valuenow" => server.percentage_cpu_five_minutes.to_i, "aria-valuemin" => 0, "aria-valuemax" => 100, style: "width: #{server.percentage_cpu_five_minutes.to_i}%;"}
+            = number_to_percentage server.percentage_cpu_five_minutes, precision: 1
+      %tr
+        %td.col-sm-4 Load Average (15 min)
+        %td
+          .progress-bar{class: "progress-bar-#{status_fifteen}", role: "progressbar", "aria-valuenow" => server.percentage_cpu_fifteen_minutes.to_i, "aria-valuemin" => 0, "aria-valuemax" => 100, style: "width: #{server.percentage_cpu_fifteen_minutes.to_i}%;"}
+            = number_to_percentage server.percentage_cpu_fifteen_minutes, precision: 1
+

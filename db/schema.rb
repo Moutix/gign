@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150602211844) do
+ActiveRecord::Schema.define(version: 20150603163358) do
 
   create_table "achievements", force: :cascade do |t|
     t.string   "api_name",        limit: 255
@@ -95,23 +95,14 @@ ActiveRecord::Schema.define(version: 20150602211844) do
   end
 
   create_table "dedicated_servers", force: :cascade do |t|
-    t.string   "name",                limit: 255
-    t.string   "description",         limit: 255
-    t.string   "ip",                  limit: 255
+    t.string   "name",         limit: 255
+    t.string   "description",  limit: 255
+    t.string   "ip",           limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "monitor_link",        limit: 255
-    t.boolean  "up",                  limit: 1,                            default: true
+    t.string   "monitor_link", limit: 255
+    t.boolean  "up",           limit: 1,   default: true
     t.datetime "last_check"
-    t.string   "sys_descr",           limit: 255
-    t.integer  "sys_up_time",         limit: 4
-    t.decimal  "cpu_one_minute",                  precision: 16, scale: 2
-    t.decimal  "cpu_five_minutes",                precision: 16, scale: 2
-    t.decimal  "cpu_fifteen_minutes",             precision: 16, scale: 2
-    t.integer  "ram_total_space",     limit: 4
-    t.integer  "ram_free_space",      limit: 4
-    t.integer  "disk_total_space",    limit: 4
-    t.integer  "disk_free_space",     limit: 4
   end
 
   create_table "fullcalendar_engine_event_series", force: :cascade do |t|
@@ -451,6 +442,27 @@ ActiveRecord::Schema.define(version: 20150602211844) do
 
   add_index "sections", ["user_id"], name: "index_sections_on_user_id", using: :btree
 
+  create_table "snmp_stats", force: :cascade do |t|
+    t.integer  "dedicated_server_id", limit: 4
+    t.string   "sys_descr",           limit: 255
+    t.integer  "sys_up_time",         limit: 4
+    t.decimal  "cpu_one_minute",                  precision: 16, scale: 2
+    t.decimal  "cpu_five_minutes",                precision: 16, scale: 2
+    t.decimal  "cpu_fifteen_minutes",             precision: 16, scale: 2
+    t.integer  "ram_total_space",     limit: 4
+    t.integer  "ram_free_space",      limit: 4
+    t.integer  "disk_total_space",    limit: 4
+    t.integer  "disk_free_space",     limit: 4
+    t.integer  "swap_total_space",    limit: 4
+    t.integer  "swap_free_space",     limit: 4
+    t.integer  "user_count",          limit: 4
+    t.boolean  "have_snmp",           limit: 1,                            default: false
+    t.datetime "created_at",                                                               null: false
+    t.datetime "updated_at",                                                               null: false
+  end
+
+  add_index "snmp_stats", ["dedicated_server_id"], name: "index_snmp_stats_on_dedicated_server_id", using: :btree
+
   create_table "stepmania_packs", force: :cascade do |t|
     t.string   "name",           limit: 255
     t.string   "url",            limit: 255
@@ -623,4 +635,5 @@ ActiveRecord::Schema.define(version: 20150602211844) do
     t.integer "group_id", limit: 4
   end
 
+  add_foreign_key "snmp_stats", "dedicated_servers"
 end
