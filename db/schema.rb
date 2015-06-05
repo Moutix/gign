@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603163358) do
+ActiveRecord::Schema.define(version: 20150605183028) do
 
   create_table "achievements", force: :cascade do |t|
     t.string   "api_name",        limit: 255
@@ -157,6 +157,7 @@ ActiveRecord::Schema.define(version: 20150603163358) do
     t.datetime "updated_at"
     t.boolean  "manage_sections",     limit: 1,   default: false
     t.integer  "user_id",             limit: 4
+    t.boolean  "manage_events",       limit: 1,   default: false
   end
 
   add_index "groups", ["user_id"], name: "index_groups_on_user_id", using: :btree

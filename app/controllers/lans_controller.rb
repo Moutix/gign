@@ -21,7 +21,7 @@ class LansController < ApplicationController
     if params[:edit] == '1'
       @edit = true
     end
-    @available_games = (Game.order(name: :asc).pluck(:name) + LanParty.where('game_id IS NULL').group(:game_scanner).order(game_scanner: :asc).pluck(:game_scanner) + LanGame.where('game_id IS NULL AND game_scanner IS NULL').order(name: :asc).pluck(:name)).uniq.sort
+    @available_games = (Game.order(name: :asc).pluck(:name) + LanParty.where('game_id IS NULL').group(:game_scanner).order(game_scanner: :asc).pluck(:game_scanner) + LanGame.where('game_id IS NULL AND game_scanner IS NULL').order(name: :asc).pluck(:name)).uniq.compact.sort
 
   end
 

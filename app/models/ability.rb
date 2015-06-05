@@ -152,6 +152,12 @@ class Ability
       can :manage, Component
     end
 
+    if user.is_in?("manage_events")
+      can :manage, Lan
+      can :manage, LanGameRelation
+      can :manage, RoomLocation
+    end
+
     ## -------  Admin  ------- ##
     if user.is_in?("admin")
       can :manage, :all
