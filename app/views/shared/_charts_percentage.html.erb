@@ -1,0 +1,46 @@
+<div id = "charts_<%=title.parameterize%>"></div>
+<script>
+var ready = function() {
+    $(function () { 
+        $('#charts_<%=title.parameterize%>').highcharts({
+            chart: {
+                zoomType: 'x'
+            },
+            title: {
+                text: '<%= title%>'
+            },
+            xAxis: {
+                type: 'datetime',
+                maxZoom: 5000*12,
+                title: {
+                    text: null
+                    }
+            },
+            yAxis: [
+                {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Percentage (%)'
+                },
+                }
+            ],
+            series: [
+                <% data.each do |key, value|%>
+                    {
+                type: 'spline',
+                name: '<%= key%>',
+                data: <%=value%>
+                }
+                <%= key == data.keys.last ? '' : ',' %>
+                <%end%>
+            ]
+        });
+    });
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
+
+</script>

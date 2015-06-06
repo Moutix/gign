@@ -7,7 +7,7 @@
 %table.table.table-striped
   %tbody
     %tr
-      - if params[:controller] == "base" || params[:action] == "index"
+      - if params[:action] != "show" || params[:controller] != "games"
         %th= model_class.human_attribute_name(:game)
       - if params[:controller] != "dedicated_servers"
         %th= model_class.human_attribute_name(:ip)
@@ -23,7 +23,7 @@
 
     - parties.each do |lan_party|
       %tr[lan_party]
-        - if params[:controller] == "base" || params[:action] == "index"
+        - if params[:action] != "show" || params[:controller] != "games"
           - if lan_party.game
             %td
               %strong= link_to lan_party.game_scanner, game_path(lan_party.game)

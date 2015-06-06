@@ -1,0 +1,48 @@
+<div id = "charts_<%=title.parameterize%>"></div>
+<script>
+var ready = function() {
+    $(function () { 
+        $('#charts_<%=title.parameterize%>').highcharts({
+            chart: {
+                zoomType: 'x'
+            },
+            title: {
+                text: '<%= title%>'
+            },
+            xAxis: {
+                type: 'datetime',
+                maxZoom: 5000*12,
+                title: {
+                    text: null
+                    }
+            },
+            yAxis: [
+                {
+                min: 0,
+                max: <%= total_memories.max_by{|a| a.last}.last%>,
+                title: {
+                    text: 'Memory Usage'
+                },
+                }
+            ],
+            series: [
+                    {
+                type: 'spline',
+                name: 'Total',
+                data: <%= total_memories%>
+                },
+                {
+                type: 'spline',
+                name: 'Used',
+                data: <%= used_memories%>
+                }
+            ]
+        });
+    });
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
+
+</script>
