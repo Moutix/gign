@@ -10,6 +10,56 @@ class ScanService
     return ips
   end
 
+  def self.scan_minecraft
+
+    games = {}
+    maps = {}
+
+
+    GLOBALCONSTANT::DedicatedIP.each do |ip|
+      begin
+        Timeout::timeout(0.6){
+          s = TCPSocket.new ip, 25565
+          data = "\x12\x00\x2f\x0c" + ip + "\x63\xdd\x01"
+          s.write data
+          data = "\x01\x00"
+          s.write data
+          str = ""
+          while true
+            games[ip] = str
+            str += s.recvfrom(16192)[0]
+          end
+        }
+
+      rescue
+        next
+      end
+    end
+
+    games.each do |ip, game|
+      p game
+      game =~ /.+?(\{.+\})$/
+      str = $1
+      begin
+        infos = JSON.parse(str)
+      rescue
+        next
+      end
+
+      maps[ip] = {
+        name: infos["description"],
+        mode: infos["modinfo"].nil? ? "" : infos["modinfo"]["type"],
+        nb_players: infos["players"]["online"],
+        nb_max_players: infos["players"]["max"],
+        version: infos["version"]["name"]
+      }
+
+    end
+
+    return maps
+
+  end
+
   def self.scan_utgoty
     games = []
     maps = {}
@@ -136,7 +186,7 @@ class ScanService
       p t
 
       begin
-        Timeout::timeout(0.4){
+        Timeout::timeout(0.6){
           s = TCPSocket.new ip, 2350
 
           data = "\x0e\x00\x00\x00\x82\x03\x99\xf8\x95\x58\x07\x00\x00\x00\x08\x00\x00\x00"
@@ -205,6 +255,7 @@ class ScanService
     fill_bdd(scan_trackmania, "Trackmania United Forever")
     fill_bdd(scan_dst, "Don't Starve Together", Game.find_by(app_id: 322330))
     fill_bdd(scan_teeworlds, "Teeworlds")
+    fill_bdd(scan_minecraft, "Minecraft")
 
     scan_steam_game.each do |k, v|
       case
