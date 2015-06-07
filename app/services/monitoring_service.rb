@@ -92,7 +92,7 @@ class MonitoringService
   def self.snmp_scan_all!
     self.ping_all!
     DedicatedServer.all.each do |server|
-      return unless server.up
+      next unless server.up
       monitor = self.new(server.name)
       monitor.update_snmp!
     end
