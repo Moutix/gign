@@ -1,7 +1,7 @@
 class BaseController < ApplicationController
 
   def index
-    @lan = Lan.last
+    @lan = Lan.where('start_at > ?', Time.now).last
 
     @last_games = Game.where('recent_playtime > 0').order('rand()').includes(:images, :port_forwarding).limit(5)
     @section = Section.blog
