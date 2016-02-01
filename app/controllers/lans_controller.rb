@@ -10,7 +10,7 @@ class LansController < ApplicationController
 
   def index
     authorize! :index, Lan
-    @lans = Lan.all
+    @lans = Lan.all.order(start_at: :desc, end_at: :desc, created_at: :desc)
   end
 
 
