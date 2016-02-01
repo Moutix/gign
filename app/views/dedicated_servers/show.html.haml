@@ -15,7 +15,8 @@
       = render 'dedicated_servers/system', server: @dedicated_server
     .col-md-6
       = render 'dedicated_servers/cpu_info', server: @dedicated_server
-  = render "shared/charts_percentage", title: "CPU activity", data: {"CPU (%)" => @dedicated_server.snmp_stats.pluck(:created_at, :cpu_five_minutes).map{|a, b| [(a.to_i+a.utc_offset)*1000, (b*100).to_i]}}
+  - unless @cpu_infos_data.empty?
+    = render "shared/charts_percentage", title: "CPU activity", data: {"CPU (%)" => @cpu_infos_data}
 
   .row
     .col-md-6
@@ -25,9 +26,12 @@
 
   = render 'dedicated_servers/memory', free: @dedicated_server.disk_free_space*1024, total: @dedicated_server.disk_total_space*1024, title: "DISK"
 
-= render "shared/charts_memory", title: "RAM Usage", ytitle: "Ram Usage", total_memories: @dedicated_server.snmp_stats.pluck(:created_at, :ram_total_space).map{|a, b| [(a.to_i+a.utc_offset)*1000, (b*1024)]}, used_memories: @dedicated_server.snmp_stats.pluck(:created_at, "(ram_total_space - ram_free_space)").map{|a, b| [(a.to_i+a.utc_offset)*1000, (b*1024)]}
-= render "shared/charts_memory", title: "SWAP Usage", ytitle: "SWAP Usage", total_memories: @dedicated_server.snmp_stats.pluck(:created_at, :swap_total_space).map{|a, b| [(a.to_i+a.utc_offset)*1000, (b*1024)]}, used_memories: @dedicated_server.snmp_stats.pluck(:created_at, "(swap_total_space - swap_free_space)").map{|a, b| [(a.to_i+a.utc_offset)*1000, (b*1024)]}
-= render "shared/charts_memory", title: "DISK Usage", ytitle: "DISK Usage", total_memories: @dedicated_server.snmp_stats.pluck(:created_at, :disk_total_space).map{|a, b| [(a.to_i+a.utc_offset)*1000, (b*1024)]}, used_memories: @dedicated_server.snmp_stats.pluck(:created_at, "(disk_total_space - disk_free_space)").map{|a, b| [(a.to_i+a.utc_offset)*1000, (b*1024)]}
+  - unless @total_ram_data.empty? || @used_ram_data.empty?
+    = render "shared/charts_memory", title: "RAM Usage", ytitle: "Ram Usage", total_memories: @total_ram_data, used_memories: @used_ram_data
+  - unless @total_swap_data.empty? || @used_swap_data.empty?
+    = render "shared/charts_memory", title: "SWAP Usage", ytitle: "SWAP Usage", total_memories: @total_swap_data, used_memories: @used_swap_data
+  - unless @total_disk_data.empty? || @used_disk_data.empty?
+    = render "shared/charts_memory", title: "DISK Usage", ytitle: "DISK Usage", total_memories: @total_disk_data, used_memories: @used_disk_data
 - if can? :destroy, @dedicated_server
   .form-actions.pull-right
     %button.btn.btn-primary{"data-toggle" => "modal", "data-target" => "#Modal_dedicated_server_#{@dedicated_server.id}"}

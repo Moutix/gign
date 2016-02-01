@@ -24,6 +24,15 @@ class DedicatedServersController < ApplicationController
 
   def show
     authorize! :show, DedicatedServer
+    @cpu_infos_data = @dedicated_server.snmp_stats.where("created_at > ?", Time.now - 15.days).pluck(:created_at, :cpu_five_minutes).map{|a, b| [(a.to_i+a.utc_offset)*1000, (b*100).to_i]}
+    @total_ram_data = @dedicated_server.snmp_stats.where("created_at > ?", Time.now - 15.days).pluck(:created_at, :ram_total_space).map{|a, b| [(a.to_i+a.utc_offset)*1000, (b*1024)]}
+    @used_ram_data = @dedicated_server.snmp_stats.where("created_at > ?", Time.now - 15.days).pluck(:created_at, "(ram_total_space - ram_free_space)").map{|a, b| [(a.to_i+a.utc_offset)*1000, (b*1024)]}
+    @total_swap_data = @dedicated_server.snmp_stats.where("created_at > ?", Time.now - 15.days).pluck(:created_at, :swap_total_space).map{|a, b| [(a.to_i+a.utc_offset)*1000, (b*1024)]}
+    @used_swap_data = @dedicated_server.snmp_stats.where("created_at > ?", Time.now - 15.days).pluck(:created_at, "(swap_total_space - swap_free_space)").map{|a, b| [(a.to_i+a.utc_offset)*1000, (b*1024)]}
+    @total_disk_data = @dedicated_server.snmp_stats.where("created_at > ?", Time.now - 15.days).pluck(:created_at, :disk_total_space).map{|a, b| [(a.to_i+a.utc_offset)*1000, (b*1024)]}
+    @used_disk_data = @dedicated_server.snmp_stats.where("created_at > ?", Time.now - 15.days).pluck(:created_at, "(disk_total_space - disk_free_space)").map{|a, b| [(a.to_i+a.utc_offset)*1000, (b*1024)]}
+
+
   end
 
   # POST /dedicated_servers
