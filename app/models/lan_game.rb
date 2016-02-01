@@ -14,6 +14,7 @@ class LanGame < ActiveRecord::Base
   belongs_to :lan_party
   belongs_to :game
   has_many :lan_game_relations
+  has_many :tournaments
 
   def images
     Image.where(imageable_id: self.lan_game_relations.pluck(:id), imageable_Type: LanGameRelation)

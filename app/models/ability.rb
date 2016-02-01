@@ -38,6 +38,13 @@ class Ability
       can [:comment, :follow], Game
       can [:comment, :follow], StepmaniaPack
       can [:comment, :follow], Lan
+      can :sign_in, Tournament do |t|
+        !t.users.include?(user)
+      end
+      can :sign_out, Tournament do |t|
+        t.users.include?(user)
+      end
+
 
       can :create, Comment
       can [:update, :edit], Comment do |c|

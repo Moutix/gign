@@ -1,4 +1,4 @@
-%h4.center
+%h3.center
   - if game.lan_game_game
     = link_to game.name, game.lan_game_game
   - else
@@ -9,8 +9,16 @@
 - if game.image
   = image_tag game.image, class: 'center', width: 300
 
+- game.tournaments.each do |tournament|
+  = render 'lans/tournament', tournament: tournament
+
 .pull-right
   %br
+  - if can? :tournament, game
+    = link_to create_tournament_lan_game_relation_path(game), method: :post, class: 'btn btn-xs btn-primary' do
+      %i.fa.fa-games
+      Créer un tournoi !
+
   - if can? :upload, game
     %button.btn.btn-default.btn-xs{"data-toggle" => "modal", "data-target" => "#imageModal_lan_game_relation_#{game.id}"}
       %i.fa.fa-upload

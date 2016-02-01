@@ -46,8 +46,18 @@ Gign::Application.routes.draw do
           post :add_game
         end
       end
-      resources :lan_game_relations, only: [:destroy, :update]
+      resources :lan_game_relations, only: [:destroy, :update] do
+        member do
+          post :create_tournament
+        end
+      end
       resources :room_locations, only: [:update]
+      resources :tournament, only: [:update, :destroy] do
+        member do
+          post :sign_in
+          post :sign_out
+        end
+      end
 
       resources :dedicated_servers, only: [:index, :show, :create, :update, :destroy]
 

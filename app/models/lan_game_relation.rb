@@ -21,11 +21,11 @@ class LanGameRelation < ActiveRecord::Base
   after_destroy :destroy_lan_game
 
   has_many :images, :class_name => "Image", :as => "imageable", dependent: :destroy
-  
-  delegate :game, :game_scanner,
+  has_many :tournaments, through: :lan_game
+
+  delegate :game, :game_scanner, :name,
     to: :lan_game, prefix: true, allow_nil: true
 
- 
   def image(size="medium")
     if !self.images.empty?
       case size
@@ -43,13 +43,16 @@ class LanGameRelation < ActiveRecord::Base
     end
   end
 
+  def create_tournament
+    Tournament.create(lan_game: self.lan_game, name: "Tournoi de #{self.lan_game_name}")
+  end
+
   private
 
   def destroy_lan_game
     if self.lan_game && self.lan_game.lan_game_relations.empty?
+      self.lan_game.tournaments.destroy_all
       self.lan_game.destroy
     end
   end
-
-
 end

@@ -20,6 +20,7 @@ class Lan < ActiveRecord::Base
 
   has_many :lan_game_relations
   has_many :lan_games, through: :lan_game_relations
+  has_many :tournaments, through: :lan_games
 
   has_many :comments, :class_name => "Comment", :as => "commentable", dependent: :destroy
   has_many :resource_followers, class_name: "ResourceFollower", as: "resource", dependent: :destroy

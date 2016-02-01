@@ -1,5 +1,5 @@
 class LanGameRelationsController < ApplicationController
-  before_action :set_lan_game_relation, only: [:destroy, :update]
+  before_action :set_lan_game_relation, only: [:destroy, :update, :create_tournament]
 
   # PATCH/PUT /lan_game_relations/1
   # PATCH/PUT /lan_game_relations/1.json
@@ -16,7 +16,18 @@ class LanGameRelationsController < ApplicationController
     end
   end
 
-
+  def create_tournament
+    authorize! :tournament, @lan_game_relation
+    respond_to do |format|
+      if @lan_game_relation.create_tournament
+        format.html { redirect_to @lan_game_relation.lan, notice: 'Lan Game successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @lan_game_relation.lan, error: 'Lan Game was not successfully updated.' }
+        format.json { render json: @lan_game_relation.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # DELETE /lan_game_relations/1
   # DELETE /lan_game_relations/1.json

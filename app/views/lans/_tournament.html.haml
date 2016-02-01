@@ -1,0 +1,24 @@
+%h4= tournament.name
+
+-if tournament.users.count == 0
+  .alert.alert-warning Aucun inscrit
+-else
+  Inscrits :
+  %ul.list-group
+    - tournament.users.each do |user|
+      %li.list-group-item
+        = link_user(tournament, user)
+        - if can?(:sign_out, tournament) and user == current_user
+          .pull-right
+            = link_to sign_out_tournament_path(tournament), method: :post, class: 'btn btn-xs btn-danger' do
+              Se désinscrire
+
+- if can? :sign_in, tournament
+  = link_to sign_in_tournament_path(tournament), method: :post, class: 'btn btn-xs btn-default' do
+    S'inscrire
+
+- if can? :destroy, tournament
+  = link_to tournament_path(tournament), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger' do
+    %i.fa.fa-trash-o
+    = t('.destroy', :default => t("helpers.links.destroy"))
+ 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150605183028) do
+ActiveRecord::Schema.define(version: 20160201192353) do
 
   create_table "achievements", force: :cascade do |t|
     t.string   "api_name",        limit: 255
@@ -431,14 +431,15 @@ ActiveRecord::Schema.define(version: 20150605183028) do
   add_index "section_translations", ["section_id"], name: "index_section_translations_on_section_id", using: :btree
 
   create_table "sections", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.string   "slug",        limit: 255
-    t.string   "description", limit: 255
-    t.boolean  "display",     limit: 1,   default: false
+    t.string   "name",                   limit: 255
+    t.string   "slug",                   limit: 255
+    t.string   "description",            limit: 255
+    t.boolean  "display",                limit: 1,   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id",     limit: 4
-    t.boolean  "blog",        limit: 1,   default: false
+    t.integer  "user_id",                limit: 4
+    t.boolean  "blog",                   limit: 1,   default: false
+    t.boolean  "visible_for_disconnect", limit: 1,   default: true
   end
 
   add_index "sections", ["user_id"], name: "index_sections_on_user_id", using: :btree
@@ -552,6 +553,27 @@ ActiveRecord::Schema.define(version: 20150605183028) do
 
   add_index "surveys", ["user_id"], name: "index_surveys_on_user_id", using: :btree
 
+  create_table "tournament_users", force: :cascade do |t|
+    t.integer  "user_id",       limit: 4
+    t.integer  "tournament_id", limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "tournament_users", ["tournament_id"], name: "index_tournament_users_on_tournament_id", using: :btree
+  add_index "tournament_users", ["user_id"], name: "index_tournament_users_on_user_id", using: :btree
+
+  create_table "tournaments", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.text     "description", limit: 65535
+    t.integer  "lan_game_id", limit: 4
+    t.boolean  "started",     limit: 1,     default: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+  end
+
+  add_index "tournaments", ["lan_game_id"], name: "index_tournaments_on_lan_game_id", using: :btree
+
   create_table "upload_files", force: :cascade do |t|
     t.string   "name",          limit: 255
     t.string   "url",           limit: 255
@@ -637,4 +659,7 @@ ActiveRecord::Schema.define(version: 20150605183028) do
   end
 
   add_foreign_key "snmp_stats", "dedicated_servers"
+  add_foreign_key "tournament_users", "tournaments"
+  add_foreign_key "tournament_users", "users"
+  add_foreign_key "tournaments", "lan_games"
 end
