@@ -31,7 +31,9 @@
     %dd= time_ago_in_words(user.created_at)
     %dt
       %strong= model_class.human_attribute_name(:current_sign_in_at)
-    %dd= time_ago_in_words(user.current_sign_in_at)
+    %dd
+      - if user.current_sign_in_at
+        = time_ago_in_words(user.current_sign_in_at)
     %dt
       %strong= model_class.human_attribute_name(:current_sign_in_ip)
     %dd= user.current_sign_in_ip
