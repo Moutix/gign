@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :confirm, :steam]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :confirm, :steam, :regenerate_secret]
 
   skip_before_filter :verify_authenticity_token, :only => :steamid
   
@@ -63,6 +63,15 @@ class UsersController < ApplicationController
   def steam
     authorize! :steam, @user
     add_breadcrumb t("navbar.steam.link")
+  end
+
+  def regenerate_secret
+    authorize! :regenerate_secret, @user
+    @user.regenerate_secret!
+    respond_to do |format|
+      format.html { redirect_to @user, notice: 'Secret successfully regenerate' }
+      format.json { head :no_content }
+    end
   end
 
   def steamid

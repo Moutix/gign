@@ -69,6 +69,7 @@ class User < ActiveRecord::Base
   scope :stepmania_users, -> {where('stepmania_xp > 0')}
 
   before_save :generate_sha_password
+  before_create :regenerate_secret!
 
   def ability
     @ability ||= Ability.new(self)
@@ -210,7 +211,9 @@ class User < ActiveRecord::Base
     self.joins(:user_stats).group('users.id').order('SUM(user_stats.recent_playtime) ASC, SUM(user_stats.total_playtime) ASC').first
   end
 
-
+  def regenerate_secret!
+    self.update_columns(secret: SecureRandom.hex(8))
+  end
 
   private
     def follow_this_game(game)

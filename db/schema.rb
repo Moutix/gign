@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201192353) do
+ActiveRecord::Schema.define(version: 20160317194326) do
 
   create_table "achievements", force: :cascade do |t|
     t.string   "api_name",        limit: 255
@@ -647,6 +647,7 @@ ActiveRecord::Schema.define(version: 20160201192353) do
     t.integer  "stepmania_id",           limit: 4
     t.integer  "stepmania_xp",           limit: 4
     t.string   "sha1_password",          limit: 255
+    t.string   "secret",                 limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

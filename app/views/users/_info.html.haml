@@ -22,7 +22,11 @@
       %i
         %a.user-edit{"data-toggle" => "modal", "data-target" => "#userPasswordModal"}
           = "(#{t("helpers.links.edit")})"
- 
+    %dt
+      %strong= model_class.human_attribute_name(:secret)
+    %dd
+      = user.secret
+      %i= link_to "(#{t("helpers.links.regenerate")})", regenerate_secret_user_path(user), class: "user-edit", method: :post
     %dt
       %strong= model_class.human_attribute_name(:email)
     %dd= user.email

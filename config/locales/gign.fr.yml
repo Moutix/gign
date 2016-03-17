@@ -522,6 +522,7 @@ fr:
       back: "Retour"
       show: "Voir"
       confirm: "Êtes vous sûr ?"
+      regenerate: "Regénérer"
 
   charts:
     supply:

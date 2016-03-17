@@ -447,6 +447,7 @@ en:
       back: "Back"
       show: "Show"
       confirm: "Are you sure?"
+      regenerate: "Regenerate"
 
   charts:
     supply:

@@ -108,11 +108,12 @@ Gign::Application.routes.draw do
           post 'remove_from_basket/:request_id', :action => 'remove_from_basket', as: 'remove_from_basket'
         end
       end
-      
+
       devise_for :users, :controllers => { :registrations => "registrations", :sessions => "sessions" }
-      
+
       resources :users, only: [:index, :show, :destroy, :update] do
         member do
+          post :regenerate_secret
           post :confirm
           get :steam
         end
