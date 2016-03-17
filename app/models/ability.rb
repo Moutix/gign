@@ -109,7 +109,7 @@ class Ability
     can [:index, :show], Lan
     can :index, DedicatedServer
 
-
+    can :stream, User
 
     ## -------  With manage_lower_groups privileges  ------- ##
     if user.is_in?("manage_lower_groups")

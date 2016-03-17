@@ -1,0 +1,7 @@
+%h1
+  Stream de
+  = link_user nil, @user
+
+= render 'stream_js', container: "stream_user_#{@user.id}", url: "#{GLOBALCONSTANT::STREAM_BASE_URL}/time", twitch_mpd: "#{GLOBALCONSTANT::STREAM_BASE_URL}/dash/twitch.mpd"
+
+%video#stream[@user]{controls: "true"}

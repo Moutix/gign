@@ -116,6 +116,7 @@ Gign::Application.routes.draw do
           post :regenerate_secret
           post :confirm
           get :steam
+          get :stream
         end
       end
       

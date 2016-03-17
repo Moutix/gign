@@ -14,6 +14,9 @@ en:
     user:
       title: Account access
       link: My account
+    stream:
+      title: See my streams
+      link: My streams
     steam:
       title: See my Steam Stats
       link: My Stats Steam

@@ -14,6 +14,9 @@ fr:
     user:
       title: Accès au compte
       link: Mon compte
+    stream:
+      title: Voir les streams en cours
+      link: Mes streams
     steam:
       title: Voir mes stats steam
       link: Mes stats Steam

@@ -19,7 +19,7 @@ module ApplicationHelper
     content_tag(:span, text, :class => 'status_tag ' + class_name)
   end
 
-  def link_user(resource, user = nil)
+  def link_user(resource=nil, user = nil)
     user = resource.user if user.nil?
     if user.nil?
       t("user.nobody")

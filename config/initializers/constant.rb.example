@@ -1,9 +1,11 @@
 module GLOBALCONSTANT
   DedicatedIP = ["6.6.6.6"]
   STEPMANIA_URL = "https://laouyastepmania.com"
-  
+
   STEPMANIA_BDD_HOST = "monhostdebdd"
   STEPMANIA_BDD_USER = "stepmania_user"
   STEPMANIA_BDD_PASSWORD = "stepmania_pass"
   STEPMANIA_BDD_DATABASE = "stepmania"
+
+  STREAM_BASE_URL = ""
 end
