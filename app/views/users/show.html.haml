@@ -1,5 +1,9 @@
 %h1 Mon compte
 
+- if @user.is_a_steam_user?
+  .pull-right
+    = link_to "Steam", steam_user_path(@user), class: "btn btn-primary"
+
 .row#user-info
   .col-sm-2.user-avatar
     = image_tag @user.avatar("thumb")
