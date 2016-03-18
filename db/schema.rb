@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160317194326) do
+ActiveRecord::Schema.define(version: 20160318220415) do
 
   create_table "achievements", force: :cascade do |t|
     t.string   "api_name",        limit: 255
@@ -499,6 +499,19 @@ ActiveRecord::Schema.define(version: 20160317194326) do
 
   add_index "stepmania_songs", ["stepmania_pack_id"], name: "index_stepmania_songs_on_stepmania_pack_id", using: :btree
 
+  create_table "streams", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.boolean  "local",      limit: 1
+    t.boolean  "youtube",    limit: 1
+    t.boolean  "twitch",     limit: 1
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "streams", ["user_id"], name: "index_streams_on_user_id", using: :btree
+
   create_table "supplies", force: :cascade do |t|
     t.string   "name",        limit: 255,                  null: false
     t.integer  "price",       limit: 4,     default: 0
@@ -660,6 +673,7 @@ ActiveRecord::Schema.define(version: 20160317194326) do
   end
 
   add_foreign_key "snmp_stats", "dedicated_servers"
+  add_foreign_key "streams", "users"
   add_foreign_key "tournament_users", "tournaments"
   add_foreign_key "tournament_users", "users"
   add_foreign_key "tournaments", "lan_games"
