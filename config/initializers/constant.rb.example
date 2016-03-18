@@ -7,5 +7,6 @@ module GLOBALCONSTANT
   STEPMANIA_BDD_PASSWORD = "stepmania_pass"
   STEPMANIA_BDD_DATABASE = "stepmania"
 
-  STREAM_BASE_URL = ""
+  STREAM_TIME_URL = ""
+  STREAM_DASH_URL = ""
 end

@@ -2,6 +2,10 @@
   Stream de
   = link_user nil, @user
 
-= render 'stream_js', container: "stream_user_#{@user.id}", url: "#{GLOBALCONSTANT::STREAM_BASE_URL}/time", twitch_mpd: "#{GLOBALCONSTANT::STREAM_BASE_URL}/dash/twitch.mpd"
+- if @user.pseudo
+  = render 'stream_js', container: "stream_user_#{@user.id}", url: "#{GLOBALCONSTANT::STREAM_TIME_URL}", twitch_mpd: "#{GLOBALCONSTANT::STREAM_DASH_URL}/#{@user.pseudo}.mpd"
+- else
+  .alert.alert-danger
+    %p Vous devez avoir un pseudo afin d'accéder à la fonction de streaming
 
 %video#stream[@user]{controls: "true"}
