@@ -2,7 +2,6 @@ Gign::Application.routes.draw do
 
 
   scope "(:locale)", locale: /fr|en/ do
-    mount FullcalendarEngine::Engine => "/calendar"
     localized do
 
 

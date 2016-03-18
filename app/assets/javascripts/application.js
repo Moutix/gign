@@ -28,4 +28,3 @@
 //= require_tree .
 //
 //
-//= require fullcalendar_engine/application

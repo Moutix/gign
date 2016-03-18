@@ -6,13 +6,6 @@ GIT
     yaml_db (0.2.3)
 
 GIT
-  remote: git://github.com/ningirsu/fullcalendar-rails-engine.git
-  revision: ba4a63994ded9fbffaf2b7f24175a6e61aeb8155
-  specs:
-    fullcalendar_engine (1.0.6)
-      rails (>= 4.0.0)
-
-GIT
   remote: git://github.com/smartinez87/exception_notification.git
   revision: 535aa76045762cca644bd26dd4d2e8144f6ecffe
   specs:
@@ -343,7 +336,6 @@ DEPENDENCIES
   devise
   exception_notification!
   font-awesome-rails
-  fullcalendar_engine!
   globalize
   haml
   haml-rails

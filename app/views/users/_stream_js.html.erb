@@ -1,13 +1,17 @@
 <script>
-var player, video, source, context;
+var ready = function() {
+    $(function () { 
+        var player, video, source, context;
 
-video = document.querySelector('#<%=container%>');
-context = new Dash.di.DashContext();
-player = new MediaPlayer(context);
-player.addUTCTimingSource("schemeIdUri:urn:mpeg:dash:utc:http-xsdate:2014", "value:<%=url%>");
-player.setLiveDelayFragmentCount(0);
-player.startup();
-player.attachView(video);
-player.setAutoPlay(true);
-player.attachSource("<%=twitch_mpd%>");
+        video = document.querySelector('#<%=container%>');
+        context = new Dash.di.DashContext();
+        player = new MediaPlayer(context);
+        player.addUTCTimingSource("schemeIdUri:urn:mpeg:dash:utc:http-xsdate:2014", "value:<%=time_url%>");
+        player.setLiveDelayFragmentCount(0);
+        player.startup();
+        player.attachView(video);
+        player.setAutoPlay(true);
+        player.attachSource("<%=mpd_url%>");
+    });
+}
 </script>

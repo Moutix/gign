@@ -99,7 +99,7 @@ gem 'sitemap_generator'
 
 #callendar
 #gem 'fullcalendar_engine', github: 'ningirsu/fullcalendar-rails-engine'
-gem 'fullcalendar_engine', github: 'ningirsu/fullcalendar-rails-engine'
+#gem 'fullcalendar_engine', github: 'ningirsu/fullcalendar-rails-engine'
 
 #Monitoring
 gem 'net-ping'
