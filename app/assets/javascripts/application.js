@@ -13,13 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require dash.all.js
 //= require jquery.pnotify.conf.js
 //= require bootstrap-filestyle.min.js
 //= require bootstrap-datetimepicker.min.js
 //= require bootstrap-select.min.js
 //= require ckeditor/init
 //= require highcharts.js
-//= require dash.all.min.js
 //= require jquery.elastic.source.js
 //= require jquery-fileupload/basic
 //= require jquery.aria.js

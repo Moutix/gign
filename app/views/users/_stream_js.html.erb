@@ -14,4 +14,8 @@ var ready = function() {
         player.attachSource("<%=mpd_url%>");
     });
 }
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
 </script>
