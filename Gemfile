@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.6'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -76,7 +76,6 @@ gem 'acts_as_commentable_with_threading'
 
 # multi language
 gem 'globalize'
-gem 'route_translator'
 
 # steam interface (use in services/steam_services)
 gem 'omniauth-steam'

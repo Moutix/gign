@@ -11,7 +11,13 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    I18n.locale = params[:locale] || I18n.default_locale
+    if I18n.available_locales.map(&:to_s).include? params[:locale]
+      I18n.locale = params[:locale]
+    elsif params[:locale]
+      render_404
+    else
+      I18n.locale = I18n.default_locale
+    end
   end
 
   rescue_from(I18n::InvalidLocale, ActionController::RoutingError, ActionController::UnknownController, ::AbstractController::ActionNotFound, ActiveRecord::RecordNotFound, with: :render_404) unless Rails.env == 'development'
