@@ -95,7 +95,6 @@ class Ability
       can :download, StepmaniaPack
     end
 
-
     ## -------  Everyone  ------- ##
     can :show, Page do |p|
       p.section_display

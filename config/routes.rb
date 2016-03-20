@@ -153,6 +153,8 @@ Gign::Application.routes.draw do
     root 'base#index'
   end
   post '/auth/:provider/callback', to: 'users#steamid'
+  get '/auth' => 'api#auth', :constraints => {:ip => /127.0.0.1/}
+  get '/time' => 'api#time'
   get '/:locale' => 'base#index'
   get '*not_found' => 'application#render_404' unless Rails.env.development?
 end

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception, except: :render_404
- 
+
 
   before_action :set_locale, :set_last_connection
   before_action do
@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from(I18n::InvalidLocale, ActionController::RoutingError, ActionController::UnknownController, ::AbstractController::ActionNotFound, ActiveRecord::RecordNotFound, with: :render_404) unless Rails.env == 'development'
-  
+
   rescue_from CanCan::AccessDenied do |exception|
     if current_user
       redirect_to root_path, alert: t("controller.application.forbidden")
