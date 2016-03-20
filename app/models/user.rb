@@ -54,6 +54,9 @@ class User < ActiveRecord::Base
   has_many :images, :class_name => "Image", :as => "imageable", dependent: :destroy
   has_and_belongs_to_many :groups, :join_table => 'users_groups'
   has_one :mail_box
+  has_many :streams
+  has_one :active_stream, -> { where('end_at IS NULL').order('streams.created_at DESC').limit(1) }, class_name: 'Stream'
+  has_many :active_streams, -> { where('end_at IS NULL') }, class_name: 'Stream'
   has_many :resource_followers
   has_many :user_responses
   has_many :comments

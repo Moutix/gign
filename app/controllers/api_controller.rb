@@ -6,15 +6,20 @@ class ApiController < ActionController::Base
     end
   end
 
-  def auth
-    if !params[:secret]
+  def start_stream
+    stream = StreamService.new params[:name], params[:secret]
+    if !stream.is_valid?
       raise "Go away"
     end
+    stream.start!
+  end
 
-    user = User.find_by(secret: params[:secret])
-    if user.nil? || user.pseudo.nil?
+  def end_stream
+    stream = StreamService.new params[:name], params[:secret]
+    if !stream.is_valid?
       raise "Go away"
     end
+    stream.finish!
   end
 
   def time
