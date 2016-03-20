@@ -25,11 +25,17 @@
 
 %hr
 
-- if @lan_parties.count > 0
+- if !@lan_parties.empty?
   .well
     %h3
       %strong Parties en cours :
     = render "lan_parties/list", parties: @lan_parties
+
+- if !@streams.empty?
+  .well
+    %h3
+      %strong Stream en cours :
+    = render "streams/list", streams: @streams
 
 
 %hr

@@ -1,0 +1,23 @@
+- model_class = Stream
+
+
+%table.table.table-striped
+  %tbody
+    %tr
+      %th= model_class.human_attribute_name(:user)
+      %th= model_class.human_attribute_name(:local)
+      %th= model_class.human_attribute_name(:youtube)
+      %th= model_class.human_attribute_name(:twitch)
+      %th= model_class.human_attribute_name(:start_at)
+
+    - streams.each do |stream|
+      %tr[stream]
+        %td= link_user stream
+        %td
+          = print_boolean stream.local
+          - if stream.local
+            = link_to "(Voir)", stream_user_path(stream.user)
+        %td= print_boolean stream.youtube
+        %td= print_boolean stream.twitch
+        %td= l stream.start_at, format: :default
+

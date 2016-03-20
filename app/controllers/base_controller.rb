@@ -6,7 +6,8 @@ class BaseController < ApplicationController
     @last_games = Game.where('recent_playtime > 0').order('rand()').includes(:images, :port_forwarding).limit(5)
     @section = Section.blog
     @page = @section.pages.first
-    
+    @streams = Stream.active
+
     if can? :see, LanParty
       @lan_parties = LanParty.visible_on_lan.order(game_scanner: :asc)
     else

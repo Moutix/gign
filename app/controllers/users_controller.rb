@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_action only: :index do
     add_breadcrumb_if_can t("activerecord.models.user", count: 2), users_path, :index, User
   end
-  before_action only: [:show, :steam] do 
+  before_action only: [:show, :steam, :stream] do 
     add_user_breadcrumb(@user)
   end
 
