@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require dash.all.js
+//= require video.js
 //= require jquery.pnotify.conf.js
 //= require bootstrap-filestyle.min.js
 //= require bootstrap-datetimepicker.min.js

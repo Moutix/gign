@@ -1,0 +1,5 @@
+= render 'streams/stream_js', video: "stream_user_#{user.id}", time_url: "#{GLOBALCONSTANT::STREAM_TIME_URL}", mpd_url: "#{GLOBALCONSTANT::STREAM_DASH_URL}/#{user.pseudo}.mpd"
+
+.center
+  %video.video-js.vjs-default-skin#stream[user]{controls: "true", height: "360px", width: "640px", preload: "none"}
+    %p.alert.alert-danger Your browser doesn't support HTML5 video

@@ -12,6 +12,7 @@
  *= require bootstrap-select.min.css
  *= require bootstrap-datetimepicker.min.css
  *= require font-awesome
+ *= require video-js.css
  *= require flag-icon.min.css
  *= require_self
  *= require_tree .
