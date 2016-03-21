@@ -8,21 +8,32 @@ class ApiController < ActionController::Base
 
   def start_stream
     stream = StreamService.new params[:name], params[:secret]
-    if !stream.is_valid?
-      raise "Go away"
+    respond_to do |format|
+      if !stream.is_valid?
+        format.all { render plain: "Go Away", status: 404 }
+      else
+        stream.start!
+        format.all { render plain: "Cool", status: 200 }
+      end
     end
-    stream.start!
   end
 
   def end_stream
     stream = StreamService.new params[:name], params[:secret]
-    if !stream.is_valid?
-      raise "Go away"
+    respond_to do |format|
+      if !stream.is_valid?
+        format.all { render plain: "Go Away", status: 404 }
+      else
+        stream.finish!
+        format.all { render plain: "Cool", status: 200 }
+      end
     end
-    stream.finish!
   end
 
   def time
+    respond_to do |format|
+      format.all{ render plain: Time.now.to_i, status: 200}
+    end
   end
 
 end
