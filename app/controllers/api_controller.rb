@@ -10,7 +10,7 @@ class ApiController < ActionController::Base
     stream = StreamService.new params[:name], params[:secret]
     respond_to do |format|
       if !stream.is_valid?
-        format.all { render plain: "Go Away", status: 404 }
+        format.all { render plain: "Go Away", status: 500 }
       else
         stream.start!
         format.all { render plain: "Cool", status: 200 }
@@ -22,7 +22,7 @@ class ApiController < ActionController::Base
     stream = StreamService.new params[:name], params[:secret]
     respond_to do |format|
       if !stream.is_valid?
-        format.all { render plain: "Go Away", status: 404 }
+        format.all { render plain: "Go Away", status: 500 }
       else
         stream.finish!
         format.all { render plain: "Cool", status: 200 }
