@@ -141,13 +141,17 @@ class SteamService
       Game.all.each do |game|
         total_playtime = UserStat.where(game_id: game.id).sum('total_playtime')
         recent_playtime = UserStat.where(game_id: game.id).sum('recent_playtime')
-        in_cache = AckbarService.in_cache?(game.app_id)
+        begin
+          in_cache = AckbarService.in_cache?(game.app_id)
+        rescue Errno::ECONNREFUSED
+          in_cache = false
+        end
 
         game.update_columns(total_playtime: total_playtime,
                             recent_playtime: recent_playtime,
                             users_count: game.users.length,
                             user_achievements_count: game.user_achievements.length,
-                            incache: in_cache)
+                            in_cache: in_cache)
       end
     end
 
