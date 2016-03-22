@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: stepmania_packs
+#
+#  id             :integer          not null, primary key
+#  name           :string(255)
+#  url            :string(255)
+#  game_type      :string(255)
+#  name_file      :string(255)
+#  size           :integer
+#  created_at     :datetime
+#  updated_at     :datetime
+#  comments_count :integer          default(0)
+#
+
 class StepmaniaPacksController < ApplicationController
 
   before_action :set_stepmania_pack, only: [:show]

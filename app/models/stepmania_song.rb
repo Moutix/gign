@@ -9,8 +9,8 @@
 #  artist            :string(255)      default("")
 #  genre             :string(255)      default("")
 #  credit            :string(255)      default("")
-#  music             :text
-#  banner            :text
+#  music             :text(65535)
+#  banner            :text(65535)
 #  video             :boolean          default(FALSE)
 #  beginner          :string(255)
 #  easy              :string(255)

@@ -6,7 +6,7 @@
 #  name           :string(255)
 #  slug           :string(255)
 #  section_id     :integer
-#  content        :text
+#  content        :text(65535)
 #  priority       :integer          default(0)
 #  created_at     :datetime
 #  updated_at     :datetime

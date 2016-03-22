@@ -30,6 +30,7 @@
 #  stepmania_id           :integer
 #  stepmania_xp           :integer
 #  sha1_password          :string(255)
+#  secret                 :string(255)
 #
 
 class User < ActiveRecord::Base

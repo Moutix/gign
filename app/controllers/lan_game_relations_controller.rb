@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: lan_game_relations
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  description :text(65535)
+#  lan_id      :integer
+#  lan_game_id :integer
+#  order       :integer          default(0)
+#  start_at    :datetime
+#  end_at      :datetime
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 class LanGameRelationsController < ApplicationController
   before_action :set_lan_game_relation, only: [:destroy, :update, :create_tournament]
 

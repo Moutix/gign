@@ -6,7 +6,7 @@
 #  commentable_id   :integer          default(0)
 #  commentable_type :string(255)
 #  title            :string(255)
-#  body             :text
+#  body             :text(65535)
 #  subject          :string(255)
 #  user_id          :integer          default(0), not null
 #  parent_id        :integer

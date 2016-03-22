@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: response_surveys
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  survey_id  :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class ResponseSurveysController < ApplicationController
   before_filter :load_survey
   before_action :set_response, only: [:update, :destroy, :vote, :edit]

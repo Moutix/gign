@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: borrowings
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  end_at     :datetime
+#  start_at   :datetime
+#  started_at :datetime
+#  ended_at   :datetime
+#  ongoing    :boolean          default(FALSE)
+#  accepted   :boolean          default(FALSE)
+#  effective  :boolean          default(FALSE)
+#  created_at :datetime
+#  updated_at :datetime
+#  finish     :boolean          default(FALSE)
+#
+
 module BorrowingsHelper
   
   def state_to_class_name(state)

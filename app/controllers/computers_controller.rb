@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: computers
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  description :text(65535)
+#  price       :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 class ComputersController < ApplicationController
   before_action :set_computer, only: [:update, :destroy]
 

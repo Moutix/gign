@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: lans
+#
+#  id             :integer          not null, primary key
+#  name           :string(255)
+#  description    :string(255)
+#  start_at       :datetime
+#  end_at         :datetime
+#  created_at     :datetime
+#  updated_at     :datetime
+#  comments_count :integer          default(0)
+#
+
 class LansController < ApplicationController
   before_action :set_lan, only: [:show, :update, :destroy, :add_room, :add_game]
 

@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: room_locations
+#
+#  id         :integer          not null, primary key
+#  room_id    :integer
+#  lan_id     :integer
+#  end_at     :datetime
+#  start_at   :datetime
+#  has_key    :boolean          default(FALSE)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class RoomLocationsController < ApplicationController
   before_action :set_room_location, only: [:update]
 

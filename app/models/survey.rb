@@ -4,7 +4,7 @@
 #
 #  id                 :integer          not null, primary key
 #  name               :string(255)
-#  description        :text
+#  description        :text(65535)
 #  is_extensible      :boolean          default(FALSE)
 #  is_active          :boolean          default(FALSE)
 #  responses_per_user :integer          default(1)

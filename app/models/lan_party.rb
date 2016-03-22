@@ -14,7 +14,6 @@
 #  visible        :boolean          default(TRUE)
 #  created_at     :datetime
 #  updated_at     :datetime
-#  dedicated      :boolean          default(FALSE)
 #  version        :string(255)
 #  nb_max_players :integer
 #

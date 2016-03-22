@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: comments
+#
+#  id               :integer          not null, primary key
+#  commentable_id   :integer          default(0)
+#  commentable_type :string(255)
+#  title            :string(255)
+#  body             :text(65535)
+#  subject          :string(255)
+#  user_id          :integer          default(0), not null
+#  parent_id        :integer
+#  lft              :integer
+#  rgt              :integer
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:update, :destroy, :edit]
 

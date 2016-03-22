@@ -5,7 +5,7 @@
 #  id              :integer          not null, primary key
 #  api_name        :string(255)
 #  name            :string(255)
-#  description     :text
+#  description     :text(65535)
 #  game_id         :integer
 #  created_at      :datetime
 #  updated_at      :datetime

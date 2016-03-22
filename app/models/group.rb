@@ -16,6 +16,7 @@
 #  updated_at          :datetime
 #  manage_sections     :boolean          default(FALSE)
 #  user_id             :integer
+#  manage_events       :boolean          default(FALSE)
 #
 
 class Group < ActiveRecord::Base

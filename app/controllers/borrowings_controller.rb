@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: borrowings
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  end_at     :datetime
+#  start_at   :datetime
+#  started_at :datetime
+#  ended_at   :datetime
+#  ongoing    :boolean          default(FALSE)
+#  accepted   :boolean          default(FALSE)
+#  effective  :boolean          default(FALSE)
+#  created_at :datetime
+#  updated_at :datetime
+#  finish     :boolean          default(FALSE)
+#
+
 class BorrowingsController < ApplicationController
   before_action :set_borrowing, only: [:show, :edit, :update, :destroy, :submit_basket, :ended, :beginning, :accepted, :remove_from_basket, :number_supply]
 

@@ -1,3 +1,24 @@
+# == Schema Information
+#
+# Table name: groups
+#
+#  id                  :integer          not null, primary key
+#  name                :string(255)
+#  level               :integer          default(0)
+#  admin               :boolean          default(FALSE)
+#  manage_supplies     :boolean          default(FALSE)
+#  manage_packs        :boolean          default(FALSE)
+#  manage_borrowings   :boolean          default(FALSE)
+#  manage_users        :boolean          default(FALSE)
+#  manage_groups       :boolean          default(FALSE)
+#  manage_lower_groups :boolean          default(FALSE)
+#  created_at          :datetime
+#  updated_at          :datetime
+#  manage_sections     :boolean          default(FALSE)
+#  user_id             :integer
+#  manage_events       :boolean          default(FALSE)
+#
+
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy, :add_user, :del_user]
   

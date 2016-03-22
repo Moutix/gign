@@ -5,7 +5,7 @@
 #  id          :integer          not null, primary key
 #  name        :string(255)      not null
 #  price       :integer          default(0)
-#  description :text
+#  description :text(65535)
 #  loanable    :boolean          default(TRUE)
 #  created_at  :datetime
 #  updated_at  :datetime
