@@ -15,6 +15,7 @@
 #  user_achievements_count :integer          default(0)
 #  users_count             :integer          default(0)
 #  comments_count          :integer          default(0)
+#  has_port_forwarding     :boolean          default(FALSE)
 #
 
 class GamesController < ApplicationController
@@ -47,15 +48,15 @@ class GamesController < ApplicationController
     @user_achievements = UserAchievement.unscoped.order(timestamp: :desc).limit(6).includes(user: :images, achievement: :game)
 
     if !session[:q].blank?
-      @games = Game.where("name LIKE ?", "%#{session[:q]}%").includes(:images, :port_forwarding).page(params[:page])
+      @games = Game.where("name LIKE ?", "%#{session[:q]}%").includes(:images).page(params[:page])
     else
       if session[:games] == 'all'
-        @games = Game.includes(:images, :port_forwarding).all.page(params[:page])
+        @games = Game.includes(:images).all.page(params[:page])
       else
-        @games = Game.includes(:images, :port_forwarding).order(total_playtime: :desc).page(params[:page])
+        @games = Game.includes(:images).order(total_playtime: :desc).page(params[:page])
       end
     end
-    @last_games = Game.where('recent_playtime > 0').order('rand()').includes(:images, :port_forwarding).limit(5)
+    @last_games = Game.where('recent_playtime > 0').order('rand()').includes(:images).limit(5)
 
   end
 

@@ -13,4 +13,12 @@
 
 class PortForwarding < ActiveRecord::Base
   belongs_to :game
+
+  after_create :update_game
+
+  private
+
+  def update_game
+    game.update_columns(has_port_forwarding: true)
+  end
 end

@@ -15,12 +15,13 @@
 #  user_achievements_count :integer          default(0)
 #  users_count             :integer          default(0)
 #  comments_count          :integer          default(0)
+#  has_port_forwarding     :boolean          default(FALSE)
 #
 
 class Game < ActiveRecord::Base
   acts_as_commentable
+  paginates_per 30
 
-  paginates_per 20
   has_many :comments, :class_name => "Comment", :as => "commentable", dependent: :destroy
   has_many :users, through: :user_stats, :counter_cache => true
   has_many :user_stats, dependent: :destroy
@@ -32,14 +33,14 @@ class Game < ActiveRecord::Base
   has_one :port_forwarding
   has_many :lan_parties
 
-  has_many :users_with_achievements, -> {distinct}, through: :user_achievements, source: 'user'
+  has_many :users_with_achievements, -> { distinct }, through: :user_achievements, source: 'user'
 
-  scope :played, -> {where('total_playtime > ?', 0)}
-  scope :search_import, -> { includes(:port_forwarding, :images) }  
+  scope :played, -> { where('total_playtime > ?', 0) }
+  scope :search_import, -> { includes(:port_forwarding, :images) }
 
   delegate :udp, :tcp,
-    to: :port_forwarding, prefix: true, allow_nil: true
-  
+           to: :port_forwarding, prefix: true, allow_nil: true
+
   def image
     images.first
   end
@@ -59,19 +60,19 @@ class Game < ActiveRecord::Base
   end
 
   def nb_users
-    user_stats.size
+    users_count
   end
 
   def nb_achievements
-    user_achievements.size
+    user_achievements_count
   end
 
   def has_achievements?
-    !self.achievements.empty?
+    user_achievements_count > 0
   end
 
   def need_permissions?
-    !port_forwarding.nil?
+    has_port_forwarding
   end
 
   def has_lan_parties?
@@ -81,5 +82,4 @@ class Game < ActiveRecord::Base
   def game_scanner
     self.lan_parties.group(:game_scanner).uniq.pluck(:game_scanner).first
   end
-
 end

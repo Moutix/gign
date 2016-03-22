@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322205743) do
+ActiveRecord::Schema.define(version: 20160322225102) do
 
   create_table "achievements", force: :cascade do |t|
     t.string   "api_name",        limit: 255
@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(version: 20160322205743) do
     t.integer  "user_achievements_count", limit: 4,   default: 0
     t.integer  "users_count",             limit: 4,   default: 0
     t.integer  "comments_count",          limit: 4,   default: 0
+    t.boolean  "has_port_forwarding",                 default: false
   end
 
   create_table "groups", force: :cascade do |t|
