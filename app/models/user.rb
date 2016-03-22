@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
- 
+
   has_many :played_game, -> {where('user_stats.total_playtime > ?', 0)}, through: :user_stats, source: 'game'
   has_many :user_achievements, dependent: :destroy
   has_many :achievements, through: :user_achievements
@@ -66,6 +66,7 @@ class User < ActiveRecord::Base
   has_many :open_smo_stats
   has_many :stepmania_songs, through: :open_smo_stats
   has_many :stepmania_packs, through: :stepmania_songs
+  has_many :save_datas
 
   scope :steam_users, -> {where('steamid IS NOT NULL')}
   scope :public_steam_users, -> {where('steamid IS NOT NULL AND steam_public = ?', true)}

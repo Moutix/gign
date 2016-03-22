@@ -113,9 +113,14 @@ class SteamService
 
   def self.update_online!
     nb_online = ScanService.scan_steam_players.count
-    SaveData.create(nb_users: User.count,
-                    nb_steam_users: User.steam_users.count,
-                    nb_online_users: nb_online)
+    SaveData.create(
+      nb_users: User.count,
+      nb_steam_users: User.steam_users.count,
+      nb_online_users: nb_online,
+      nb_stream: Stream.active.count,
+      nb_lan_party: LanParty.ongoing.count,
+      stepmania_playtime: OpenSmoStat.played_time
+    )
     true
   end
 
@@ -137,29 +142,52 @@ class SteamService
       end
     end
 
+    check_cache = true
     Game.transaction do
       Game.all.each do |game|
         total_playtime = UserStat.where(game_id: game.id).sum('total_playtime')
         recent_playtime = UserStat.where(game_id: game.id).sum('recent_playtime')
-        begin
-          in_cache = AckbarService.in_cache?(game.app_id)
-        rescue Errno::ECONNREFUSED
+
+        if check_cache
+          begin
+            in_cache = AckbarService.in_cache?(game.app_id)
+          rescue Errno::ECONNREFUSED
+            in_cache = false
+            check_cache = false
+          end
+        else
           in_cache = false
         end
 
         game.update_columns(total_playtime: total_playtime,
                             recent_playtime: recent_playtime,
-                            users_count: game.users.length,
-                            user_achievements_count: game.user_achievements.length,
+                            users_count: game.users.count,
+                            user_achievements_count: game.user_achievements.count,
                             in_cache: in_cache)
       end
     end
 
-    SaveData.create(nb_games: Game.count,
-                    nb_played_games: Game.played.count,
-                    nb_achievements: UserAchievement.count,
-                    recent_playtime: UserStat.all.sum(:recent_playtime),
-                    total_playtime: UserStat.all.sum(:total_playtime))
+    SaveData.create(
+      nb_games: Game.count,
+      nb_played_games: Game.played.count,
+      nb_achievements: UserAchievement.count,
+      recent_playtime: UserStat.all.sum(:recent_playtime),
+      total_playtime: UserStat.all.sum(:total_playtime)
+    )
+
+    SaveData.transaction do
+      User.public_steam_users.each do |user|
+        SaveData.create(
+          user: user,
+          nb_games: user.games.count,
+          nb_played_games: user.played_game.count,
+          nb_achievements: user.achievements.count,
+          recent_playtime: user.recent_playtime,
+          total_playtime: user.total_playtime,
+          stepmania_playtime: user.stepmania_playtime
+        )
+      end
+    end
 
     end_script = Time.now
 

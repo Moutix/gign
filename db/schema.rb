@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160318220415) do
+ActiveRecord::Schema.define(version: 20160322205743) do
 
   create_table "achievements", force: :cascade do |t|
     t.string   "api_name",        limit: 255
@@ -32,12 +32,12 @@ ActiveRecord::Schema.define(version: 20160318220415) do
     t.datetime "start_at"
     t.datetime "started_at"
     t.datetime "ended_at"
-    t.boolean  "ongoing",    limit: 1, default: false
-    t.boolean  "accepted",   limit: 1, default: false
-    t.boolean  "effective",  limit: 1, default: false
+    t.boolean  "ongoing",              default: false
+    t.boolean  "accepted",             default: false
+    t.boolean  "effective",            default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "finish",     limit: 1, default: false
+    t.boolean  "finish",               default: false
   end
 
   add_index "borrowings", ["user_id"], name: "index_borrowings_on_user_id", using: :btree
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 20160318220415) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "monitor_link", limit: 255
-    t.boolean  "up",           limit: 1,   default: true
+    t.boolean  "up",                       default: true
     t.datetime "last_check"
   end
 
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 20160318220415) do
     t.string   "period",     limit: 255, default: "monthly"
     t.datetime "starttime"
     t.datetime "endtime"
-    t.boolean  "all_day",    limit: 1,   default: false
+    t.boolean  "all_day",                default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(version: 20160318220415) do
     t.string   "title",           limit: 255
     t.datetime "starttime"
     t.datetime "endtime"
-    t.boolean  "all_day",         limit: 1,     default: false
+    t.boolean  "all_day",                       default: false
     t.text     "description",     limit: 65535
     t.integer  "event_series_id", limit: 4
     t.datetime "created_at"
@@ -137,7 +137,7 @@ ActiveRecord::Schema.define(version: 20160318220415) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "store_url",               limit: 255
-    t.boolean  "in_cache",                limit: 1,   default: false
+    t.boolean  "in_cache",                            default: false
     t.integer  "user_achievements_count", limit: 4,   default: 0
     t.integer  "users_count",             limit: 4,   default: 0
     t.integer  "comments_count",          limit: 4,   default: 0
@@ -146,18 +146,18 @@ ActiveRecord::Schema.define(version: 20160318220415) do
   create_table "groups", force: :cascade do |t|
     t.string   "name",                limit: 255
     t.integer  "level",               limit: 4,   default: 0
-    t.boolean  "admin",               limit: 1,   default: false
-    t.boolean  "manage_supplies",     limit: 1,   default: false
-    t.boolean  "manage_packs",        limit: 1,   default: false
-    t.boolean  "manage_borrowings",   limit: 1,   default: false
-    t.boolean  "manage_users",        limit: 1,   default: false
-    t.boolean  "manage_groups",       limit: 1,   default: false
-    t.boolean  "manage_lower_groups", limit: 1,   default: false
+    t.boolean  "admin",                           default: false
+    t.boolean  "manage_supplies",                 default: false
+    t.boolean  "manage_packs",                    default: false
+    t.boolean  "manage_borrowings",               default: false
+    t.boolean  "manage_users",                    default: false
+    t.boolean  "manage_groups",                   default: false
+    t.boolean  "manage_lower_groups",             default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "manage_sections",     limit: 1,   default: false
+    t.boolean  "manage_sections",                 default: false
     t.integer  "user_id",             limit: 4
-    t.boolean  "manage_events",       limit: 1,   default: false
+    t.boolean  "manage_events",                   default: false
   end
 
   add_index "groups", ["user_id"], name: "index_groups_on_user_id", using: :btree
@@ -208,7 +208,7 @@ ActiveRecord::Schema.define(version: 20160318220415) do
     t.datetime "ended_at"
     t.integer  "nb_players",     limit: 4
     t.integer  "game_id",        limit: 4
-    t.boolean  "visible",        limit: 1,   default: true
+    t.boolean  "visible",                    default: true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "version",        limit: 255
@@ -305,7 +305,7 @@ ActiveRecord::Schema.define(version: 20160318220415) do
     t.string   "description", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "active",      limit: 1,   default: false
+    t.boolean  "active",                  default: false
     t.integer  "user_id",     limit: 4
   end
 
@@ -391,7 +391,7 @@ ActiveRecord::Schema.define(version: 20160318220415) do
     t.integer  "lan_id",     limit: 4
     t.datetime "end_at"
     t.datetime "start_at"
-    t.boolean  "has_key",    limit: 1, default: false
+    t.boolean  "has_key",              default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -406,17 +406,23 @@ ActiveRecord::Schema.define(version: 20160318220415) do
   end
 
   create_table "save_data", force: :cascade do |t|
-    t.integer  "nb_users",        limit: 4
-    t.integer  "nb_steam_users",  limit: 4
-    t.integer  "nb_online_users", limit: 4
-    t.integer  "nb_games",        limit: 4
-    t.integer  "nb_played_games", limit: 4
-    t.integer  "nb_achievements", limit: 4
-    t.integer  "recent_playtime", limit: 4
-    t.integer  "total_playtime",  limit: 4
+    t.integer  "nb_users",           limit: 4
+    t.integer  "nb_steam_users",     limit: 4
+    t.integer  "nb_online_users",    limit: 4
+    t.integer  "nb_games",           limit: 4
+    t.integer  "nb_played_games",    limit: 4
+    t.integer  "nb_achievements",    limit: 4
+    t.integer  "recent_playtime",    limit: 4
+    t.integer  "total_playtime",     limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id",            limit: 4
+    t.integer  "stepmania_playtime", limit: 4
+    t.integer  "nb_stream",          limit: 4
+    t.integer  "nb_lan_party",       limit: 4
   end
+
+  add_index "save_data", ["user_id"], name: "index_save_data_on_user_id", using: :btree
 
   create_table "section_translations", force: :cascade do |t|
     t.integer  "section_id", limit: 4,   null: false
@@ -431,15 +437,14 @@ ActiveRecord::Schema.define(version: 20160318220415) do
   add_index "section_translations", ["section_id"], name: "index_section_translations_on_section_id", using: :btree
 
   create_table "sections", force: :cascade do |t|
-    t.string   "name",                   limit: 255
-    t.string   "slug",                   limit: 255
-    t.string   "description",            limit: 255
-    t.boolean  "display",                limit: 1,   default: false
+    t.string   "name",        limit: 255
+    t.string   "slug",        limit: 255
+    t.string   "description", limit: 255
+    t.boolean  "display",                 default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id",                limit: 4
-    t.boolean  "blog",                   limit: 1,   default: false
-    t.boolean  "visible_for_disconnect", limit: 1,   default: true
+    t.integer  "user_id",     limit: 4
+    t.boolean  "blog",                    default: false
   end
 
   add_index "sections", ["user_id"], name: "index_sections_on_user_id", using: :btree
@@ -458,7 +463,7 @@ ActiveRecord::Schema.define(version: 20160318220415) do
     t.integer  "swap_total_space",    limit: 4
     t.integer  "swap_free_space",     limit: 4
     t.integer  "user_count",          limit: 4
-    t.boolean  "have_snmp",           limit: 1,                            default: false
+    t.boolean  "have_snmp",                                                default: false
     t.datetime "created_at",                                                               null: false
     t.datetime "updated_at",                                                               null: false
   end
@@ -485,7 +490,7 @@ ActiveRecord::Schema.define(version: 20160318220415) do
     t.string   "credit",            limit: 255,   default: ""
     t.text     "music",             limit: 65535
     t.text     "banner",            limit: 65535
-    t.boolean  "video",             limit: 1,     default: false
+    t.boolean  "video",                           default: false
     t.string   "beginner",          limit: 255
     t.string   "easy",              limit: 255
     t.string   "medium",            limit: 255
@@ -503,9 +508,9 @@ ActiveRecord::Schema.define(version: 20160318220415) do
     t.integer  "user_id",    limit: 4
     t.datetime "start_at"
     t.datetime "end_at"
-    t.boolean  "local",      limit: 1
-    t.boolean  "youtube",    limit: 1
-    t.boolean  "twitch",     limit: 1
+    t.boolean  "local"
+    t.boolean  "youtube"
+    t.boolean  "twitch"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
@@ -516,7 +521,7 @@ ActiveRecord::Schema.define(version: 20160318220415) do
     t.string   "name",        limit: 255,                  null: false
     t.integer  "price",       limit: 4,     default: 0
     t.text     "description", limit: 65535
-    t.boolean  "loanable",    limit: 1,     default: true
+    t.boolean  "loanable",                  default: true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id",     limit: 4
@@ -527,7 +532,7 @@ ActiveRecord::Schema.define(version: 20160318220415) do
   create_table "supply_copies", force: :cascade do |t|
     t.integer  "supply_id",  limit: 4
     t.string   "ref",        limit: 255
-    t.boolean  "loanable",   limit: 1
+    t.boolean  "loanable"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -556,8 +561,8 @@ ActiveRecord::Schema.define(version: 20160318220415) do
   create_table "surveys", force: :cascade do |t|
     t.string   "name",               limit: 255
     t.text     "description",        limit: 65535
-    t.boolean  "is_extensible",      limit: 1,     default: false
-    t.boolean  "is_active",          limit: 1,     default: false
+    t.boolean  "is_extensible",                    default: false
+    t.boolean  "is_active",                        default: false
     t.integer  "responses_per_user", limit: 4,     default: 1
     t.integer  "user_id",            limit: 4
     t.datetime "created_at"
@@ -580,7 +585,7 @@ ActiveRecord::Schema.define(version: 20160318220415) do
     t.string   "name",        limit: 255
     t.text     "description", limit: 65535
     t.integer  "lan_game_id", limit: 4
-    t.boolean  "started",     limit: 1,     default: false
+    t.boolean  "started",                   default: false
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
   end
@@ -652,9 +657,9 @@ ActiveRecord::Schema.define(version: 20160318220415) do
     t.integer  "steamid",                limit: 8
     t.string   "steam_name",             limit: 255
     t.string   "steam_url",              limit: 255
-    t.boolean  "steam_public",           limit: 1,   default: false
-    t.boolean  "online",                 limit: 1,   default: false
-    t.boolean  "to_scan",                limit: 1,   default: true
+    t.boolean  "steam_public",                       default: false
+    t.boolean  "online",                             default: false
+    t.boolean  "to_scan",                            default: true
     t.string   "sha_password",           limit: 255
     t.string   "pseudo",                 limit: 255
     t.integer  "stepmania_id",           limit: 4
