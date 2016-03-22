@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
   scope :stepmania_users, -> {where('stepmania_xp > 0')}
 
   before_save :generate_sha_password
-  before_create :regenerate_secret!
+  after_create :regenerate_secret!
 
   def ability
     @ability ||= Ability.new(self)

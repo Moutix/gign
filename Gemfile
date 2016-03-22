@@ -50,6 +50,8 @@ group :development do
   gem "better_errors"               # to understand errors - https://github.com/charliesome/better_errors
   gem "binding_of_caller"
   gem 'mailcatcher', require: false # Mail catcher - http://mailcatcher.me/
+  gem 'ruby-lint', require: false
+  gem 'rubocop', require: false
 end
 
 group :production, :staging do
