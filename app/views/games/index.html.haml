@@ -1,8 +1,10 @@
-- model_class = Game
 - if !SaveData.games.empty?
   %i= t("steam.last_update") + l(SaveData.games.last.created_at, format: :default)
 
-= render "games_resume", games: Game.all, user_achievements: UserAchievement.all, game_played: Game.all.played, user_stats: UserStat.all
+= render "games_resume", games: Game.all,
+                         user_achievements: UserAchievement.all,
+                         game_played: Game.all.played,
+                         user_stats: UserStat.all
 
 = render "last_games", games: @last_games
 
@@ -17,16 +19,28 @@
       = form_tag games_path, method: :get, class: 'form-inline' do
         .form-group
           %label= t("steam.charts.achievements.duration")
-          = number_field_tag :achievement_duration, @duration, class: 'form-control', onchange: '$(this.form).submit()'
+          = number_field_tag :achievement_duration,
+                              @duration,
+                              class: 'form-control',
+                              onchange: '$(this.form).submit()'
         .form-group
           %label= t("steam.charts.achievements.step")
-          = number_field_tag :achievement_step, @step, class: 'form-control', onchange: '$(this.form).submit()'
+          = number_field_tag :achievement_step,
+                              @step,
+                              class: 'form-control',
+                              onchange: '$(this.form).submit()'
+
       %div{id: "charts_achievements"}
   .col-md-4
     #list-achievements
       %h4= t("steam.show.last_achievements")
       = render "games/user_achievements", user_achievements: @user_achievements
-= render "charts_achievements", title: t("steam.charts.achievements.title_total.top", step: @step, duration: @duration), achievements: UserAchievement.number_achievements_by(@step.hours, Time.now-@duration.days), user_id: 0, game_id: 0
+
+= render "charts_achievements",
+  title: t('steam.charts.achievements.title_total.top', step: @step, duration: @duration),
+  achievements: UserAchievement.number_achievements_by(@step.hours, Time.now-@duration.days),
+  user_id: 0,
+  game_id: 0
 
 .row
   .col-md-6
@@ -34,16 +48,24 @@
   .col-md-6
     #charts_games_recent
 
-= render 'games/charts_games', title: t("steam.charts.games.title.total"), game_names: Game.where('total_playtime > ?', 0).order('total_playtime DESC').limit(5).pluck(:name), game_values: Game.where('total_playtime > ?', 0).order('total_playtime DESC').limit(5).pluck(:total_playtime), id: "charts_games_total"
+      = render 'games/charts_games',
+        title: t("steam.charts.games.title.total"),
+        game_names: Game.where('total_playtime > ?', 0).order('total_playtime DESC').limit(5).pluck(:name),
+        game_values: Game.where('total_playtime > ?', 0).order('total_playtime DESC').limit(5).pluck(:total_playtime),
+        id: "charts_games_total"
 
-= render 'games/charts_games', title: t("steam.charts.games.title.recent"), game_names: Game.where('recent_playtime > ?', 0).order('recent_playtime DESC').limit(5).pluck(:name), game_values: Game.where('recent_playtime > ?', 0).order('recent_playtime DESC').limit(5).pluck(:recent_playtime), id: "charts_games_recent"
-
+= render 'games/charts_games',
+  title: t("steam.charts.games.title.recent"),
+  game_names: Game.where('recent_playtime > ?', 0).order('recent_playtime DESC').limit(5).pluck(:name),
+  game_values: Game.where('recent_playtime > ?', 0).order('recent_playtime DESC').limit(5).pluck(:recent_playtime),
+  id: "charts_games_recent"
 
 .row
   .col-md-6
     = form_tag games_path, method: :get, remote: true, class: 'navbar-form navbar-left' do
-      = hidden_field_tag :act, "miku"
+      = hidden_field_tag :act, 'miku'
       = text_field_tag :q, session[:q], class: 'form-control', onkeyup: '$(this.form).submit();', placeholder: t("steam.search")
+
   .col-md-6
     .pull-right
       = link_to games_path(games: 'all', act: 'miku'), remote: true do

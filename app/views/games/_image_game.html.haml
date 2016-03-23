@@ -4,6 +4,9 @@
       - if game.need_permissions?
         %i.fa.fa-warning{"data-toggle" => "tooltip", "data-placement" => "bottom", "title" => t("steam.need_permissions")}
       - if game.in_cache 
-        %span.label.label-success= t("steam.in_cache")
-      = image_tag game.image_link
+        %span.label.label-success= t('steam.in_cache')
+      - if game.has_attribute? 'image_url'
+        = image_tag Image.url_to game.image_url, 'thumb'
+      - else
+        = image_tag game.image_link
 

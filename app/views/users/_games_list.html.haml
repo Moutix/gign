@@ -1,0 +1,12 @@
+- model_class = Game
+
+%table.table.table-striped#game-table
+  %tr
+    %th= model_class.human_attribute_name(:image)
+    %th= model_class.human_attribute_name(:recent_playtime)
+    %th= model_class.human_attribute_name(:total_playtime)
+    %th= model_class.human_attribute_name(:nb_comments)
+    %th= model_class.human_attribute_name(:nb_achievements)
+
+  = render 'users/tr_games_list', games: games
+

@@ -7,14 +7,21 @@
     = image_tag @user.avatar("thumb")
     %a.user-edit{"data-toggle" => "modal", "data-target" => "#imageModal_user_#{@user.id}"}
       = t("helpers.links.edit")
-    
+    = render 'images/form', resource: @user
+
     - if !@user.images.empty?
       \-
       %span.user-edit
-        = link_to image_path(@user.images.last), method: :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
+        = link_to image_path(@user.images.last), method: :delete,
+                                                 data: { confirm: t('.confirm', default: t('helpers.links.confirm', default: 'Are you sure?')) } do
           %i.fa.fa-trash-o
+
   .col-sm-10.user-info
-    = render 'games/games_resume', games: @user.games, game_played: @user.played_game, user_achievements: @user.user_achievements, user_stats: @user.user_stats
+    = render 'games/games_resume', games: @user.games,
+                                   game_played: @user.played_game,
+                                   user_achievements: @user.user_achievements,
+                                   user_stats: @user.user_stats
+
 
 .row
   .col-md-8
@@ -30,12 +37,35 @@
   .col-md-6
     #charts_games_recent
 
-= render 'games/charts_games', title: t("steam.charts.games.title.total"), game_names: @user.user_stats.where('user_stats.total_playtime > ?', 0).order('user_stats.total_playtime DESC').limit(10).joins(:game).pluck(:name), game_values: @user.user_stats.where('total_playtime > ?', 0).order('total_playtime DESC').limit(10).pluck(:total_playtime), id: "charts_games_total"
+= render 'games/charts_games',
+  title: t("steam.charts.games.title.total"),
+  game_names: @user.user_stats.where('user_stats.total_playtime > ?', 0).order('user_stats.total_playtime DESC').limit(10).joins(:game).pluck(:name),
+  game_values: @user.user_stats.where('total_playtime > ?', 0).order('total_playtime DESC').limit(10).pluck(:total_playtime),
+  id: "charts_games_total"
 
-= render 'games/charts_games', title: t("steam.charts.games.title.recent"), game_names: @user.user_stats.where('user_stats.recent_playtime > ?', 0).order('user_stats.recent_playtime DESC').limit(10).joins(:game).pluck(:name), game_values: @user.user_stats.where('recent_playtime > ?', 0).order('recent_playtime DESC').limit(10).pluck(:recent_playtime), id: "charts_games_recent"
+= render 'games/charts_games',
+  title: t("steam.charts.games.title.recent"),
+  game_names: @user.user_stats.where('user_stats.recent_playtime > ?', 0).order('user_stats.recent_playtime DESC').limit(10).joins(:game).pluck(:name),
+  game_values: @user.user_stats.where('recent_playtime > ?', 0).order('recent_playtime DESC').limit(10).pluck(:recent_playtime),
+  id: "charts_games_recent"
 
-= render "games/charts_achievements", title: t("steam.charts.achievements.title_total.user"), achievements: @user.user_achievements.number_achievements_by(1.days), user_id: @user.id, game_id: 0
+= render "games/charts_achievements",
+  title: t("steam.charts.achievements.title_total.user"),
+  achievements: @user.user_achievements.number_achievements_by(1.days),
+  user_id: @user.id,
+  game_id: 0
 
+= form_tag steam_user_path(@user), method: :get, remote: true, class: 'form-horizontal' do
+  = hidden_field_tag :act, 'miku'
+  = text_field_tag :q, params[:q], class: 'form-control',
+    onkeyup: '$(this.form).submit();', placeholder: t("steam.search")
 
+%hr
 
-= render 'images/form', resource: @user
+#content
+  = render 'games_list', games: @games
+
+- if @games.current_page < @games.total_pages
+  #view-more
+    = link_to 'View More', steam_user_path(page: @games.current_page + 1, append: 'miku', q: params[:q]), remote: true
+

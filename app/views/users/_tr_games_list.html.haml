@@ -1,0 +1,7 @@
+- games.each do |game|
+  %tr
+    %td= render 'games/image_game', game: game
+    %td= distance_of_hours_in_words game.user_recent_playtime
+    %td= distance_of_hours_in_words game.user_total_playtime
+    %td.text-center= game.comments_count
+    %td.text-center= game.nb_user_achievements

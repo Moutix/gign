@@ -50,7 +50,7 @@ group :development do
   gem "better_errors"               # to understand errors - https://github.com/charliesome/better_errors
   gem "binding_of_caller"
   gem 'mailcatcher', require: false # Mail catcher - http://mailcatcher.me/
-  gem 'haml-lint', require: false
+  gem 'haml_lint', require: false, github: 'brigade/haml-lint'
   gem 'rubocop', require: false
 end
 

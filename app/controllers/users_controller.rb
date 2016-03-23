@@ -97,7 +97,11 @@ class UsersController < ApplicationController
   
   def steam
     authorize! :steam, @user
-    add_breadcrumb t("navbar.steam.link")
+    add_breadcrumb t('navbar.steam.link')
+
+    @games = Game.user_games(@user.id).page(params[:page])
+
+    @games = @games.where('games.name LIKE ?', "%#{params[:q]}%") if params[:q]
   end
 
   def stream

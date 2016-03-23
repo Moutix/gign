@@ -19,13 +19,12 @@
 #
 
 class GamesController < ApplicationController
-
   before_action :set_game, only: [:show, :achievements, :ask_permission, :follow]
 
   before_action do
     add_breadcrumb_if_can t("activerecord.models.game", count: 2), games_path, :index, Game
   end
-  before_action only: [:show, :achievements] do 
+  before_action only: [:show, :achievements] do
     add_breadcrumb_if_can @game.name, game_path(@game), :show, @game
   end
 
@@ -38,7 +37,7 @@ class GamesController < ApplicationController
     else
       @duration = 15
     end
-  
+
     if params[:achievement_step] && params[:achievement_step] =~ /^\d+$/
       @step = params[:achievement_step].to_i
     else
@@ -49,15 +48,12 @@ class GamesController < ApplicationController
 
     if !session[:q].blank?
       @games = Game.where("name LIKE ?", "%#{session[:q]}%").includes(:images).page(params[:page])
+    elsif session[:games] == 'all'
+      @games = Game.includes(:images).all.page(params[:page])
     else
-      if session[:games] == 'all'
-        @games = Game.includes(:images).all.page(params[:page])
-      else
-        @games = Game.includes(:images).order(total_playtime: :desc).page(params[:page])
-      end
+      @games = Game.includes(:images).order(total_playtime: :desc).page(params[:page])
     end
     @last_games = Game.where('recent_playtime > 0').order('rand()').includes(:images).limit(5)
-
   end
 
   def show
@@ -71,7 +67,7 @@ class GamesController < ApplicationController
       current_user.box.read_notification(@game)
     end
   end
-  
+
   def achievements
     add_breadcrumb t("activerecord.models.achievement", count: 2)
   end

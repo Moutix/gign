@@ -91,33 +91,31 @@ class Image < ActiveRecord::Base
     rescue
       false
     end
-
   end
 
   def thumb_url
-    turl = url.split('/')
-    turl[turl.length-1] = 'thumb_' + turl.last
-    turl.join('/')
+    Image.url_to url, 'thumb'
   end
-  
+
   def medium_url
-    turl = url.split('/')
-    turl[turl.length-1] = 'medium_' + turl.last
-    turl.join('/')
+    Image.url_to url, 'medium'
   end
-  
+
   def mini_url
+    Image.url_to url, 'mini'
+  end
+
+  def self.url_to(url, size)
     turl = url.split('/')
-    turl[turl.length-1] = 'mini_' + turl.last
+    turl[turl.length - 1] = "#{size}_#{turl.last}"
     turl.join('/')
   end
 
   def copy_to(imageable)
     uploader = ImageUploader.new(imageable)
 
-    
     begin
-      File.open('public' + self.url, 'r') do |file|
+      File.open('public' + url, 'r') do |file|
         uploader.store!(file)
       end
     rescue
