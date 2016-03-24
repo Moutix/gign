@@ -42,16 +42,41 @@ var ready = function() {
                     text: null
                     }
             },
-            yAxis: {
+            yAxis: [{
+                min: 0,
                 title: {
                     text: '<%= I18n.t("steam.charts.achievements.title.yaxis")%>'
                 }
-            },
+            }<%if defined? additional_data%>,
+                <% additional_data.each do |key, value|%>
+                {
+                    min: 0,
+                    max: <%= value.max_by{|a| a.last}.last%>,
+                    title: {
+                        text: '<%= key %>'
+                    },
+                    opposite: true,
+                }
+                <%= key == additional_data.keys.last ? '' : ',' %>
+                <% end %>
+            <%end%>
+            ],
             series: [{
                 type: 'line',
                 name: '<%= I18n.t("steam.charts.achievements.title.yaxis")%>',
                 data: <%=achievements.map{|k, v| [(k.to_i+k.utc_offset)*1000, v]}%>
                 }
+            <%if defined? additional_data%>
+                ,
+                <% additional_data.each do |key, value|%>
+                {
+                type: 'spline',
+                name: '<%= key%>',
+                data: <%=value%>
+                }
+                <%= key == additional_data.keys.last ? '' : ',' %>
+                <% end %>
+            <%end%>
             ]
         });
     });
@@ -59,6 +84,5 @@ var ready = function() {
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
-
 
 </script>

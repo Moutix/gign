@@ -20,6 +20,8 @@
 #
 
 class SaveData < ActiveRecord::Base
+  include ChartConcern
+
   belongs_to :user
 
   scope :general, -> { where('nb_users IS NOT NULL AND user_id IS NULL') }

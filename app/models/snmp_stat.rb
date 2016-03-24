@@ -22,5 +22,7 @@
 #
 
 class SnmpStat < ActiveRecord::Base
+  include ChartConcern
+
   belongs_to :dedicated_server
 end
