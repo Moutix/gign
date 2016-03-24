@@ -115,17 +115,16 @@ class GamesController < ApplicationController
   def follow
     authorize! :follow, @game
     @game.followers << current_user
-    
+
     respond_to do |format|
-      format.html{redirect_to @game}
+      format.html { redirect_to @game }
       format.js
     end
   end
 
   private
-    
-    def set_game
-      @game = Game.find(params[:id])
-    end
 
-end 
+  def set_game
+    @game = Game.find_by(slug: params[:id])
+  end
+end

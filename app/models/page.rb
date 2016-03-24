@@ -39,8 +39,6 @@ class Page < ActiveRecord::Base
   delegate :name, :email, :fullname,
     to: :user, prefix: true, allow_nil: true
 
-
-  
   def to_param
     slug
   end

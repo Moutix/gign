@@ -68,18 +68,21 @@ class User < ActiveRecord::Base
   has_many :stepmania_packs, through: :stepmania_songs
   has_many :save_datas
 
-  scope :steam_users, -> {where('steamid IS NOT NULL')}
-  scope :public_steam_users, -> {where('steamid IS NOT NULL AND steam_public = ?', true)}
-  scope :online, -> {where(online: true)}
-  scope :stepmania_users, -> {where('stepmania_xp > 0')}
+  scope :steam_users, -> { where('steamid IS NOT NULL') }
+  scope :public_steam_users, -> { where('steamid IS NOT NULL AND steam_public = ?', true) }
+  scope :online, -> { where(online: true) }
+  scope :stepmania_users, -> { where('stepmania_xp > 0') }
+
+  validates :pseudo, uniqueness: { case_sentitive: false }
 
   before_save :generate_sha_password
+  before_save :set_slug
   after_create :regenerate_secret!
 
   def ability
     @ability ||= Ability.new(self)
   end
-  delegate :can?, :cannot?, :to => :ability
+  delegate :can?, :cannot?, to: :ability
 
   def achievements_in(game)
     self.achievements.where(game: game)
@@ -126,7 +129,7 @@ class User < ActiveRecord::Base
         test = group.level
       end
     end
-    return test
+    test
   end
 
   def fullname
@@ -146,7 +149,7 @@ class User < ActiveRecord::Base
     active_basket.supplies
   end
 
-  def nb_supplies_in_basket supply
+  def nb_supplies_in_basket(supply)
     request = active_basket.supply_requests.find_by(supply: supply)
     if request
       request.nb_supplies
@@ -174,11 +177,11 @@ class User < ActiveRecord::Base
   def confirmed?
     self.confirmed_at.nil? ? false : true
   end
-  
+
   def confirm!
     self.update_column(:confirmed_at, Time.now)
   end
-  
+
   def avatar(size="mini")
     if !self.images.empty?
       case size
@@ -199,19 +202,19 @@ class User < ActiveRecord::Base
   def total_playtime
     user_stats.sum(:total_playtime)
   end
+
   def recent_playtime
     user_stats.sum(:recent_playtime)
   end
-  
+
   def stepmania_playtime
     self.open_smo_stats.joins(:open_smo_song).pluck('open_smo_songs.time').sum()
   end
 
-
   def self.nolife
     self.joins(:user_stats).group('users.id').order('SUM(user_stats.recent_playtime) ASC').last
   end
-  
+
   def self.polard
     self.joins(:user_stats).group('users.id').order('SUM(user_stats.recent_playtime) ASC, SUM(user_stats.total_playtime) ASC').first
   end
@@ -220,17 +223,27 @@ class User < ActiveRecord::Base
     self.update_columns(secret: SecureRandom.hex(8))
   end
 
-  private
-    def follow_this_game(game)
-      game.followers << self
-    end
+  def to_param
+    slug
+  end
 
-    def generate_sha_password
-      if !self.temp_password.nil?
-        sha = Digest::MD5.new
-        sha.update(self.temp_password)
-        self.sha_password = sha.hexdigest.upcase
-        self.sha1_password = ('{SHA}' + Base64.encode64(Digest::SHA1.digest(self.temp_password))).gsub("\n", "")
-      end
+  private
+
+  def set_slug
+    self.pseudo = nil if pseudo.blank?
+    self.slug = pseudo ? pseudo.parameterize : id
+  end
+
+  def follow_this_game(game)
+    game.followers << self
+  end
+
+  def generate_sha_password
+    if !self.temp_password.nil?
+      sha = Digest::MD5.new
+      sha.update(self.temp_password)
+      self.sha_password = sha.hexdigest.upcase
+      self.sha1_password = ('{SHA}' + Base64.encode64(Digest::SHA1.digest(self.temp_password))).gsub("\n", "")
     end
+  end
 end

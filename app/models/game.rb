@@ -61,6 +61,8 @@ class Game < ActiveRecord::Base
   delegate :udp, :tcp,
            to: :port_forwarding, prefix: true, allow_nil: true
 
+  before_save :set_slug
+
   def image
     images.first
   end
@@ -101,5 +103,19 @@ class Game < ActiveRecord::Base
 
   def game_scanner
     self.lan_parties.group(:game_scanner).uniq.pluck(:game_scanner).first
+  end
+
+  def to_param
+    slug
+  end
+
+  private
+
+  def set_slug
+    if Games.where('id != ? AND slug = ?', id, name.parameterize).count > 0
+      self.slug = id
+    else
+      self.slug = name.parameterize
+    end
   end
 end
