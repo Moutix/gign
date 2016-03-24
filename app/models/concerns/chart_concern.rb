@@ -6,7 +6,7 @@ module ChartConcern
       where('created_at > ?', Time.now - duration)
         .group(time_group(duration))
         .order(created_at: :asc)
-        .pluck("UNIX_TIMESTAMP(created_at)*1000,
+        .pluck("(UNIX_TIMESTAMP(created_at) + #{Time.now.utc_offset})*1000,
                 AVG(#{field})*#{mult}")
         .map { |a, b| [a.to_i, b.to_i] }
     }
