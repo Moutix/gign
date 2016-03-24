@@ -126,5 +126,6 @@ class GamesController < ApplicationController
 
   def set_game
     @game = Game.find_by(slug: params[:id])
+    render 'shared/not_found', status: 404 unless @game
   end
 end

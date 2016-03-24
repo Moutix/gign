@@ -144,6 +144,7 @@ class UsersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.find_by(slug: params[:id])
+    render 'shared/not_found', status: 404 unless @user
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
