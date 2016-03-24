@@ -9,7 +9,7 @@ gem 'sqlite3'
 gem 'mysql2'
 
 # -- Visual
-gem 'haml'
+gem 'hamlit'
 gem 'less-rails'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'font-awesome-rails'
