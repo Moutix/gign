@@ -1,12 +1,12 @@
 // Anonymous "self-invoking" function
 (function() {
-    var startingTime = new Date().getTime();
     // Load the script
+    if (! window.jQuery) {
     var script = document.createElement("SCRIPT");
-    script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js';
+    script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js';
     script.type = 'text/javascript';
     document.getElementsByTagName("head")[0].appendChild(script);
-
+    }
     // Poll for jQuery to come into existance
     var checkReady = function(callback) {
         if (window.jQuery) {
