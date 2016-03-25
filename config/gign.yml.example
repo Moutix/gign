@@ -1,4 +1,5 @@
 production:
+  contact: "contact@mail.com"
   steam:
     key: "Yout steam API key"
   stepmania:
@@ -16,6 +17,7 @@ production:
     dash_url: ""
 
 development:
+  contact: "contact@mail.com"
   steam:
     key: "Yout steam API key"
   stepmania:

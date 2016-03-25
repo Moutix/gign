@@ -56,7 +56,7 @@ end
 
 group :production, :staging do
   # Configuration in config/environnements/production.rb
-  gem 'exception_notification', github: 'smartinez87/exception_notification' # exception catching - https://github.com/smartinez87/exception_notification
+  gem 'exception_notification'
 end
 
 # user management
