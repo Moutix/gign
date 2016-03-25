@@ -37,7 +37,6 @@ class MonitoringService
 
     i = 0
     response.each_varbind do |vb|
-      p vb.name.to_s + ' -> ' + vb.value.to_s
       oid = oids[i]
       result[oids[i]] = if ['sysDescr.0', 'sysName.0'].include?(oid)
                           vb.value.to_s
