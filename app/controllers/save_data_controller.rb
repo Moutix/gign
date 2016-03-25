@@ -21,7 +21,7 @@
 
 class SaveDataController < ApplicationController
   def index
-    @chart_online_users = SaveData.general.chart_data('nb_online_users', 30.days, 1)
+    @chart_online_users = SaveData.general.chart_data('nb_online_users', 5.years, 1)
 
     @chart_recent_playtime = SaveData.games.chart_data('recent_playtime/60', 5.years, 1)
 
