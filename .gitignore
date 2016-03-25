@@ -17,8 +17,7 @@
 /public/uploads
 /public/google*
 /public/assets/*
-/config/application.rb
-/config/initializers/constant.rb
 /config/initializers/secret_token.rb
 /config/database.yml
+/config/gign.yml
 /public/sitemap.xml.gz

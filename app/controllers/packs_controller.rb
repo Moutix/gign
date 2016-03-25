@@ -13,14 +13,13 @@
 
 class PacksController < ApplicationController
   before_action :set_pack, only: [:show, :update, :destroy, :add_supply, :activate, :add_to_basket]
-  
+
   before_action do
-    add_breadcrumb_if_can t("activerecord.models.pack", count: 2), packs_path, :index, Pack
+    add_breadcrumb_if_can t('activerecord.models.pack', count: 2), packs_path, :index, Pack
   end
-  before_action only: [:show] do 
+  before_action only: [:show] do
     add_breadcrumb_if_can @pack.name, pack_path(@pack), :show, @pack
   end
-
 
   def index
     authorize! :index, Pack
@@ -30,7 +29,7 @@ class PacksController < ApplicationController
   def show
     authorize! :show, @pack
   end
-  
+
   def create
     authorize! :create, Pack
     @pack = Pack.new(pack_params)
@@ -38,7 +37,7 @@ class PacksController < ApplicationController
 
     respond_to do |format|
       if @pack.save
-        format.html { redirect_to @pack, flash: {notice: 'Pack was successfully created.'} }
+        format.html { redirect_to @pack, flash: { notice: 'Pack was successfully created.' } }
         format.json { render action: 'show', status: :created, location: @path }
       else
         format.html { render action: 'index' }
@@ -83,19 +82,19 @@ class PacksController < ApplicationController
       flash[:error] = t('errors.pack.add_supply.no_supply')
     end
     respond_to do |format|
-      format.html {redirect_to @pack}
+      format.html { redirect_to @pack }
     end
   end
-  
+
   def remove_from_pack
     authorize! :remove_from_pack, Pack
     @packs_supply = PacksSupply.find(params[:id])
-    flash[:info] = t("info.pack.remove_from_pack", supply_name: @packs_supply.name)
-   
-    @packs_supply.destroy 
-    
+    flash[:info] = t('info.pack.remove_from_pack', supply_name: @packs_supply.name)
+
+    @packs_supply.destroy
+
     respond_to do |format|
-      format.html { redirect_to @packs_supply.pack}
+      format.html { redirect_to @packs_supply.pack }
     end
   end
 
@@ -106,21 +105,21 @@ class PacksController < ApplicationController
     @packs_supply.pack.add_supply(@packs_supply.supply, params[:packs_supply][:nb_supplies].to_i)
 
     respond_to do |format|
-      format.html { redirect_to @packs_supply.pack}
+      format.html { redirect_to @packs_supply.pack }
     end
   end
 
   def activate
     authorize! :activate, @pack
     @pack.activate
-  
-    if @pack.active
-      flash[:info] = t("info.pack.activate")
-    else
-      flash[:info] = t("info.pack.desactivate")
-    end
+
+    flash[:info] = if @pack.active
+                     t('info.pack.activate')
+                   else
+                     t('info.pack.desactivate')
+                   end
     respond_to do |format|
-      format.html { redirect_to @pack}
+      format.html { redirect_to @pack }
     end
   end
 
@@ -128,24 +127,24 @@ class PacksController < ApplicationController
     authorize! :add_to_basket, @pack
     respond_to do |format|
       if @pack.add_to_basket(current_user.active_basket)
-        flash[:notice] = t("notice.pack.add_to_basket")
-        format.html {redirect_to current_user.active_basket}
+        flash[:notice] = t('notice.pack.add_to_basket')
+        format.html { redirect_to current_user.active_basket }
       else
-        flash[:error] = t("errors.pack.add_to_basket")
-        format.html {redirect_to :back}
+        flash[:error] = t('errors.pack.add_to_basket')
+        format.html { redirect_to :back }
       end
     end
   end
 
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pack
-      @pack = Pack.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def pack_params
-      params.require(:pack).permit(:name, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_pack
+    @pack = Pack.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def pack_params
+    params.require(:pack).permit(:name, :description)
+  end
 end

@@ -16,9 +16,9 @@ class LansController < ApplicationController
   before_action :set_lan, only: [:show, :update, :destroy, :add_room, :add_game]
 
   before_action only: [:index, :show] do
-    add_breadcrumb_if_can "Lans", lans_path, :index, Lan
+    add_breadcrumb_if_can 'Lans', lans_path, :index, Lan
   end
-  before_action only: [:show] do 
+  before_action only: [:show] do
     add_breadcrumb_if_can @lan.name, lan_path(@lan), :show, @lan
   end
 
@@ -27,18 +27,13 @@ class LansController < ApplicationController
     @lans = Lan.all.order(start_at: :desc, end_at: :desc, created_at: :desc)
   end
 
-
   # GET /lans/1
   # GET /lans/1.json
   def show
     authorize! :show, @lan
-    if params[:edit] == '1'
-      @edit = true
-    end
+    @edit = true if params[:edit] == '1'
     @available_games = (Game.order(name: :asc).pluck(:name) + LanParty.where('game_id IS NULL').group(:game_scanner).order(game_scanner: :asc).pluck(:game_scanner) + LanGame.where('game_id IS NULL AND game_scanner IS NULL').order(name: :asc).pluck(:name)).uniq.compact.sort
-
   end
-
 
   # POST /lans
   # POST /lans.json
@@ -107,16 +102,15 @@ class LansController < ApplicationController
     end
   end
 
-
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_lan
-      @lan = Lan.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def lan_params
-      params.require(:lan).permit(:name, :description, :start_at, :end_at)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_lan
+    @lan = Lan.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def lan_params
+    params.require(:lan).permit(:name, :description, :start_at, :end_at)
+  end
 end

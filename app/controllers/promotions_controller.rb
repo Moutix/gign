@@ -12,11 +12,11 @@
 
 class PromotionsController < ApplicationController
   before_action :set_promotion, only: [:update, :destroy]
-  
+
   before_action do
-    add_breadcrumb_if_can t("footer.team"), promotions_path, :index, Promotion
+    add_breadcrumb_if_can t('footer.team'), promotions_path, :index, Promotion
   end
- 
+
   # GET /promotions
   # GET /promotions.json
   def index
@@ -56,13 +56,14 @@ class PromotionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_promotion
-      @promotion = Promotion.find_by(year: params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def promotion_params
-      params.require(:promotion).permit(:name, :year, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_promotion
+    @promotion = Promotion.find_by(year: params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def promotion_params
+    params.require(:promotion).permit(:name, :year, :description)
+  end
 end

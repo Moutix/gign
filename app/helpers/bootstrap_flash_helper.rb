@@ -1,11 +1,11 @@
 module BootstrapFlashHelper
   # Bootstrap 2
   # Info, Notice, Error, Success
-  ALERT_TYPES_B2 = [:error, :info, :success, :notice]
+  ALERT_TYPES_B2 = [:error, :info, :success, :notice].freeze
 
   # Bootstrap 3
   # Info, Warning, Danger, Success
-  ALERT_TYPES = [:danger, :info, :success, :warning]
+  ALERT_TYPES = [:danger, :info, :success, :warning].freeze
 
   def bootstrap_flash
     flash_messages = []
@@ -15,22 +15,22 @@ module BootstrapFlashHelper
 
       # Convert Bootstrap 3 class to B2
       type = case type.to_sym
-      when :notice, :success
-        :success
-      when :alert, :danger
-        :error
-      else
-        type
+             when :notice, :success
+               :success
+             when :alert, :danger
+               :error
+             else
+               type
       end
-      
-      #next unless ALERT_TYPES_B2.include?(type.to_sym)
+
+      # next unless ALERT_TYPES_B2.include?(type.to_sym)
       Array(message).each do |msg|
         text = content_tag(:script, "
           $(function(){
           $.pnotify({
           title: \"#{msg.html_safe}\",
           text: '',
-          type: '#{type.to_s}',
+          type: '#{type}',
           nonblock: {
           nonblock: true,
           nonblock_opacity: .2

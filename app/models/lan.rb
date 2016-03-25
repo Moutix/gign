@@ -22,12 +22,12 @@ class Lan < ActiveRecord::Base
   has_many :lan_games, through: :lan_game_relations
   has_many :tournaments, through: :lan_games
 
-  has_many :comments, :class_name => "Comment", :as => "commentable", dependent: :destroy
-  has_many :resource_followers, class_name: "ResourceFollower", as: "resource", dependent: :destroy
-  has_many :followers, through: :resource_followers, class_name: "User", source: 'user'
+  has_many :comments, class_name: 'Comment', as: 'commentable', dependent: :destroy
+  has_many :resource_followers, class_name: 'ResourceFollower', as: 'resource', dependent: :destroy
+  has_many :followers, through: :resource_followers, class_name: 'User', source: 'user'
 
   delegate :name,
-    to: :room, prefix: true, allow_nil: true
+           to: :room, prefix: true, allow_nil: true
 
   def add_game(game_name)
     # Find if lanGame already exist
@@ -37,11 +37,11 @@ class Lan < ActiveRecord::Base
       lan_game = LanGame.new
     end
 
-    #Find a game with the same name
+    # Find a game with the same name
     game = Game.find_by(name: game_name)
     lan_game.game = game
 
-    #Find a game_scanner in lan_party
+    # Find a game_scanner in lan_party
     if game && game.has_lan_parties?
       lan_game.game_scanner = game.game_scanner
     else
@@ -49,12 +49,12 @@ class Lan < ActiveRecord::Base
       lan_game.game_scanner = game_scanner unless game_scanner.empty?
     end
 
-    #Assign a name
+    # Assign a name
     lan_game.name = game_name unless new == false
 
     return false unless lan_game.save
 
-    #Create the relationship between lan_game && game_name
+    # Create the relationship between lan_game && game_name
     lan_game_relation = LanGameRelation.create(name: game_name, lan: self, lan_game: lan_game)
 
     lan_game_images = lan_game.images
@@ -64,6 +64,6 @@ class Lan < ActiveRecord::Base
       game.image.copy_to(lan_game_relation)
     end
 
-    return true
+    true
   end
 end

@@ -14,25 +14,24 @@
 #
 
 class StepmaniaPacksController < ApplicationController
-
   before_action :set_stepmania_pack, only: [:show]
 
   before_action do
-    add_breadcrumb_if_can "Stepmania", stepmania_packs_path, :index, StepmaniaPack
+    add_breadcrumb_if_can 'Stepmania', stepmania_packs_path, :index, StepmaniaPack
   end
-  before_action only: [:show] do 
+  before_action only: [:show] do
     add_breadcrumb_if_can @stepmania_pack.name, stepmania_pack_path(@stepmania_pack), :show, @stepmania_pack
   end
 
   def index
-    @available_type = ["All"] + StepmaniaPack.group(:game_type).pluck(:game_type)
+    @available_type = ['All'] + StepmaniaPack.group(:game_type).pluck(:game_type)
 
     session[:sq] = params[:sq] if params[:sq]
     session[:sqa] = params[:sqa] if params[:sqa]
-    session[:sqe] = ((params[:sqe] =~ /\d+/) ?  params[:sqe].to_i : '') if (params[:sqe] || session[:sqe].nil?) # Easier query
-    session[:sqh] = ((params[:sqh] =~ /\d+/) ?  params[:sqh].to_i : '') if (params[:sqh] || session[:sqh].nil?)# Harder query
-    session[:sqp] = params[:sqp].blank? ? '' : params[:sqp]         # Pack query
-    session[:sqt] = @available_type.include?(params[:sqt]) ? params[:sqt] : "All" if params[:sqt]
+    session[:sqe] = ((params[:sqe] =~ /\d+/) ?  params[:sqe].to_i : '') if params[:sqe] || session[:sqe].nil? # Easier query
+    session[:sqh] = ((params[:sqh] =~ /\d+/) ?  params[:sqh].to_i : '') if params[:sqh] || session[:sqh].nil? # Harder query
+    session[:sqp] = params[:sqp].blank? ? '' : params[:sqp] # Pack query
+    session[:sqt] = @available_type.include?(params[:sqt]) ? params[:sqt] : 'All' if params[:sqt]
 
     if !session[:sq].blank? || !session[:sqa].blank?
       @stepmania_packs = StepmaniaPack.easier_than(session[:sqe]).harder_than(session[:sqh]).search_name(session[:sqp]).with_type(session[:sqt]).search_songs_name(session[:sq]).search_songs_artist(session[:sqa]).uniq.page(params[:page])
@@ -53,9 +52,8 @@ class StepmaniaPacksController < ApplicationController
   end
 
   private
-    
-    def set_stepmania_pack
-      @stepmania_pack = StepmaniaPack.find(params[:id])
-    end
 
-end 
+  def set_stepmania_pack
+    @stepmania_pack = StepmaniaPack.find(params[:id])
+  end
+end

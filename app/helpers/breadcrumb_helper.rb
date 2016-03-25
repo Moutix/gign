@@ -14,10 +14,12 @@ module BreadcrumbHelper
       add_breadcrumb user.name
     end
   end
+
   def add_new_breadcrumb
-    add_breadcrumb t("breadcrumb.new")
+    add_breadcrumb t('breadcrumb.new')
   end
+
   def add_edit_breadcrumb
-    add_breadcrumb t("breadcrumb.edit")
+    add_breadcrumb t('breadcrumb.edit')
   end
 end

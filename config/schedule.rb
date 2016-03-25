@@ -21,18 +21,18 @@
 #
 set :output, 'log/cron.log'
 
-every "0 0,9,12,15,18,21 * * *" do
-  runner "SteamService.update_all!"
+every '0 0,9,12,15,18,21 * * *' do
+  runner 'SteamService.update_all!'
 end
 
 every 5.minutes do
-  runner "CronService.do_quick_job!"
+  runner 'CronService.do_quick_job!'
 end
 
-every 1.day, :at => '6am' do
-  runner "FirewallService.update!"  
+every 1.day, at: '6am' do
+  runner 'FirewallService.update!'
 end
 
-every 1.day, :at => '7:00 am' do
-  rake "-s sitemap:refresh"
+every 1.day, at: '7:00 am' do
+  rake '-s sitemap:refresh'
 end

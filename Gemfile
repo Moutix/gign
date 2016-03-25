@@ -27,7 +27,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
- gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -47,8 +47,8 @@ group :development do
   gem 'haml-rails' # Genere les view Haml
   gem 'hpricot'
   gem 'annotate'
-  gem "better_errors"               # to understand errors - https://github.com/charliesome/better_errors
-  gem "binding_of_caller"
+  gem 'better_errors'               # to understand errors - https://github.com/charliesome/better_errors
+  gem 'binding_of_caller'
   gem 'mailcatcher', require: false # Mail catcher - http://mailcatcher.me/
   gem 'haml_lint', require: false, github: 'brigade/haml-lint'
   gem 'rubocop', require: false
@@ -56,9 +56,8 @@ end
 
 group :production, :staging do
   # Configuration in config/environnements/production.rb
-  gem "exception_notification", github: 'smartinez87/exception_notification'  # exception catching - https://github.com/smartinez87/exception_notification
+  gem 'exception_notification', github: 'smartinez87/exception_notification' # exception catching - https://github.com/smartinez87/exception_notification
 end
-
 
 # user management
 
@@ -67,7 +66,7 @@ gem 'cancan'
 
 # upload files
 gem 'carrierwave'
-gem "mini_magick"
+gem 'mini_magick'
 
 # make beautiful entity relation diagram
 gem 'rb-readline'
@@ -86,26 +85,25 @@ gem 'steam-condenser'
 # multipage
 gem 'kaminari'
 
-#to dump/load database
+# to dump/load database
 gem 'yaml_db', github: 'jetthoughts/yaml_db', ref: 'fb4b6bd7e12de3cffa93e0a298a1e5253d7e92ba'
 
-#to parse http website (use in services/firewall_services)
+# to parse http website (use in services/firewall_services)
 gem 'mediawiki_api'
 gem 'mechanize'
 gem 'nokogiri'
 gem 'whenever'
 
-#generate sitemap
+# generate sitemap
 gem 'sitemap_generator'
 
-#callendar
-#gem 'fullcalendar_engine', github: 'ningirsu/fullcalendar-rails-engine'
-#gem 'fullcalendar_engine', github: 'ningirsu/fullcalendar-rails-engine'
+# callendar
+# gem 'fullcalendar_engine', github: 'ningirsu/fullcalendar-rails-engine'
+# gem 'fullcalendar_engine', github: 'ningirsu/fullcalendar-rails-engine'
 
-#Monitoring
+# Monitoring
 gem 'net-ping'
 gem 'snmp'
-
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

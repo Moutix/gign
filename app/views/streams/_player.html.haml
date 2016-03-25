@@ -1,4 +1,7 @@
-= render 'streams/stream_js', video: "stream_user_#{user.id}", time_url: "#{GLOBALCONSTANT::STREAM_TIME_URL}", mpd_url: "#{GLOBALCONSTANT::STREAM_DASH_URL}/#{user.pseudo}.mpd"
+= render 'streams/stream_js',
+  video: "stream_user_#{user.id}",
+  time_url: "#{Rails.configuration.x.gign['stream']['time']}",
+  mpd_url: "#{Rails.configuration.x.gign['stream']['dash']}/#{user.pseudo}.mpd"
 
 .center
   %video.video-js.vjs-default-skin#stream[user]{controls: "true", height: "360px", width: "640px", preload: "none"}

@@ -22,14 +22,14 @@ class Game < ActiveRecord::Base
   acts_as_commentable
   paginates_per 30
 
-  has_many :comments, :class_name => "Comment", :as => "commentable", dependent: :destroy
-  has_many :users, through: :user_stats, :counter_cache => true
+  has_many :comments, class_name: 'Comment', as: 'commentable', dependent: :destroy
+  has_many :users, through: :user_stats, counter_cache: true
   has_many :user_stats, dependent: :destroy
-  has_many :images, :class_name => "Image", :as => "imageable", dependent: :destroy
-  has_many :user_achievements, through: :achievements, :counter_cache => true
+  has_many :images, class_name: 'Image', as: 'imageable', dependent: :destroy
+  has_many :user_achievements, through: :achievements, counter_cache: true
   has_many :achievements
-  has_many :resource_followers, class_name: "ResourceFollower", as: "resource", dependent: :destroy
-  has_many :followers, through: :resource_followers, class_name: "User", source: 'user'
+  has_many :resource_followers, class_name: 'ResourceFollower', as: 'resource', dependent: :destroy
+  has_many :followers, through: :resource_followers, class_name: 'User', source: 'user'
   has_one :port_forwarding
   has_many :lan_parties
 
@@ -98,11 +98,11 @@ class Game < ActiveRecord::Base
   end
 
   def has_lan_parties?
-    !self.lan_parties.empty?
+    !lan_parties.empty?
   end
 
   def game_scanner
-    self.lan_parties.group(:game_scanner).uniq.pluck(:game_scanner).first
+    lan_parties.group(:game_scanner).uniq.pluck(:game_scanner).first
   end
 
   def to_param

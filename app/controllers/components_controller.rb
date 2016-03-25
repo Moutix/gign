@@ -71,20 +71,20 @@ class ComponentsController < ApplicationController
   end
 
   private
- 
-    def load_computer
-      @computer = Computer.find(params[:computer_id])
-      render 'shared/not_found', :status => 404 unless @computer
-    end
- 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_component
-      @component = @computer.components.find(params[:id])
-      render 'shared/not_found', :status => 404 unless @component
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def component_params
-      params.require(:component).permit(:name, :description, :price, :link, :computer_id)
-    end
+  def load_computer
+    @computer = Computer.find(params[:computer_id])
+    render 'shared/not_found', status: 404 unless @computer
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_component
+    @component = @computer.components.find(params[:id])
+    render 'shared/not_found', status: 404 unless @component
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def component_params
+    params.require(:component).permit(:name, :description, :price, :link, :computer_id)
+  end
 end

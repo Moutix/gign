@@ -36,16 +36,14 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :confirm, :steam, :regenerate_secret, :stream]
 
-  skip_before_filter :verify_authenticity_token, :only => :steamid
-  
+  skip_before_filter :verify_authenticity_token, only: :steamid
+
   before_action only: :index do
-    add_breadcrumb_if_can t("activerecord.models.user", count: 2), users_path, :index, User
+    add_breadcrumb_if_can t('activerecord.models.user', count: 2), users_path, :index, User
   end
-  before_action only: [:show, :steam, :stream] do 
+  before_action only: [:show, :steam, :stream] do
     add_user_breadcrumb(@user)
   end
-
- 
 
   # GET /users
   # GET /users.json
@@ -86,7 +84,7 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def confirm
     authorize! :confirm, @user
     @user.confirm!
@@ -94,7 +92,7 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
     end
   end
-  
+
   def steam
     authorize! :steam, @user
     add_breadcrumb t('navbar.steam.link')
@@ -106,7 +104,7 @@ class UsersController < ApplicationController
 
   def stream
     authorize! :stream, @user
-    add_breadcrumb t("navbar.stream.link")
+    add_breadcrumb t('navbar.stream.link')
   end
 
   def regenerate_secret
@@ -120,11 +118,11 @@ class UsersController < ApplicationController
 
   def steamid
     if current_user
-      authorize! :steamid, current_user 
+      authorize! :steamid, current_user
       public_account = auth_hash.extra.raw_info.communityvisibilitystate == 3 ? true : false
       current_user.update_columns(steamid: auth_hash.uid.to_i, steam_name: auth_hash.info.nickname, steam_url: auth_hash.info.urls.Profile, steam_public: public_account, pseudo: auth_hash.info.nickname)
       Image.upload_url(auth_hash.info.image, current_user, nil, current_user)
-      flash[:notice] = t("steam.oauth.sync")
+      flash[:notice] = t('steam.oauth.sync')
       redirect_to current_user
     else
       user = User.find_by(steamid: auth_hash.uid.to_i)
@@ -133,7 +131,7 @@ class UsersController < ApplicationController
         user.update_column(:remember_created_at, Time.now)
         redirect_to user_path(user)
       else
-        flash[:error] = t("steam.oauth.no_id")
+        flash[:error] = t('steam.oauth.no_id')
         redirect_to root_path
       end
     end

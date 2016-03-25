@@ -17,9 +17,9 @@ class DedicatedServersController < ApplicationController
   before_action :set_dedicated_server, only: [:show, :update, :destroy]
 
   before_action do
-    add_breadcrumb_if_can t("activerecord.models.dedicated_server", count: 2), dedicated_servers_path, :index, DedicatedServer
+    add_breadcrumb_if_can t('activerecord.models.dedicated_server', count: 2), dedicated_servers_path, :index, DedicatedServer
   end
-  before_action only: [:show] do 
+  before_action only: [:show] do
     add_breadcrumb_if_can @dedicated_server.name, dedicated_server_path(@dedicated_server), :show, @dedicated_server
   end
 
@@ -31,7 +31,6 @@ class DedicatedServersController < ApplicationController
     if can? :see, LanParty
       @lan_parties = LanParty.visible_on_lan.not_dedicated.order(name: :asc)
     end
-
   end
 
   def show
@@ -91,13 +90,14 @@ class DedicatedServersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_dedicated_server
-      @dedicated_server = DedicatedServer.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def dedicated_server_params
-      params.require(:dedicated_server).permit(:name, :description, :ip, :monitor_link)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_dedicated_server
+    @dedicated_server = DedicatedServer.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def dedicated_server_params
+    params.require(:dedicated_server).permit(:name, :description, :ip, :monitor_link)
+  end
 end

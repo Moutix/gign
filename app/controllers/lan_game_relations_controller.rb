@@ -57,13 +57,14 @@ class LanGameRelationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_lan_game_relation
-      @lan_game_relation = LanGameRelation.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def lan_game_relation_params
-      params.require(:lan_game_relation).permit(:name, :description, :start_at, :end_at)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_lan_game_relation
+    @lan_game_relation = LanGameRelation.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def lan_game_relation_params
+    params.require(:lan_game_relation).permit(:name, :description, :start_at, :end_at)
+  end
 end

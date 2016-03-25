@@ -21,11 +21,10 @@ class CommentsController < ApplicationController
 
   def create
     authorize! :create, Comment
-    
+
     model_class = params[:comment][:commentable_type].classify.constantize
     @commentable = model_class.find(params[:comment][:commentable_id])
     authorize! :comment, @commentable
-    
 
     @comment = Comment.build_from(@commentable, current_user.id, params[:comment][:body])
     @comment.parent_id = params[:comment][:parent_id]
@@ -44,8 +43,8 @@ class CommentsController < ApplicationController
     authorize! :update, @comment
     respond_to do |format|
       if @comment.update(comment_update_params)
-          format.html { redirect_to :back, notice: 'Comment was successfully updated.' }
-          format.js
+        format.html { redirect_to :back, notice: 'Comment was successfully updated.' }
+        format.js
       else
         format.html { redirect_to :back }
         format.js
@@ -76,10 +75,10 @@ class CommentsController < ApplicationController
       authorize! :follow, @commentable
       if @commentable.followers.where(id: current_user.id).exists?
         @commentable.followers.delete(current_user)
-        @btntext = t("comment.follow")
+        @btntext = t('comment.follow')
       else
         @commentable.followers << current_user
-        @btntext = t("comment.unfollow")
+        @btntext = t('comment.unfollow')
       end
     end
 
@@ -87,21 +86,19 @@ class CommentsController < ApplicationController
       format.html { redirect_to :back }
       format.js
     end
-
   end
+
   private
 
-    def set_comment
-      @comment = Comment.find(params[:id])
-    end
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
 
-    def comment_params
-      params.require(:comment).permit(:commentable_id, :commentable_type, :body, :parent_id)
-    end
+  def comment_params
+    params.require(:comment).permit(:commentable_id, :commentable_type, :body, :parent_id)
+  end
 
-    def comment_update_params
-      params.require(:comment).permit(:body)
-    end
-
-
+  def comment_update_params
+    params.require(:comment).permit(:body)
+  end
 end

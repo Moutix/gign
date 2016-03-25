@@ -1,7 +1,7 @@
 class SteamService
   attr_accessor :games, :id
 
-  def initialize user
+  def initialize(user)
     @user = user
     @id = SteamId.new(user.steamid)
     @games = @id.games

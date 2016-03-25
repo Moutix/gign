@@ -23,16 +23,15 @@ class Group < ActiveRecord::Base
   attr_accessor :creator
 
   belongs_to :user
-  has_and_belongs_to_many :users, :join_table => 'users_groups'
- 
-  validates :name , :presence => true, :uniqueness => true
+  has_and_belongs_to_many :users, join_table: 'users_groups'
+
+  validates :name, presence: true, uniqueness: true
   validate :level, :validate_level
-  
+
   before_create :set_user
 
   delegate :name, :email, :fullname,
-    to: :user, prefix: true, allow_nil: true
-
+           to: :user, prefix: true, allow_nil: true
 
   def validate_level
     self.creator ||= User.new
@@ -41,44 +40,43 @@ class Group < ActiveRecord::Base
       return false
     else
       return true
-    end 
+    end
   end
 
   def self.attributes
-    attributes = self.attribute_names.dup
-    attributes.delete("id")
-    attributes.delete("created_at")
-    attributes.delete("updated_at")
-    return attributes
+    attributes = attribute_names.dup
+    attributes.delete('id')
+    attributes.delete('created_at')
+    attributes.delete('updated_at')
+    attributes
   end
 
-  def self.permissions(user=nil)
+  def self.permissions(user = nil)
     return [] if user.nil?
-    permissions = self.attributes
-    permissions.delete("name")
-    permissions.delete("level") 
-    permissions.delete("user_id") 
-    permissions.select!{|p| user.is_in?(p)}
+    permissions = attributes
+    permissions.delete('name')
+    permissions.delete('level')
+    permissions.delete('user_id')
+    permissions.select! { |p| user.is_in?(p) }
 
-    permissions.push("name") if user.can?(:edit, Group)
-    permissions.push("level") if user.can?(:edit, Group)
+    permissions.push('name') if user.can?(:edit, Group)
+    permissions.push('level') if user.can?(:edit, Group)
 
-    return permissions
+    permissions
   end
 
-  def add_user user
+  def add_user(user)
     if users.include?(user)
       false
     else
-      self.users << user
+      users << user
       true
     end
   end
 
   private
 
-    def set_user
-      self.user = self.creator if self.creator
-    end
-   
+  def set_user
+    self.user = self.creator if self.creator
+  end
 end

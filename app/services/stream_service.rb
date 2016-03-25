@@ -1,7 +1,7 @@
 class StreamService
-  def initialize name, secret
+  def initialize(name, secret)
     @name = parse_name name
-    @secret = secret ||= @name["d"]
+    @secret = secret ||= @name['d']
     @user = @secret ? User.find_by(secret: @secret) : nil
   end
 
@@ -16,8 +16,8 @@ class StreamService
     Stream.create(user: @user,
                   start_at: Time.now,
                   local: !@secret.nil?,
-                  twitch: !@name["t"].nil?,
-                  youtube: !@name["y"].nil?)
+                  twitch: !@name['t'].nil?,
+                  youtube: !@name['y'].nil?)
   end
 
   def finish!
@@ -26,8 +26,8 @@ class StreamService
 
   private
 
-  def parse_name name
+  def parse_name(name)
     return {} unless name
-    name.split(",").map{|n| 2.times.collect{|i| n.split(":", 2)[i]}}.to_h
+    name.split(',').map { |n| 2.times.collect { |i| n.split(':', 2)[i] } }.to_h
   end
 end

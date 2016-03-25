@@ -18,24 +18,21 @@ class ResponseSurvey < ActiveRecord::Base
 
   def nb_vote(user = nil)
     if user.nil?
-      self.users.count
+      users.count
     else
-      self.users.where(id: user.id).count
+      users.where(id: user.id).count
     end
   end
 
   def vote(user)
-    if survey.can_vote?(user)
-      self.users << user
-    end
+    users << user if survey.can_vote?(user)
   end
 
   def percentage
-    survey.nb_vote == 0 ? 0 : nb_vote/survey.nb_vote.to_f*100
+    survey.nb_vote == 0 ? 0 : nb_vote / survey.nb_vote.to_f * 100
   end
 
   def relative_percentage
-    max_percentage == 0 ? 0 : percentage/max_percentage*100
+    max_percentage == 0 ? 0 : percentage / max_percentage * 100
   end
-
 end

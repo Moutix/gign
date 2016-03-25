@@ -1,5 +1,4 @@
 class BaseController < ApplicationController
-
   def index
     @lan = Lan.where('start_at > ?', Time.now).last
 
@@ -16,21 +15,20 @@ class BaseController < ApplicationController
   end
 
   def contact
-    add_breadcrumb t("footer.contact")
+    add_breadcrumb t('footer.contact')
   end
 
   def mail_contact
     if !params[:contact][:email].blank? && !params[:contact][:message].blank? && !params[:contact][:name].blank?
       Mailer.mail_contact(params[:contact][:email], params[:contact][:message], params[:contact][:name], request.remote_ip).deliver
-      flash[:notice] = t("contact.form.success")
+      flash[:notice] = t('contact.form.success')
     else
-      flash[:error] = t("contact.form.error")
+      flash[:error] = t('contact.form.error')
     end
 
     respond_to do |format|
-      format.html{redirect_to contact_path}
+      format.html { redirect_to contact_path }
       format.js
     end
-
   end
 end

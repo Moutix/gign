@@ -32,12 +32,11 @@
 #
 
 class OpenSmoStatsController < ApplicationController
-
   before_action do
-    add_breadcrumb_if_can "Stepmania", stepmania_packs_path, :index, StepmaniaPack
+    add_breadcrumb_if_can 'Stepmania', stepmania_packs_path, :index, StepmaniaPack
   end
   before_action do
-    add_breadcrumb_if_can "Stats", open_smo_stats_path, :index, OpenSmoStat
+    add_breadcrumb_if_can 'Stats', open_smo_stats_path, :index, OpenSmoStat
   end
 
   def index
@@ -45,9 +44,8 @@ class OpenSmoStatsController < ApplicationController
   end
 
   private
-    
-    def set_open_smo_song
-      @open_smo_song = OpenSmoSong.find(params[:id])
-    end
 
-end 
+  def set_open_smo_song
+    @open_smo_song = OpenSmoSong.find(params[:id])
+  end
+end

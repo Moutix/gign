@@ -74,13 +74,14 @@ class SupplyCopiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_supply_copy
-      @supply_copy = SupplyCopy.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def supply_copy_params
-      params.require(:supply_copy).permit(:supply_id, :ref, :loanable)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_supply_copy
+    @supply_copy = SupplyCopy.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def supply_copy_params
+    params.require(:supply_copy).permit(:supply_id, :ref, :loanable)
+  end
 end

@@ -17,14 +17,13 @@ class Pack < ActiveRecord::Base
   has_many :packs_supplies, dependent: :destroy
   has_many :supplies, through: :packs_supplies
   belongs_to :user
-  
+
   before_create :set_user
 
   delegate :name, :email, :fullname,
-    to: :user, prefix: true, allow_nil: true
+           to: :user, prefix: true, allow_nil: true
 
-
-  def add_supply supply, number = nil
+  def add_supply(supply, number = nil)
     pack_supply = packs_supplies.find_by(supply: supply)
 
     if pack_supply
@@ -44,29 +43,26 @@ class Pack < ActiveRecord::Base
 
   def price
     price = 0
-    packs_supplies.each{|supply| price += supply.price*supply.nb_supplies}
+    packs_supplies.each { |supply| price += supply.price * supply.nb_supplies }
     price
-
   end
 
   def activate
-    self.update_column(:active, !self.active)
+    update_column(:active, !active)
   end
 
-  def add_to_basket borrowing
+  def add_to_basket(borrowing)
     borrowing.supply_requests.destroy_all
     test = true
     packs_supplies.each do |packs_supply|
       test = false unless borrowing.ask_for_loan(packs_supply.supply, packs_supply.nb_supplies)
     end
     test
-
   end
-  
+
   private
 
-    def set_user
-      self.user = self.creator if self.creator
-    end
-  
+  def set_user
+    self.user = creator if creator
+  end
 end
