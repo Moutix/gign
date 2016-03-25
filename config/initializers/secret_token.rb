@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Gign::Application.config.secret_key_base = '6f27e8ca36792b85d45b7d720572b3d0c91d373a190f36a1fcde1923479d0603451cdd8611a148c692f9f6a63af604eb4bd9322c0d3bba7761e3388ad7fb074d'
+Gign::Application.config.secret_key_base = Rails.configuration.x.gign['secret_token'] || SecureRandom.hex(64)
