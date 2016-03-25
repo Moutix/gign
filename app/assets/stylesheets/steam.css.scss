@@ -1,0 +1,49 @@
+.stats_achievements{
+  margin:5px;
+  .achievement-content{
+    .achievement-surround{width:100%;height:66px;z-index:0;position:absolute}
+    .achievement-fill{height:62px;top:2px;left:2px;background-color:lightgrey;z-index:0;position:absolute}
+    .achievement-text{z-index:1;top:17px;left:6px;position:absolute}
+    .achievement-percentage{z-index:1;top:27px;left:90%;position:absolute}
+  }
+}
+
+.achievement{width:254px;height:36px;background-color:rgb(219, 219, 219);margin:1px;border: solid 1px black;border-radius:3px;padding:2px;
+  .achievement-image{
+    img {height: 30px;float:left;}
+  }
+  .achievement-content{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:3px 8px 3px 8px;height:100%;
+    .achievement-text{vertical-align:middle;}
+  }
+}
+
+.resume-games{text-align: center;
+  .stat-games{
+    height:92px;font-size:14px;transition: all 0.3s ease;background-color: rgba(18, 107, 5, 0.9);border-bottom: 6px solid #ffffff;
+    .info{background-color: rgba(0, 0, 0, 0.7);bottom: 0;color: white;}
+    .stat{h4 {text-shadow: 1px 1px 5px black;color:white;}}
+  }
+  .stat-games:hover{background-color:#033007}
+}
+
+.steam-image{width:200px;height:75px;
+  .image-content{position:absolute;
+    i{ position:absolute;left:0;top:0}
+    span {position: absolute;right:0;bottom:0;background-color:#299729;border-bottom-right-radius:0px;}
+  }
+}
+
+.list-steam-user{display:inline-flex;}
+.steam-avatar.online{background: linear-gradient(to bottom, #278D1E 5%,#003004 95%);}
+.steam-avatar{
+  width:36px;height:36px;position:relative;padding:2px;border-radius:3px;margin:1px;
+  background: linear-gradient(to bottom, rgba(134, 134, 134, 0.77) 5%,#003004 95%);
+  img {width:32px;height:32px;border:1px solid #3B3D3A;border-radius:3px;background-color:white;position:absolute}
+}
+
+.user-achievement{
+  .show-time{width:50px;}
+  display: inline-flex;
+}
+.last-games{.steam-image{display: inline-block;margin:5px;}}
+

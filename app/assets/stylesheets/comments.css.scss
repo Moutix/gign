@@ -1,0 +1,42 @@
+.comments {
+  .comment-avatar {
+    text-align:right;
+    img{max-width:50px;max-height:50px; }
+    }
+  .comments-show[data-deep] {padding-left: 18%;}
+  .comments-show[data-deep='1']{padding-left: 9%;}
+  .comments-show[data-deep='0']{padding-left: 0px;}
+  .comments-show{
+    margin-bottom:15px;
+    .comment-inner{
+      .comment-username{font-weight: 700;color: #29A52E}
+      .comment-parent{font-weight:500;color: rgba(0,39,59,.35)} 
+      .comment-date{font-weight:500;font-size:12px;color: rgba(0,39,59,.35)} 
+      .comment-action{font-weight:500;color: rgba(0,39,59,.35)} 
+      .comment-action a{font-weight:500;color: rgba(0,39,59,.35)} 
+      }
+
+    }
+  .comment-textarea{
+    overflow:auto;
+    color: rgba(0,39,59,.35);
+    line-height: 30px;
+    font-size: 18px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display:block;
+    resize: none;
+    border: 2px solid rgba(0,39,59,.2);
+    border-radius: 4px;
+    .comment-textarea-inner{
+      width:100%;
+      resize: none;
+      border:none;
+      display:block;
+      overflow: hidden;
+      max-height:200px;
+      min-height:50px;
+    }
+  }
+}
+
