@@ -49,7 +49,7 @@ class MembersController < ApplicationController
       format.js
     end
   end
-  
+
   def edit
     authorize! :edit, @member
     respond_to do |format|
@@ -57,22 +57,21 @@ class MembersController < ApplicationController
     end
   end
 
-
   private
-    
-    def load_promotion
-      @promotion = Promotion.find_by(year: params[:promotion_id])
-      render 'shared/not_found', :status => 404 unless @promotion
-    end
- 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_member
-      @member = @promotion.members.find(params[:id])
-      render 'shared/not_found', :status => 404 unless @member
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def member_params
-      params.require(:member).permit(:name, :role, :order)
-    end
+  def load_promotion
+    @promotion = Promotion.find_by(year: params[:promotion_id])
+    render 'shared/not_found', status: 404 unless @promotion
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_member
+    @member = @promotion.members.find(params[:id])
+    render 'shared/not_found', status: 404 unless @member
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def member_params
+    params.require(:member).permit(:name, :role, :order)
+  end
 end

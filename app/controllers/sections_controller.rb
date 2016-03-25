@@ -15,14 +15,13 @@
 
 class SectionsController < ApplicationController
   before_action :set_section, only: [:show, :update, :destroy, :activate]
-  
+
   before_action do
-    add_breadcrumb_if_can t("activerecord.models.section", count: 2), sections_path, :index, Section
+    add_breadcrumb_if_can t('activerecord.models.section', count: 2), sections_path, :index, Section
   end
-  before_action only: [:show] do 
+  before_action only: [:show] do
     add_breadcrumb_if_can @section.name, section_path(@section), :show, @section
   end
-
 
   # GET /sections
   # GET /sections.json
@@ -49,7 +48,7 @@ class SectionsController < ApplicationController
         format.html { redirect_to @section, notice: 'Section was successfully created.' }
       else
         @sections = Section.all
-        format.html { render action: 'index'}
+        format.html { render action: 'index' }
       end
     end
   end
@@ -79,31 +78,31 @@ class SectionsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def activate
     authorize! :activate, @section
     @section.activate!
-  
-    if @section.display
-      flash[:info] = t("info.section.activate")
-    else
-      flash[:info] = t("info.section.desactivate")
-    end
+
+    flash[:info] = if @section.display
+                     t('info.section.activate')
+                   else
+                     t('info.section.desactivate')
+                   end
     respond_to do |format|
-      format.html { redirect_to @section}
+      format.html { redirect_to @section }
     end
   end
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_section
-      @section = Section.where(slug: params[:id]).first
-      render 'shared/not_found', status: 404 unless @section
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_section
+    @section = Section.where(slug: params[:id]).first
+    render 'shared/not_found', status: 404 unless @section
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def section_params
-      params.require(:section).permit(:name, :description, :blog)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def section_params
+    params.require(:section).permit(:name, :description, :blog)
+  end
 end

@@ -30,16 +30,15 @@ class RoomLocationsController < ApplicationController
     end
   end
 
-
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_room_location
-      @room_location = RoomLocation.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def room_location_params
-      params.require(:room_location).permit(:has_key, :start_at, :end_at)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_room_location
+    @room_location = RoomLocation.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def room_location_params
+    params.require(:room_location).permit(:has_key, :start_at, :end_at)
+  end
 end

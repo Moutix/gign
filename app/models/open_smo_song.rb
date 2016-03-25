@@ -19,7 +19,7 @@ class OpenSmoSong < ActiveRecord::Base
   has_many :open_smo_stats
 
   def complete_title
-    title + (subtitle.blank? ? " " : " (#{subtitle}) ")
+    title + (subtitle.blank? ? ' ' : " (#{subtitle}) ")
   end
 
   def beginner
@@ -41,6 +41,4 @@ class OpenSmoSong < ActiveRecord::Base
   def challenge
     stepmania_songs.pluck(:challenge)
   end
-
-
 end

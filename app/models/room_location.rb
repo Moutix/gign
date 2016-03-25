@@ -17,7 +17,6 @@ class RoomLocation < ActiveRecord::Base
   belongs_to :lan
 
   def reserved?
-    self.start_at && self.end_at
+    start_at && end_at
   end
-
 end

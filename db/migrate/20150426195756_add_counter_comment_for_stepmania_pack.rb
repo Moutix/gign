@@ -1,10 +1,10 @@
 class AddCounterCommentForStepmaniaPack < ActiveRecord::Migration
   def self.up
-    add_column :stepmania_packs, :comments_count, :integer, :default => 0
+    add_column :stepmania_packs, :comments_count, :integer, default: 0
 
     StepmaniaPack.reset_column_information
     StepmaniaPack.all.each do |p|
-      StepmaniaPack.update_counters p.id, :comments_count => p.comments.length
+      StepmaniaPack.update_counters p.id, comments_count: p.comments.length
     end
   end
 

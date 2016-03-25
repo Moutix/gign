@@ -62,13 +62,14 @@ class ComputersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_computer
-      @computer = Computer.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def computer_params
-      params.require(:computer).permit(:name, :description, :price)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_computer
+    @computer = Computer.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def computer_params
+    params.require(:computer).permit(:name, :description, :price)
+  end
 end

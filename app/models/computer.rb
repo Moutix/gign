@@ -14,7 +14,6 @@ class Computer < ActiveRecord::Base
   has_many :components
 
   def price
-    self.components.sum(:price)
+    components.sum(:price)
   end
-
 end

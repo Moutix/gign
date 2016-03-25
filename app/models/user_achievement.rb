@@ -16,24 +16,22 @@ class UserAchievement < ActiveRecord::Base
   has_one :game, through: :achievement
 
   delegate :name, :description,
-    to: :achievement, allow_nil: true, prefix: true
+           to: :achievement, allow_nil: true, prefix: true
 
   delegate :name, :fullname, :email, :avatar,
-    to: :user, allow_nil: true, prefix: true
+           to: :user, allow_nil: true, prefix: true
 
   delegate :name,
-    to: :game, allow_nil: true, prefix: true
+           to: :game, allow_nil: true, prefix: true
 
-
-
-  default_scope -> { order(:timestamp)}
+  default_scope -> { order(:timestamp) }
 
   def self.number_achievements_by(period = 1.days, since = nil)
     if since.nil?
-      achievements = self.all.pluck(:timestamp).compact
+      achievements = all.pluck(:timestamp).compact
       since = achievements.first
     else
-      achievements = self.where('timestamp > ?', since).pluck(:timestamp).compact
+      achievements = where('timestamp > ?', since).pluck(:timestamp).compact
     end
 
     since = Time.now - 2.days if since.nil?
@@ -50,15 +48,12 @@ class UserAchievement < ActiveRecord::Base
           time += period
           h[time] = 0
         end
-          h[time] += 1
+        h[time] += 1
       else
         time += period
-        if time < Time.now
-          h[time] = 0
-        end
+        h[time] = 0 if time < Time.now
       end
     end
     h
   end
-
 end

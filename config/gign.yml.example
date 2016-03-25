@@ -1,0 +1,34 @@
+production:
+  steam:
+    key: "Yout steam API key"
+  stepmania:
+    json_url: "http://link.larez.fr/stepmania.json"
+    url: "URL of hosted stepmania songs"
+    host: "stepmania"
+    user: "stepmania"
+    password: "stepmania"
+    database: "stepmania"
+  scan:
+    dedicated_ip:
+      - "6.6.6.6"
+  stream:
+    time_url: ""
+    dash_url: ""
+
+development:
+  steam:
+    key: "Yout steam API key"
+  stepmania:
+    json_url: "http://link.larez.fr/stepmania.json"
+    url: "URL of hosted stepmania songs"
+    host: "stepmania"
+    user: "stepmania"
+    password: "stepmania"
+    database: "stepmania"
+  scan:
+    dedicated_ip:
+      - "6.6.6.6"
+  stream:
+    time_url: ""
+    dash_url: ""
+

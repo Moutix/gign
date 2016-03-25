@@ -41,8 +41,8 @@ class ResponseSurveysController < ApplicationController
     authorize! :update, @response_survey
     respond_to do |format|
       if @response_survey.update(response_survey_params)
-          format.html { redirect_to :back }
-          format.js
+        format.html { redirect_to :back }
+        format.js
       else
         format.html
         format.js
@@ -58,14 +58,14 @@ class ResponseSurveysController < ApplicationController
       format.js
     end
   end
-  
+
   def vote
     authorize! :update, @response_survey
     @response_survey.vote(current_user)
     @reload = true if current_user && !@survey.can_vote?(current_user)
 
     respond_to do |format|
-      format.html { redirect_to display_survey_path(@survey)}
+      format.html { redirect_to display_survey_path(@survey) }
       format.js
     end
   end
@@ -77,21 +77,20 @@ class ResponseSurveysController < ApplicationController
   end
 
   private
- 
-    def load_survey
-      @survey = Survey.find(params[:survey_id])
-      render 'shared/not_found', :status => 404 unless @survey
-    end
-    
-    # Use callbacks to share common setup or constraints between actions.
-    def set_response
-      @response_survey = @survey.responses.find(params[:id])
-      render 'shared/not_found', :status => 404 unless @response_survey
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def response_survey_params
-      params.require(:response_survey).permit(:name)
-    end
+  def load_survey
+    @survey = Survey.find(params[:survey_id])
+    render 'shared/not_found', status: 404 unless @survey
+  end
 
+  # Use callbacks to share common setup or constraints between actions.
+  def set_response
+    @response_survey = @survey.responses.find(params[:id])
+    render 'shared/not_found', status: 404 unless @response_survey
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def response_survey_params
+    params.require(:response_survey).permit(:name)
+  end
 end

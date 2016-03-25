@@ -21,9 +21,9 @@
 
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy, :add_user, :del_user]
-  
+
   before_action do
-    add_breadcrumb_if_can t("activerecord.models.group", count: 2), groups_path, :index, Group
+    add_breadcrumb_if_can t('activerecord.models.group', count: 2), groups_path, :index, Group
   end
   before_action only: [:show] do
     add_breadcrumb_if_can @group.name, group_path(@group), :show, @group
@@ -41,26 +41,24 @@ class GroupsController < ApplicationController
   def show
     authorize! :show, @group
   end
-  
+
   def add_user
     authorize! :add_user, @group
     if params[:group][:users].nil? || params[:group][:users].empty?
-      flash[:error] = t("errors.group.add_user.no_user")  
+      flash[:error] = t('errors.group.add_user.no_user')
     else
       user = User.find(params[:group][:users])
-      if user.nil?
-        flash[:error] = t("errors.group.add_user.dont_exist")
-      end
+      flash[:error] = t('errors.group.add_user.dont_exist') if user.nil?
     end
 
     if flash[:error].blank?
       if @group.add_user(user)
-        flash[:notice] = t("notice.group.add_user")
+        flash[:notice] = t('notice.group.add_user')
       else
-        flash[:error] = t("errors.group.add_user.already_in_group")
+        flash[:error] = t('errors.group.add_user.already_in_group')
       end
     end
-    
+
     respond_to do |format|
       format.html { redirect_to @group }
     end
@@ -70,9 +68,9 @@ class GroupsController < ApplicationController
     authorize! :del_user, @group
     user = User.find(params[:user_id])
     user.groups.delete(@group)
-      respond_to do |format|
-        format.html { redirect_to @group }
-        format.json { head :no_content }
+    respond_to do |format|
+      format.html { redirect_to @group }
+      format.json { head :no_content }
     end
   end
 
@@ -121,13 +119,14 @@ class GroupsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_group
-      @group = Group.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def group_params
-      params.require(:group).permit(*Group.permissions(current_user))
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_group
+    @group = Group.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def group_params
+    params.require(:group).permit(*Group.permissions(current_user))
+  end
 end

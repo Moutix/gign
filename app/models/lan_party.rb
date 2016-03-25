@@ -21,19 +21,17 @@
 class LanParty < ActiveRecord::Base
   belongs_to :game
 
-  scope :ongoing, -> {where('ended_at IS NULL')}
-  scope :visible_on_lan, -> {where('ended_at IS NULL').where(visible: true)}
-  scope :visible_on_landing, -> {where('ended_at IS NULL').where(visible: true).where(ip: DedicatedServer.pluck(:ip))}
-  scope :dedicated, -> {where(ip: DedicatedServer.pluck(:ip))}
-  scope :not_dedicated, -> {where.not(ip: DedicatedServer.pluck(:ip))}
-
+  scope :ongoing, -> { where('ended_at IS NULL') }
+  scope :visible_on_lan, -> { where('ended_at IS NULL').where(visible: true) }
+  scope :visible_on_landing, -> { where('ended_at IS NULL').where(visible: true).where(ip: DedicatedServer.pluck(:ip)) }
+  scope :dedicated, -> { where(ip: DedicatedServer.pluck(:ip)) }
+  scope :not_dedicated, -> { where.not(ip: DedicatedServer.pluck(:ip)) }
 
   def dedicated_server
     DedicatedServer.find_by(ip: ip)
   end
 
   def dedicated?
-    !self.dedicated_server.nil?
+    !dedicated_server.nil?
   end
-
 end

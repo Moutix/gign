@@ -30,7 +30,6 @@ class StepmaniaSong < ActiveRecord::Base
 
   scope :easier_than, ->(diff) { where("beginner < ? OR easy < ? OR medium < ? OR hard < ? OR challenge < ? OR ? = ''", diff, diff, diff, diff, diff, diff) }
   scope :harder_than, ->(diff) { where("beginner > ? OR easy > ? OR medium > ? OR hard > ? OR challenge > ? OR ? = ''", diff, diff, diff, diff, diff, diff) }
-  scope :search_name, -> (name) {where("stepmania_songs.name LIKE ? OR stepmania_songs.title LIKE ? OR stepmania_songs.subtitle LIKE ?", "%#{name}%", "%#{name}%", "%#{name}%")}
-  scope :search_artist, -> (artist) {where("stepmania_songs.artist LIKE ?", "%#{artist}%")}
-
+  scope :search_name, -> (name) { where('stepmania_songs.name LIKE ? OR stepmania_songs.title LIKE ? OR stepmania_songs.subtitle LIKE ?', "%#{name}%", "%#{name}%", "%#{name}%") }
+  scope :search_artist, -> (artist) { where('stepmania_songs.artist LIKE ?', "%#{artist}%") }
 end

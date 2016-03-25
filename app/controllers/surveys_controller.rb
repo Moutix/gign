@@ -15,15 +15,14 @@
 
 class SurveysController < ApplicationController
   before_action :set_survey, only: [:show, :edit, :update, :destroy, :display]
-  #layout "survey", only: :display
-  
+  # layout "survey", only: :display
+
   before_action do
-    add_breadcrumb_if_can t("activerecord.models.survey", count: 2), surveys_path, :index, Survey
+    add_breadcrumb_if_can t('activerecord.models.survey', count: 2), surveys_path, :index, Survey
   end
-  before_action only: [:show] do 
+  before_action only: [:show] do
     add_breadcrumb_if_can @survey.name, survey_path(@survey), :show, @survey
   end
-
 
   # GET /surveys
   # GET /surveys.json
@@ -37,7 +36,6 @@ class SurveysController < ApplicationController
   def show
     authorize! :show, @survey
   end
-
 
   # POST /surveys
   # POST /surveys.json
@@ -88,13 +86,14 @@ class SurveysController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_survey
-      @survey = Survey.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def survey_params
-      params.require(:survey).permit(:name, :description, :is_extensible, :responses_per_user, :is_active)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_survey
+    @survey = Survey.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def survey_params
+    params.require(:survey).permit(:name, :description, :is_extensible, :responses_per_user, :is_active)
+  end
 end

@@ -22,7 +22,7 @@ class GamesController < ApplicationController
   before_action :set_game, only: [:show, :achievements, :ask_permission, :follow]
 
   before_action do
-    add_breadcrumb_if_can t("activerecord.models.game", count: 2), games_path, :index, Game
+    add_breadcrumb_if_can t('activerecord.models.game', count: 2), games_path, :index, Game
   end
   before_action only: [:show, :achievements] do
     add_breadcrumb_if_can @game.name, game_path(@game), :show, @game
@@ -38,16 +38,16 @@ class GamesController < ApplicationController
       @duration = 15
     end
 
-    if params[:achievement_step] && params[:achievement_step] =~ /^\d+$/
-      @step = params[:achievement_step].to_i
-    else
-      @step = 1
-    end
+    @step = if params[:achievement_step] && params[:achievement_step] =~ /^\d+$/
+              params[:achievement_step].to_i
+            else
+              1
+            end
 
     @user_achievements = UserAchievement.unscoped.order(timestamp: :desc).limit(6).includes(user: :images, achievement: :game)
 
     if !session[:q].blank?
-      @games = Game.where("name LIKE ?", "%#{session[:q]}%").includes(:images).page(params[:page])
+      @games = Game.where('name LIKE ?', "%#{session[:q]}%").includes(:images).page(params[:page])
     elsif session[:games] == 'all'
       @games = Game.includes(:images).all.page(params[:page])
     else
@@ -57,31 +57,29 @@ class GamesController < ApplicationController
   end
 
   def show
-    if can? :see, LanParty
-      @lan_parties = @game.lan_parties.visible_on_lan
-    else
-      @lan_parties = @game.lan_parties.visible_on_landing
-    end
+    @lan_parties = if can? :see, LanParty
+                     @game.lan_parties.visible_on_lan
+                   else
+                     @game.lan_parties.visible_on_landing
+                   end
 
-    if current_user
-      current_user.box.read_notification(@game)
-    end
+    current_user.box.read_notification(@game) if current_user
   end
 
   def achievements
-    add_breadcrumb t("activerecord.models.achievement", count: 2)
+    add_breadcrumb t('activerecord.models.achievement', count: 2)
   end
 
   def ask_permission
     authorize! :ask_permission, @game
-    
+
     if Mailer.ask_permission_email(@game.id, current_user.id).deliver
-      flash[:notice] = t("steam.firewall.success")
+      flash[:notice] = t('steam.firewall.success')
     else
-      flash[:error] = t("steam.firewall.error")
+      flash[:error] = t('steam.firewall.error')
     end
     respond_to do |format|
-      format.html{redirect_to @game}
+      format.html { redirect_to @game }
     end
   end
 

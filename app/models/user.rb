@@ -40,11 +40,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  has_many :played_game, -> {where('user_stats.total_playtime > ?', 0)}, through: :user_stats, source: 'game'
+  has_many :played_game, -> { where('user_stats.total_playtime > ?', 0) }, through: :user_stats, source: 'game'
   has_many :user_achievements, dependent: :destroy
   has_many :achievements, through: :user_achievements
-  has_many :recent_plays, -> { joins(:user_stats).where('user_stats.recent_playtime > ?', 0)}, through: :user_stats, source: 'game'
-  has_many :favorite_games, -> { joins(:user_stats).order('user_stats.total_playtime DESC').limit(10)}, through: :user_stats, source: 'game'
+  has_many :recent_plays, -> { joins(:user_stats).where('user_stats.recent_playtime > ?', 0) }, through: :user_stats, source: 'game'
+  has_many :favorite_games, -> { joins(:user_stats).order('user_stats.total_playtime DESC').limit(10) }, through: :user_stats, source: 'game'
   has_many :games, through: :user_stats, after_add: :follow_this_game
   has_many :user_stats, dependent: :destroy
   has_many :borrowings
@@ -52,8 +52,8 @@ class User < ActiveRecord::Base
   has_many :sections
   has_many :packs
   has_many :pages
-  has_many :images, :class_name => "Image", :as => "imageable", dependent: :destroy
-  has_and_belongs_to_many :groups, :join_table => 'users_groups'
+  has_many :images, class_name: 'Image', as: 'imageable', dependent: :destroy
+  has_and_belongs_to_many :groups, join_table: 'users_groups'
   has_one :mail_box
   has_many :streams
   has_one :active_stream, -> { where('end_at IS NULL').order('streams.created_at DESC').limit(1) }, class_name: 'Stream'
@@ -85,49 +85,46 @@ class User < ActiveRecord::Base
   delegate :can?, :cannot?, to: :ability
 
   def achievements_in(game)
-    self.achievements.where(game: game)
+    achievements.where(game: game)
   end
 
   def has_achievements?(game)
-    !self.achievements_in(game).empty?
+    !achievements_in(game).empty?
   end
 
   def has_achievement?(achievement)
-    !self.achievements.where(id: achievement.id).empty?
+    !achievements.where(id: achievement.id).empty?
   end
- 
+
   def is_admin?
     test = false
-    self.groups.each do |group|
+    groups.each do |group|
       test |= group.admin
     end
-    return test
-
+    test
   end
 
   def is_in?(cat)
-    return true if self.is_admin?
+    return true if is_admin?
     test = false
-    self.groups.each do |group|
+    groups.each do |group|
       test |= group[cat]
     end
-    return test
+    test
   end
 
   def is_a_steam_user?
-    !self.steamid.nil?
+    !steamid.nil?
   end
 
   def is_a_public_steam_user?
-    self.steam_public
+    steam_public
   end
 
   def level
     test = 0
-    self.groups.each do |group|
-      if group.level>test
-        test = group.level
-      end
+    groups.each do |group|
+      test = group.level if group.level > test
     end
     test
   end
@@ -137,7 +134,7 @@ class User < ActiveRecord::Base
   end
 
   def active_basket
-    active_basket = self.borrowings.where(effective: false).last
+    active_basket = borrowings.where(effective: false).last
     if active_basket
       active_basket
     else
@@ -175,24 +172,24 @@ class User < ActiveRecord::Base
   end
 
   def confirmed?
-    self.confirmed_at.nil? ? false : true
+    confirmed_at.nil? ? false : true
   end
 
   def confirm!
-    self.update_column(:confirmed_at, Time.now)
+    update_column(:confirmed_at, Time.now)
   end
 
-  def avatar(size="mini")
-    if !self.images.empty?
+  def avatar(size = 'mini')
+    if !images.empty?
       case size
-      when "mini"
-        self.images.last.mini_url
-      when "thumb"
-        self.images.last.thumb_url
-      when "medium"
-        self.images.last.medium_url
+      when 'mini'
+        images.last.mini_url
+      when 'thumb'
+        images.last.thumb_url
+      when 'medium'
+        images.last.medium_url
       else
-        self.images.last.url
+        images.last.url
       end
     else
       '/assets/avatar.jpg'
@@ -208,19 +205,19 @@ class User < ActiveRecord::Base
   end
 
   def stepmania_playtime
-    self.open_smo_stats.joins(:open_smo_song).pluck('open_smo_songs.time').sum()
+    open_smo_stats.joins(:open_smo_song).pluck('open_smo_songs.time').sum
   end
 
   def self.nolife
-    self.joins(:user_stats).group('users.id').order('SUM(user_stats.recent_playtime) ASC').last
+    joins(:user_stats).group('users.id').order('SUM(user_stats.recent_playtime) ASC').last
   end
 
   def self.polard
-    self.joins(:user_stats).group('users.id').order('SUM(user_stats.recent_playtime) ASC, SUM(user_stats.total_playtime) ASC').first
+    joins(:user_stats).group('users.id').order('SUM(user_stats.recent_playtime) ASC, SUM(user_stats.total_playtime) ASC').first
   end
 
   def regenerate_secret!
-    self.update_columns(secret: SecureRandom.hex(8))
+    update_columns(secret: SecureRandom.hex(8))
   end
 
   def to_param
@@ -239,11 +236,11 @@ class User < ActiveRecord::Base
   end
 
   def generate_sha_password
-    if !self.temp_password.nil?
+    unless temp_password.nil?
       sha = Digest::MD5.new
-      sha.update(self.temp_password)
+      sha.update(temp_password)
       self.sha_password = sha.hexdigest.upcase
-      self.sha1_password = ('{SHA}' + Base64.encode64(Digest::SHA1.digest(self.temp_password))).gsub("\n", "")
+      self.sha1_password = ('{SHA}' + Base64.encode64(Digest::SHA1.digest(temp_password))).delete("\n")
     end
   end
 end

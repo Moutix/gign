@@ -11,7 +11,7 @@
 #
 
 class Promotion < ActiveRecord::Base
-  has_many :members, -> {order(order: :asc)}
+  has_many :members, -> { order(order: :asc) }
   validates_uniqueness_of :year
 
   def to_param

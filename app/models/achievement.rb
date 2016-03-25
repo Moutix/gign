@@ -18,13 +18,11 @@ class Achievement < ActiveRecord::Base
   has_many :user_achievements, dependent: :destroy
   has_many :users, through: :user_achievements
 
-
   def percentage
-    if self.game.users_with_achievements.empty?
+    if game.users_with_achievements.empty?
       0
     else
-      self.users.count/self.game.users_with_achievements.count.to_f*100
+      users.count / game.users_with_achievements.count.to_f * 100
     end
   end
-
 end

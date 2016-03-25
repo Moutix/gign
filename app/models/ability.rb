@@ -2,14 +2,13 @@ class Ability
   include CanCan::Ability
 
   def initialize(user, ip = nil)
-
     is_connected = !!user
 
     user ||= User.new
 
     ## -------  Connected  ------- ##
     if is_connected
-      
+
       can :show, Borrowing do |b|
         b.user == user
       end
@@ -20,12 +19,10 @@ class Ability
         r.borrowing.user == user && r.borrowing.state == :not_submit
       end
 
-      can :add_to_basket, Pack do |p|
-        p.active
-      end
+      can :add_to_basket, Pack, &:active
 
       can :loan, Supply do |s|
-        s.copy_loanables.size >0
+        s.copy_loanables.size > 0
       end
 
       can [:show, :update, :steamid, :regenerate_secret], User do |u|
@@ -44,7 +41,6 @@ class Ability
       can :sign_out, Tournament do |t|
         t.users.include?(user)
       end
-
 
       can :create, Comment
       can [:update, :edit], Comment do |c|
@@ -96,13 +92,9 @@ class Ability
     end
 
     ## -------  Everyone  ------- ##
-    can :show, Page do |p|
-      p.section_display
-    end
+    can :show, Page, &:section_display
 
-    can :show, Section do |s|
-      s.blog
-    end
+    can :show, Section, &:blog
 
     can [:index, :show], StepmaniaPack
     can [:index, :show], Lan
@@ -111,7 +103,7 @@ class Ability
     can :stream, User
 
     ## -------  With manage_lower_groups privileges  ------- ##
-    if user.is_in?("manage_lower_groups")
+    if user.is_in?('manage_lower_groups')
       can [:see, :show, :create], Group
       can [:add_user, :del_user, :update], Group do |g|
         g.level < user.level
@@ -119,7 +111,7 @@ class Ability
     end
 
     ## -------  With manage_sections privileges  ------- ##
-    if user.is_in?("manage_sections")
+    if user.is_in?('manage_sections')
       can :manage, Section
       can :manage, Page
       can :manage, Image do |i|
@@ -128,28 +120,22 @@ class Ability
     end
 
     ## -------  With manage_groups privileges  ------- ##
-    if user.is_in?("manage_groups")
-      can :manage, Group
-    end
+    can :manage, Group if user.is_in?('manage_groups')
 
     ## -------  With manage_users privileges  ------- ##
-    if user.is_in?("manage_users")
-      can :manage, User
-    end
+    can :manage, User if user.is_in?('manage_users')
 
     ## -------  With manage_borrowings privileges  ------- ##
-    if user.is_in?("manage_borrowings")
+    if user.is_in?('manage_borrowings')
       can :manage, Borrowing
       can :manage, SupplyRequest
     end
 
     ## -------  With manage_packs privileges  ------- ##
-    if user.is_in?("manage_packs")
-      can :manage, Pack
-    end
+    can :manage, Pack if user.is_in?('manage_packs')
 
     ## -------  With manage_supplies privileges  ------- ##
-    if user.is_in?("manage_supplies")
+    if user.is_in?('manage_supplies')
       can :manage, Supply
       can :manage, Image do |i|
         i.imageable.class == Supply
@@ -158,16 +144,13 @@ class Ability
       can :manage, Component
     end
 
-    if user.is_in?("manage_events")
+    if user.is_in?('manage_events')
       can :manage, Lan
       can :manage, LanGameRelation
       can :manage, RoomLocation
     end
 
     ## -------  Admin  ------- ##
-    if user.is_in?("admin")
-      can :manage, :all
-    end
-
+    can :manage, :all if user.is_in?('admin')
   end
 end

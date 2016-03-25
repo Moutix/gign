@@ -19,20 +19,25 @@ module Gign
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-    
-    Rails.application.config.middleware.use OmniAuth::Builder do
-        provider :steam, "yoursteamkey"
-    end
-    
-    WebApi.api_key = "yoursteamkey"
 
+    config.x.gign = config_for(:gign)
+
+    Rails.application.config.middleware.use OmniAuth::Builder do
+      provider :steam, Rails.configuration.x.gign['steam']['key']
+    end
+
+    WebApi.api_key = Rails.configuration.x.gign['steam']['key']
+
+    I18n.available_locales = [:fr, :en]
+    I18n.config.enforce_available_locales = true
 
     I18n.locale = :fr
     I18n.default_locale = :fr
-    I18n.available_locales = [:fr, :en]
-    
+
     config.i18n.fallbacks = true
-    Globalize.fallbacks = {:en => [:en, :fr], :fr => [:fr, :en]}
+    Globalize.fallbacks = { en: [:en, :fr], fr: [:fr, :en] }
+
+    config.time_zone = 'Paris'
 
     config.generators do |g|
       g.orm             :active_record

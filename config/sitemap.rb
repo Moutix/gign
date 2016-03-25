@@ -1,5 +1,5 @@
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = "http://gign.larez.fr"
+SitemapGenerator::Sitemap.default_host = 'http://gign.larez.fr'
 
 SitemapGenerator::Sitemap.create do
   # Put links creation logic here.
@@ -24,21 +24,21 @@ SitemapGenerator::Sitemap.create do
   #   Article.find_each do |article|
   #     add article_path(article), :lastmod => article.updated_at
   #   end
-  
+
   I18n.available_locales.each do |locale|
-    add games_path(locale: locale), :changefreq => 'daily'
+    add games_path(locale: locale), changefreq: 'daily'
     Game.find_each do |game|
-      add game_path(game, locale: locale), :changefreq => 'daily'
-      add achievements_game_path(game, locale: locale), :changefreq => 'daily'
+      add game_path(game, locale: locale), changefreq: 'daily'
+      add achievements_game_path(game, locale: locale), changefreq: 'daily'
     end
     Section.displays.find_each do |section|
       section.pages.each do |page|
-        add section_page_path(section, page, locale: locale), :changefreq => 'daily'
+        add section_page_path(section, page, locale: locale), changefreq: 'daily'
       end
     end
-    add supplies_path(locale: locale), :changefreq => 'daily'
+    add supplies_path(locale: locale), changefreq: 'daily'
     Supply.loanables.each do |supply|
-      add supply_path(supply, locale: locale), :changefreq => 'daily'
+      add supply_path(supply, locale: locale), changefreq: 'daily'
     end
   end
 end

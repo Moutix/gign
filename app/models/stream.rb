@@ -16,13 +16,13 @@
 class Stream < ActiveRecord::Base
   belongs_to :user
 
-  scope :active, -> {where('end_at IS NULL')}
+  scope :active, -> { where('end_at IS NULL') }
 
   def finish?
-    !self.end_at.nil?
+    !end_at.nil?
   end
 
   def finish!
-    self.update_columns(end_at: Time.now()) unless self.finish?
+    update_columns(end_at: Time.now) unless finish?
   end
 end

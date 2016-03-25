@@ -8,7 +8,6 @@ class CreateResourceFollowers < ActiveRecord::Migration
     end
     reversible do |dir|
       dir.up do
-
         ActiveRecord::Base.transaction do
           Game.all.each do |game|
             game.users.each do |user|
@@ -16,9 +15,7 @@ class CreateResourceFollowers < ActiveRecord::Migration
             end
           end
         end
-
       end
     end
-
   end
 end
