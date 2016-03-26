@@ -41,7 +41,7 @@ fr:
           yaxis: Heures de jeu
       stats:
         online_users:
-          title: "Nombre d'utilisateurs en ligne depuis une semaine"
+          title: "Nombre d'utilisateurs en ligne au cours du temps"
           ytitle: "Nombre d'utilisateurs en ligne"
         recent_playtime:
           title: "Temps récent en jeu au cours du temps"

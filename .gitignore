@@ -20,3 +20,4 @@
 /config/database.yml
 /config/gign.yml
 /public/sitemap.xml.gz
+/vendor/bundle
