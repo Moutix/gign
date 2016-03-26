@@ -31,6 +31,7 @@
 #  stepmania_xp           :integer
 #  sha1_password          :string(255)
 #  secret                 :string(255)
+#  slug                   :string(255)
 #
 
 module UsersHelper
