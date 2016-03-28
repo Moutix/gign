@@ -3,8 +3,13 @@ class SteamService
 
   def initialize(user)
     @user = user
-    @id = SteamId.new(user.steamid)
-    @games = @id.games
+    if user.is_a_public_steam_user?
+      @id = SteamId.new(user.steamid)
+      @games = @id.games
+    else
+      @id = nil
+      @games = nil
+    end
   end
 
   def update!
@@ -130,7 +135,9 @@ class SteamService
     puts "Update started at : #{start_script}"
 
     User.public_steam_users.each do |user|
+      p user.fullname
       steam = new(user)
+      next unless steam.id
       ActiveRecord::Base.transaction do
         user.update_column(:online, steam.id.online?)
         if user.to_scan

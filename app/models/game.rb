@@ -113,7 +113,7 @@ class Game < ActiveRecord::Base
   private
 
   def set_slug
-    if Games.where('id != ? AND slug = ?', id, name.parameterize).count > 0
+    if Game.where('id != ? AND slug = ?', id, name.parameterize).count > 0
       self.slug = id
     else
       self.slug = name.parameterize

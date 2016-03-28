@@ -44,6 +44,7 @@ var ready = function() {
             },
             yAxis: [{
                 min: 0,
+                max: <%=achievements.max_by{|a| a.last}.last%>,
                 title: {
                     text: '<%= I18n.t("steam.charts.achievements.title.yaxis")%>'
                 }
