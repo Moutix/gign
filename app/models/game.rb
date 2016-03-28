@@ -17,6 +17,7 @@
 #  comments_count          :integer          default(0)
 #  has_port_forwarding     :boolean          default(FALSE)
 #  slug                    :string(255)
+#  achievements_count      :integer          default(0)
 #
 
 class Game < ActiveRecord::Base
@@ -28,7 +29,7 @@ class Game < ActiveRecord::Base
   has_many :user_stats, dependent: :destroy
   has_many :images, class_name: 'Image', as: 'imageable', dependent: :destroy
   has_many :user_achievements, through: :achievements, counter_cache: true
-  has_many :achievements
+  has_many :achievements, counter_cache: true
   has_many :resource_followers, class_name: 'ResourceFollower', as: 'resource', dependent: :destroy
   has_many :followers, through: :resource_followers, class_name: 'User', source: 'user'
   has_one :port_forwarding
@@ -38,26 +39,6 @@ class Game < ActiveRecord::Base
 
   scope :played, -> { where('total_playtime > ?', 0) }
   scope :search_import, -> { includes(:port_forwarding, :images) }
-
-  scope :user_games, lambda {|user_id|
-    select('games.*,
-            images.url AS image_url,
-            user_stats.recent_playtime AS user_recent_playtime,
-            user_stats.total_playtime AS user_total_playtime,
-            count(user_achievements.id) AS nb_user_achievements')
-      .joins(:user_stats)
-      .joins(:images)
-      .joins('LEFT JOIN `achievements`
-              ON `achievements`.`game_id` = `games`.`id`
-              LEFT JOIN `user_achievements`
-              ON `user_achievements`.`achievement_id` = `achievements`.`id`')
-      .where('user_stats.user_id = ?', user_id)
-      .where('user_achievements.user_id IS NULL
-              OR
-              user_achievements.user_id = ?', user_id)
-      .order('user_stats.total_playtime DESC')
-      .group('games.id')
-  }
 
   delegate :udp, :tcp,
            to: :port_forwarding, prefix: true, allow_nil: true
@@ -108,6 +89,28 @@ class Game < ActiveRecord::Base
 
   def to_param
     slug
+  end
+
+  def self.user_games(user)
+    select('games.*,
+            images.url AS image_url,
+            user_stats.recent_playtime AS user_recent_playtime,
+            user_stats.total_playtime AS user_total_playtime,
+            count(user_achievements.id) AS nb_user_achievements,
+            count(user_achievements.id)/games.achievements_count*100 AS percentage_achievements
+           ')
+      .joins(:user_stats)
+      .joins(:images)
+      .joins('LEFT JOIN `achievements`
+              ON `achievements`.`game_id` = `games`.`id`
+              LEFT JOIN `user_achievements`
+              ON `user_achievements`.`achievement_id` = `achievements`.`id`')
+      .where('user_stats.user_id = ?', user.id)
+      .where('user_achievements.user_id IS NULL
+              OR
+              user_achievements.user_id = ?', user.id)
+      .order('user_stats.total_playtime DESC')
+      .group('games.id')
   end
 
   private

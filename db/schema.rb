@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160324191217) do
+ActiveRecord::Schema.define(version: 20160328141811) do
 
   create_table "achievements", force: :cascade do |t|
     t.string   "api_name",        limit: 255
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.string   "icon_closed_url", limit: 255
   end
 
-  add_index "achievements", ["game_id"], name: "index_achievements_on_game_id"
+  add_index "achievements", ["game_id"], name: "index_achievements_on_game_id", using: :btree
 
   create_table "borrowings", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.boolean  "finish",               default: false
   end
 
-  add_index "borrowings", ["user_id"], name: "index_borrowings_on_user_id"
+  add_index "borrowings", ["user_id"], name: "index_borrowings_on_user_id", using: :btree
 
   create_table "borrowings_supply_copies", id: false, force: :cascade do |t|
     t.integer "borrowing_id",   limit: 4
@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.datetime "updated_at"
   end
 
-  add_index "comment_boxes", ["comment_id"], name: "index_comment_boxes_on_comment_id"
-  add_index "comment_boxes", ["mail_box_id"], name: "index_comment_boxes_on_mail_box_id"
+  add_index "comment_boxes", ["comment_id"], name: "index_comment_boxes_on_comment_id", using: :btree
+  add_index "comment_boxes", ["mail_box_id"], name: "index_comment_boxes_on_mail_box_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.integer  "commentable_id",   limit: 4,     default: 0
@@ -71,8 +71,8 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "components", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.datetime "updated_at"
   end
 
-  add_index "components", ["computer_id"], name: "index_components_on_computer_id"
+  add_index "components", ["computer_id"], name: "index_components_on_computer_id", using: :btree
 
   create_table "computers", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -126,7 +126,7 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.datetime "updated_at"
   end
 
-  add_index "fullcalendar_engine_events", ["event_series_id"], name: "index_fullcalendar_engine_events_on_event_series_id"
+  add_index "fullcalendar_engine_events", ["event_series_id"], name: "index_fullcalendar_engine_events_on_event_series_id", using: :btree
 
   create_table "games", force: :cascade do |t|
     t.string   "name",                    limit: 255
@@ -143,6 +143,7 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.integer  "comments_count",          limit: 4,   default: 0
     t.boolean  "has_port_forwarding",                 default: false
     t.string   "slug",                    limit: 255
+    t.integer  "achievements_count",      limit: 4,   default: 0
   end
 
   create_table "groups", force: :cascade do |t|
@@ -162,7 +163,7 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.boolean  "manage_events",                   default: false
   end
 
-  add_index "groups", ["user_id"], name: "index_groups_on_user_id"
+  add_index "groups", ["user_id"], name: "index_groups_on_user_id", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.string   "name",           limit: 255
@@ -174,7 +175,7 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.integer  "user_id",        limit: 4
   end
 
-  add_index "images", ["user_id"], name: "index_images_on_user_id"
+  add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
 
   create_table "lan_game_relations", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -188,8 +189,8 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.datetime "updated_at"
   end
 
-  add_index "lan_game_relations", ["lan_game_id"], name: "index_lan_game_relations_on_lan_game_id"
-  add_index "lan_game_relations", ["lan_id"], name: "index_lan_game_relations_on_lan_id"
+  add_index "lan_game_relations", ["lan_game_id"], name: "index_lan_game_relations_on_lan_game_id", using: :btree
+  add_index "lan_game_relations", ["lan_id"], name: "index_lan_game_relations_on_lan_id", using: :btree
 
   create_table "lan_games", force: :cascade do |t|
     t.string   "name",         limit: 255
@@ -199,7 +200,7 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.datetime "updated_at"
   end
 
-  add_index "lan_games", ["game_id"], name: "index_lan_games_on_game_id"
+  add_index "lan_games", ["game_id"], name: "index_lan_games_on_game_id", using: :btree
 
   create_table "lan_parties", force: :cascade do |t|
     t.string   "name",           limit: 255
@@ -217,7 +218,7 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.integer  "nb_max_players", limit: 4
   end
 
-  add_index "lan_parties", ["game_id"], name: "index_lan_parties_on_game_id"
+  add_index "lan_parties", ["game_id"], name: "index_lan_parties_on_game_id", using: :btree
 
   create_table "lans", force: :cascade do |t|
     t.string   "name",           limit: 255
@@ -235,7 +236,7 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.datetime "updated_at"
   end
 
-  add_index "mail_boxes", ["user_id"], name: "index_mail_boxes_on_user_id"
+  add_index "mail_boxes", ["user_id"], name: "index_mail_boxes_on_user_id", using: :btree
 
   create_table "members", force: :cascade do |t|
     t.string   "name",         limit: 255
@@ -246,7 +247,7 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.datetime "updated_at"
   end
 
-  add_index "members", ["promotion_id"], name: "index_members_on_promotion_id"
+  add_index "members", ["promotion_id"], name: "index_members_on_promotion_id", using: :btree
 
   create_table "open_smo_songs", force: :cascade do |t|
     t.string   "title",       limit: 255
@@ -288,8 +289,8 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.integer  "timing",           limit: 4
   end
 
-  add_index "open_smo_stats", ["open_smo_song_id"], name: "index_open_smo_stats_on_open_smo_song_id"
-  add_index "open_smo_stats", ["user_id"], name: "index_open_smo_stats_on_user_id"
+  add_index "open_smo_stats", ["open_smo_song_id"], name: "index_open_smo_stats_on_open_smo_song_id", using: :btree
+  add_index "open_smo_stats", ["user_id"], name: "index_open_smo_stats_on_user_id", using: :btree
 
   create_table "pack_translations", force: :cascade do |t|
     t.integer  "pack_id",    limit: 4,   null: false
@@ -299,8 +300,8 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.string   "name",       limit: 255
   end
 
-  add_index "pack_translations", ["locale"], name: "index_pack_translations_on_locale"
-  add_index "pack_translations", ["pack_id"], name: "index_pack_translations_on_pack_id"
+  add_index "pack_translations", ["locale"], name: "index_pack_translations_on_locale", using: :btree
+  add_index "pack_translations", ["pack_id"], name: "index_pack_translations_on_pack_id", using: :btree
 
   create_table "packs", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -311,7 +312,7 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.integer  "user_id",     limit: 4
   end
 
-  add_index "packs", ["user_id"], name: "index_packs_on_user_id"
+  add_index "packs", ["user_id"], name: "index_packs_on_user_id", using: :btree
 
   create_table "packs_supplies", force: :cascade do |t|
     t.integer  "pack_id",     limit: 4
@@ -331,8 +332,8 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.string   "slug",       limit: 255
   end
 
-  add_index "page_translations", ["locale"], name: "index_page_translations_on_locale"
-  add_index "page_translations", ["page_id"], name: "index_page_translations_on_page_id"
+  add_index "page_translations", ["locale"], name: "index_page_translations_on_locale", using: :btree
+  add_index "page_translations", ["page_id"], name: "index_page_translations_on_page_id", using: :btree
 
   create_table "pages", force: :cascade do |t|
     t.string   "name",           limit: 255
@@ -347,9 +348,9 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.integer  "survey_id",      limit: 4
   end
 
-  add_index "pages", ["section_id"], name: "index_pages_on_section_id"
-  add_index "pages", ["survey_id"], name: "index_pages_on_survey_id"
-  add_index "pages", ["user_id"], name: "index_pages_on_user_id"
+  add_index "pages", ["section_id"], name: "index_pages_on_section_id", using: :btree
+  add_index "pages", ["survey_id"], name: "index_pages_on_survey_id", using: :btree
+  add_index "pages", ["user_id"], name: "index_pages_on_user_id", using: :btree
 
   create_table "port_forwardings", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -360,7 +361,7 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.datetime "updated_at"
   end
 
-  add_index "port_forwardings", ["game_id"], name: "index_port_forwardings_on_game_id"
+  add_index "port_forwardings", ["game_id"], name: "index_port_forwardings_on_game_id", using: :btree
 
   create_table "promotions", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -378,8 +379,8 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.datetime "updated_at"
   end
 
-  add_index "resource_followers", ["resource_id", "resource_type"], name: "index_resource_followers_on_resource_id_and_resource_type"
-  add_index "resource_followers", ["user_id"], name: "index_resource_followers_on_user_id"
+  add_index "resource_followers", ["resource_id", "resource_type"], name: "index_resource_followers_on_resource_id_and_resource_type", using: :btree
+  add_index "resource_followers", ["user_id"], name: "index_resource_followers_on_user_id", using: :btree
 
   create_table "response_surveys", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -398,8 +399,8 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.datetime "updated_at"
   end
 
-  add_index "room_locations", ["lan_id"], name: "index_room_locations_on_lan_id"
-  add_index "room_locations", ["room_id"], name: "index_room_locations_on_room_id"
+  add_index "room_locations", ["lan_id"], name: "index_room_locations_on_lan_id", using: :btree
+  add_index "room_locations", ["room_id"], name: "index_room_locations_on_room_id", using: :btree
 
   create_table "rooms", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -424,7 +425,7 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.integer  "nb_lan_party",       limit: 4
   end
 
-  add_index "save_data", ["user_id"], name: "index_save_data_on_user_id"
+  add_index "save_data", ["user_id"], name: "index_save_data_on_user_id", using: :btree
 
   create_table "section_translations", force: :cascade do |t|
     t.integer  "section_id", limit: 4,   null: false
@@ -435,8 +436,8 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.string   "slug",       limit: 255
   end
 
-  add_index "section_translations", ["locale"], name: "index_section_translations_on_locale"
-  add_index "section_translations", ["section_id"], name: "index_section_translations_on_section_id"
+  add_index "section_translations", ["locale"], name: "index_section_translations_on_locale", using: :btree
+  add_index "section_translations", ["section_id"], name: "index_section_translations_on_section_id", using: :btree
 
   create_table "sections", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -449,7 +450,7 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.boolean  "blog",                    default: false
   end
 
-  add_index "sections", ["user_id"], name: "index_sections_on_user_id"
+  add_index "sections", ["user_id"], name: "index_sections_on_user_id", using: :btree
 
   create_table "snmp_stats", force: :cascade do |t|
     t.integer  "dedicated_server_id", limit: 4
@@ -470,7 +471,7 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.datetime "updated_at",                                                               null: false
   end
 
-  add_index "snmp_stats", ["dedicated_server_id"], name: "index_snmp_stats_on_dedicated_server_id"
+  add_index "snmp_stats", ["dedicated_server_id"], name: "index_snmp_stats_on_dedicated_server_id", using: :btree
 
   create_table "stepmania_packs", force: :cascade do |t|
     t.string   "name",           limit: 255
@@ -504,7 +505,7 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.integer  "open_smo_song_id",  limit: 4
   end
 
-  add_index "stepmania_songs", ["stepmania_pack_id"], name: "index_stepmania_songs_on_stepmania_pack_id"
+  add_index "stepmania_songs", ["stepmania_pack_id"], name: "index_stepmania_songs_on_stepmania_pack_id", using: :btree
 
   create_table "streams", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -517,7 +518,7 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.datetime "updated_at",           null: false
   end
 
-  add_index "streams", ["user_id"], name: "index_streams_on_user_id"
+  add_index "streams", ["user_id"], name: "index_streams_on_user_id", using: :btree
 
   create_table "supplies", force: :cascade do |t|
     t.string   "name",        limit: 255,                  null: false
@@ -529,7 +530,7 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.integer  "user_id",     limit: 4
   end
 
-  add_index "supplies", ["user_id"], name: "index_supplies_on_user_id"
+  add_index "supplies", ["user_id"], name: "index_supplies_on_user_id", using: :btree
 
   create_table "supply_copies", force: :cascade do |t|
     t.integer  "supply_id",  limit: 4
@@ -539,7 +540,7 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.datetime "updated_at"
   end
 
-  add_index "supply_copies", ["supply_id"], name: "index_supply_copies_on_supply_id"
+  add_index "supply_copies", ["supply_id"], name: "index_supply_copies_on_supply_id", using: :btree
 
   create_table "supply_requests", force: :cascade do |t|
     t.integer  "supply_id",    limit: 4
@@ -557,8 +558,8 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.string   "name",       limit: 255
   end
 
-  add_index "supply_translations", ["locale"], name: "index_supply_translations_on_locale"
-  add_index "supply_translations", ["supply_id"], name: "index_supply_translations_on_supply_id"
+  add_index "supply_translations", ["locale"], name: "index_supply_translations_on_locale", using: :btree
+  add_index "supply_translations", ["supply_id"], name: "index_supply_translations_on_supply_id", using: :btree
 
   create_table "surveys", force: :cascade do |t|
     t.string   "name",               limit: 255
@@ -571,7 +572,7 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.datetime "updated_at"
   end
 
-  add_index "surveys", ["user_id"], name: "index_surveys_on_user_id"
+  add_index "surveys", ["user_id"], name: "index_surveys_on_user_id", using: :btree
 
   create_table "tournament_users", force: :cascade do |t|
     t.integer  "user_id",       limit: 4
@@ -580,8 +581,8 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.datetime "updated_at",              null: false
   end
 
-  add_index "tournament_users", ["tournament_id"], name: "index_tournament_users_on_tournament_id"
-  add_index "tournament_users", ["user_id"], name: "index_tournament_users_on_user_id"
+  add_index "tournament_users", ["tournament_id"], name: "index_tournament_users_on_tournament_id", using: :btree
+  add_index "tournament_users", ["user_id"], name: "index_tournament_users_on_user_id", using: :btree
 
   create_table "tournaments", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -592,7 +593,7 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.datetime "updated_at",                                null: false
   end
 
-  add_index "tournaments", ["lan_game_id"], name: "index_tournaments_on_lan_game_id"
+  add_index "tournaments", ["lan_game_id"], name: "index_tournaments_on_lan_game_id", using: :btree
 
   create_table "upload_files", force: :cascade do |t|
     t.string   "name",          limit: 255
@@ -604,7 +605,7 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.integer  "user_id",       limit: 4
   end
 
-  add_index "upload_files", ["user_id"], name: "index_upload_files_on_user_id"
+  add_index "upload_files", ["user_id"], name: "index_upload_files_on_user_id", using: :btree
 
   create_table "user_achievements", force: :cascade do |t|
     t.integer  "user_id",        limit: 4
@@ -614,8 +615,8 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.datetime "updated_at"
   end
 
-  add_index "user_achievements", ["achievement_id"], name: "index_user_achievements_on_achievement_id"
-  add_index "user_achievements", ["user_id"], name: "index_user_achievements_on_user_id"
+  add_index "user_achievements", ["achievement_id"], name: "index_user_achievements_on_achievement_id", using: :btree
+  add_index "user_achievements", ["user_id"], name: "index_user_achievements_on_user_id", using: :btree
 
   create_table "user_responses", force: :cascade do |t|
     t.integer  "user_id",            limit: 4
@@ -624,8 +625,8 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.datetime "updated_at"
   end
 
-  add_index "user_responses", ["response_survey_id"], name: "index_user_responses_on_response_survey_id"
-  add_index "user_responses", ["user_id"], name: "index_user_responses_on_user_id"
+  add_index "user_responses", ["response_survey_id"], name: "index_user_responses_on_response_survey_id", using: :btree
+  add_index "user_responses", ["user_id"], name: "index_user_responses_on_user_id", using: :btree
 
   create_table "user_stats", force: :cascade do |t|
     t.integer  "user_id",         limit: 4
@@ -636,8 +637,8 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.datetime "updated_at"
   end
 
-  add_index "user_stats", ["game_id"], name: "index_user_stats_on_game_id"
-  add_index "user_stats", ["user_id"], name: "index_user_stats_on_user_id"
+  add_index "user_stats", ["game_id"], name: "index_user_stats_on_game_id", using: :btree
+  add_index "user_stats", ["user_id"], name: "index_user_stats_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                   limit: 255
@@ -671,13 +672,18 @@ ActiveRecord::Schema.define(version: 20160324191217) do
     t.string   "slug",                   limit: 255
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "users_groups", id: false, force: :cascade do |t|
     t.integer "user_id",  limit: 4
     t.integer "group_id", limit: 4
   end
 
+  add_foreign_key "snmp_stats", "dedicated_servers"
+  add_foreign_key "streams", "users"
+  add_foreign_key "tournament_users", "tournaments"
+  add_foreign_key "tournament_users", "users"
+  add_foreign_key "tournaments", "lan_games"
 end

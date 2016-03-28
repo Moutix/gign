@@ -54,7 +54,7 @@
   achievements: @user.user_achievements.number_achievements_by(1.days),
   user_id: @user.id,
   game_id: 0,
-  additional_data: {"Temps de jeu recent": @user.save_datas.chart_data('recent_playtime/60', 10.years, 1)}
+  additional_data: {"Temps de jeu recent": @user.save_datas.chart_data('recent_playtime/60')}
 
 = form_tag steam_user_path(@user), method: :get, remote: true, class: 'form-horizontal' do
   = hidden_field_tag :act, 'miku'

@@ -4,4 +4,13 @@
     %td= distance_of_hours_in_words game.user_recent_playtime
     %td= distance_of_hours_in_words game.user_total_playtime
     %td.text-center= game.comments_count
-    %td.text-center= game.nb_user_achievements
+    %td.text-center
+      .progress
+        .progress-bar{ role: 'progressbar',
+          'aria-valuenow': game.percentage_achievements.to_i,
+          'aria-valuemin': '0',
+          'aria-valuemax': '100',
+          'style': "width: #{game.percentage_achievements.to_i}%" }
+          %span
+            #{game.nb_user_achievements}/#{game.achievements_count} (#{game.percentage_achievements.to_i}%)
+

@@ -98,7 +98,7 @@ class UsersController < ApplicationController
     authorize! :steam, @user
     add_breadcrumb t('navbar.steam.link')
 
-    @games = Game.user_games(@user.id).page(params[:page])
+    @games = Game.user_games(@user).page(params[:page])
 
     @games = @games.where('games.name LIKE ?', "%#{params[:q]}%") if params[:q]
   end

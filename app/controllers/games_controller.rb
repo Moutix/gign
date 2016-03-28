@@ -17,6 +17,7 @@
 #  comments_count          :integer          default(0)
 #  has_port_forwarding     :boolean          default(FALSE)
 #  slug                    :string(255)
+#  achievements_count      :integer          default(0)
 #
 
 class GamesController < ApplicationController
