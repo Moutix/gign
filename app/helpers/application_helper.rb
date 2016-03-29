@@ -106,4 +106,23 @@ module ApplicationHelper
       end
     end
   end
+
+  def sortable(field, text = nil, default_sort = 'desc', html_options = {}, **opts)
+    if params[:sort_field] == field
+      sort_order = params[:sort_order] == 'desc' ? 'asc' : 'desc'
+      caret = content_tag(:i, '', class: ['fa', "fa-caret-#{sort_order == 'asc' ? 'down' : 'up'}"])
+    else
+      sort_order = default_sort
+    end
+    options = { controller: params[:controller],
+                action: params[:action],
+                sort_field: field,
+                sort_order: sort_order }.merge(opts)
+
+    link_to options, html_options do
+      concat text || field
+      concat ' '
+      concat caret
+    end
+  end
 end

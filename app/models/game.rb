@@ -21,8 +21,10 @@
 #
 
 class Game < ActiveRecord::Base
+  include Sortable
   acts_as_commentable
   paginates_per 30
+  sortable_fields :all
 
   has_many :comments, class_name: 'Comment', as: 'commentable', dependent: :destroy
   has_many :users, through: :user_stats, counter_cache: true

@@ -3,10 +3,18 @@
 %table.table.table-striped#game-table
   %tr
     %th= model_class.human_attribute_name(:image)
-    %th= model_class.human_attribute_name(:recent_playtime)
-    %th= model_class.human_attribute_name(:total_playtime)
-    %th= model_class.human_attribute_name(:nb_comments)
-    %th= model_class.human_attribute_name(:nb_achievements)
+    %th= sortable('user_recent_playtime',
+      model_class.human_attribute_name(:recent_playtime),
+      remote: true)
+    %th= sortable('user_total_playtime',
+      model_class.human_attribute_name(:total_playtime),
+      remote: true)
+    %th= sortable('comments_count',
+      model_class.human_attribute_name(:nb_comments),
+      remote: true)
+    %th= sortable('percentage_achievements',
+      model_class.human_attribute_name(:nb_achievements),
+      remote: true)
 
   = render 'users/tr_games_list', games: games
 

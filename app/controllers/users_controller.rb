@@ -98,7 +98,11 @@ class UsersController < ApplicationController
     authorize! :steam, @user
     add_breadcrumb t('navbar.steam.link')
 
-    @games = Game.user_games(@user).page(params[:page])
+    @games = Game.user_games(@user)
+                 .page(params[:page])
+                 .sortable(params[:sort_field],
+                           params[:sort_order],
+                           %w(percentage_achievements user_total_playtime user_recent_playtime))
 
     @games = @games.where('games.name LIKE ?', "%#{params[:q]}%") if params[:q]
   end
