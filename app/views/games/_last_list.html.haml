@@ -3,12 +3,30 @@
 %table.table.table-striped#game-table
   - if head
     %tr
-      %th= model_class.human_attribute_name(:image)
-      %th= model_class.human_attribute_name(:recent_playtime)
-      %th= model_class.human_attribute_name(:total_playtime)
-      %th= model_class.human_attribute_name(:nb_comments)
-      %th= model_class.human_attribute_name(:nb_users)
-      %th= model_class.human_attribute_name(:nb_achievements)
+      %th= sortable('name',
+        model_class.human_attribute_name(:image),
+        remote: true,
+        act: true)
+      %th= sortable('recent_playtime',
+        model_class.human_attribute_name(:recent_playtime),
+        remote: true,
+        act: true)
+      %th= sortable('total_playtime',
+        model_class.human_attribute_name(:total_playtime),
+        remote: true,
+        act: true)
+      %th= sortable('comments_count',
+        model_class.human_attribute_name(:nb_comments),
+        remote: true,
+        act: true)
+      %th= sortable('users_count',
+        model_class.human_attribute_name(:nb_users),
+        remote: true,
+        act: true)
+      %th= sortable('user_achievements_count',
+        model_class.human_attribute_name(:nb_achievements),
+        remote: true,
+        act: true)
   = render 'tr_last_list', games: games
 
 

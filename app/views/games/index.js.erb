@@ -1,7 +1,7 @@
 <% if @games.current_page == @games.total_pages%>
   $('#view-more').remove();
 <% else %>
-  $('#view-more a').attr('href', '<%= games_path(page: @games.current_page + 1, append: 'miku') %>');
+  $('#view-more a').attr('href', '<%= games_path(page: @games.current_page + 1, append: 'miku', sort_order: params[:sort_order], sort_field: params[:sort_field]) %>');
 <% end %>
 
 <% if session[:games] == 'all'%>
