@@ -73,7 +73,7 @@ var ready = function() {
                 <% additional_data.each do |key, value|%>
                 {
                 type: 'spline',
-                yAxis: <%= data.keys.index(key) + 1 %>,
+                yAxis: <%= additional_data.keys.index(key) + 1 %>,
                 name: '<%= key%>',
                 data: <%= value%>
                 }
