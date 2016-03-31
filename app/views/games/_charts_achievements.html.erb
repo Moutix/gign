@@ -65,6 +65,7 @@ var ready = function() {
             series: [{
                 type: 'line',
                 name: '<%= I18n.t("steam.charts.achievements.title.yaxis")%>',
+                yAxis: 0,
                 data: <%=achievements.map{|k, v| [(k.to_i+k.utc_offset)*1000, v]}%>
                 }
             <%if defined? additional_data%>
@@ -72,6 +73,7 @@ var ready = function() {
                 <% additional_data.each do |key, value|%>
                 {
                 type: 'spline',
+                yAxis: <%= data.keys.index(key) + 1 %>,
                 name: '<%= key%>',
                 data: <%= value%>
                 }
