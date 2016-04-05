@@ -16,6 +16,7 @@
 /tmp
 /public/uploads
 /public/google*
+/public/images/emoji
 /public/assets/*
 /config/database.yml
 /config/gign.yml

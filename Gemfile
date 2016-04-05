@@ -16,6 +16,8 @@ gem 'font-awesome-rails'
 gem 'ckeditor'
 gem 'jquery-fileupload-rails'
 gem 'breadcrumbs_on_rails'
+gem 'redcarpet'
+gem 'gemoji'
 
 # Use SCSS for stylesheets
 gem 'sass-rails'

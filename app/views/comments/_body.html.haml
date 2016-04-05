@@ -1,4 +1,2 @@
 .comment-body
-  - comment.body.split("\r\n").each do |p|
-    = p
-    %br 
+  = MARKDOWN::Renderer.render(comment.body).html_safe
