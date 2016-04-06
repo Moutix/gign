@@ -1,4 +1,4 @@
 %p
   Une nouvelle news a été publiée sur le site :
-  = link_to @page.name, page_section_url(@page.section, @page)
+  = link_to @page.name, section_page_url('', @page.section, @page)
 
