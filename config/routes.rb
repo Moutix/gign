@@ -148,6 +148,7 @@ Gign::Application.routes.draw do
     root 'base#index'
   end
   post '/auth/:provider/callback', to: 'users#steamid'
+  post '/markdown_preview' => 'api#markdown_preview'
   constraints ip: /127.0.0.1/ do
     post '/start_stream' => 'api#start_stream'
     post '/end_stream' => 'api#end_stream'

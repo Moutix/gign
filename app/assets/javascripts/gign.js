@@ -60,9 +60,9 @@ var play_stepmania_song = function(song_id){
 };
 
 $(document).ready(ready);
-  $(document).on('page:load', ready);
+$(document).on('page:load', ready);
 
-  $(document).ready(function() {
+$(document).ready(function() {
   var isLoadingNextPage = false;  // keep from loading two pages at once
   var lastLoadAt = null;          // when you loaded the last page
   var minTimeBetweenPages = 100; // milliseconds to wait between loading pages
@@ -111,5 +111,32 @@ $(document).ready(ready);
     nextPage();
     e.preventDefaults();
   });
+
+  $(document).on("click", "[data-preview]", function() {
+    input = $("#" + $(this).data("preview"));
+    preview_link = $(this);
+    $.ajax({
+      url: "/markdown_preview",
+      method: "post",
+      data: {"markdown": input.val()}
+    }).done(function(data) {
+        preview_link.closest('.nav.nav-tabs').find("li").removeClass("active");
+        preview_link.closest('li').addClass("active");
+        input.hide();
+        input.after($("<div>", {'html': data, 'class': "preview", 'id': input.attr('id') + "_preview"}).css('height', input.height()));
+      });
+    return false;
+  });
+
+  $(document).on("click", "[data-unpreview]", function() {
+    input = $("#" + $(this).data("unpreview"));
+    $(this).closest('.nav.nav-tabs').find("li").removeClass("active");
+    $(this).closest('li').addClass("active");
+    input.show();
+    $("#" + input.attr('id') + "_preview").remove();
+    return false;
+  });
+
+
 });
 

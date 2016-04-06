@@ -34,4 +34,14 @@ class ApiController < ActionController::Base
       format.all { render plain: Time.now.to_i, status: 200 }
     end
   end
+
+  def markdown_preview
+    respond_to do |format|
+      if params[:markdown]
+        format.all { render plain: MARKDOWN::Renderer.render(params[:markdown]), status: 200 }
+      else
+        format.all { render plain: '', status: 200 }
+      end
+    end
+  end
 end

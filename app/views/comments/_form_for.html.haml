@@ -1,3 +1,5 @@
+- comment_id = comment ? comment.id : (comment_parent ? "new_#{comment_parent.id}" : 'new')
+
 = form_for comment ? comment : Comment.new, remote: true do |f|
   .form-group
     = f.hidden_field :parent_id, value: comment_parent.id if comment_parent
@@ -5,8 +7,14 @@
       = f.hidden_field :commentable_type, value: resource.class.name.tableize
       = f.hidden_field :commentable_id, value: resource.id
 
+    
     .comment-textarea
-      = f.text_area :body, class: 'comment-textarea-inner elastic', required: '', placeholder: (resource.nil? || resource.root_comments.empty?) ? t("form.comment.placeholder.no_comment") : t("form.comment.placeholder.comment")
+      = render 'shared/markdown', input_id: "comment_body_#{comment_id}"
+      = f.text_area :body,
+        class: 'comment-textarea-inner elastic',
+        id: "comment_body_#{comment_id}",
+        required: '',
+        placeholder: (resource.nil? || resource.root_comments.empty?) ? t("form.comment.placeholder.no_comment") : t("form.comment.placeholder.comment")
       .pull-right
         = f.submit t("form.comment.submit"), class: 'btn btn-default'
       .preview{ style: 'display:none' }
