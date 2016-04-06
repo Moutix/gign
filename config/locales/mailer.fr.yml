@@ -32,3 +32,6 @@ fr:
       subject:
         up: "RECOVERY - %{server} is UP"
         down: "PROBLEM - %{server} is DOWN"
+
+    new_blog_article:
+      subject: "Nouvelle news sur le site : %{title}"

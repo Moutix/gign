@@ -30,11 +30,12 @@ class Page < ActiveRecord::Base
 
   before_validation :set_slug
   before_create :set_user
+  after_create :send_email
 
   validates :name, uniqueness: { case_sentitive: false, scope: :section_id }
   validates :slug, uniqueness: { case_sentitive: false, scope: :section_id }
 
-  delegate :display,
+  delegate :display, :blog,
            to: :section, prefix: true, allow_nil: true
   delegate :name, :email, :fullname,
            to: :user, prefix: true, allow_nil: true
@@ -58,6 +59,12 @@ class Page < ActiveRecord::Base
   end
 
   private
+
+  def send_email
+    return unless section_blog && section_display
+
+    Mailer.new_blog_article(id).deliver
+  end
 
   def set_user
     self.user = creator if creator

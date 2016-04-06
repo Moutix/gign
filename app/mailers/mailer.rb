@@ -32,6 +32,12 @@ class Mailer < ActionMailer::Base
     mail(to: ADMIN_MAIL, subject: t('mailer.mail_contact.subject', user_name: @name))
   end
 
+  def new_blog_article(page_id)
+    @page = Page.find(page_id)
+    mail(to: Rails.configuration.x.gign['mail']['global'],
+         subject: t('mailer.new_blog_article.subject', title: @page.name))
+  end
+
   def monitoring_ping(server_id, up)
     @server = DedicatedServer.find(server_id)
     @up = up

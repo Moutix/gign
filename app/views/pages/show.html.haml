@@ -27,6 +27,12 @@
 .form-actions
   - if can? :import, @page
     = render 'pages/import', section: @section, page: @page
+  - if can? :destroy, @page
+    = link_to t('.destroy', :default => t("helpers.links.destroy")),
+                section_page_path(@section, @page),
+                :method => :delete,
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-danger'
   - if can? :update, @page
     = link_to t("helpers.links.edit"), edit_section_page_path(@section, @page), class: 'btn btn-primary'
   - if can? :show, @section
