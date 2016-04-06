@@ -20,11 +20,8 @@
   .comment-textarea{
     overflow:auto;
     color: black;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     overflow: hidden;
     display:block;
-    resize: none;
     border: 2px solid rgba(0,39,59,.2);
     border-radius: 4px;
     .comment-textarea-inner{
