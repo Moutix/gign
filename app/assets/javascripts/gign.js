@@ -114,7 +114,13 @@ $(document).ready(function() {
 
   $(document).on("click", "[data-preview]", function() {
     input = $("#" + $(this).data("preview"));
+
+    if ( $("#" + input.attr('id') + "_preview").length > 0 ) {
+      return false;
+    }
+
     preview_link = $(this);
+
     $.ajax({
       url: "/markdown_preview",
       method: "post",
@@ -124,7 +130,8 @@ $(document).ready(function() {
         preview_link.closest('li').addClass("active");
         input.hide();
         input.after($("<div>", {'html': data, 'class': "preview", 'id': input.attr('id') + "_preview"}).css('height', input.height()));
-      });
+    });
+
     return false;
   });
 
@@ -136,7 +143,5 @@ $(document).ready(function() {
     $("#" + input.attr('id') + "_preview").remove();
     return false;
   });
-
-
 });
 
