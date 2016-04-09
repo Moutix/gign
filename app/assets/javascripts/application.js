@@ -21,6 +21,8 @@
 //= require bootstrap-select.min.js
 //= require ckeditor/init
 //= require highcharts.js
+//= require codemirror.js
+//= require simplemde.min.js
 //= require jquery.elastic.source.js
 //= require jquery-fileupload/basic
 //= require jquery.aria.js

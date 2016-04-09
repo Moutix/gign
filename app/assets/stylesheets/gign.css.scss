@@ -249,3 +249,7 @@ form.import {
     display: inline-block;
   }
 }
+
+.CodeMirror, .CodeMirror-scroll {
+  min-height: 100px;
+}

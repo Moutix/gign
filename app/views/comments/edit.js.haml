@@ -1,7 +1,7 @@
 - selector = "#body_comment_#{@comment.id}"
 if ( $("#{selector} form").length === 0 ) {
 $("#{selector}").html("#{j render 'comments/form_for', comment: @comment, resource: nil, comment_parent: nil}")
-$("#{selector} .elastic").elastic();
+$("#{selector} .simplemde").simplemde();
 } else {
 $("#{selector}").html("#{j render 'comments/body', comment: @comment}")
 }

@@ -7,12 +7,10 @@
       = f.hidden_field :commentable_type, value: resource.class.name.tableize
       = f.hidden_field :commentable_id, value: resource.id
 
-    
     .comment-textarea
-      = render 'shared/markdown', input_id: "comment_body_#{comment_id}"
       = f.text_area :body,
-        class: 'comment-textarea-inner elastic',
-        id: "comment_body_#{comment_id}",
+        class: 'comment-textarea-inner simplemde',
+        id: 'comment_body_#{comment_id}',
         required: '',
         placeholder: (resource.nil? || resource.root_comments.empty?) ? t("form.comment.placeholder.no_comment") : t("form.comment.placeholder.comment")
       .pull-right

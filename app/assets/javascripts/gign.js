@@ -1,3 +1,33 @@
+$.fn.simplemde = function() {
+  $.each($(this), function(_, value) {
+    return new SimpleMDE({
+      autoDownloadFontAwesome: false,
+      element: value,
+      toolbar: [
+        "bold", "italic", "heading", "|",
+        "quote", "unordered-list", "ordered-list", "table", "|",
+        "link", "image", "|",
+        "preview"
+      ],
+      status: false,
+      previewRender: function(plainText) {
+        var res;
+        $.ajax({
+          async: false,
+          url: "/markdown_preview",
+          method: "post",
+          data: {"markdown": plainText}
+        }).done(function(data) {
+          res = data;
+        });
+        return res;
+      },
+      forceSync: true,
+      spellChecker: false
+    });
+  });
+};
+
 var ready = function() {
   $('.selectpicker').selectpicker();
 
@@ -16,7 +46,7 @@ var ready = function() {
     }
   });
   
-  $.fn.datetimepicker.dates['fr'] = {
+  $.fn.datetimepicker.dates.fr = {
     days: ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"],
     daysShort: ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"],
     daysMin: ["D", "L", "Ma", "Me", "J", "V", "S", "D"],
@@ -35,6 +65,8 @@ var ready = function() {
   $('[data-toggle=popover]').popover();
 
   $('.elastic').elastic();
+
+  $('.simplemde').simplemde();
 };
 
 
@@ -110,38 +142,6 @@ $(document).ready(function() {
   $(document).on("click", "#view-more a", function(e) {
     nextPage();
     e.preventDefaults();
-  });
-
-  $(document).on("click", "[data-preview]", function() {
-    input = $("#" + $(this).data("preview"));
-
-    if ( $("#" + input.attr('id') + "_preview").length > 0 ) {
-      return false;
-    }
-
-    preview_link = $(this);
-
-    $.ajax({
-      url: "/markdown_preview",
-      method: "post",
-      data: {"markdown": input.val()}
-    }).done(function(data) {
-        preview_link.closest('.nav.nav-tabs').find("li").removeClass("active");
-        preview_link.closest('li').addClass("active");
-        input.hide();
-        input.after($("<div>", {'html': data, 'class': "preview", 'id': input.attr('id') + "_preview"}).css('min-height', input.height()));
-    });
-
-    return false;
-  });
-
-  $(document).on("click", "[data-unpreview]", function() {
-    input = $("#" + $(this).data("unpreview"));
-    $(this).closest('.nav.nav-tabs').find("li").removeClass("active");
-    $(this).closest('li').addClass("active");
-    input.show();
-    $("#" + input.attr('id') + "_preview").remove();
-    return false;
   });
 });
 

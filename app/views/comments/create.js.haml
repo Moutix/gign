@@ -1,2 +1,3 @@
 $('#comments_content_#{@commentable.class.name.tableize.singularize}_#{@commentable.id}').remove()
 $('#comments_#{@commentable.class.name.tableize.singularize}_#{@commentable.id}').append('#{j render 'comments/content', resource: @commentable}')
+$('#comments_#{@commentable.class.name.tableize.singularize}_#{@commentable.id} .simplemde').simplemde();

@@ -12,5 +12,6 @@ class HTMLWithEmoji < Redcarpet::Render::HTML
 end
 
 module MARKDOWN
-  Renderer = Redcarpet::Markdown.new(HTMLWithEmoji, autolink: true, tables: true, emoji: true)
+  renderer = HTMLWithEmoji.new(hard_wrap: true, escape_html: true)
+  Renderer = Redcarpet::Markdown.new(renderer, autolink: true, tables: true, emoji: true, lax_spacing: true, highlight: true)
 end
