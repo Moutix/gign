@@ -129,7 +129,7 @@ $(document).ready(function() {
         preview_link.closest('.nav.nav-tabs').find("li").removeClass("active");
         preview_link.closest('li').addClass("active");
         input.hide();
-        input.after($("<div>", {'html': data, 'class': "preview", 'id': input.attr('id') + "_preview"}).css('height', input.height()));
+        input.after($("<div>", {'html': data, 'class': "preview", 'id': input.attr('id') + "_preview"}).css('min-height', input.height()));
     });
 
     return false;
