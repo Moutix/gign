@@ -1,20 +1,21 @@
-.row
-  .col-md-2
-  .col-md-2
-    %h4= t("footer.about_us")
-    %ul.unstyled
-      %li= link_to t("footer.contact"), contact_path
-      %li= link_to t("footer.team"), promotions_path
-  .col-md-2
-    %h4= t("footer.websites")
-    %ul.unstyled
-      %li= link_to 'GiGN PAPS', 'https://camion.larez.fr'
-      %li= link_to 'GiGN Date', 'https://gigndate.larez.fr'
-      %li= link_to 'GiGN Bin', 'https://gignbin.larez.fr'
-      %li= link_to 'GiGN Pad', 'https://gignpad.larez.fr'
-  .col-md-4
-    %h4= t("footer.see_us")
-    = link_to 'http://steamcommunity.com/groups/gifgn/' do
-      = image_tag 'steam_footer.png'
-    = link_to 'https://github.com/gifgn' do
-      = image_tag 'github_footer.png'
+.container
+  .row
+    .col-md-2
+    .col-md-2
+      %h4= t("footer.about_us")
+      %ul.unstyled
+        %li= link_to t("footer.contact"), contact_path
+        %li= link_to t("footer.team"), promotions_path
+    .col-md-2
+      %h4= t("footer.websites")
+      %ul.unstyled
+        %li= link_to 'GiGN PAPS', 'https://camion.larez.fr'
+        %li= link_to 'GiGN Date', 'https://gigndate.larez.fr'
+        %li= link_to 'GiGN Bin', 'https://gignbin.larez.fr'
+        %li= link_to 'GiGN Pad', 'https://gignpad.larez.fr'
+    .col-md-4
+      %h4= t("footer.see_us")
+      = link_to 'http://steamcommunity.com/groups/gifgn/' do
+        = image_tag 'steam_footer.png'
+      = link_to 'https://github.com/gifgn' do
+        = image_tag 'github_footer.png'

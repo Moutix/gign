@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328141811) do
+ActiveRecord::Schema.define(version: 20160409161822) do
 
   create_table "achievements", force: :cascade do |t|
     t.string   "api_name",        limit: 255
@@ -104,6 +104,17 @@ ActiveRecord::Schema.define(version: 20160328141811) do
     t.boolean  "up",                       default: true
     t.datetime "last_check"
   end
+
+  create_table "email_sends", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.text     "content",    limit: 65535
+    t.string   "receiver",   limit: 255
+    t.integer  "page_id",    limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "email_sends", ["page_id"], name: "index_email_sends_on_page_id", using: :btree
 
   create_table "fullcalendar_engine_event_series", force: :cascade do |t|
     t.integer  "frequency",  limit: 4,   default: 1
@@ -681,6 +692,7 @@ ActiveRecord::Schema.define(version: 20160328141811) do
     t.integer "group_id", limit: 4
   end
 
+  add_foreign_key "email_sends", "pages"
   add_foreign_key "snmp_stats", "dedicated_servers"
   add_foreign_key "streams", "users"
   add_foreign_key "tournament_users", "tournaments"

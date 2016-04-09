@@ -51,10 +51,15 @@ class PagesController < ApplicationController
   def create
     authorize! :create, Page
     @page = @section.pages.new(page_params)
+    @email_send = EmailSend.new(email_send_params) if @section.blog
     @page.creator = current_user
 
     respond_to do |format|
-      if @page.save
+      if (!@section.blog || @section.blog && @email_send.save) && @page.save
+        if @section.blog
+          @email_send.update_columns(page_id: @page.id) if @section.blog
+          Mailer.new_blog_article(@email_send.id).deliver
+        end
         format.html { redirect_to @section, notice: 'Page was successfully created.' }
         format.json { render action: 'show', status: :created, location: @page }
       else
@@ -135,4 +140,8 @@ class PagesController < ApplicationController
   def page_params
     params.require(:page).permit(:name, :slug, :section_id, :content, :priority, :survey_id)
   end
+  def email_send_params
+    params.require(:email_send).permit(:name, :page_id, :content, :receiver)
+  end
+
 end

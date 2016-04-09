@@ -23,7 +23,7 @@
   #list_images.panel-collapse.collapse
     = render 'images/list', images: @section.images
 %hr
-  
+
 = form_for([@section, @page]) do |f|
   .form-group
     = f.label :name
@@ -34,6 +34,22 @@
   .form-group
     = f.label :content
     = f.cktext_area :content, class: 'form-control'
+  - if @section.blog && !@page.id
+    = fields_for :email_send do |email_send|
+      %fieldset.well
+        %legend Email
+        .form-group
+          .col-md-4
+            = email_send.label :receiver
+            = email_send.text_field :receiver, class: 'form-control', required: '', value: Rails.configuration.x.gign['mail']['global']
+          .col-md-8
+            = email_send.label :name
+            = email_send.text_field :name, class: 'form-control', required: '', value: t("mailer.new_blog_article.subject")
+
+        .form-group
+          = email_send.label :content
+          = email_send.cktext_area :content, class: 'form-control', value: render('pages/default_mail', section: @section)
+
   .form-group
     = f.label :priority
     = f.number_field :priority, class: 'form-control'

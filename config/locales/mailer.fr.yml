@@ -34,4 +34,4 @@ fr:
         down: "PROBLEM - %{server} is DOWN"
 
     new_blog_article:
-      subject: "Nouvelle news sur le site : %{title}"
+      subject: "Nouvelle news sur le site"

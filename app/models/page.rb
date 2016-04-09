@@ -24,13 +24,13 @@ class Page < ActiveRecord::Base
   belongs_to :section
   belongs_to :survey
   belongs_to :user
+  has_one :email_send, dependent: :destroy
   has_many :comments, class_name: 'Comment', as: 'commentable', dependent: :destroy
   has_many :resource_followers, class_name: 'ResourceFollower', as: 'resource', dependent: :destroy
   has_many :followers, through: :resource_followers, class_name: 'User', source: 'user'
 
   before_validation :set_slug
   before_create :set_user
-  after_create :send_email
 
   validates :name, uniqueness: { case_sentitive: false, scope: :section_id }
   validates :slug, uniqueness: { case_sentitive: false, scope: :section_id }
@@ -59,12 +59,6 @@ class Page < ActiveRecord::Base
   end
 
   private
-
-  def send_email
-    return unless section_blog && section_display
-
-    Mailer.new_blog_article(id).deliver
-  end
 
   def set_user
     self.user = creator if creator
