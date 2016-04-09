@@ -2,10 +2,10 @@
 
 %table.table.table-striped
   %tr
-    %th= model_class.human_attribute_name(:name)
-    %th= model_class.human_attribute_name(:email)
-    %th= model_class.human_attribute_name(:current_sign_in_at)
-    %th= model_class.human_attribute_name(:created_at)
+    %th= sortable('name', model_class.human_attribute_name(:name))
+    %th= sortable('email', model_class.human_attribute_name(:email))
+    %th= sortable('current_sign_in_at', model_class.human_attribute_name(:current_sign_in_at))
+    %th= sortable('created_at', model_class.human_attribute_name(:created_at))
     %th= t '.actions', :default => t("helpers.actions")
 
   - users.each do |user|

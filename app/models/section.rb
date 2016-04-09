@@ -14,8 +14,13 @@
 #
 
 class Section < ActiveRecord::Base
-  translates :name, :slug
+  include Sortable
+
   attr_accessor :creator
+
+  translates :name, :slug
+  sortable_fields :all
+
   has_many :ordered_pages, -> { order(:priority, :name) }, source: 'page', class_name: 'Page'
   has_many :blog_pages, -> { order(created_at: :desc) }, source: 'page', class_name: 'Page'
 

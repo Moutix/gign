@@ -50,7 +50,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     authorize! :index, User
-    @users = User.all
+    @users = User.all.sortable(params[:sort_field], params[:sort_order])
   end
 
   # GET /users/1
@@ -69,7 +69,7 @@ class UsersController < ApplicationController
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to @user, alert: 'User was not updated.' }
+        format.html { render action: 'show' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end

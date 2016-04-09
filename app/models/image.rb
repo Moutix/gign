@@ -16,8 +16,12 @@ require 'net/http'
 require 'uri'
 
 class Image < ActiveRecord::Base
-  paginates_per 30
   attr_accessor :creator
+
+  include Sortable
+  sortable_fields :all
+  paginates_per 30
+
   belongs_to :imageable, polymorphic: true
   belongs_to :user
 

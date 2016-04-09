@@ -34,13 +34,42 @@ class StepmaniaPacksController < ApplicationController
     session[:sqt] = @available_type.include?(params[:sqt]) ? params[:sqt] : 'All' if params[:sqt]
 
     if !session[:sq].blank? || !session[:sqa].blank?
-      @stepmania_packs = StepmaniaPack.easier_than(session[:sqe]).harder_than(session[:sqh]).search_name(session[:sqp]).with_type(session[:sqt]).search_songs_name(session[:sq]).search_songs_artist(session[:sqa]).uniq.page(params[:page])
+      @stepmania_packs = StepmaniaPack
+                         .easier_than(session[:sqe])
+                         .harder_than(session[:sqh])
+                         .search_name(session[:sqp])
+                         .with_type(session[:sqt])
+                         .search_songs_name(session[:sq])
+                         .search_songs_artist(session[:sqa])
+                         .uniq
+                         .page(params[:page])
+                         .sortable(params[:sort_field], params[:sort_order])
+
       @count = @stepmania_packs.count
-      @count_songs = StepmaniaSong.easier_than(session[:sqe]).harder_than(session[:sqh]).search_name(session[:sq]).search_artist(session[:sqa]).where(stepmania_pack_id: @stepmania_packs.pluck(:id)).count
+      @count_songs = StepmaniaSong
+                     .easier_than(session[:sqe])
+                     .harder_than(session[:sqh])
+                     .search_name(session[:sq])
+                     .search_artist(session[:sqa])
+                     .where(stepmania_pack_id: @stepmania_packs.pluck(:id))
+                     .count
+
     elsif !session[:sqp].blank? || !session[:sqt].blank?
-      @stepmania_packs = StepmaniaPack.easier_than(session[:sqe]).harder_than(session[:sqh]).search_name(session[:sqp]).with_type(session[:sqt]).order(name: :asc).page(params[:page])
+      @stepmania_packs = StepmaniaPack
+                         .easier_than(session[:sqe])
+                         .harder_than(session[:sqh])
+                         .search_name(session[:sqp])
+                         .with_type(session[:sqt])
+                         .order(name: :asc)
+                         .page(params[:page])
+                         .sortable(params[:sort_field], params[:sort_order])
     else
-      @stepmania_packs = StepmaniaPack.easier_than(session[:sqe]).harder_than(session[:sqh]).order(name: :asc).page(params[:page])
+      @stepmania_packs = StepmaniaPack
+                         .easier_than(session[:sqe])
+                         .harder_than(session[:sqh])
+                         .order(name: :asc)
+                         .page(params[:page])
+                         .sortable(params[:sort_field], params[:sort_order])
     end
 
     @open_smo_stats = OpenSmoStat.order(created_at: :desc).limit(5)
@@ -49,6 +78,10 @@ class StepmaniaPacksController < ApplicationController
   end
 
   def show
+    @stepmania_songs = @stepmania_pack
+                       .stepmania_songs
+                       .order(name: :asc)
+                       .sortable(params[:sort_field], params[:sort_order])
   end
 
   private

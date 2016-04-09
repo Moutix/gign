@@ -2,6 +2,6 @@
 
 %h1= t '.title', :default => model_class.model_name.human.pluralize.titleize
 
-= render 'list', images: @images
+= render 'list', images: @images, with_sort: true
 .center
-  = paginate @images, :window => 2
+  = paginate @images, :window => 2, params: { sort_field: params[:sort_field], sort_order: params[:sort_order] }

@@ -6,16 +6,28 @@
   %tr
     - if with_banner
       %th= model_class.human_attribute_name(:banner)
-    %th= model_class.human_attribute_name(:name)
-    %th= model_class.human_attribute_name(:title)
-    %th= model_class.human_attribute_name(:subtitle)
-    %th= model_class.human_attribute_name(:artist)
-    %th= model_class.human_attribute_name(:video)
-    %th.stepmania-difficulty-beginner= model_class.human_attribute_name(:beginner)
-    %th.stepmania-difficulty-easy= model_class.human_attribute_name(:easy)
-    %th.stepmania-difficulty-medium= model_class.human_attribute_name(:medium)
-    %th.stepmania-difficulty-hard= model_class.human_attribute_name(:hard)
-    %th.stepmania-difficulty-expert= model_class.human_attribute_name(:challenge)
+    - if defined?(with_sort) && with_sort
+      %th= sortable('name', model_class.human_attribute_name(:name))
+      %th= sortable('title', model_class.human_attribute_name(:title))
+      %th= sortable('subtitle', model_class.human_attribute_name(:subtitle))
+      %th= sortable('artist', model_class.human_attribute_name(:artist))
+      %th= sortable('video', model_class.human_attribute_name(:video))
+      %th.stepmania-difficulty-beginner= sortable('beginner', model_class.human_attribute_name(:beginner))
+      %th.stepmania-difficulty-easy= sortable('easy', model_class.human_attribute_name(:easy))
+      %th.stepmania-difficulty-medium= sortable('medium', model_class.human_attribute_name(:medium))
+      %th.stepmania-difficulty-hard= sortable('hard', model_class.human_attribute_name(:hard))
+      %th.stepmania-difficulty-expert= sortable('challenge', model_class.human_attribute_name(:challenge))
+    - else
+      %th= model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:title)
+      %th= model_class.human_attribute_name(:subtitle)
+      %th= model_class.human_attribute_name(:artist)
+      %th= model_class.human_attribute_name(:video)
+      %th.stepmania-difficulty-beginner= model_class.human_attribute_name(:beginner)
+      %th.stepmania-difficulty-easy= model_class.human_attribute_name(:easy)
+      %th.stepmania-difficulty-medium= model_class.human_attribute_name(:medium)
+      %th.stepmania-difficulty-hard= model_class.human_attribute_name(:hard)
+      %th.stepmania-difficulty-expert= model_class.human_attribute_name(:challenge)
 
   - stepmania_songs.each do |song|
     %tr[song]
@@ -31,7 +43,7 @@
         - else
           = link_to song.name, song.open_smo_song
         - if (can? :play, song) && !song.music.blank?
-          %audio.music_stepmania#audio[song]{src: Rails.configuration.x.gign['stepmania']['url'] + "/" + song.music}
+          %audio.music_stepmania#audio[song]{src: Rails.configuration.x.gign['stepmania']['url'] + "/" + song.music, preload: 'none'}
           %a{onclick: "play_stepmania_song('audio_stepmania_song_#{song.id}').play();", style: "cursor:pointer;"}
             %i.fa.fa-play#icon_audio[song]
       %td= song.title

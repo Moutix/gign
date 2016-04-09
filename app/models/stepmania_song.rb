@@ -24,6 +24,9 @@
 #
 
 class StepmaniaSong < ActiveRecord::Base
+  include Sortable
+  sortable_fields :all
+
   belongs_to :stepmania_pack
   belongs_to :open_smo_song
   has_many :open_smo_stats, through: :open_smo_song

@@ -27,7 +27,10 @@ class SectionsController < ApplicationController
   # GET /sections.json
   def index
     authorize! :index, Section
-    @sections = Section.all
+    @sections = Section
+                .joins(:user)
+                .select('sections.*, users.name AS user_name')
+                .sortable(params[:sort_field], params[:sort_order], %w(user_name))
   end
 
   # GET /sections/1

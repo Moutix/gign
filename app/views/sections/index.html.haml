@@ -3,14 +3,14 @@
 
 %table.table.table-striped
   %tr
-    %th= model_class.human_attribute_name(:name)
-    %th= model_class.human_attribute_name(:slug)
-    %th= model_class.human_attribute_name(:description)
-    %th= model_class.human_attribute_name(:user)
-    %th= model_class.human_attribute_name(:activate)
-    %th= model_class.human_attribute_name(:blog)
-    %th= model_class.human_attribute_name(:created_at)
-    %th= model_class.human_attribute_name(:updated_at)
+    %th= sortable('name', model_class.human_attribute_name(:name))
+    %th= sortable('slug', model_class.human_attribute_name(:slug))
+    %th= sortable('description', model_class.human_attribute_name(:description))
+    %th= sortable('user_name', model_class.human_attribute_name(:user))
+    %th= sortable('display', model_class.human_attribute_name(:activate))
+    %th= sortable('blog', model_class.human_attribute_name(:blog))
+    %th= sortable('created_at', model_class.human_attribute_name(:created_at))
+    %th= sortable('updated_at', model_class.human_attribute_name(:updated_at))
     %th= t '.actions', :default => t("helpers.actions")
 
   - @sections.each do |section|

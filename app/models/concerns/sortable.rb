@@ -6,6 +6,8 @@ module Sortable
       return all unless @sort_fields.concat(sortables).include?(field)
       order = 'asc' unless order.casecmp('desc') == 0
 
+      field = "#{class_name.tableize.pluralize}.#{field}" if attribute_names.include? field
+
       reorder("#{field} #{order}")
     end
 

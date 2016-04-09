@@ -14,6 +14,8 @@
 #
 
 class StepmaniaPack < ActiveRecord::Base
+  include Sortable
+  sortable_fields :all
   acts_as_commentable
 
   paginates_per 50

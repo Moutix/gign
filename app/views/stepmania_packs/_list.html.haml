@@ -9,9 +9,9 @@
 
 %table.table.table-striped.table-condensed
   %tr
-    %th= model_class.human_attribute_name(:game_type)
-    %th= model_class.human_attribute_name(:name)
-    %th= model_class.human_attribute_name(:size)
+    %th= sortable('game_type', model_class.human_attribute_name(:game_type), remote: true)
+    %th= sortable('name', model_class.human_attribute_name(:name), remote: true)
+    %th= sortable('size', model_class.human_attribute_name(:size), remote: true)
     %th= model_class.human_attribute_name(:url)
     - if can? :download, StepmaniaPack
       %th= model_class.human_attribute_name(:name_file)
@@ -68,6 +68,8 @@
 
 - if params[:controller] == "stepmania_packs"
   .center
-    = paginate stepmania_packs, remote: true
-
+    = paginate stepmania_packs,
+      remote: true,
+      params: { sort_field: params[:sort_field],
+                sort_order: params[:sort_order] }
 

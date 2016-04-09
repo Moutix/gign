@@ -23,7 +23,10 @@ class UploadFilesController < ApplicationController
   # GET /upload_files.json
   def index
     authorize! :index, UploadFile
-    @upload_files = UploadFile.all
+    @upload_files = UploadFile
+                    .joins(:user)
+                    .select('upload_files.*, users.name as user_name')
+                    .sortable(params[:sort_field], params[:sort_order], %w(user_name))
   end
 
   # POST /upload_files.json

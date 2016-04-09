@@ -107,7 +107,9 @@ module ApplicationHelper
     end
   end
 
-  def sortable(field, text = nil, default_sort = 'desc', html_options = {}, **opts)
+  def sortable(field, text = nil, disable_sort = false, default_sort = 'desc', html_options = {}, **opts)
+    return text if disable_sort
+
     if params[:sort_field] == field
       sort_order = params[:sort_order] == 'desc' ? 'asc' : 'desc'
       caret = content_tag(:i, '', class: ['fa', "fa-caret-#{sort_order == 'asc' ? 'down' : 'up'}"])

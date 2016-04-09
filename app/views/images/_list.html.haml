@@ -1,14 +1,15 @@
--model_class = Image
+- model_class = Image
+- with_sort = defined?(with_sort) && with_sort
 
 %table.table.table-striped#image-table
   %tr
     %th= model_class.human_attribute_name(:picture)
-    %th= model_class.human_attribute_name(:name)
-    %th= model_class.human_attribute_name(:url)
+    %th= sortable('name', model_class.human_attribute_name(:name), !with_sort)
+    %th= sortable('url', model_class.human_attribute_name(:url), !with_sort)
     %th= model_class.human_attribute_name(:thumb_url)
     %th= model_class.human_attribute_name(:medium_url)
-    %th= model_class.human_attribute_name(:user)
-    %th= model_class.human_attribute_name(:created_at)
+    %th= sortable('user_name', model_class.human_attribute_name(:user), !with_sort)
+    %th= sortable('created_at', model_class.human_attribute_name(:created_at), !with_sort)
     %th= t '.actions', :default => t("helpers.actions")
 
   - images.each do |image|

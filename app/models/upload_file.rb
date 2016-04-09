@@ -13,7 +13,11 @@
 #
 
 class UploadFile < ActiveRecord::Base
+  include Sortable
+
   attr_accessor :creator
+
+  sortable_fields :all
 
   belongs_to :imageable, polymorphic: true
   belongs_to :user

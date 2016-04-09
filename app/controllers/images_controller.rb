@@ -21,7 +21,12 @@ class ImagesController < ApplicationController
 
   def index
     authorize! :index, @image
-    @images = Image.not_games.page(params[:page])
+    @images = Image
+              .joins(:user)
+              .select('images.*, users.name AS user_name')
+              .not_games
+              .page(params[:page])
+              .sortable(params[:sort_field], params[:sort_order], %w(user_name))
   end
 
   def destroy

@@ -35,6 +35,9 @@
 #
 
 class User < ActiveRecord::Base
+  include Sortable
+  sortable_fields :all
+
   attr_accessor :temp_password
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -74,7 +77,8 @@ class User < ActiveRecord::Base
   scope :online, -> { where(online: true) }
   scope :stepmania_users, -> { where('stepmania_xp > 0') }
 
-  validates :pseudo, uniqueness: { case_sentitive: false }
+  validates :pseudo, uniqueness: { case_sensitive: false }
+  validates :name, presence: true
 
   before_save :generate_sha_password
   before_save :set_slug
