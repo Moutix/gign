@@ -134,12 +134,19 @@ class ScanService
     data = "\xFF\xFF\xFF\xFF\x54\x53\x6F\x75\x72\x63\x65\x20\x45\x6E\x67\x69\x6E\x65\x20\x51\x75\x65\x72\x79\x00"
 
     games = []
-    for i in 27_015..27_020
-      games += send_udp(data, i)
-      Rails.configuration.x.gign['scan']['dedicated_ip'].each do |ip|
-        games += send_udp(data, i, 0.3, false, ip)
+    threads = []
+    mutex = Mutex.new
+    ((27_015..27_050).to_a + (28_000..28_050).to_a).each do |i|
+      threads << Thread.new do
+        game = send_udp(data, i)
+        mutex.synchronize { games += game }
+        Rails.configuration.x.gign['scan']['dedicated_ip'].each do |ip|
+          game = send_udp(data, i, 0.5, false, ip)
+          mutex.synchronize { games += game }
+        end
       end
     end
+    threads.each(&:join)
 
     games.compact.each do |game|
       t = game[0].scan(/[\w|\d|\-|\'|\ |\:|\.]{2,}/)
