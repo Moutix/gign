@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160409161822) do
+ActiveRecord::Schema.define(version: 20160620114853) do
 
   create_table "achievements", force: :cascade do |t|
     t.string   "api_name",        limit: 255
@@ -532,7 +532,7 @@ ActiveRecord::Schema.define(version: 20160409161822) do
   add_index "streams", ["user_id"], name: "index_streams_on_user_id", using: :btree
 
   create_table "supplies", force: :cascade do |t|
-    t.string   "name",        limit: 255,                  null: false
+    t.string   "name",        limit: 255
     t.integer  "price",       limit: 4,     default: 0
     t.text     "description", limit: 65535
     t.boolean  "loanable",                  default: true
