@@ -77,9 +77,7 @@ class User < ActiveRecord::Base
   scope :online, -> { where(online: true) }
   scope :stepmania_users, -> { where('stepmania_xp > 0') }
 
-  validates :pseudo, uniqueness: { case_sensitive: false }
-  validates :name, presence: true
-
+  before_save :set_name_and_pseudo!
   before_save :generate_sha_password
   before_save :set_slug
   after_create :regenerate_secret!
@@ -230,6 +228,23 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def set_name_and_pseudo!
+    email =~ /(.+)\.(.+)@.+/
+    firstname = Regexp.last_match(1)
+    lastname = Regexp.last_match(2)
+    if name.blank?
+      if firstname && lastname
+        self.name = firstname.capitalize + ' ' + lastname.capitalize
+      else
+        resource.email =~ /(.+)@.+/
+        self.name = Regexp.last_match(1).capitalize
+      end
+    end
+
+    self.pseudo = name.parameterize('_') if pseudo.blank?
+    self.pseudo += '_' until User.where('pseudo LIKE ? AND id != ?', self.pseudo, self.id).empty?
+  end
 
   def set_slug
     self.pseudo = nil if pseudo.blank?
