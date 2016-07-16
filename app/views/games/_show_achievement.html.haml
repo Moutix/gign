@@ -1,7 +1,7 @@
 .achievement
   .achievement-image
     = link_to game_path(achievement.game) do
-      = image_tag achievement.icon_closed_url, "data-toggle" => "tooltip", "data-placement" => "bottom", "title" => achievement.description
+      = image_tag achievement.icon_closed_url, "data-toggle" => "tooltip", "data-placement" => "bottom", "title" => achievement.title
   .achievement-content
     %span.achievement-text
       = achievement.name

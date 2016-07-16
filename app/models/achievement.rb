@@ -18,11 +18,18 @@ class Achievement < ActiveRecord::Base
   has_many :user_achievements, dependent: :destroy
   has_many :users, through: :user_achievements
 
+  delegate :name,
+           to: :game, prefix: true, allow_nil: true
+
   def percentage
     if game.users_with_achievements.empty?
       0
     else
       users.count / game.users_with_achievements.count.to_f * 100
     end
+  end
+
+  def title
+    "#{game_name} - #{description}"
   end
 end
