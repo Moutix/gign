@@ -13,7 +13,7 @@ class SteamService
   end
 
   def update!
-    @games.each_values do |game|
+    @games.each_value do |game|
       this_game = find_game(game)
       this_stat = find_stat(this_game)
 
